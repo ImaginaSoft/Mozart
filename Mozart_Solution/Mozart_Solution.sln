@@ -1,0 +1,50 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "cmpBlog", "..\..\..\Pentagrama\Mozart4\cmpBlog\cmpBlog.vbproj", "{ACA7F175-4A0B-46CF-81D1-99EA44B3F0EB}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "cmpNegocio", "..\..\..\Pentagrama\Mozart4\cmpNegocio\cmpNegocio.vbproj", "{8A62EFE4-FB95-43D3-9575-766E6C512160}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "cmpRutinas", "..\..\..\Pentagrama\Mozart4\cmpRutinas\cmpRutinas.vbproj", "{4C7CC189-AF67-4319-B1C1-D4C6E4C9E600}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "cmpSeguridad", "..\..\..\Pentagrama\Mozart4\cmpSeguridad\cmpSeguridad.vbproj", "{332BFA9D-9626-4380-9615-098A2C530EEF}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "cmpTabla", "..\..\..\Pentagrama\Mozart4\cmpTabla\cmpTabla.vbproj", "{499B467A-1848-4702-B604-2BA0B960317E}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Mozart", "Mozart\Mozart.vbproj", "{45F9BDAB-C531-4940-85BF-11FA13CAFD04}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ACA7F175-4A0B-46CF-81D1-99EA44B3F0EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACA7F175-4A0B-46CF-81D1-99EA44B3F0EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACA7F175-4A0B-46CF-81D1-99EA44B3F0EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACA7F175-4A0B-46CF-81D1-99EA44B3F0EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A62EFE4-FB95-43D3-9575-766E6C512160}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A62EFE4-FB95-43D3-9575-766E6C512160}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A62EFE4-FB95-43D3-9575-766E6C512160}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A62EFE4-FB95-43D3-9575-766E6C512160}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C7CC189-AF67-4319-B1C1-D4C6E4C9E600}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C7CC189-AF67-4319-B1C1-D4C6E4C9E600}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C7CC189-AF67-4319-B1C1-D4C6E4C9E600}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C7CC189-AF67-4319-B1C1-D4C6E4C9E600}.Release|Any CPU.Build.0 = Release|Any CPU
+		{332BFA9D-9626-4380-9615-098A2C530EEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{332BFA9D-9626-4380-9615-098A2C530EEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{332BFA9D-9626-4380-9615-098A2C530EEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{332BFA9D-9626-4380-9615-098A2C530EEF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{499B467A-1848-4702-B604-2BA0B960317E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{499B467A-1848-4702-B604-2BA0B960317E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{499B467A-1848-4702-B604-2BA0B960317E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{499B467A-1848-4702-B604-2BA0B960317E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45F9BDAB-C531-4940-85BF-11FA13CAFD04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45F9BDAB-C531-4940-85BF-11FA13CAFD04}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45F9BDAB-C531-4940-85BF-11FA13CAFD04}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45F9BDAB-C531-4940-85BF-11FA13CAFD04}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

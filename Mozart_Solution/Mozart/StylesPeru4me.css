@@ -1,0 +1,53 @@
+/* Default CSS Stylesheet for a new Web Application project */
+
+
+BODY
+{
+	font-size: 10pt;
+	font-family: 'Century Gothic';
+}
+
+.style16
+{
+	font-weight: bold;
+	font-size: 16pt;
+	font-family: 'Century Gothic';
+}
+.style14
+{
+	font-weight: bold;
+	font-size: 14pt;
+	font-family: 'Century Gothic';
+}
+
+.style12
+{
+	font-weight: bold;
+	font-size: 12pt;
+	font-family: 'Century Gothic';
+}
+.style10
+{
+	font-size: 10pt;
+	font-family: 'Century Gothic';
+}
+
+.Grid
+{
+	font-size: 10pt;
+	font-family: 'Century Gothic';
+}
+
+.GridHeader
+{
+	font-weight: bold;
+	font-size: 10pt;
+	font-family: 'Century Gothic';
+}
+
+
+
+
+
+
+

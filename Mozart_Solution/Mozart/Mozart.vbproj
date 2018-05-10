@@ -1,0 +1,1584 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{45F9BDAB-C531-4940-85BF-11FA13CAFD04}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{F184B08F-C81C-45F6-A57F-5ABD9991F28F}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Mozart</RootNamespace>
+    <AssemblyName>Mozart</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <OptionExplicit>On</OptionExplicit>
+    <OptionCompare>Binary</OptionCompare>
+    <OptionStrict>Off</OptionStrict>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\</OutputPath>
+    <DocumentationFile>Mozart.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DocumentationFile>Mozart.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web.Extensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.Mobile" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Collections.Specialized" />
+    <Import Include="System.Configuration" />
+    <Import Include="System.Text" />
+    <Import Include="System.Text.RegularExpressions" />
+    <Import Include="System.Web" />
+    <Import Include="System.Web.Caching" />
+    <Import Include="System.Web.SessionState" />
+    <Import Include="System.Web.Security" />
+    <Import Include="System.Web.Profile" />
+    <Import Include="System.Web.UI" />
+    <Import Include="System.Web.UI.WebControls" />
+    <Import Include="System.Web.UI.WebControls.WebParts" />
+    <Import Include="System.Web.UI.HtmlControls" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ageSolicitud.aspx.vb">
+      <DependentUpon>ageSolicitud.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ageSolicitudxFchIngreso.aspx.vb">
+      <DependentUpon>ageSolicitudxFchIngreso.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="blogCaptacionExp.aspx.vb">
+      <DependentUpon>blogCaptacionExp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="blogRevisaComentario.aspx.vb">
+      <DependentUpon>blogRevisaComentario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="blogRevisaExp.aspx.vb">
+      <DependentUpon>blogRevisaExp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="blogRevisaFoto.aspx.vb">
+      <DependentUpon>blogRevisaFoto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="blogTipoExperiencia.aspx.vb">
+      <DependentUpon>blogTipoExperiencia.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="bolBoletosFact.aspx.vb">
+      <DependentUpon>bolBoletosFact.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="bolConsultaBoleto.aspx.vb">
+      <DependentUpon>bolConsultaBoleto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="bolCuadreRemision.aspx.vb">
+      <DependentUpon>bolCuadreRemision.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="bolCuadreRemisionBoleto.aspx.vb">
+      <DependentUpon>bolCuadreRemisionBoleto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="bolCuadreRemisionVersion.aspx.vb">
+      <DependentUpon>bolCuadreRemisionVersion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="bolIngresoStock.aspx.vb">
+      <DependentUpon>bolIngresoStock.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="bolReporteBoletos.aspx.vb">
+      <DependentUpon>bolReporteBoletos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="bolReporteFact.aspx.vb">
+      <DependentUpon>bolReporteFact.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="bolReporteVenta.aspx.vb">
+      <DependentUpon>bolReporteVenta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="bolStock.aspx.vb">
+      <DependentUpon>bolStock.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="bolStockBoletos.aspx.vb">
+      <DependentUpon>bolStockBoletos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="bolStockComprado.aspx.vb">
+      <DependentUpon>bolStockComprado.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="bolStockCompradoReembolso.aspx.vb">
+      <DependentUpon>bolStockCompradoReembolso.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="bolStockCompradoRemision.aspx.vb">
+      <DependentUpon>bolStockCompradoRemision.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="bolStockCompradoSolicitud.aspx.vb">
+      <DependentUpon>bolStockCompradoSolicitud.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="bolStockCompradoVersion.aspx.vb">
+      <DependentUpon>bolStockCompradoVersion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="comCierreMes.aspx.vb">
+      <DependentUpon>comCierreMes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="comComprobanteCompras.aspx.vb">
+      <DependentUpon>comComprobanteCompras.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="comComprobanteComprasRH.aspx.vb">
+      <DependentUpon>comComprobanteComprasRH.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="comComprobanteVentas.aspx.vb">
+      <DependentUpon>comComprobanteVentas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="comComprobanteVentasImprime.aspx.vb">
+      <DependentUpon>comComprobanteVentasImprime.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="comRegCompras.aspx.vb">
+      <DependentUpon>comRegCompras.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="comRegVentas.aspx.vb">
+      <DependentUpon>comRegVentas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="comSelecAnula.aspx.vb">
+      <DependentUpon>comSelecAnula.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="comSelecComprobantes.aspx.vb">
+      <DependentUpon>comSelecComprobantes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ControlVacaciones.aspx.vb">
+      <DependentUpon>ControlVacaciones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cpcClienteBusca.aspx.vb">
+      <DependentUpon>cpcClienteBusca.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cpcClienteContacto.aspx.vb">
+      <DependentUpon>cpcClienteContacto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cpcClienteContactoClave.aspx.vb">
+      <DependentUpon>cpcClienteContactoClave.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cpcClienteFicha.aspx.vb">
+      <DependentUpon>cpcClienteFicha.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cpcClienteNuevoP.aspx.vb">
+      <DependentUpon>cpcClienteNuevoP.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cpcCtaCte.aspx.vb">
+      <DependentUpon>cpcCtaCte.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cpcDocumento.aspx.vb">
+      <DependentUpon>cpcDocumento.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cpcDocumentoDet.aspx.vb">
+      <DependentUpon>cpcDocumentoDet.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cpcEnvioKit.aspx.vb">
+      <DependentUpon>cpcEnvioKit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cpcEnvioKitConfirma.aspx.vb">
+      <DependentUpon>cpcEnvioKitConfirma.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cpcEnvioKitObs.aspx.vb">
+      <DependentUpon>cpcEnvioKitObs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cpcFacturaServicio.aspx.vb">
+      <DependentUpon>cpcFacturaServicio.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cpcMovtosTipoDoc.aspx.vb">
+      <DependentUpon>cpcMovtosTipoDoc.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cpcPedidoLiquidacion.aspx.vb">
+      <DependentUpon>cpcPedidoLiquidacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cpcPedidoLiquidacionBoleta.aspx.vb">
+      <DependentUpon>cpcPedidoLiquidacionBoleta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cpcPedidoTerminado.aspx.vb">
+      <DependentUpon>cpcPedidoTerminado.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cpcRegistraAbono.aspx.vb">
+      <DependentUpon>cpcRegistraAbono.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cpcRegistraCargo.aspx.vb">
+      <DependentUpon>cpcRegistraCargo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cpcRegistraDC.aspx.vb">
+      <DependentUpon>cpcRegistraDC.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cpcRegistraPago.aspx.vb">
+      <DependentUpon>cpcRegistraPago.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cpcRegistraReembolso.aspx.vb">
+      <DependentUpon>cpcRegistraReembolso.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cpcSaldosCliente.aspx.vb">
+      <DependentUpon>cpcSaldosCliente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cpcVersionesReservaPend.aspx.vb">
+      <DependentUpon>cpcVersionesReservaPend.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cpcVisitasConsulta.aspx.vb">
+      <DependentUpon>cpcVisitasConsulta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cpcVisitasConsultaDet.aspx.vb">
+      <DependentUpon>cpcVisitasConsultaDet.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cpcVisitasPend.aspx.vb">
+      <DependentUpon>cpcVisitasPend.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cpcVisitasPendCompleta.aspx.vb">
+      <DependentUpon>cpcVisitasPendCompleta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cpcVisitasPendReprograma.aspx.vb">
+      <DependentUpon>cpcVisitasPendReprograma.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cppCtaCte.aspx.vb">
+      <DependentUpon>cppCtaCte.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cppCuadreObligaciones.aspx.vb">
+      <DependentUpon>cppCuadreObligaciones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cppCuadreObligacionesDet.aspx.vb">
+      <DependentUpon>cppCuadreObligacionesDet.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cppCuadreTC.aspx.vb">
+      <DependentUpon>cppCuadreTC.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cppCuadreUnComprobante.aspx.vb">
+      <DependentUpon>cppCuadreUnComprobante.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cppCuadreVComprobanteLista.aspx.vb">
+      <DependentUpon>cppCuadreVComprobanteLista.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cppCuadreVComprobantes.aspx.vb">
+      <DependentUpon>cppCuadreVComprobantes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cppDocumento.aspx.vb">
+      <DependentUpon>cppDocumento.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cppDocumentoDet.aspx.vb">
+      <DependentUpon>cppDocumentoDet.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cppGastosCancelados.aspx.vb">
+      <DependentUpon>cppGastosCancelados.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cppGastosCanceladosDet.aspx.vb">
+      <DependentUpon>cppGastosCanceladosDet.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cppGastosDet.aspx.vb">
+      <DependentUpon>cppGastosDet.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cppGastosIngresos.aspx.vb">
+      <DependentUpon>cppGastosIngresos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cppProveedorBusca.aspx.vb">
+      <DependentUpon>cppProveedorBusca.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cppProveedorContacto.aspx.vb">
+      <DependentUpon>cppProveedorContacto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cppProveedorContactoClave.aspx.vb">
+      <DependentUpon>cppProveedorContactoClave.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cppProveedorFicha.aspx.vb">
+      <DependentUpon>cppProveedorFicha.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cppProveedorNuevo.aspx.vb">
+      <DependentUpon>cppProveedorNuevo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cppRegistraCredito.aspx.vb">
+      <DependentUpon>cppRegistraCredito.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cppRegistraDebito.aspx.vb">
+      <DependentUpon>cppRegistraDebito.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cppRegistraGasto.aspx.vb">
+      <DependentUpon>cppRegistraGasto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cppRegistraLiq.aspx.vb">
+      <DependentUpon>cppRegistraLiq.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cppRegistraPago.aspx.vb">
+      <DependentUpon>cppRegistraPago.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cppRegistraPrePago.aspx.vb">
+      <DependentUpon>cppRegistraPrePago.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cppRegistraRH.aspx.vb">
+      <DependentUpon>cppRegistraRH.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cppSaldosProveedor.aspx.vb">
+      <DependentUpon>cppSaldosProveedor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cybConfirma.aspx.vb">
+      <DependentUpon>cybConfirma.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cybConfirmaDeposito.aspx.vb">
+      <DependentUpon>cybConfirmaDeposito.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cybConfirmaPago.aspx.vb">
+      <DependentUpon>cybConfirmaPago.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cybDBancos.aspx.vb">
+      <DependentUpon>cybDBancos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cybDBancosDetalle.aspx.vb">
+      <DependentUpon>cybDBancosDetalle.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cybDocumentoBancos.aspx.vb">
+      <DependentUpon>cybDocumentoBancos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cybIngresoSalida.aspx.vb">
+      <DependentUpon>cybIngresoSalida.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cybPosicionCaja.aspx.vb">
+      <DependentUpon>cybPosicionCaja.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cybSaldoMovimiento.aspx.vb">
+      <DependentUpon>cybSaldoMovimiento.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cybSaldos.aspx.vb">
+      <DependentUpon>cybSaldos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cybSaldosBancos.aspx.vb">
+      <DependentUpon>cybSaldosBancos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cybTransferencia.aspx.vb">
+      <DependentUpon>cybTransferencia.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ddlZonaVta.ascx.vb">
+      <DependentUpon>ddlZonaVta.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EstFactPeriodoVen.aspx.vb">
+      <DependentUpon>EstFactPeriodoVen.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EstFactTrimVen.aspx.vb">
+      <DependentUpon>EstFactTrimVen.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="plaTour.aspx.vb">
+      <DependentUpon>plaTour.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="plaTourPlantilla.aspx.vb">
+      <DependentUpon>plaTourPlantilla.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="segclave.aspx.vb">
+      <DependentUpon>segclave.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="segLinks.aspx.vb">
+      <DependentUpon>segLinks.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="segLogAccesoMC.aspx.vb">
+      <DependentUpon>segLogAccesoMC.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="segLogAccesoMozart.aspx.vb">
+      <DependentUpon>segLogAccesoMozart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="segLogAccesoPeru4me.aspx.vb">
+      <DependentUpon>segLogAccesoPeru4me.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="segLogAccesoVisa.aspx.vb">
+      <DependentUpon>segLogAccesoVisa.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="seglogin.aspx.vb">
+      <DependentUpon>seglogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SegOpciones.aspx.vb">
+      <DependentUpon>SegOpciones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SegPerfil.aspx.vb">
+      <DependentUpon>SegPerfil.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="segPerfilFicha.aspx.vb">
+      <DependentUpon>segPerfilFicha.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="segPerfilNuevo.aspx.vb">
+      <DependentUpon>segPerfilNuevo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="segPerfilStsCaptacion.aspx.vb">
+      <DependentUpon>segPerfilStsCaptacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SegSesion.aspx.vb">
+      <DependentUpon>SegSesion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="segUsuario.aspx.vb">
+      <DependentUpon>segUsuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="segUsuarioClave.aspx.vb">
+      <DependentUpon>segUsuarioClave.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="segUsuarioFicha.aspx.vb">
+      <DependentUpon>segUsuarioFicha.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="segUsuarioNuevo.aspx.vb">
+      <DependentUpon>segUsuarioNuevo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="segUsuarioZonaVta.aspx.vb">
+      <DependentUpon>segUsuarioZonaVta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TabAnoProceso.aspx.vb">
+      <DependentUpon>TabAnoProceso.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TabBanco.aspx.vb">
+      <DependentUpon>TabBanco.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TabBancoCuenta.aspx.vb">
+      <DependentUpon>TabBancoCuenta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="tabCiudad.aspx.vb">
+      <DependentUpon>tabCiudad.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="tabCiudadClima.aspx.vb">
+      <DependentUpon>tabCiudadClima.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="tabCiudadInf.aspx.vb">
+      <DependentUpon>tabCiudadInf.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="tabCuenta.aspx.vb">
+      <DependentUpon>tabCuenta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="tabCuentaNuevo.aspx.vb">
+      <DependentUpon>tabCuentaNuevo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TabEvaluacion.aspx.vb">
+      <DependentUpon>TabEvaluacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="tabIGVxCiudad.aspx.vb">
+      <DependentUpon>tabIGVxCiudad.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="tabIGVxTipoServicio.aspx.vb">
+      <DependentUpon>tabIGVxTipoServicio.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="tabla.aspx.vb">
+      <DependentUpon>tabla.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="tablaElemento.aspx.vb">
+      <DependentUpon>tablaElemento.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TabLinea.aspx.vb">
+      <DependentUpon>TabLinea.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="tabManCiudad.aspx.vb">
+      <DependentUpon>tabManCiudad.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="tabManTipoLink.aspx.vb">
+      <DependentUpon>tabManTipoLink.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="tabManTipoServicio.aspx.vb">
+      <DependentUpon>tabManTipoServicio.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TabMotivo.aspx.vb">
+      <DependentUpon>TabMotivo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TabPais.aspx.vb">
+      <DependentUpon>TabPais.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TabPaisNuevo.aspx.vb">
+      <DependentUpon>TabPaisNuevo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="tabParametro.aspx.vb">
+      <DependentUpon>tabParametro.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="tabParametroDetalle.aspx.vb">
+      <DependentUpon>tabParametroDetalle.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TabPasajeroHabitacion.aspx.vb">
+      <DependentUpon>TabPasajeroHabitacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TabPeriodoGasto.aspx.vb">
+      <DependentUpon>TabPeriodoGasto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TabPeriodoVenta.aspx.vb">
+      <DependentUpon>TabPeriodoVenta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TabPlanTarifario.aspx.vb">
+      <DependentUpon>TabPlanTarifario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TabRecordatorio.aspx.vb">
+      <DependentUpon>TabRecordatorio.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="tabRecordatorioDet.aspx.vb">
+      <DependentUpon>tabRecordatorioDet.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="tabRecordatorioPrueba.aspx.vb">
+      <DependentUpon>tabRecordatorioPrueba.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TabTarea.aspx.vb">
+      <DependentUpon>TabTarea.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TabTipoAcomodacion.aspx.vb">
+      <DependentUpon>TabTipoAcomodacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TabTipoCambio.aspx.vb">
+      <DependentUpon>TabTipoCambio.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TabTipoDocumento.aspx.vb">
+      <DependentUpon>TabTipoDocumento.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="tabTipoInformacion.aspx.vb">
+      <DependentUpon>tabTipoInformacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="tabTipoInformacionDet.aspx.vb">
+      <DependentUpon>tabTipoInformacionDet.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TabVendedor.aspx.vb">
+      <DependentUpon>TabVendedor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TabZonaVta.aspx.vb">
+      <DependentUpon>TabZonaVta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="tabZonaVtaInf.aspx.vb">
+      <DependentUpon>tabZonaVtaInf.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ucCliente.ascx.vb">
+      <DependentUpon>ucCliente.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ucddlProveedor.ascx.vb">
+      <DependentUpon>ucddlProveedor.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ucLinea.ascx.vb">
+      <DependentUpon>ucLinea.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ucPedido.ascx.vb">
+      <DependentUpon>ucPedido.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ucPersonal.ascx.vb">
+      <DependentUpon>ucPersonal.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ucPlantilla.ascx.vb">
+      <DependentUpon>ucPlantilla.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ucPropuesta.ascx.vb">
+      <DependentUpon>ucPropuesta.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ucProveedor.ascx.vb">
+      <DependentUpon>ucProveedor.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ucVersion.ascx.vb">
+      <DependentUpon>ucVersion.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaClienteEnTour.aspx.vb">
+      <DependentUpon>VtaClienteEnTour.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaClienteVersion.aspx.vb">
+      <DependentUpon>VtaClienteVersion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaCuadreAereo.aspx.vb">
+      <DependentUpon>VtaCuadreAereo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaCuadreAereoDet.aspx.vb">
+      <DependentUpon>VtaCuadreAereoDet.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="vtaEmailCliente.aspx.vb">
+      <DependentUpon>vtaEmailCliente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaFacturadas.aspx.vb">
+      <DependentUpon>VtaFacturadas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaFacturadasCierre.aspx.vb">
+      <DependentUpon>VtaFacturadasCierre.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaFacturadasDet.aspx.vb">
+      <DependentUpon>VtaFacturadasDet.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaIncidenciaxFecha.aspx.vb">
+      <DependentUpon>VtaIncidenciaxFecha.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaMLink.aspx.vb">
+      <DependentUpon>VtaMLink.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaMLinkNuevo.aspx.vb">
+      <DependentUpon>VtaMLinkNuevo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaPasajeroCumpleanos.aspx.vb">
+      <DependentUpon>VtaPasajeroCumpleanos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaPedido.aspx.vb">
+      <DependentUpon>VtaPedido.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="vtaPedidoAnulaFact.aspx.vb">
+      <DependentUpon>vtaPedidoAnulaFact.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="vtaPedidoAnulaFactVersion.aspx.vb">
+      <DependentUpon>vtaPedidoAnulaFactVersion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaPedidoCierrePeriodo.aspx.vb">
+      <DependentUpon>VtaPedidoCierrePeriodo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaPedidoEmail.aspx.vb">
+      <DependentUpon>VtaPedidoEmail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaPedidoFicha.aspx.vb">
+      <DependentUpon>VtaPedidoFicha.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaPedidoFinalizar.aspx.vb">
+      <DependentUpon>VtaPedidoFinalizar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaPedidoHistorial.aspx.vb">
+      <DependentUpon>VtaPedidoHistorial.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaPedidoHistProveedor.aspx.vb">
+      <DependentUpon>VtaPedidoHistProveedor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaPedidoPasajero.aspx.vb">
+      <DependentUpon>VtaPedidoPasajero.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaPedidoRapido.aspx.vb">
+      <DependentUpon>VtaPedidoRapido.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaPedidosxFchIngreso.aspx.vb">
+      <DependentUpon>VtaPedidosxFchIngreso.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaPedidosxFchIngresoMKT.aspx.vb">
+      <DependentUpon>VtaPedidosxFchIngresoMKT.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaPedidosxFchRevision.aspx.vb">
+      <DependentUpon>VtaPedidosxFchRevision.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaPedidosxMesAtencion.aspx.vb">
+      <DependentUpon>VtaPedidosxMesAtencion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaPedidosxVtasMes.aspx.vb">
+      <DependentUpon>VtaPedidosxVtasMes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaPedidoTareas.aspx.vb">
+      <DependentUpon>VtaPedidoTareas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaPlantillaBusca.aspx.vb">
+      <DependentUpon>VtaPlantillaBusca.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaPlantillaDias.aspx.vb">
+      <DependentUpon>VtaPlantillaDias.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaPlantillaFicha.aspx.vb">
+      <DependentUpon>VtaPlantillaFicha.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaPlantillaLink.aspx.vb">
+      <DependentUpon>VtaPlantillaLink.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaPlantillaNueva.aspx.vb">
+      <DependentUpon>VtaPlantillaNueva.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaPlantillaServicio.aspx.vb">
+      <DependentUpon>VtaPlantillaServicio.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaPropuestaCambiarHotel.aspx.vb">
+      <DependentUpon>VtaPropuestaCambiarHotel.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaPropuestaDesItem.aspx.vb">
+      <DependentUpon>VtaPropuestaDesItem.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaPropuestaDias.aspx.vb">
+      <DependentUpon>VtaPropuestaDias.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaPropuestaEmail.aspx.vb">
+      <DependentUpon>VtaPropuestaEmail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaPropuestaEspeci.aspx.vb">
+      <DependentUpon>VtaPropuestaEspeci.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaPropuestaFicha.aspx.vb">
+      <DependentUpon>VtaPropuestaFicha.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaPropuestaHistorial.aspx.vb">
+      <DependentUpon>VtaPropuestaHistorial.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaPropuestaLink.aspx.vb">
+      <DependentUpon>VtaPropuestaLink.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaPropuestaNueva.aspx.vb">
+      <DependentUpon>VtaPropuestaNueva.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaPropuestaPlantilla.aspx.vb">
+      <DependentUpon>VtaPropuestaPlantilla.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaPropuestaPrecio.aspx.vb">
+      <DependentUpon>VtaPropuestaPrecio.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaPropuestaPrecioManual.aspx.vb">
+      <DependentUpon>VtaPropuestaPrecioManual.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaPropuestaPropuesta.aspx.vb">
+      <DependentUpon>VtaPropuestaPropuesta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaPropuestaPublica.aspx.vb">
+      <DependentUpon>VtaPropuestaPublica.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaPropuestaReserva.aspx.vb">
+      <DependentUpon>VtaPropuestaReserva.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaPropuestaReservaEmail.aspx.vb">
+      <DependentUpon>VtaPropuestaReservaEmail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaPropuestaReservaSolicitud.aspx.vb">
+      <DependentUpon>VtaPropuestaReservaSolicitud.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaPropuestaResumen.aspx.vb">
+      <DependentUpon>VtaPropuestaResumen.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaPropuestaServicio.aspx.vb">
+      <DependentUpon>VtaPropuestaServicio.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaPropuestaTareas.aspx.vb">
+      <DependentUpon>VtaPropuestaTareas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaRecordatorioPedido.aspx.vb">
+      <DependentUpon>VtaRecordatorioPedido.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaSaldosCierrePeriodo.aspx.vb">
+      <DependentUpon>VtaSaldosCierrePeriodo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaServicioBusca.aspx.vb">
+      <DependentUpon>VtaServicioBusca.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaServicioCopia.aspx.vb">
+      <DependentUpon>VtaServicioCopia.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaServicioInf.aspx.vb">
+      <DependentUpon>VtaServicioInf.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaServicioLink.aspx.vb">
+      <DependentUpon>VtaServicioLink.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaServicioNuevo.aspx.vb">
+      <DependentUpon>VtaServicioNuevo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="vtaServicioNuevoDes.aspx.vb">
+      <DependentUpon>vtaServicioNuevoDes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaServicioPlantilla.aspx.vb">
+      <DependentUpon>VtaServicioPlantilla.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaServicioPlantillaLista.aspx.vb">
+      <DependentUpon>VtaServicioPlantillaLista.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaServicioPlantillaReemplaza.aspx.vb">
+      <DependentUpon>VtaServicioPlantillaReemplaza.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaServicioTarifa.aspx.vb">
+      <DependentUpon>VtaServicioTarifa.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaServicioTarifaCopia.aspx.vb">
+      <DependentUpon>VtaServicioTarifaCopia.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaServicioTarifaPeriodo.aspx.vb">
+      <DependentUpon>VtaServicioTarifaPeriodo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="vtaTareaResumen.aspx.vb">
+      <DependentUpon>vtaTareaResumen.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaTareaVencidas.aspx.vb">
+      <DependentUpon>VtaTareaVencidas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaVersion.aspx.vb">
+      <DependentUpon>VtaVersion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaVersionAjuste.aspx.vb">
+      <DependentUpon>VtaVersionAjuste.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaVersionAjusteDoc.aspx.vb">
+      <DependentUpon>VtaVersionAjusteDoc.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaVersionAprueba.aspx.vb">
+      <DependentUpon>VtaVersionAprueba.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaVersionBoletoReserva.aspx.vb">
+      <DependentUpon>VtaVersionBoletoReserva.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaVersionBoletoTerrestre.aspx.vb">
+      <DependentUpon>VtaVersionBoletoTerrestre.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="vtaVersionBoletoVta.aspx.vb">
+      <DependentUpon>vtaVersionBoletoVta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="vtaVersionBoletoVtaStk.aspx.vb">
+      <DependentUpon>vtaVersionBoletoVtaStk.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaVersionCambiarHora.aspx.vb">
+      <DependentUpon>VtaVersionCambiarHora.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaVersionCambiarHotel.aspx.vb">
+      <DependentUpon>VtaVersionCambiarHotel.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaVersionCambiarOrden.aspx.vb">
+      <DependentUpon>VtaVersionCambiarOrden.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaVersionCambiarStatus.aspx.vb">
+      <DependentUpon>VtaVersionCambiarStatus.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaVersionCopia.aspx.vb">
+      <DependentUpon>VtaVersionCopia.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaVersionDesaprueba.aspx.vb">
+      <DependentUpon>VtaVersionDesaprueba.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaVersionDesItem.aspx.vb">
+      <DependentUpon>VtaVersionDesItem.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaVersionDias.aspx.vb">
+      <DependentUpon>VtaVersionDias.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaVersionEmail.aspx.vb">
+      <DependentUpon>VtaVersionEmail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaVersionEspeci.aspx.vb">
+      <DependentUpon>VtaVersionEspeci.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaVersionFicha.aspx.vb">
+      <DependentUpon>VtaVersionFicha.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaVersionHistorial.aspx.vb">
+      <DependentUpon>VtaVersionHistorial.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaVersionHotelReserva.aspx.vb">
+      <DependentUpon>VtaVersionHotelReserva.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaVersionIncidencia.aspx.vb">
+      <DependentUpon>VtaVersionIncidencia.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaVersionLink.aspx.vb">
+      <DependentUpon>VtaVersionLink.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaVersionNueva.aspx.vb">
+      <DependentUpon>VtaVersionNueva.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaVersionPrecio.aspx.vb">
+      <DependentUpon>VtaVersionPrecio.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaVersionPrecioManual.aspx.vb">
+      <DependentUpon>VtaVersionPrecioManual.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="vtaVersionPrint.aspx.vb">
+      <DependentUpon>vtaVersionPrint.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="vtaVersionPrintEs.aspx.vb">
+      <DependentUpon>vtaVersionPrintEs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="vtaVersionPrintIn.aspx.vb">
+      <DependentUpon>vtaVersionPrintIn.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="vtaVersionPrintPo.aspx.vb">
+      <DependentUpon>vtaVersionPrintPo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaVersionPublica.aspx.vb">
+      <DependentUpon>VtaVersionPublica.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaVersionReserva.aspx.vb">
+      <DependentUpon>VtaVersionReserva.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaVersionReservaConfirma.aspx.vb">
+      <DependentUpon>VtaVersionReservaConfirma.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaVersionReservaEmail.aspx.vb">
+      <DependentUpon>VtaVersionReservaEmail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaVersionReservaPasajero.aspx.vb">
+      <DependentUpon>VtaVersionReservaPasajero.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaVersionReservaSolicitud.aspx.vb">
+      <DependentUpon>VtaVersionReservaSolicitud.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaVersionResumen.aspx.vb">
+      <DependentUpon>VtaVersionResumen.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaVersionServicio.aspx.vb">
+      <DependentUpon>VtaVersionServicio.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaVersionServicioVuelosInter.aspx.vb">
+      <DependentUpon>VtaVersionServicioVuelosInter.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaVersionTareas.aspx.vb">
+      <DependentUpon>VtaVersionTareas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VtaVersionTrasladoBoleto.aspx.vb">
+      <DependentUpon>VtaVersionTrasladoBoleto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <Content Include="web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Pentagrama\Mozart4\cmpBlog\cmpBlog.vbproj">
+      <Project>{ACA7F175-4A0B-46CF-81D1-99EA44B3F0EB}</Project>
+      <Name>cmpBlog</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Pentagrama\Mozart4\cmpNegocio\cmpNegocio.vbproj">
+      <Project>{8A62EFE4-FB95-43D3-9575-766E6C512160}</Project>
+      <Name>cmpNegocio</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Pentagrama\Mozart4\cmpRutinas\cmpRutinas.vbproj">
+      <Project>{4C7CC189-AF67-4319-B1C1-D4C6E4C9E600}</Project>
+      <Name>cmpRutinas</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Pentagrama\Mozart4\cmpSeguridad\cmpSeguridad.vbproj">
+      <Project>{332BFA9D-9626-4380-9615-098A2C530EEF}</Project>
+      <Name>cmpSeguridad</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Pentagrama\Mozart4\cmpTabla\cmpTabla.vbproj">
+      <Project>{499B467A-1848-4702-B604-2BA0B960317E}</Project>
+      <Name>cmpTabla</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ageSolicitud.aspx" />
+    <Content Include="ageSolicitudxFchIngreso.aspx" />
+    <Content Include="blogCaptacionExp.aspx" />
+    <Content Include="blogRevisaComentario.aspx" />
+    <Content Include="blogRevisaExp.aspx" />
+    <Content Include="blogRevisaFoto.aspx" />
+    <Content Include="blogTipoExperiencia.aspx" />
+    <Content Include="bolBoletosFact.aspx" />
+    <Content Include="bolConsultaBoleto.aspx" />
+    <Content Include="bolCuadreRemision.aspx" />
+    <Content Include="bolCuadreRemisionBoleto.aspx" />
+    <Content Include="bolCuadreRemisionVersion.aspx" />
+    <Content Include="bolIngresoStock.aspx" />
+    <Content Include="bolReporteBoletos.aspx" />
+    <Content Include="bolReporteFact.aspx" />
+    <Content Include="bolReporteVenta.aspx" />
+    <Content Include="bolStock.aspx" />
+    <Content Include="bolStockBoletos.aspx" />
+    <Content Include="bolStockComprado.aspx" />
+    <Content Include="bolStockCompradoReembolso.aspx" />
+    <Content Include="bolStockCompradoRemision.aspx" />
+    <Content Include="bolStockCompradoSolicitud.aspx" />
+    <Content Include="bolStockCompradoVersion.aspx" />
+    <Content Include="calendario.css" />
+    <Content Include="calendario.js" />
+    <Content Include="checkbox.js" />
+    <Content Include="comCierreMes.aspx" />
+    <Content Include="comComprobanteCompras.aspx" />
+    <Content Include="comComprobanteComprasRH.aspx" />
+    <Content Include="comComprobanteVentas.aspx" />
+    <Content Include="comComprobanteVentasImprime.aspx" />
+    <Content Include="comRegCompras.aspx" />
+    <Content Include="comRegVentas.aspx" />
+    <Content Include="comSelecAnula.aspx" />
+    <Content Include="comSelecComprobantes.aspx" />
+    <Content Include="ControlVacaciones.aspx" />
+    <Content Include="cpcClienteBusca.aspx" />
+    <Content Include="cpcClienteContacto.aspx" />
+    <Content Include="cpcClienteContactoClave.aspx" />
+    <Content Include="cpcClienteFicha.aspx" />
+    <Content Include="cpcClienteNuevoP.aspx" />
+    <Content Include="cpcCtaCte.aspx" />
+    <Content Include="cpcDocumento.aspx" />
+    <Content Include="cpcDocumentoDet.aspx" />
+    <Content Include="cpcEnvioKit.aspx" />
+    <Content Include="cpcEnvioKitConfirma.aspx" />
+    <Content Include="cpcEnvioKitObs.aspx" />
+    <Content Include="cpcFacturaServicio.aspx" />
+    <Content Include="cpcMovtosTipoDoc.aspx" />
+    <Content Include="cpcPedidoLiquidacion.aspx" />
+    <Content Include="cpcPedidoLiquidacionBoleta.aspx" />
+    <Content Include="cpcPedidoTerminado.aspx" />
+    <Content Include="cpcRegistraAbono.aspx" />
+    <Content Include="cpcRegistraCargo.aspx" />
+    <Content Include="cpcRegistraDC.aspx" />
+    <Content Include="cpcRegistraPago.aspx" />
+    <Content Include="cpcRegistraReembolso.aspx" />
+    <Content Include="cpcSaldosCliente.aspx" />
+    <Content Include="cpcVersionesReservaPend.aspx" />
+    <Content Include="cpcVisitasConsulta.aspx" />
+    <Content Include="cpcVisitasConsultaDet.aspx" />
+    <Content Include="cpcVisitasPend.aspx" />
+    <Content Include="cpcVisitasPendCompleta.aspx" />
+    <Content Include="cpcVisitasPendReprograma.aspx" />
+    <Content Include="cppCtaCte.aspx" />
+    <Content Include="cppCuadreObligaciones.aspx" />
+    <Content Include="cppCuadreObligacionesDet.aspx" />
+    <Content Include="cppCuadreTC.aspx" />
+    <Content Include="cppCuadreUnComprobante.aspx" />
+    <Content Include="cppCuadreVComprobanteLista.aspx" />
+    <Content Include="cppCuadreVComprobantes.aspx" />
+    <Content Include="cppDocumento.aspx" />
+    <Content Include="cppDocumentoDet.aspx" />
+    <Content Include="cppGastosCancelados.aspx" />
+    <Content Include="cppGastosCanceladosDet.aspx" />
+    <Content Include="cppGastosDet.aspx" />
+    <Content Include="cppGastosIngresos.aspx" />
+    <Content Include="cppProveedorBusca.aspx" />
+    <Content Include="cppProveedorContacto.aspx" />
+    <Content Include="cppProveedorContactoClave.aspx" />
+    <Content Include="cppProveedorFicha.aspx" />
+    <Content Include="cppProveedorNuevo.aspx" />
+    <Content Include="cppRegistraCredito.aspx" />
+    <Content Include="cppRegistraDebito.aspx" />
+    <Content Include="cppRegistraGasto.aspx" />
+    <Content Include="cppRegistraLiq.aspx" />
+    <Content Include="cppRegistraPago.aspx" />
+    <Content Include="cppRegistraPrePago.aspx" />
+    <Content Include="cppRegistraRH.aspx" />
+    <Content Include="cppSaldosProveedor.aspx" />
+    <Content Include="cybConfirma.aspx" />
+    <Content Include="cybConfirmaDeposito.aspx" />
+    <Content Include="cybConfirmaPago.aspx" />
+    <Content Include="cybDBancos.aspx" />
+    <Content Include="cybDBancosDetalle.aspx" />
+    <Content Include="cybDocumentoBancos.aspx" />
+    <Content Include="cybIngresoSalida.aspx" />
+    <Content Include="cybPosicionCaja.aspx" />
+    <Content Include="cybSaldoMovimiento.aspx" />
+    <Content Include="cybSaldos.aspx" />
+    <Content Include="cybSaldosBancos.aspx" />
+    <Content Include="cybTransferencia.aspx" />
+    <Content Include="ddlZonaVta.ascx" />
+    <Content Include="default.htm" />
+    <Content Include="default1.htm" />
+    <Content Include="EstFactPeriodoVen.aspx" />
+    <Content Include="EstFactTrimVen.aspx" />
+    <Content Include="plaTour.aspx" />
+    <Content Include="plaTourPlantilla.aspx" />
+    <Content Include="segclave.aspx" />
+    <Content Include="segLinks.aspx" />
+    <Content Include="segLogAccesoMC.aspx" />
+    <Content Include="segLogAccesoMozart.aspx" />
+    <Content Include="segLogAccesoPeru4me.aspx" />
+    <Content Include="segLogAccesoVisa.aspx" />
+    <Content Include="seglogin.aspx" />
+    <Content Include="SegOpciones.aspx" />
+    <Content Include="SegPerfil.aspx" />
+    <Content Include="segPerfilFicha.aspx" />
+    <Content Include="segPerfilNuevo.aspx" />
+    <Content Include="segPerfilStsCaptacion.aspx" />
+    <Content Include="SegSesion.aspx" />
+    <Content Include="segUsuario.aspx" />
+    <Content Include="segUsuarioClave.aspx" />
+    <Content Include="segUsuarioFicha.aspx" />
+    <Content Include="segUsuarioNuevo.aspx" />
+    <Content Include="segUsuarioZonaVta.aspx" />
+    <Content Include="Styles.css" />
+    <Content Include="StylesPeru4me.css" />
+    <Content Include="TabAnoProceso.aspx" />
+    <Content Include="TabBanco.aspx" />
+    <Content Include="TabBancoCuenta.aspx" />
+    <Content Include="tabCiudad.aspx" />
+    <Content Include="tabCiudadClima.aspx" />
+    <Content Include="tabCiudadInf.aspx" />
+    <Content Include="tabCuenta.aspx" />
+    <Content Include="tabCuentaNuevo.aspx" />
+    <Content Include="TabEvaluacion.aspx" />
+    <Content Include="tabIGVxCiudad.aspx" />
+    <Content Include="tabIGVxTipoServicio.aspx" />
+    <Content Include="tabla.aspx" />
+    <Content Include="tablaElemento.aspx" />
+    <Content Include="TabLinea.aspx" />
+    <Content Include="tabManCiudad.aspx" />
+    <Content Include="tabManTipoLink.aspx" />
+    <Content Include="tabManTipoServicio.aspx" />
+    <Content Include="TabMotivo.aspx" />
+    <Content Include="TabPais.aspx" />
+    <Content Include="TabPaisNuevo.aspx" />
+    <Content Include="tabParametro.aspx" />
+    <Content Include="tabParametroDetalle.aspx" />
+    <Content Include="TabPasajeroHabitacion.aspx" />
+    <Content Include="TabPeriodoGasto.aspx" />
+    <Content Include="TabPeriodoVenta.aspx" />
+    <Content Include="TabPlanTarifario.aspx" />
+    <Content Include="TabRecordatorio.aspx" />
+    <Content Include="tabRecordatorioDet.aspx" />
+    <Content Include="tabRecordatorioPrueba.aspx" />
+    <Content Include="TabTarea.aspx" />
+    <Content Include="TabTipoAcomodacion.aspx" />
+    <Content Include="TabTipoCambio.aspx" />
+    <Content Include="TabTipoDocumento.aspx" />
+    <Content Include="tabTipoInformacion.aspx" />
+    <Content Include="tabTipoInformacionDet.aspx" />
+    <Content Include="TabVendedor.aspx" />
+    <Content Include="TabZonaVta.aspx" />
+    <Content Include="tabZonaVtaInf.aspx" />
+    <Content Include="ucCliente.ascx" />
+    <Content Include="ucddlProveedor.ascx" />
+    <Content Include="ucLinea.ascx" />
+    <Content Include="ucPedido.ascx" />
+    <Content Include="ucPersonal.ascx" />
+    <Content Include="ucPlantilla.ascx" />
+    <Content Include="ucPropuesta.ascx" />
+    <Content Include="ucProveedor.ascx" />
+    <Content Include="ucVersion.ascx" />
+    <Content Include="VtaClienteEnTour.aspx" />
+    <Content Include="VtaClienteVersion.aspx" />
+    <Content Include="VtaCuadreAereo.aspx" />
+    <Content Include="VtaCuadreAereoDet.aspx" />
+    <Content Include="vtaEmailCliente.aspx" />
+    <Content Include="VtaFacturadas.aspx" />
+    <Content Include="VtaFacturadasCierre.aspx" />
+    <Content Include="VtaFacturadasDet.aspx" />
+    <Content Include="VtaIncidenciaxFecha.aspx" />
+    <Content Include="VtaMLink.aspx" />
+    <Content Include="VtaMLinkNuevo.aspx" />
+    <Content Include="VtaPasajeroCumpleanos.aspx" />
+    <Content Include="VtaPedido.aspx" />
+    <Content Include="vtaPedidoAnulaFact.aspx" />
+    <Content Include="vtaPedidoAnulaFactVersion.aspx" />
+    <Content Include="VtaPedidoCierrePeriodo.aspx" />
+    <Content Include="VtaPedidoEmail.aspx" />
+    <Content Include="VtaPedidoFicha.aspx" />
+    <Content Include="VtaPedidoFinalizar.aspx" />
+    <Content Include="VtaPedidoHistorial.aspx" />
+    <Content Include="VtaPedidoHistProveedor.aspx" />
+    <Content Include="VtaPedidoPasajero.aspx" />
+    <Content Include="VtaPedidoRapido.aspx" />
+    <Content Include="VtaPedidosxFchIngreso.aspx" />
+    <Content Include="VtaPedidosxFchIngresoMKT.aspx" />
+    <Content Include="VtaPedidosxFchRevision.aspx" />
+    <Content Include="VtaPedidosxMesAtencion.aspx" />
+    <Content Include="VtaPedidosxVtasMes.aspx" />
+    <Content Include="VtaPedidoTareas.aspx" />
+    <Content Include="VtaPlantillaBusca.aspx" />
+    <Content Include="VtaPlantillaDias.aspx" />
+    <Content Include="VtaPlantillaFicha.aspx" />
+    <Content Include="VtaPlantillaLink.aspx" />
+    <Content Include="VtaPlantillaNueva.aspx" />
+    <Content Include="VtaPlantillaServicio.aspx" />
+    <Content Include="VtaPropuestaCambiarHotel.aspx" />
+    <Content Include="VtaPropuestaDesItem.aspx" />
+    <Content Include="VtaPropuestaDias.aspx" />
+    <Content Include="VtaPropuestaEmail.aspx" />
+    <Content Include="VtaPropuestaEspeci.aspx" />
+    <Content Include="VtaPropuestaFicha.aspx" />
+    <Content Include="VtaPropuestaHistorial.aspx" />
+    <Content Include="VtaPropuestaLink.aspx" />
+    <Content Include="VtaPropuestaNueva.aspx" />
+    <Content Include="VtaPropuestaPlantilla.aspx" />
+    <Content Include="VtaPropuestaPrecio.aspx" />
+    <Content Include="VtaPropuestaPrecioManual.aspx" />
+    <Content Include="VtaPropuestaPropuesta.aspx" />
+    <Content Include="VtaPropuestaPublica.aspx" />
+    <Content Include="VtaPropuestaReserva.aspx" />
+    <Content Include="VtaPropuestaReservaEmail.aspx" />
+    <Content Include="VtaPropuestaReservaSolicitud.aspx" />
+    <Content Include="VtaPropuestaResumen.aspx" />
+    <Content Include="VtaPropuestaServicio.aspx" />
+    <Content Include="VtaPropuestaTareas.aspx" />
+    <Content Include="VtaRecordatorioPedido.aspx" />
+    <Content Include="VtaSaldosCierrePeriodo.aspx" />
+    <Content Include="VtaServicioBusca.aspx" />
+    <Content Include="VtaServicioCopia.aspx" />
+    <Content Include="VtaServicioInf.aspx" />
+    <Content Include="VtaServicioLink.aspx" />
+    <Content Include="VtaServicioNuevo.aspx" />
+    <Content Include="vtaServicioNuevoDes.aspx" />
+    <Content Include="VtaServicioPlantilla.aspx" />
+    <Content Include="VtaServicioPlantillaLista.aspx" />
+    <Content Include="VtaServicioPlantillaReemplaza.aspx" />
+    <Content Include="VtaServicioTarifa.aspx" />
+    <Content Include="VtaServicioTarifaCopia.aspx" />
+    <Content Include="VtaServicioTarifaPeriodo.aspx" />
+    <Content Include="vtaTareaResumen.aspx" />
+    <Content Include="VtaTareaVencidas.aspx" />
+    <Content Include="VtaVersion.aspx" />
+    <Content Include="VtaVersionAjuste.aspx" />
+    <Content Include="VtaVersionAjusteDoc.aspx" />
+    <Content Include="VtaVersionAprueba.aspx" />
+    <Content Include="VtaVersionBoletoReserva.aspx" />
+    <Content Include="VtaVersionBoletoTerrestre.aspx" />
+    <Content Include="vtaVersionBoletoVta.aspx" />
+    <Content Include="vtaVersionBoletoVtaStk.aspx" />
+    <Content Include="VtaVersionCambiarHora.aspx" />
+    <Content Include="VtaVersionCambiarHotel.aspx" />
+    <Content Include="VtaVersionCambiarOrden.aspx" />
+    <Content Include="VtaVersionCambiarStatus.aspx" />
+    <Content Include="VtaVersionCopia.aspx" />
+    <Content Include="VtaVersionDesaprueba.aspx" />
+    <Content Include="VtaVersionDesItem.aspx" />
+    <Content Include="VtaVersionDias.aspx" />
+    <Content Include="VtaVersionEmail.aspx" />
+    <Content Include="VtaVersionEspeci.aspx" />
+    <Content Include="VtaVersionFicha.aspx" />
+    <Content Include="VtaVersionHistorial.aspx" />
+    <Content Include="VtaVersionHotelReserva.aspx" />
+    <Content Include="VtaVersionIncidencia.aspx" />
+    <Content Include="VtaVersionLink.aspx" />
+    <Content Include="VtaVersionNueva.aspx" />
+    <Content Include="VtaVersionPrecio.aspx" />
+    <Content Include="VtaVersionPrecioManual.aspx" />
+    <Content Include="vtaVersionPrint.aspx" />
+    <Content Include="vtaVersionPrintEs.aspx" />
+    <Content Include="vtaVersionPrintIn.aspx" />
+    <Content Include="vtaVersionPrintPo.aspx" />
+    <Content Include="VtaVersionPublica.aspx" />
+    <Content Include="VtaVersionReserva.aspx" />
+    <Content Include="VtaVersionReservaConfirma.aspx" />
+    <Content Include="VtaVersionReservaEmail.aspx" />
+    <Content Include="VtaVersionReservaPasajero.aspx" />
+    <Content Include="VtaVersionReservaSolicitud.aspx" />
+    <Content Include="VtaVersionResumen.aspx" />
+    <Content Include="VtaVersionServicio.aspx" />
+    <Content Include="VtaVersionServicioVuelosInter.aspx" />
+    <Content Include="VtaVersionTareas.aspx" />
+    <Content Include="VtaVersionTrasladoBoleto.aspx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>45114</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

@@ -1,0 +1,3 @@
+C:\Users\bgloria\Documents\Visual Studio 2008\Projects\Mozart_Solution\Mozart\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\bgloria\Documents\Visual Studio 2008\Projects\Mozart_Solution\Mozart\obj\Debug\Mozart.Resources.resources
+C:\Users\bgloria\Documents\Visual Studio 2008\Projects\Mozart_Solution\Mozart\obj\Debug\Mozart.vbproj.GenerateResource.Cache
