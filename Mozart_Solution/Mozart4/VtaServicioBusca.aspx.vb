@@ -210,7 +210,7 @@ Partial Class VtaServicioBusca
                 e.Item.ForeColor = Color.Red
             End If
 
-            If e.Item.Cells(19).Text > 0 Then
+            If e.Item.Cells(20).Text > 0 Then
                 e.Item.Cells(3).BackColor = Color.PaleGreen
             End If
         End If

@@ -7,6 +7,8 @@ Partial Class VtaServicioNuevo
     Inherits System.Web.UI.Page
     Dim objServicio As New clsServicio
     Dim objRutina As New clsRutinas
+    Dim gg As String
+    Dim gg2 As String
 
     Private Sub Page_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         If Session("CodUsuario") = "" Then
@@ -21,7 +23,7 @@ Partial Class VtaServicioNuevo
 
             CargaTipoServicio()
             CargaCiudad()
-
+           
             Viewstate("Opcion") = Request.Params("Opcion")
             Viewstate("CodProveedor") = Request.Params("CodProveedor")
             Viewstate("CodCiudad") = Request.Params("CodCiudad")
@@ -81,7 +83,19 @@ Partial Class VtaServicioNuevo
         If lblMsg.Text.Trim = "OK" Then
             lblMsg.Text = ""
             'lblfchPedido.Text = ToString.Format("{0:dd-MM-yyyy}", objPedido.FchPedido)
-            txtDesProveedor.Text = objServicio.DesProveedor.Trim
+
+
+            If objServicio.DesProveedor IsNot Nothing Then
+                txtDesProveedor.Text = objServicio.DesProveedor.Trim
+
+            End If
+
+            If objServicio.DesObservacion IsNot Nothing Then
+                TxtObservaciones.Text = objServicio.DesObservacion.Trim
+            End If
+
+            'TxtObservaciones.Text = objServicio.DesObservacion.Trim
+
             txtCodStsReserva.Text = objServicio.CodStsReservaIni.Trim
 
             'txtMontoFijo.Enabled = False
@@ -150,6 +164,7 @@ Partial Class VtaServicioNuevo
             txtCaraEspeServicio2.Text = objServicio.CaraEspeServicio2.Trim
             txtCaraEspeServicio3.Text = objServicio.CaraEspeServicio3.Trim
             txtHoraInicioReserva.Text = objServicio.HoraInicioServicio.Trim
+
 
             Dim objProveedor As New clsProveedor
             ddlProveedor.DataSource = objProveedor.CargarProveedor(objServicio.CodProveedor)

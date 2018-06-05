@@ -1,4 +1,0 @@
-C:\Users\bgloria\Documents\Mozart_Solution\Mozart_Solution\obj\Debug\ResolveAssemblyReference.cache
-C:\Users\bgloria\Documents\Mozart_Solution\Mozart_Solution\obj\Debug\Mozart_Solution.Resources.resources
-C:\Users\bgloria\Documents\Mozart_Solution\Mozart_Solution\obj\Debug\Mozart_Solution.vbproj.GenerateResource.Cache
-C:\Users\bgloria\Documents\Mozart_Solution\Mozart_Solution\obj\Debug\Mozart_Solution.dll.licenses

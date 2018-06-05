@@ -1,6 +1,27 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Mozart4", "Mozart4\", "{DBE246FE-CA44-4110-86FB-C6C4A75421F9}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFramework = "3.5"
+		ProjectReferences = "{ACA7F175-4A0B-46CF-81D1-99EA44B3F0EB}|cmpBlog.dll;{8A62EFE4-FB95-43D3-9575-766E6C512160}|cmpNegocio.dll;{4C7CC189-AF67-4319-B1C1-D4C6E4C9E600}|cmpRutinas.dll;{332BFA9D-9626-4380-9615-098A2C530EEF}|cmpSeguridad.dll;{499B467A-1848-4702-B604-2BA0B960317E}|cmpTabla.dll;"
+		Debug.AspNetCompiler.VirtualPath = "/Mozart4"
+		Debug.AspNetCompiler.PhysicalPath = "Mozart4\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\Mozart4\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/Mozart4"
+		Release.AspNetCompiler.PhysicalPath = "Mozart4\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\Mozart4\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "34325"
+	EndProjectSection
+EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "cmpBlog", "Mozart4\cmpBlog\cmpBlog.vbproj", "{ACA7F175-4A0B-46CF-81D1-99EA44B3F0EB}"
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "cmpNegocio", "Mozart4\cmpNegocio\cmpNegocio.vbproj", "{8A62EFE4-FB95-43D3-9575-766E6C512160}"
@@ -10,27 +31,6 @@ EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "cmpSeguridad", "Mozart4\cmpSeguridad\cmpSeguridad.vbproj", "{332BFA9D-9626-4380-9615-098A2C530EEF}"
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "cmpTabla", "Mozart4\cmpTabla\cmpTabla.vbproj", "{499B467A-1848-4702-B604-2BA0B960317E}"
-EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Mozart4", "..\Dev\Pentagrama\Mozart\Mozart_Solution\Mozart4\", "{EB6A5592-E4C5-4EA9-BCCB-336118794399}"
-	ProjectSection(WebsiteProperties) = preProject
-		TargetFramework = "3.5"
-		ProjectReferences = "{ACA7F175-4A0B-46CF-81D1-99EA44B3F0EB}|cmpBlog.dll;{8A62EFE4-FB95-43D3-9575-766E6C512160}|cmpNegocio.dll;{4C7CC189-AF67-4319-B1C1-D4C6E4C9E600}|cmpRutinas.dll;{332BFA9D-9626-4380-9615-098A2C530EEF}|cmpSeguridad.dll;{499B467A-1848-4702-B604-2BA0B960317E}|cmpTabla.dll;"
-		Debug.AspNetCompiler.VirtualPath = "/Mozart4"
-		Debug.AspNetCompiler.PhysicalPath = "..\Dev\Pentagrama\Mozart\Mozart_Solution\Mozart4\"
-		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\Mozart4\"
-		Debug.AspNetCompiler.Updateable = "true"
-		Debug.AspNetCompiler.ForceOverwrite = "true"
-		Debug.AspNetCompiler.FixedNames = "false"
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.VirtualPath = "/Mozart4"
-		Release.AspNetCompiler.PhysicalPath = "..\Dev\Pentagrama\Mozart\Mozart_Solution\Mozart4\"
-		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\Mozart4\"
-		Release.AspNetCompiler.Updateable = "true"
-		Release.AspNetCompiler.ForceOverwrite = "true"
-		Release.AspNetCompiler.FixedNames = "false"
-		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "1838"
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -42,6 +42,16 @@ Global
 		Release|Mixed Platforms = Release|Mixed Platforms
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DBE246FE-CA44-4110-86FB-C6C4A75421F9}.Debug|.NET.ActiveCfg = Debug|.NET
+		{DBE246FE-CA44-4110-86FB-C6C4A75421F9}.Debug|.NET.Build.0 = Debug|.NET
+		{DBE246FE-CA44-4110-86FB-C6C4A75421F9}.Debug|Any CPU.ActiveCfg = Debug|.NET
+		{DBE246FE-CA44-4110-86FB-C6C4A75421F9}.Debug|Mixed Platforms.ActiveCfg = Debug|.NET
+		{DBE246FE-CA44-4110-86FB-C6C4A75421F9}.Debug|Mixed Platforms.Build.0 = Debug|.NET
+		{DBE246FE-CA44-4110-86FB-C6C4A75421F9}.Release|.NET.ActiveCfg = Debug|.NET
+		{DBE246FE-CA44-4110-86FB-C6C4A75421F9}.Release|.NET.Build.0 = Debug|.NET
+		{DBE246FE-CA44-4110-86FB-C6C4A75421F9}.Release|Any CPU.ActiveCfg = Debug|.NET
+		{DBE246FE-CA44-4110-86FB-C6C4A75421F9}.Release|Mixed Platforms.ActiveCfg = Debug|.NET
+		{DBE246FE-CA44-4110-86FB-C6C4A75421F9}.Release|Mixed Platforms.Build.0 = Debug|.NET
 		{ACA7F175-4A0B-46CF-81D1-99EA44B3F0EB}.Debug|.NET.ActiveCfg = Debug|Any CPU
 		{ACA7F175-4A0B-46CF-81D1-99EA44B3F0EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{ACA7F175-4A0B-46CF-81D1-99EA44B3F0EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
@@ -92,16 +102,6 @@ Global
 		{499B467A-1848-4702-B604-2BA0B960317E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{499B467A-1848-4702-B604-2BA0B960317E}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{499B467A-1848-4702-B604-2BA0B960317E}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{EB6A5592-E4C5-4EA9-BCCB-336118794399}.Debug|.NET.ActiveCfg = Debug|.NET
-		{EB6A5592-E4C5-4EA9-BCCB-336118794399}.Debug|.NET.Build.0 = Debug|.NET
-		{EB6A5592-E4C5-4EA9-BCCB-336118794399}.Debug|Any CPU.ActiveCfg = Debug|.NET
-		{EB6A5592-E4C5-4EA9-BCCB-336118794399}.Debug|Mixed Platforms.ActiveCfg = Debug|.NET
-		{EB6A5592-E4C5-4EA9-BCCB-336118794399}.Debug|Mixed Platforms.Build.0 = Debug|.NET
-		{EB6A5592-E4C5-4EA9-BCCB-336118794399}.Release|.NET.ActiveCfg = Debug|.NET
-		{EB6A5592-E4C5-4EA9-BCCB-336118794399}.Release|.NET.Build.0 = Debug|.NET
-		{EB6A5592-E4C5-4EA9-BCCB-336118794399}.Release|Any CPU.ActiveCfg = Debug|.NET
-		{EB6A5592-E4C5-4EA9-BCCB-336118794399}.Release|Mixed Platforms.ActiveCfg = Debug|.NET
-		{EB6A5592-E4C5-4EA9-BCCB-336118794399}.Release|Mixed Platforms.Build.0 = Debug|.NET
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

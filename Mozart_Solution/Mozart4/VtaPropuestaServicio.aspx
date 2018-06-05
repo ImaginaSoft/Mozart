@@ -53,6 +53,12 @@
 								<TD style="HEIGHT: 19px"><asp:dropdownlist id="ddlServicio" runat="server" Width="664px" DataTextField="DesProveedor" DataValueField="NroServicio"
 										AutoPostBack="True"></asp:dropdownlist></TD>
 							</TR>
+								<TR>
+								<TD style="WIDTH: 105px; HEIGHT: 19px">Observacion</TD>
+								<TD style="HEIGHT: 19px">
+                                    <asp:textbox id="txtObrsv" tabIndex="10" runat="server" 
+                                        Width="661px" MaxLength="2" TextMode="MultiLine" ReadOnly="True"></asp:textbox></TD>
+							</TR>
 							<TR>
 								<TD style="WIDTH: 105px; HEIGHT: 15px"><asp:label id="lblTipoAcomodacion" runat="server" Width="112px" Visible="False">Tipo Acomodación</asp:label></TD>
 								<TD style="HEIGHT: 15px"><asp:dropdownlist id="ddlTipoAcomodacion" runat="server" Width="424px" Visible="False" DataTextField="TipoAcomodacion"
@@ -60,7 +66,9 @@
 							</TR>
 							<TR>
 								<TD style="WIDTH: 105px; HEIGHT: 25px"><asp:label id="lblRangoTarifa" runat="server" Visible="False" BorderStyle="None">Rango Tarifa</asp:label></TD>
-								<TD style="HEIGHT: 25px"><asp:textbox id="txtRangoTarifa" tabIndex="10" runat="server" Width="24px" Visible="False" MaxLength="2"></asp:textbox>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:label id="lblMontoFijo" runat="server" Width="67px" Visible="False">Monto Fijo</asp:label><asp:textbox id="txtMontoFijo" runat="server" Width="75px" Visible="False" MaxLength="10"></asp:textbox></TD>
+								<TD style="HEIGHT: 25px"><asp:textbox id="txtRangoTarifa" tabIndex="10" runat="server" Width="24px" Visible="False" MaxLength="2"></asp:textbox>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:label id="lblMontoFijo" runat="server" Width="67px" Visible="False">Monto Fijo</asp:label>
+                                    <asp:textbox id="txtMontoFijo" runat="server" Width="75px" Visible="False" 
+                                        MaxLength="10"></asp:textbox></TD>
 							</TR>
 							<TR>
 								<TD style="WIDTH: 105px; HEIGHT: 25px"><asp:label id="lblPaxHab" runat="server" Width="96px" BorderStyle="None">N° Pasajeros</asp:label></TD>
@@ -147,6 +155,7 @@
 										</asp:HyperLink>
 									</ItemTemplate>
 								</asp:TemplateColumn>
+								<asp:BoundColumn DataField="DesObservacion" HeaderText="Observacion"></asp:BoundColumn>
 								<asp:BoundColumn DataField="TipoAcomodacion" HeaderText="Tipo"></asp:BoundColumn>
 								<asp:BoundColumn DataField="NomProveedor" HeaderText="Proveedor"></asp:BoundColumn>
 								<asp:BoundColumn DataField="FlagValoriza" HeaderText="V"></asp:BoundColumn>

@@ -28,7 +28,14 @@ Partial Class VtaPedidoPasajero
         ddlpais.DataSource = ds
         ddlpais.DataBind()
         If pCodPais.Trim.Length > 0 Then
-            ddlpais.Items.FindByValue(pCodPais).Selected = True
+            If ddlpais.Items.FindByValue(pCodPais) IsNot Nothing Then
+                ddlpais.Items.FindByValue(pCodPais).Selected = True
+            Else
+
+                ddlpais.Items.FindByValue("999").Selected = True
+
+            End If
+            ' ddlpais.Items.FindByValue(pCodPais).Selected = True
         End If
     End Sub
     Private Sub CargaTipoPasajero(ByVal pCodTipoPasajero As String)
@@ -157,21 +164,27 @@ Partial Class VtaPedidoPasajero
         lblCodigo.Text = dgPasajero.Items(dgPasajero.SelectedIndex).Cells(1).Text
         txtNombre.Text = dgPasajero.Items(dgPasajero.SelectedIndex).Cells(2).Text
         txtApellido.Text = dgPasajero.Items(dgPasajero.SelectedIndex).Cells(3).Text
-        txtAcomodacion.Text = dgPasajero.Items(dgPasajero.SelectedIndex).Cells(4).Text
-        txtObservaciones.Text = dgPasajero.Items(dgPasajero.SelectedIndex).Cells(5).Text
-        txtPasaporte.Text = dgPasajero.Items(dgPasajero.SelectedIndex).Cells(6).Text
-        wfecha = dgPasajero.Items(dgPasajero.SelectedIndex).Cells(8).Text
+
+        If txtApellido.Text.Trim.Equals("&nbsp;") Then
+            txtApellido.Text = ""
+        End If
+
+
+        txtAcomodacion.Text = dgPasajero.Items(dgPasajero.SelectedIndex).Cells(5).Text
+        txtObservaciones.Text = dgPasajero.Items(dgPasajero.SelectedIndex).Cells(6).Text
+        txtPasaporte.Text = dgPasajero.Items(dgPasajero.SelectedIndex).Cells(7).Text
+        wfecha = dgPasajero.Items(dgPasajero.SelectedIndex).Cells(9).Text
         'txtCodReserva.Text = dgPasajero.Items(dgPasajero.SelectedIndex).Cells(9).Text
         'txtPaterno.Text = dgPasajero.Items(dgPasajero.SelectedIndex).Cells(12).Text
 
 
 
-        txtDesIdioma.Text = dgPasajero.Items(dgPasajero.SelectedIndex).Cells(15).Text
+        txtDesIdioma.Text = dgPasajero.Items(dgPasajero.SelectedIndex).Cells(16).Text
         If txtDesIdioma.Text.Trim.Equals("&nbsp;") Then
             txtDesIdioma.Text = ""
         End If
 
-        txtDesHabitacion.Text = dgPasajero.Items(dgPasajero.SelectedIndex).Cells(16).Text
+        txtDesHabitacion.Text = dgPasajero.Items(dgPasajero.SelectedIndex).Cells(17).Text
         If txtDesHabitacion.Text.Trim.Equals("&nbsp;") Then
             txtDesHabitacion.Text = ""
         End If
@@ -199,7 +212,9 @@ Partial Class VtaPedidoPasajero
         'End If
 
         wtipopasajero = dgPasajero.Items(dgPasajero.SelectedIndex).Cells(10).Text
-        wcospais = dgPasajero.Items(dgPasajero.SelectedIndex).Cells(11).Text
+        'wcospais = dgPasajero.Items(dgPasajero.SelectedIndex).Cells(11).Text
+
+        wcospais = dgPasajero.Items(dgPasajero.SelectedIndex).Cells(12).Text
 
         CargaPais(wcospais)
         CargaTipoPasajero(wtipopasajero)

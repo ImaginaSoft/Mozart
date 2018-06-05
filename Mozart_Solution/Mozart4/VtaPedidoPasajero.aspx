@@ -58,8 +58,8 @@
 								<TD style="WIDTH: 93px">Apellido</TD>
 								<TD style="HEIGHT: 26px">
 									<asp:textbox id="txtApellido" runat="server" MaxLength="50" Width="203px"></asp:textbox>
-									<asp:requiredfieldvalidator id="Requiredfieldvalidator2" runat="server" ForeColor=" " ErrorMessage="*" ControlToValidate="txtApellido"
-										CssClass="error"></asp:requiredfieldvalidator></TD>
+									<%--<asp:requiredfieldvalidator id="Requiredfieldvalidator2" runat="server" ForeColor=" " ErrorMessage="*" ControlToValidate="txtApellido"
+										CssClass="error"></asp:requiredfieldvalidator>--%></TD>
 							</TR>
 							<TR>
 								<TD style="WIDTH: 93px">Género</TD>

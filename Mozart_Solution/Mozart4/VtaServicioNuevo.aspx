@@ -43,13 +43,14 @@
 								<TD style="WIDTH: 663px">Descripción</TD>
 								<TD style="WIDTH: 350px">
                                     <asp:textbox id="txtDesProveedor" runat="server" 
-                                        Width="226px" MaxLength="200" ></asp:textbox>
+                                        Width="582px" MaxLength="200" ></asp:textbox>
                                         
                                         </TD>
 							</TR>
 							<TR>
 								<TD style="WIDTH: 663px">Obervaciones</TD>
-								<TD style="WIDTH: 350px"><asp:textbox id="TxtObservaciones" runat="server" Width="448px" MaxLength="300" Height="56px"
+								<TD style="WIDTH: 350px"><asp:textbox id="TxtObservaciones" runat="server" 
+                                        Width="582px" MaxLength="300" Height="56px"
 										TextMode="MultiLine"></asp:textbox></TD>
 							</TR>
 							<TR>

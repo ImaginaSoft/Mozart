@@ -383,6 +383,7 @@ Public Class clsServicio
         cd.Parameters.Add("@CodStsServicio", SqlDbType.Char, 1).Value = sStsServicio
         cd.Parameters.Add("@CodTipoServicio", SqlDbType.TinyInt).Value = iCodTipoServicio
         cd.Parameters.Add("@DesProveedor", SqlDbType.VarChar, 300).Value = sDesProveedor
+        cd.Parameters.Add("@DesObservacion", SqlDbType.VarChar, 300).Value = sDesObservacion
         cd.Parameters.Add("@FlagValoriza", SqlDbType.Char, 1).Value = sFlagValoriza
         cd.Parameters.Add("@FlagItinerario", SqlDbType.Char, 1).Value = sFlagItinerario
         cd.Parameters.Add("@FlagItiProveedor", SqlDbType.Char, 1).Value = sFlagItiProveedor
@@ -435,6 +436,22 @@ Public Class clsServicio
                 iCodTipoServicio = dr.GetValue(dr.GetOrdinal("CodTipoServicio"))
                 sCodCiudad = dr.GetValue(dr.GetOrdinal("CodCiudad"))
                 sDesProveedor = dr.GetValue(dr.GetOrdinal("DesProveedor"))
+
+
+                'sDesObservacion = CStr(dr.GetValue(dr.GetOrdinal("DesObservacion")))
+
+                If IsDBNull(dr.GetValue(dr.GetOrdinal("DesObservacion"))) Then
+
+                    sDesObservacion = ""
+
+                Else
+                    sDesObservacion = dr.GetValue(dr.GetOrdinal("DesObservacion"))
+                End If
+
+
+
+
+
                 sFlagValoriza = dr.GetValue(dr.GetOrdinal("FlagValoriza"))
                 dMontoFijo = dr.GetValue(dr.GetOrdinal("MontoFijo"))
                 sFlagItinerario = dr.GetValue(dr.GetOrdinal("FlagItinerario"))

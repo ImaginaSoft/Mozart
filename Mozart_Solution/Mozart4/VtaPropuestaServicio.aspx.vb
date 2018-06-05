@@ -49,6 +49,7 @@ Partial Class VtaPropuestaServicio
         dgServicio.DataSource = ds
         dgServicio.DataBind()
 
+
         If Viewstate("FlagEdita") = "N" Or Viewstate("FlagEdita") = "E" Then
             cmdGrabar.Visible = False
             dgServicio.Columns(0).Visible = False
@@ -212,6 +213,9 @@ Partial Class VtaPropuestaServicio
         cd.Parameters.Add("@NroPedido", SqlDbType.Int).Value = Viewstate("NroPedido")
         cd.Parameters.Add("@NroPropuesta", SqlDbType.Int).Value = Viewstate("NroPropuesta")
         cd.Parameters.Add("@NroDia", SqlDbType.SmallInt).Value = Textdia.Text
+
+        cd.Parameters.Add("@Obsrv", SqlDbType.VarChar, 250).Value = txtObrsv.Text
+
         cd.Parameters.Add("@NroOrden", SqlDbType.SmallInt).Value = Textorden.Text
         cd.Parameters.Add("@HoraServicio", SqlDbType.Char, 8).Value = txtHoraServicio.Text
         cd.Parameters.Add("@NroServicio", SqlDbType.Int).Value = ddlServicio.SelectedItem.Value
@@ -267,19 +271,19 @@ Partial Class VtaPropuestaServicio
         Dim wNroServicio, wCodTipoAcomodacion As Integer
         Dim wRangoTarifa As Integer = 0
 
-        wCodTipoAcomodacion = dgServicio.Items(dgServicio.SelectedIndex).Cells(15).Text
+        wCodTipoAcomodacion = dgServicio.Items(dgServicio.SelectedIndex).Cells(16).Text
 
         Textdia.Text = dgServicio.Items(dgServicio.SelectedIndex).Cells(2).Text.Trim
         Textorden.Text = dgServicio.Items(dgServicio.SelectedIndex).Cells(3).Text.Trim
         txtHoraServicio.Text = dgServicio.Items(dgServicio.SelectedIndex).Cells(6).Text.Trim
-        txtMontoFijo.Text = dgServicio.Items(dgServicio.SelectedIndex).Cells(12).Text.Trim
-
+        txtMontoFijo.Text = dgServicio.Items(dgServicio.SelectedIndex).Cells(13).Text.Trim
+        txtObrsv.Text = dgServicio.Items(dgServicio.SelectedIndex).Cells(8).Text.Trim
         txtDiaAnt.Text = Textdia.Text
         txtOrdenAnt.Text = Textorden.Text
         txtNroServicioAnt.Text = dgServicio.Items(dgServicio.SelectedIndex).Cells(4).Text
         wNroServicio = txtNroServicioAnt.Text
 
-        txtFlagValoriza.Text = dgServicio.Items(dgServicio.SelectedIndex).Cells(10).Text
+        txtFlagValoriza.Text = dgServicio.Items(dgServicio.SelectedIndex).Cells(11).Text
 
         If txtFlagValoriza.Text.Trim = "C" Then
             lblMontoFijo.Visible = False
@@ -490,11 +494,39 @@ Partial Class VtaPropuestaServicio
             ddlServicio.DataBind()
             If pNroServicio > 0 Then
                 ddlServicio.Items.FindByValue(pNroServicio).Selected = True
+
+                'BG
+                For Each row As DataRow In ds.Tables(0).Rows
+
+                    If row.Field(Of Integer)("NroServicio") = pNroServicio Then
+
+                        Dim prmObservacion As String = row.Field(Of String)("DesObservacion")
+
+
+                        If prmObservacion = "" Then
+                            txtObrsv.Text = ""
+
+                        Else
+                            txtObrsv.Text = prmObservacion
+                        End If
+
+
+
+
+                    End If
+
+
+                    
+
+                Next
+
+
             End If
         Catch ex2 As System.Exception
             'No existe servicio..continuar
         End Try
     End Sub
+
 
     Private Sub CargaTipoAcomodacion(ByVal pCodTipoAcomodacion As Integer)
         Dim ds As New DataSet
@@ -662,7 +694,7 @@ Partial Class VtaPropuestaServicio
     Private Sub dgServicio_ItemDataBound(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.DataGridItemEventArgs) Handles dgServicio.ItemDataBound
         If e.Item.ItemType = ListItemType.Item Or _
            e.Item.ItemType = ListItemType.AlternatingItem Then
-            If e.Item.Cells(17).Text.Trim = "S" Then ' Falta precio
+            If e.Item.Cells(18).Text.Trim = "S" Then ' Falta precio
                 e.Item.ForeColor = Color.Red
             ElseIf e.Item.Cells(16).Text = "2" Then ' Hotel
                 e.Item.ForeColor = Color.DarkBlue
@@ -672,6 +704,14 @@ Partial Class VtaPropuestaServicio
 
     Private Sub ddlServicio_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ddlServicio.SelectedIndexChanged
         CargaTipoAcomodacion(0)
+        Dim prmServicio As String
+
+        prmServicio = ddlServicio.SelectedValue
+
+        CargaServicio(prmServicio)
+
+
+
         PaxHab()
     End Sub
 

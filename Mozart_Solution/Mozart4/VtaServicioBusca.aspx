@@ -138,6 +138,21 @@
 											</asp:HyperLink>
 										</ItemTemplate>
 									</asp:TemplateColumn>
+									
+									
+									<asp:TemplateColumn SortExpression="DesObservacion" HeaderText="Observacion">
+										<ItemStyle></ItemStyle>
+										<ItemTemplate>
+											<asp:HyperLink id="Hyperlink1GG" runat="server" Text='<%# DataBinder.Eval(Container.DataItem,"DesObservacion")%>' >
+											</asp:HyperLink>
+										</ItemTemplate>
+									</asp:TemplateColumn>
+									
+									
+									
+									
+									
+									
 									<asp:ButtonColumn Text="Tarifas" CommandName="select"></asp:ButtonColumn>
 									<asp:BoundColumn DataField="FlagValoriza" SortExpression="FlagValoriza" HeaderText="V"></asp:BoundColumn>
 									<asp:ButtonColumn Text="Link" CommandName="Cancel"></asp:ButtonColumn>
