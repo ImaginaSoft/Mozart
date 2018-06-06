@@ -69,6 +69,7 @@ Partial Class VtaPedidoEmail
                 Dim URL_chiletourism As String = System.Configuration.ConfigurationManager.AppSettings("URL_chiletourism")
                 Dim URL_galapagostourism As String = System.Configuration.ConfigurationManager.AppSettings("URL_galapagostourism")
                 Dim URL_gayperutourism As String = System.Configuration.ConfigurationManager.AppSettings("URL_gayperutourism")
+                Dim URL_latajourneys As String = System.Configuration.ConfigurationManager.AppSettings("URL_latajourneys")
 
                 'PRODUCCION Actual (Idioma del pedido)
                 If dr.GetValue(dr.GetOrdinal("CodZonaVta")) = "PER" Then
@@ -89,6 +90,15 @@ Partial Class VtaPedidoEmail
                     Else
                         lblPaginaPersonalizada.Text = URL_chiletourism & "/elogin.aspx?ID=" & dr.GetValue(dr.GetOrdinal("IDCliente"))
                     End If
+
+                ElseIf dr.GetValue(dr.GetOrdinal("CodZonaVta")) = "LAJ" Then
+                    If dr.GetValue(dr.GetOrdinal("Idioma")) = "I" Then
+                        lblPaginaPersonalizada.Text = URL_latajourneys & "/ilogin.aspx?ID=" & dr.GetValue(dr.GetOrdinal("IDCliente"))
+                    Else
+                        lblPaginaPersonalizada.Text = URL_latajourneys & "/elogin.aspx?ID=" & dr.GetValue(dr.GetOrdinal("IDCliente"))
+                    End If
+
+
                 End If
 
             Loop

@@ -206,6 +206,7 @@ Partial Class VtaPropuestaFicha
         Dim URL_chiletourism As String = System.Configuration.ConfigurationManager.AppSettings("URL_chiletourism")
         Dim URL_galapagostourism As String = System.Configuration.ConfigurationManager.AppSettings("URL_galapagostourism")
         Dim URL_gayperutourism As String = System.Configuration.ConfigurationManager.AppSettings("URL_gayperutourism")
+        Dim URL_latajourneys As String = System.Configuration.ConfigurationManager.AppSettings("URL_latajourneys")
 
         If ucPropuesta1.CodZonaVta = "PER" Then
             Response.Redirect(URL_perutourism & "/ilogin.aspx?O=M&ID=" & ucPropuesta1.IDCliente)
@@ -219,6 +220,8 @@ Partial Class VtaPropuestaFicha
         ElseIf ucPropuesta1.CodZonaVta = "GAY" Then
             Response.Redirect(URL_gayperutourism & "/ilogin.aspx?O=M&ID=" & ucPropuesta1.IDCliente)
             'Response.Redirect("http://penta/chile4me/ilogin.aspx?ID=" & ucPropuesta1.IDCliente)
+        ElseIf ucPropuesta1.CodZonaVta = "LAJ" Then
+            Response.Redirect(URL_latajourneys & "/ilogin.aspx?O=M&ID=" & ucPropuesta1.IDCliente)
         End If
     End Sub
 

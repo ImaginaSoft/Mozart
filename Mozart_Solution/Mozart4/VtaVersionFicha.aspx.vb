@@ -154,6 +154,7 @@ Partial Class VtaVersionFicha
         Dim URL_chiletourism As String = System.Configuration.ConfigurationManager.AppSettings("URL_chiletourism")
         Dim URL_galapagostourism As String = System.Configuration.ConfigurationManager.AppSettings("URL_galapagostourism")
         Dim URL_gayperutourism As String = System.Configuration.ConfigurationManager.AppSettings("URL_gayperutourism")
+        Dim URL_latajourneys As String = System.Configuration.ConfigurationManager.AppSettings("URL_latajourneys")
 
         If Viewstate("CodZonaVta") = "PER" Then
             Response.Redirect(URL_perutourism & "/ilogin.aspx?O=M&ID=" & ucVersion1.IDCliente)
@@ -167,6 +168,8 @@ Partial Class VtaVersionFicha
         ElseIf Viewstate("CodZonaVta") = "GAY" Then
             Response.Redirect(URL_gayperutourism & "/ilogin.aspx?O=M&ID=" & ucVersion1.IDCliente)
             'Response.Redirect("http://penta/chile4me/ilogin.aspx?ID=" & ucVersion1.IDCliente)
+        ElseIf ViewState("CodZonaVta") = "LAJ" Then
+            Response.Redirect(URL_latajourneys & "/ilogin.aspx?O=M&ID=" & ucVersion1.IDCliente)
         End If
     End Sub
 

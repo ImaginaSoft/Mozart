@@ -104,6 +104,7 @@ Partial Class ucPropuesta
                 Dim URL_chiletourism As String = System.Configuration.ConfigurationManager.AppSettings("URL_chiletourism")
                 Dim URL_galapagostourism As String = System.Configuration.ConfigurationManager.AppSettings("URL_galapagostourism")
                 Dim URL_gayperutourism As String = System.Configuration.ConfigurationManager.AppSettings("URL_gayperutourism")
+                Dim URL_latajourneys As String = System.Configuration.ConfigurationManager.AppSettings("URL_latajourneys")
 
 
                 'PRODUCCION Actual
@@ -138,6 +139,10 @@ Partial Class ucPropuesta
                     'Else
                     '    lblPaginaPersonalizada.Text = URL_gayperutourism & "/elogin.aspx?ID=" & lblIDCliente.Text
                     'End If
+                ElseIf dr.GetValue(dr.GetOrdinal("CodZonaVta")) = "LAJ" Then
+
+                    lblPaginaPersonalizada.Text = URL_latajourneys & "/ilogin.aspx?ID=" & lblIDCliente.Text
+
                 End If
 
             Loop
