@@ -3,7 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
+<head id="Head1" runat="server">
     <title>Página sin título</title>
 		<!-- Style for the Rich Text Box -->
 		<style type="text/css">.advertisement { BORDER-RIGHT: black 1px solid; BORDER-TOP: black 1px solid; FONT-SIZE: 12px; VERTICAL-ALIGN: middle; BORDER-LEFT: black 1px solid; BORDER-BOTTOM: black 1px solid; FONT-FAMILY: verdana, tahoma; TEXT-ALIGN: center; arial: }
@@ -154,16 +154,22 @@
 		// data from to save in the database
 		function getHTML()
 		{
+		    debugger
 			var String = TextEditor;  // The TextEditor DIV can not be in a form or the Java error out
+			var String_Hoteles =  TextEditor_Hoteles;
 			frmRTB.txtRTB.value = String.innerHTML;   //you can't make the text box invisible or the Java will error out
+			frmRTB.txtRTB_Hoteles.value = String_Hoteles.innerHTML;
 		}
 		
 		// Load RTB info from the database into the DIV field on the web.
 		// so one can edit the database info in the Rich Text Box.
 		function LoadDiv()
 		{
+		    debugger
 			var String = frmRTB.txtRTB.value;
+			var String_Hoteles = frmRTB.txtRTB_Hoteles.value;
 			TextEditor.innerHTML = String;   // set the innerHTML of the DIV to the text of the textbox
+			TextEditor_Hoteles.innerHTML = String_Hoteles;
 		}
 		</script>
 		<LINK href="Styles.css" type="text/css" rel="stylesheet">
@@ -313,6 +319,13 @@
 						height="250" indicateeditable="true"></DIV>
 				</TD>
 			</TR>
+			<TR>
+				<TD style="HEIGHT: 180px">
+				    <h3>Hotel</h3>
+					<DIV id="TextEditor_Hoteles" contentEditable="true" style="OVERFLOW: auto; WIDTH: 535px; HEIGHT: 265px; WORD-WRAP: break-word"
+						height="250" indicateeditable="true"></DIV>
+				</TD>
+			</TR>
 		</TABLE>
 		<OBJECT id="dlgHelper" height="0px" width="0px" classid="clsid:3050f819-98b5-11cf-bb82-00aa00bdce0b">
 		</OBJECT>
@@ -399,7 +412,10 @@
 				</TR>
 			</TABLE>
 			<asp:textbox id=txtRTB style="Z-INDEX: 103; LEFT: 8px; POSITION: absolute; TOP: 544px" runat="server" Width="8px" Text='<%# DataBinder.Eval(dsEdit, "Tables[DLOGPROVEEDOR].DefaultView.[0].deslog") %>' Height="4px">
-			</asp:textbox></form>
+			</asp:textbox>
+			<asp:textbox id=txtRTB_Hoteles style="Z-INDEX: 103; LEFT: 8px; POSITION: absolute; TOP: 544px" runat="server" Width="8px" Text='<%# DataBinder.Eval(dsEdit, "Tables[DLOGPROVEEDOR_Hoteles].DefaultView.[0].deslog") %>' Height="4px">
+			</asp:textbox>
+			</form>
 
 </body>
 </html>

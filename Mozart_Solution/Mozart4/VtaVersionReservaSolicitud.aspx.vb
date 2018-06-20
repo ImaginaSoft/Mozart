@@ -31,6 +31,7 @@ Partial Class VtaVersionReservaSolicitud
             CargaSolicita()
             LeeVersion()
             LeeVersionServicios()
+            LeeVersionServicios_Hoteles()
             CargaContacto()
         End If
         With cmdSend
@@ -133,7 +134,8 @@ Partial Class VtaVersionReservaSolicitud
         da.SelectCommand.CommandType = CommandType.StoredProcedure
         da.SelectCommand.Parameters.Add("@NroPedido", SqlDbType.Int).Value = Viewstate("NroPedido")
         da.SelectCommand.Parameters.Add("@NroPropuesta", SqlDbType.TinyInt).Value = Viewstate("NroPropuesta")
-        da.SelectCommand.Parameters.Add("@NroVersion", SqlDbType.TinyInt).Value = Viewstate("NroVersion")
+        da.SelectCommand.Parameters.Add("@NroVersion", SqlDbType.TinyInt).Value = ViewState("NroVersion")
+        da.SelectCommand.Parameters.Add("@FlagHotel", SqlDbType.Char).Value = "N"
         da.SelectCommand.CommandText = "VTA_VersionReserva_S"
         da.SelectCommand.Parameters.Add("@CodProveedor", SqlDbType.Int).Value = Viewstate("CodProveedor")
 
@@ -146,6 +148,29 @@ Partial Class VtaVersionReservaSolicitud
         dsEdit.Clear()
         da.Fill(dsEdit, "DLOGPROVEEDOR")
         txtRTB.DataBind()
+    End Sub
+
+    Private Sub LeeVersionServicios_Hoteles()
+        Dim da As New SqlDataAdapter
+        da.SelectCommand = New SqlCommand
+        da.SelectCommand.Connection = cn
+        da.SelectCommand.CommandType = CommandType.StoredProcedure
+        da.SelectCommand.Parameters.Add("@NroPedido", SqlDbType.Int).Value = ViewState("NroPedido")
+        da.SelectCommand.Parameters.Add("@NroPropuesta", SqlDbType.TinyInt).Value = ViewState("NroPropuesta")
+        da.SelectCommand.Parameters.Add("@NroVersion", SqlDbType.TinyInt).Value = ViewState("NroVersion")
+        da.SelectCommand.Parameters.Add("@FlagHotel", SqlDbType.Char).Value = "S"
+        da.SelectCommand.CommandText = "VTA_VersionReserva_S"
+        da.SelectCommand.Parameters.Add("@CodProveedor", SqlDbType.Int).Value = ViewState("CodProveedor")
+
+        If ddlSolicita.Items.Count = 0 Then
+            da.SelectCommand.Parameters.Add("@NomSolicita", SqlDbType.VarChar, 50).Value = ""
+        Else
+            da.SelectCommand.Parameters.Add("@NomSolicita", SqlDbType.VarChar, 50).Value = ddlSolicita.SelectedItem.Text
+        End If
+
+        dsEdit.Clear()
+        da.Fill(dsEdit, "DLOGPROVEEDOR_Hoteles")
+        txtRTB_Hoteles.DataBind()
     End Sub
 
     Private Sub cmdSend_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdSend.Click
