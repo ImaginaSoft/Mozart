@@ -222,7 +222,7 @@ Partial Class VtaPedidoPasajero
         'genero
         ddlGenero.ClearSelection()
         Try
-            ddlGenero.Items.FindByValue(dgPasajero.Items(dgPasajero.SelectedIndex).Cells(14).Text.Trim).Selected = True
+            ddlGenero.Items.FindByValue(dgPasajero.Items(dgPasajero.SelectedIndex).Cells(15).Text.Trim).Selected = True
         Catch ex As Exception
 
         End Try
