@@ -150,12 +150,33 @@ Partial Class VtaServicioNuevo
             If objServicio.FlagDesayuno = "S" Then
                 chkDesayuno.Checked = True
             End If
+
             If objServicio.FlagAlmuerzo = "S" Then
                 chkAlmuerzo.Checked = True
             End If
+
             If objServicio.FlagCena = "S" Then
                 chkCena.Checked = True
             End If
+
+            If objServicio.FlagBoxLunch = "S" Then
+
+                chkBoxL.Checked = True
+
+            End If
+
+            If objServicio.FlagBoxBreakfast = "S" Then
+
+                chkBoxB.Checked = True
+
+            End If
+
+            If objServicio.FlagPicnic = "S" Then
+
+                chkPicnic.Checked = True
+
+            End If
+
             If objServicio.FlagServicioAge = "S" Then
                 CheckBoxFlagServicioAge.Checked = True
             End If
@@ -249,6 +270,30 @@ Partial Class VtaServicioNuevo
         If chkCena.Checked Then
             objServicio.FlagCena = "S" ' Servicio incluye cena
         End If
+
+        objServicio.FlagBoxLunch = ""
+        If chkBoxL.Checked Then
+
+            objServicio.FlagBoxLunch = "S"
+
+        End If
+
+
+        objServicio.FlagBoxBreakfast = ""
+        If chkBoxB.Checked Then
+
+            objServicio.FlagBoxBreakfast = "S"
+
+        End If
+
+        objServicio.FlagPicnic = ""
+        If chkPicnic.Checked Then
+
+            objServicio.FlagPicnic = "S"
+
+        End If
+
+
 
         objServicio.FlagServicioAge = ""
         If CheckBoxFlagServicioAge.Checked Then

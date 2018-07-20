@@ -27,6 +27,9 @@ Public Class clsServicio
     Private sFlagDesayuno As String
     Private sFlagAlmuerzo As String
     Private sFlagCena As String
+    Private sFlagBoxLunch As String
+    Private sFlagBoxBreakfast As String
+    Private sFlagPicnic As String
     Private sCaraEspeServicio As String  ' español
     Private sCaraEspeServicio2 As String ' ingles
     Private sCaraEspeServicio3 As String ' portugués
@@ -208,6 +211,35 @@ Public Class clsServicio
             sFlagCena = CStr(Value)
         End Set
     End Property
+
+
+    Property FlagBoxLunch() As String
+        Get
+            Return sFlagBoxLunch
+        End Get
+        Set(ByVal Value As String)
+            sFlagBoxLunch = CStr(Value)
+        End Set
+    End Property
+
+    Property FlagBoxBreakfast() As String
+        Get
+            Return sFlagBoxBreakfast
+        End Get
+        Set(ByVal Value As String)
+            sFlagBoxBreakfast = CStr(Value)
+        End Set
+    End Property
+
+    Property FlagPicnic() As String
+        Get
+            Return sFlagPicnic
+        End Get
+        Set(ByVal Value As String)
+            sFlagPicnic = CStr(Value)
+        End Set
+    End Property
+
     Property CaraEspeServicio() As String
         Get
             Return sCaraEspeServicio
@@ -399,6 +431,11 @@ Public Class clsServicio
         cd.Parameters.Add("@FlagDesayuno", SqlDbType.Char, 1).Value = sFlagDesayuno
         cd.Parameters.Add("@FlagAlmuerzo", SqlDbType.Char, 1).Value = sFlagAlmuerzo
         cd.Parameters.Add("@FlagCena", SqlDbType.Char, 1).Value = sFlagCena
+
+        cd.Parameters.Add("@FlagBoxLunch", SqlDbType.Char, 1).Value = sFlagBoxLunch
+        cd.Parameters.Add("@FlagBoxBreakFast", SqlDbType.Char, 1).Value = sFlagBoxBreakfast
+        cd.Parameters.Add("@FlagPicnic", SqlDbType.Char, 1).Value = sFlagPicnic
+
         cd.Parameters.Add("@CaraEspeServicio", SqlDbType.VarChar, 250).Value = sCaraEspeServicio
         cd.Parameters.Add("@CaraEspeServicio2", SqlDbType.VarChar, 250).Value = sCaraEspeServicio2
         cd.Parameters.Add("@CaraEspeServicio3", SqlDbType.VarChar, 250).Value = sCaraEspeServicio3
@@ -472,6 +509,9 @@ Public Class clsServicio
                 sFlagDesayuno = dr.GetValue(dr.GetOrdinal("FlagDesayuno"))
                 sFlagAlmuerzo = dr.GetValue(dr.GetOrdinal("FlagAlmuerzo"))
                 sFlagCena = dr.GetValue(dr.GetOrdinal("FlagCena"))
+                sFlagBoxLunch = dr.GetValue(dr.GetOrdinal("FlagBoxLunch"))
+                sFlagBoxBreakfast = dr.GetValue(dr.GetOrdinal("FlagBoxBreakfast"))
+                sFlagPicnic = dr.GetValue(dr.GetOrdinal("FlagPicnic"))
                 sCaraEspeServicio = dr.GetValue(dr.GetOrdinal("CaraEspeServicio"))
                 sCaraEspeServicio2 = dr.GetValue(dr.GetOrdinal("CaraEspeServicio2"))
                 sCaraEspeServicio3 = dr.GetValue(dr.GetOrdinal("CaraEspeServicio3"))

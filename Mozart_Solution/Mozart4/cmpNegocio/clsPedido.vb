@@ -194,21 +194,23 @@ Public Class clsPedido
         End Set
     End Property
 
-    Function CargaxFchIngreso(ByVal pCodZonaVta As String, ByVal pFechainicio As String, ByVal pFechaFin As String) As DataSet
-        Dim arParms() As SqlParameter = New SqlParameter(2) {}
+    Function CargaxFchIngreso(ByVal pCodZonaVta As String, ByVal pFechainicio As String, ByVal pFechaFin As String, ByVal pIdioma As String) As DataSet
+        Dim arParms() As SqlParameter = New SqlParameter(3) {}
         arParms(0) = New SqlParameter("@CodZonaVta", SqlDbType.Char, 3)
         arParms(0).Value = pCodZonaVta
         arParms(1) = New SqlParameter("@Fechainicio", SqlDbType.Char, 8)
         arParms(1).Value = pFechainicio
         arParms(2) = New SqlParameter("@FechaFin", SqlDbType.Char, 8)
         arParms(2).Value = pFechaFin
+        arParms(3) = New SqlParameter("@Idioma", SqlDbType.Char, 1)
+        arParms(3).Value = pIdioma
         Dim ds As New DataSet
         ds = SqlHelper.ExecuteDataset(cn, CommandType.StoredProcedure, "VTA_RevisionPedido_S", arParms)
         Return (ds)
     End Function
 
-    Function CargaxFchIngreso(ByVal pCodZonaVta As String, ByVal pStsPedido As String, ByVal pFechainicio As String, ByVal pFechaFin As String) As DataSet
-        Dim arParms() As SqlParameter = New SqlParameter(3) {}
+    Function CargaxFchIngreso(ByVal pCodZonaVta As String, ByVal pStsPedido As String, ByVal pFechainicio As String, ByVal pFechaFin As String, ByVal pIdioma As String) As DataSet
+        Dim arParms() As SqlParameter = New SqlParameter(4) {}
         arParms(0) = New SqlParameter("@CodZonaVta", SqlDbType.Char, 3)
         arParms(0).Value = pCodZonaVta
         arParms(1) = New SqlParameter("@StsPedido", SqlDbType.Char, 1)
@@ -217,13 +219,15 @@ Public Class clsPedido
         arParms(2).Value = pFechainicio
         arParms(3) = New SqlParameter("@FechaFin", SqlDbType.Char, 8)
         arParms(3).Value = pFechaFin
+        arParms(4) = New SqlParameter("@Idioma", SqlDbType.Char, 1)
+        arParms(4).Value = pIdioma
         Dim ds As New DataSet
         ds = SqlHelper.ExecuteDataset(cn, CommandType.StoredProcedure, "VTA_RevisionPedidoSts_S", arParms)
         Return (ds)
     End Function
 
-    Function CargaxFchIngresoVendedor(ByVal pCodZonaVta As String, ByVal pCodVendedor As String, ByVal pFechainicio As String, ByVal pFechaFin As String) As DataSet
-        Dim arParms() As SqlParameter = New SqlParameter(3) {}
+    Function CargaxFchIngresoVendedor(ByVal pCodZonaVta As String, ByVal pCodVendedor As String, ByVal pFechainicio As String, ByVal pFechaFin As String, ByVal pIdioma As String) As DataSet
+        Dim arParms() As SqlParameter = New SqlParameter(4) {}
         arParms(0) = New SqlParameter("@CodZonaVta", SqlDbType.Char, 3)
         arParms(0).Value = pCodZonaVta
         arParms(1) = New SqlParameter("@CodVendedor", SqlDbType.Char, 15)
@@ -232,13 +236,15 @@ Public Class clsPedido
         arParms(2).Value = pFechainicio
         arParms(3) = New SqlParameter("@FechaFin", SqlDbType.Char, 8)
         arParms(3).Value = pFechaFin
+        arParms(4) = New SqlParameter("@Idioma", SqlDbType.Char, 1)
+        arParms(4).Value = pIdioma
         Dim ds As New DataSet
         ds = SqlHelper.ExecuteDataset(cn, CommandType.StoredProcedure, "VTA_RevisionPedidoVendedor_S", arParms)
         Return (ds)
     End Function
 
-    Function CargaxFchIngresoVendedor(ByVal pCodZonaVta As String, ByVal pCodVendedor As String, ByVal pStsPedido As String, ByVal pFechainicio As String, ByVal pFechaFin As String) As DataSet
-        Dim arParms() As SqlParameter = New SqlParameter(4) {}
+    Function CargaxFchIngresoVendedor(ByVal pCodZonaVta As String, ByVal pCodVendedor As String, ByVal pStsPedido As String, ByVal pFechainicio As String, ByVal pFechaFin As String, ByVal pIdioma As String) As DataSet
+        Dim arParms() As SqlParameter = New SqlParameter(5) {}
         arParms(0) = New SqlParameter("@CodZonaVta", SqlDbType.Char, 3)
         arParms(0).Value = pCodZonaVta
         arParms(1) = New SqlParameter("@CodVendedor", SqlDbType.Char, 15)
@@ -249,6 +255,8 @@ Public Class clsPedido
         arParms(3).Value = pFechainicio
         arParms(4) = New SqlParameter("@FechaFin", SqlDbType.Char, 8)
         arParms(4).Value = pFechaFin
+        arParms(5) = New SqlParameter("@Idioma", SqlDbType.Char, 1)
+        arParms(5).Value = pIdioma
         Dim ds As New DataSet
         ds = SqlHelper.ExecuteDataset(cn, CommandType.StoredProcedure, "VTA_RevisionPedidoVendedorSts_S", arParms)
         Return (ds)

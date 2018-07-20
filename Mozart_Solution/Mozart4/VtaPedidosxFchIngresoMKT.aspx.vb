@@ -43,9 +43,9 @@ Partial Class VtaPedidosxFchIngresoMKT
     Private Sub CargaPedidos()
         Dim ds As New DataSet
         If ddlStsPedido.SelectedItem.Value.Trim = "Todos" Then
-            ds = objpedido.CargaxFchIngreso(ddlZonaVta.SelectedValue, objRutina.fechayyyymmdd(txtFchInicial.Text), objRutina.fechayyyymmdd(txtFchFinal.Text))
+            ds = objpedido.CargaxFchIngreso(ddlZonaVta.SelectedValue, objRutina.fechayyyymmdd(txtFchInicial.Text), objRutina.fechayyyymmdd(txtFchFinal.Text),Nothing)
         Else
-            ds = objpedido.CargaxFchIngreso(ddlZonaVta.SelectedValue, ddlStsPedido.SelectedValue, objRutina.fechayyyymmdd(txtFchInicial.Text), objRutina.fechayyyymmdd(txtFchFinal.Text))
+            ds = objpedido.CargaxFchIngreso(ddlZonaVta.SelectedValue, ddlStsPedido.SelectedValue, objRutina.fechayyyymmdd(txtFchInicial.Text), objRutina.fechayyyymmdd(txtFchFinal.Text), Nothing)
         End If
         dv = New DataView(ds.Tables(0))
         dv.Sort = viewstate("Campo")

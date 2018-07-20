@@ -11,6 +11,8 @@ Partial Class VtaPedidosxFchIngreso
     Dim objZonaVta As New clsZonaVta
     Dim objStsPedido As New clsStsPedido
     Dim objpedido As New clsPedido
+    Dim objIdioma As New clsIdioma
+
     Private dv As DataView
 
     Private Sub Page_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load, Me.Load
@@ -22,6 +24,7 @@ Partial Class VtaPedidosxFchIngreso
             CargaZonaVta()
             CargaVendedor()
             CargaStsPedido()
+            CargaIdioma()
             txtFchInicial.Text = objRutina.fechaddmmyyyy(-30)
             txtFchFinal.Text = objRutina.fechaddmmyyyy(0)
         End If
@@ -32,6 +35,13 @@ Partial Class VtaPedidosxFchIngreso
         ds = objZonaVta.Cargar(Session("CodUsuario"))
         ddlZonaVta.DataSource = ds
         ddlZonaVta.DataBind()
+    End Sub
+
+    Private Sub CargaIdioma()
+        Dim ds As New DataSet
+        ds = objIdioma.Cargar()
+        ddlIdioma.DataSource = ds
+        ddlIdioma.DataBind()
     End Sub
 
     Private Sub CargaVendedor()
@@ -71,15 +81,15 @@ Partial Class VtaPedidosxFchIngreso
         Dim ds As New DataSet
         If ddlVendedor.SelectedItem.Value.Trim = "Todos" Then
             If ddlStsPedido.SelectedItem.Value.Trim = "Todos" Then
-                ds = objpedido.CargaxFchIngreso(ddlZonaVta.SelectedValue, objRutina.fechayyyymmdd(txtFchInicial.Text), objRutina.fechayyyymmdd(txtFchFinal.Text))
+                ds = objpedido.CargaxFchIngreso(ddlZonaVta.SelectedValue, objRutina.fechayyyymmdd(txtFchInicial.Text), objRutina.fechayyyymmdd(txtFchFinal.Text), ddlIdioma.SelectedValue)
             Else
-                ds = objpedido.CargaxFchIngreso(ddlZonaVta.SelectedValue, ddlStsPedido.SelectedValue, objRutina.fechayyyymmdd(txtFchInicial.Text), objRutina.fechayyyymmdd(txtFchFinal.Text))
+                ds = objpedido.CargaxFchIngreso(ddlZonaVta.SelectedValue, ddlStsPedido.SelectedValue, objRutina.fechayyyymmdd(txtFchInicial.Text), objRutina.fechayyyymmdd(txtFchFinal.Text), ddlIdioma.SelectedValue)
             End If
         Else
             If ddlStsPedido.SelectedItem.Value.Trim = "Todos" Then
-                ds = objpedido.CargaxFchIngresoVendedor(ddlZonaVta.SelectedItem.Value, ddlVendedor.SelectedValue, objRutina.fechayyyymmdd(txtFchInicial.Text), objRutina.fechayyyymmdd(txtFchFinal.Text))
+                ds = objpedido.CargaxFchIngresoVendedor(ddlZonaVta.SelectedItem.Value, ddlVendedor.SelectedValue, objRutina.fechayyyymmdd(txtFchInicial.Text), objRutina.fechayyyymmdd(txtFchFinal.Text), ddlIdioma.SelectedValue)
             Else
-                ds = objpedido.CargaxFchIngresoVendedor(ddlZonaVta.SelectedItem.Value, ddlVendedor.SelectedValue, ddlStsPedido.SelectedValue, objRutina.fechayyyymmdd(txtFchInicial.Text), objRutina.fechayyyymmdd(txtFchFinal.Text))
+                ds = objpedido.CargaxFchIngresoVendedor(ddlZonaVta.SelectedItem.Value, ddlVendedor.SelectedValue, ddlStsPedido.SelectedValue, objRutina.fechayyyymmdd(txtFchInicial.Text), objRutina.fechayyyymmdd(txtFchFinal.Text), ddlIdioma.SelectedValue)
             End If
 
         End If

@@ -37,6 +37,13 @@
 								<TD style="HEIGHT: 19px">
 									<asp:dropdownlist id="ddlStsPedido" runat="server" Width="298px" DataTextField="NomStsPedido" DataValueField="StsPedido"></asp:dropdownlist></TD>
 							</TR>
+							
+							<TR>
+								<TD style="HEIGHT: 19px">Idioma</TD>
+								<TD style="HEIGHT: 19px">
+									<asp:dropdownlist id="ddlIdioma" runat="server" Width="298px" DataTextField="NomIdioma" DataValueField="Idioma"></asp:dropdownlist></TD>
+							</TR>
+							
 							<TR>
 								<TD>Fecha Pedido del</TD>
 								<TD><asp:textbox id="txtFchInicial" runat="server" Width="75px" CssClass="fd" DESIGNTIMEDRAGDROP="21"></asp:textbox><INPUT class="fd" id="cmdFchInicial" style="WIDTH: 41px; HEIGHT: 24px" onclick="show_calendar('Form1.txtFchInicial',null,null,'DD-MM-YYYY','POPUP','Nav=Yes;SmartNav=Yes;AllowWeekends=Yes');"
