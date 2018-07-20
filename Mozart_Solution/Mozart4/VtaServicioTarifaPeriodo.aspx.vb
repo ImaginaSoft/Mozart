@@ -25,7 +25,7 @@ Partial Class VtaServicioTarifaPeriodo
     End Sub
 
     Private Sub LeeServicio()
-        lblMsg.Text = objServicio.Editar(Viewstate("NroServicio"))
+        lblMsg.Text = objServicio.Editar(ViewState("NroServicio"), "")
         If lblMsg.Text.Trim = "OK" Then
             lblDesServicio.Text = ViewState("NroServicio") & " " & objServicio.DesProveedor
         End If

@@ -108,3 +108,15 @@ B:\IMAGINA SOFTWARE\Mozart\Mozart v2\Mozart_Solution\Mozart4\cmpNegocio\obj\Debu
 B:\IMAGINA SOFTWARE\Mozart\Mozart v2\Mozart_Solution\Mozart4\cmpNegocio\obj\Debug\cmpNegocio.dll
 B:\IMAGINA SOFTWARE\Mozart\Mozart v2\Mozart_Solution\Mozart4\cmpNegocio\obj\Debug\cmpNegocio.xml
 B:\IMAGINA SOFTWARE\Mozart\Mozart v2\Mozart_Solution\Mozart4\cmpNegocio\obj\Debug\cmpNegocio.pdb
+B:\IMAGINA SOFTWARE\MOZART_20018\Mozart\Mozart_Solution\Mozart4\cmpNegocio\bin\Debug\cmpNegocio.dll
+B:\IMAGINA SOFTWARE\MOZART_20018\Mozart\Mozart_Solution\Mozart4\cmpNegocio\bin\Debug\cmpNegocio.pdb
+B:\IMAGINA SOFTWARE\MOZART_20018\Mozart\Mozart_Solution\Mozart4\cmpNegocio\bin\Debug\cmpNegocio.xml
+B:\IMAGINA SOFTWARE\MOZART_20018\Mozart\Mozart_Solution\Mozart4\cmpNegocio\bin\Debug\cmpRutinas.dll
+B:\IMAGINA SOFTWARE\MOZART_20018\Mozart\Mozart_Solution\Mozart4\cmpNegocio\bin\Debug\cmpRutinas.pdb
+B:\IMAGINA SOFTWARE\MOZART_20018\Mozart\Mozart_Solution\Mozart4\cmpNegocio\bin\Debug\cmpRutinas.xml
+B:\IMAGINA SOFTWARE\MOZART_20018\Mozart\Mozart_Solution\Mozart4\cmpNegocio\obj\Debug\ResolveAssemblyReference.cache
+B:\IMAGINA SOFTWARE\MOZART_20018\Mozart\Mozart_Solution\Mozart4\cmpNegocio\obj\Debug\cmpNegocio.Resources.resources
+B:\IMAGINA SOFTWARE\MOZART_20018\Mozart\Mozart_Solution\Mozart4\cmpNegocio\obj\Debug\cmpNegocio.vbproj.GenerateResource.Cache
+B:\IMAGINA SOFTWARE\MOZART_20018\Mozart\Mozart_Solution\Mozart4\cmpNegocio\obj\Debug\cmpNegocio.dll
+B:\IMAGINA SOFTWARE\MOZART_20018\Mozart\Mozart_Solution\Mozart4\cmpNegocio\obj\Debug\cmpNegocio.xml
+B:\IMAGINA SOFTWARE\MOZART_20018\Mozart\Mozart_Solution\Mozart4\cmpNegocio\obj\Debug\cmpNegocio.pdb

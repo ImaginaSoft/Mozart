@@ -294,23 +294,28 @@ Public Class clsServicio
         Return (ds)
     End Function
 
-    Function CargaNroServicio(ByVal pNroServicio As Integer) As DataSet
-        Dim ds As New DataSet
-        ds = SqlHelper.ExecuteDataset(cn, CommandType.StoredProcedure, "VTA_ServicioNroServicio_S", New SqlParameter("@NroServicio", pNroServicio))
-        Return (ds)
-    End Function
-
-    Function CargaNroServicio(ByVal pNroServicio As Integer, ByVal pCodProveedor As Integer) As DataSet
+    Function CargaNroServicio(ByVal pNroServicio As Integer, ByVal pEstado As String) As DataSet
         Dim arParms() As SqlParameter = New SqlParameter(1) {}
         arParms(0) = New SqlParameter("@NroServicio", SqlDbType.Int)
         arParms(0).Value = pNroServicio
-        arParms(1) = New SqlParameter("@CodProveedor", SqlDbType.Int)
-        arParms(1).Value = pCodProveedor
-
+        arParms(1) = New SqlParameter("@Estado", SqlDbType.VarChar)
+        arParms(1).Value = pEstado
         Dim ds As New DataSet
-        ds = SqlHelper.ExecuteDataset(cn, CommandType.StoredProcedure, "VTA_ServicioNroServicioProv_S", arParms)
+        ds = SqlHelper.ExecuteDataset(cn, CommandType.StoredProcedure, "VTA_ServicioNroServicio_S", arParms)
         Return (ds)
     End Function
+
+    'Function CargaNroServicio(ByVal pNroServicio As Integer, ByVal pCodProveedor As Integer) As DataSet
+    '    Dim arParms() As SqlParameter = New SqlParameter(1) {}
+    '    arParms(0) = New SqlParameter("@NroServicio", SqlDbType.Int)
+    '    arParms(0).Value = pNroServicio
+    '    arParms(1) = New SqlParameter("@CodProveedor", SqlDbType.Int)
+    '    arParms(1).Value = pCodProveedor
+
+    '    Dim ds As New DataSet
+    '    ds = SqlHelper.ExecuteDataset(cn, CommandType.StoredProcedure, "VTA_ServicioNroServicioProv_S", arParms)
+    '    Return (ds)
+    'End Function
 
     Function CargaxDesServicio(ByVal pDesServicio As String) As DataSet
         Dim ds As New DataSet
@@ -418,16 +423,20 @@ Public Class clsServicio
     End Function
 
 
-    Function Editar(ByVal pNroServicio As Integer) As String
+    Function Editar(ByVal pNroServicio As Integer, ByVal pEstado As String) As String
         sMsg = "No existe Servicio " & CStr(pNroServicio)
+
+
 
         Dim cn As System.Data.SqlClient.SqlConnection = New System.Data.SqlClient.SqlConnection(System.Configuration.ConfigurationManager.AppSettings("cnMozart"))
         Dim cd As New SqlCommand()
         Dim dr As SqlDataReader
+        pEstado = "N"
         cd.Connection = cn
         cd.CommandText = "VTA_ServicioNroServicio_S"
         cd.CommandType = CommandType.StoredProcedure
         cd.Parameters.Add("@NroServicio", SqlDbType.Int).Value = pNroServicio
+        cd.Parameters.Add("@Estado", SqlDbType.Char).Value = pEstado
         Try
             cn.Open()
             dr = cd.ExecuteReader()

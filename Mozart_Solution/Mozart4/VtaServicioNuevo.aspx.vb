@@ -79,7 +79,7 @@ Partial Class VtaServicioNuevo
     End Sub
 
     Private Sub ModificaServicio()
-        lblMsg.Text = objServicio.Editar(Viewstate("NroServicio"))
+        lblMsg.Text = objServicio.Editar(ViewState("NroServicio"), "")
         If lblMsg.Text.Trim = "OK" Then
             lblMsg.Text = ""
             'lblfchPedido.Text = ToString.Format("{0:dd-MM-yyyy}", objPedido.FchPedido)

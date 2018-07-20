@@ -208,7 +208,7 @@ Partial Class VtaPlantillaServicio
         wNroServicio = dgPlanilla.Items(dgPlanilla.SelectedIndex).Cells(4).Text
         wCodTipoAcomodacion = dgPlanilla.Items(dgPlanilla.SelectedIndex).Cells(13).Text
 
-        ObjServicio.Editar(wNroServicio)
+        objServicio.Editar(wNroServicio, "")
         wCodCiudad = ObjServicio.CodCiudad
         wCodProveedor = ObjServicio.CodProveedor
         wCodTipoServicio = ObjServicio.CodTipoServicio
@@ -343,7 +343,7 @@ Partial Class VtaPlantillaServicio
         CargaTipoAcomodacion(0)
         If txtHoraServicio.Text.Trim.Length = 0 Then
             Try
-                objServicio.Editar(ddlServicio.SelectedItem.Value)
+                objServicio.Editar(ddlServicio.SelectedItem.Value, "")
                 txtHoraServicio.Text = objServicio.HoraInicioServicio
             Catch ex As Exception
             End Try

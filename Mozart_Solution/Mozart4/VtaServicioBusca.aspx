@@ -74,6 +74,24 @@
 														DataTextField="TipoServicio" Width="248px"></asp:dropdownlist>&nbsp;
 											</TD>
 										</TR>
+										<TR>
+											<TD style="WIDTH: 65px">Estados</TD>
+											<TD>
+												<asp:dropdownlist id="ddlEstados" runat="server" AutoPostBack="True" DataValueField="CodTipoServicio"
+														DataTextField="TipoServicio" Width="248px">
+                                                    <asp:ListItem Value="A">Activo</asp:ListItem>
+                                                    <asp:ListItem Value="I">Inactivo</asp:ListItem>
+                                                </asp:dropdownlist>&nbsp;
+											</TD>
+										</TR>
+											<TR>
+												<TD class="style3">
+													&nbsp;</TD>
+												<TD class="style6">
+													<asp:button id="cmbBuscaServ" runat="server" Width="96px" 
+                                                        Text="Buscar Servicio"></asp:button>
+												</TD>
+											</TR>
 									</TABLE>
 								</TD>
 								<TD>
@@ -97,6 +115,16 @@
 												</TD>
 											</TR>
 											<TR>
+											<TD style="WIDTH: 65px">Estados</TD>
+											<TD>
+												<asp:dropdownlist id="ddlEstado2" runat="server" AutoPostBack="True" DataValueField="CodTipoServicio"
+														DataTextField="TipoServicio" Width="248px">
+                                                    <asp:ListItem Value="A">Activo</asp:ListItem>
+                                                    <asp:ListItem Value="I">Inactivo</asp:ListItem>
+                                                </asp:dropdownlist>&nbsp;
+											</TD>
+										</TR>
+											<TR>
 												<TD class="style3">
 													&nbsp;</TD>
 												<TD class="style6">
@@ -111,8 +139,10 @@
 					</TD>
 				</TR>
 				<TR>
-					<TD style="HEIGHT: 25px"><asp:button id="cmbGrabar" runat="server" Width="80px" Text="Activos"></asp:button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<asp:button id="cmdInactivos" runat="server" Width="80px" Text="Inactivos"></asp:button><asp:label id="lblStsServicio" runat="server" Visible="False"></asp:label><asp:label id="lblBoton" runat="server" Visible="False"></asp:label></TD>
+					<TD style="HEIGHT: 25px"><asp:button id="cmbGrabar" runat="server" Width="80px" 
+                            Text="Activos" Visible="False"></asp:button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<asp:button id="cmdInactivos" runat="server" Width="80px" Text="Inactivos" 
+                            Visible="False"></asp:button><asp:label id="lblStsServicio" runat="server" Visible="False"></asp:label><asp:label id="lblBoton" runat="server" Visible="False"></asp:label></TD>
 				</TR>
 				<TR>
 					<TD><asp:label id="lblMsg" runat="server" Width="592px" CssClass="Msg"></asp:label></TD>

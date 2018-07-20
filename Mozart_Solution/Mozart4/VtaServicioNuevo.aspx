@@ -91,7 +91,11 @@
 								<TD style="WIDTH: 663px; HEIGHT: 23px">Servicio Incluye</TD>
 								<TD style="WIDTH: 350px; HEIGHT: 23px"><asp:checkbox id="chkDesayuno" runat="server" Text="Desayuno"></asp:checkbox>&nbsp;
 									<asp:checkbox id="chkAlmuerzo" runat="server" Text="Almuerzo" BorderStyle="None"></asp:checkbox>&nbsp;&nbsp;&nbsp;
-									<asp:checkbox id="chkCena" runat="server" Text="Cena"></asp:checkbox></TD>
+									<asp:checkbox id="chkCena" runat="server" Text="Cena"></asp:checkbox>&nbsp;<asp:checkbox 
+                                        id="chkBoxL" runat="server" Text="Box Lunch "></asp:checkbox>
+                                    <br />
+                                    <asp:checkbox id="chkBoxB" runat="server" Text="Box Breakfast"></asp:checkbox>&nbsp;
+									<asp:checkbox id="chkPicnic" runat="server" Text="Picnic" BorderStyle="None"></asp:checkbox></TD>
 							</TR>
 							<TR>
 								<TD style="WIDTH: 663px; HEIGHT: 23px">Solicitar reserva en Status</TD>

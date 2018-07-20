@@ -11,6 +11,8 @@ Partial Class VtaServicioBusca
     Dim wCodProveedor As Integer
     Dim wCodCiudad As String
     Dim wCodTipoServicio As Integer
+    Dim wEstado As String
+    Dim wEstado2 As String
 
     Dim objRutina As New clsRutinas
     Dim objServicio As New clsServicio
@@ -132,9 +134,11 @@ Partial Class VtaServicioBusca
         Dim ds As New DataSet
         If lblBoton.Text = "A" Or lblBoton.Text = "I" Then
             AsignaCodigo()
-            ds = objServicio.CargaServicios(wCodProveedor, wCodCiudad, wCodTipoServicio, lblStsServicio.Text)
+            ds = objServicio.CargaServicios(wCodProveedor, wCodCiudad, wCodTipoServicio, wEstado)
+            'ds = objServicio.CargaServicios(wCodProveedor, wCodCiudad, wCodTipoServicio, lblStsServicio.Text)
         ElseIf lblBoton.Text = "B" And IsNumeric(txtNroServicio.Text) Then
-            ds = objServicio.CargaNroServicio(txtNroServicio.Text)
+            AsignaCodigo()
+            ds = objServicio.CargaNroServicio(txtNroServicio.Text, wEstado2)
         ElseIf lblBoton.Text = "B" And txtNroServicio.Text.Trim.Length >= 3 And ddlProveedor2.SelectedItem.Value = "Todos" Then
             ds = objServicio.CargaxDesServicio(txtNroServicio.Text)
         ElseIf lblBoton.Text = "B" And txtNroServicio.Text.Trim.Length >= 3 And ddlProveedor2.SelectedItem.Value <> "Todos" Then
@@ -190,6 +194,8 @@ Partial Class VtaServicioBusca
         wCodProveedor = 0
         wCodCiudad = ""
         wCodTipoServicio = 0
+        wEstado = ""
+        wEstado2 = ""
 
         If ddlProveedor.Items.Count > 0 Then
             wCodProveedor = ddlProveedor.SelectedItem.Value
@@ -199,6 +205,12 @@ Partial Class VtaServicioBusca
         End If
         If ddltiposervicio.Items.Count() > 0 Then
             wCodTipoServicio = ddltiposervicio.SelectedItem.Value
+        End If
+        If ddlEstado2.Items.Count() > 0 Then
+            wEstado2 = ddlEstado2.SelectedItem.Value
+        End If
+        If ddlEstados.Items.Count() > 0 Then
+            wEstado = ddlEstados.SelectedItem.Value
         End If
     End Sub
 
@@ -241,4 +253,17 @@ Partial Class VtaServicioBusca
         CargaServicio()
     End Sub
 
+
+    Private Sub cmbBuscaServ_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmbBuscaServ.Click
+        If ddlEstados.SelectedValue = "A" Then
+            lblStsServicio.Text = "A"
+            lblBoton.Text = "A"
+
+        Else
+            lblStsServicio.Text = "I"
+            lblBoton.Text = "I"
+        End If
+
+        CargaServicio()
+    End Sub
 End Class

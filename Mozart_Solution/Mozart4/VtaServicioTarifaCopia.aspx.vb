@@ -102,7 +102,7 @@ Partial Class VtaServicioTarifaCopia
         ddlTarifaPeriodoDestino.DataBind()
 
         Dim objServicio As New clsServicio
-        lblMsg.Text = objServicio.Editar(txtNroServicioDestino.Text)
+        lblMsg.Text = objServicio.Editar(txtNroServicioDestino.Text, "")
         If lblMsg.Text.Trim = "OK" Then
             lblMsg.Text = ""
             lblNomProveedorDestino.Text = objServicio.NomProveedor

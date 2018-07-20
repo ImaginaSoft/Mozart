@@ -95,6 +95,9 @@
 									<ItemStyle HorizontalAlign="Left"></ItemStyle>
 								</asp:BoundColumn>
 								<asp:BoundColumn DataField="NomStsPedido" SortExpression="NomStsPedido" HeaderText="Estado"></asp:BoundColumn>
+								<asp:BoundColumn DataField="FchVenta" SortExpression="FchVenta" HeaderText="Fecha de Venta" DataFormatString="{0:dd-MM-yy}">
+									<ItemStyle Wrap="False" HorizontalAlign="Left"></ItemStyle>
+								</asp:BoundColumn>
 								<asp:BoundColumn DataField="Idioma" SortExpression="Idioma" HeaderText="Idioma"></asp:BoundColumn>
 								<asp:BoundColumn DataField="NroPedido" SortExpression="NroPedido" HeaderText="Pedido">
                                      <HeaderStyle CssClass="Hide" />
