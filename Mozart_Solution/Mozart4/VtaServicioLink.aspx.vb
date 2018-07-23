@@ -21,23 +21,27 @@ Partial Class VtaServicioLink
             End If
 
             Viewstate("NroServicio") = Request.Params("NroServicio")
-            LeeServicio()
+            LeeServicio("")
 
             CargaData()
             CargaLinkxTipoLink()
         End If
     End Sub
 
-    Private Sub LeeServicio()
+    Private Sub LeeServicio(ByVal pEstado As String)
         lblCodCiudad.Text = ""
         txtCiudad.Text = ""
+
+        pEstado = "N"
 
         Dim cd As New SqlCommand
         Dim dr As SqlDataReader
         cd.Connection = cn
         cd.CommandText = "VTA_ServicioNroServicio_S"
         cd.CommandType = CommandType.StoredProcedure
-        cd.Parameters.Add("@NroServicio", SqlDbType.Int).Value = CInt(Viewstate("NroServicio"))
+        cd.Parameters.Add("@NroServicio", SqlDbType.Int).Value = CInt(ViewState("NroServicio"))
+        cd.Parameters.Add("@Estado", SqlDbType.VarChar).Value = pEstado
+
         Try
             cn.Open()
             dr = cd.ExecuteReader

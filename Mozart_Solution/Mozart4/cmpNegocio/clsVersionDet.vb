@@ -457,8 +457,10 @@ Public Class clsVersionDet
         Return (sMsg)
     End Function
 
-    Function Editar(ByVal pNroServicio As Integer) As String
+    Function Editar(ByVal pNroServicio As Integer, ByVal pEstado As String) As String
         sMsg = "No existe registro " & sCodUsuario
+
+        pEstado = "N"
 
         Dim cn As System.Data.SqlClient.SqlConnection = New System.Data.SqlClient.SqlConnection(System.Configuration.ConfigurationManager.AppSettings("cnMozart"))
         Dim cd As New SqlCommand()
@@ -467,6 +469,8 @@ Public Class clsVersionDet
         cd.CommandText = "VTA_ServicioNroServicio_S"
         cd.CommandType = CommandType.StoredProcedure
         cd.Parameters.Add("@NroServicio", SqlDbType.Int).Value = pNroServicio
+        cd.Parameters.Add("@Estado", SqlDbType.VarChar).Value = pEstado
+
         Try
             cn.Open()
             dr = cd.ExecuteReader()

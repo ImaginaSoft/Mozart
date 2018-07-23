@@ -271,6 +271,7 @@ Partial Class VtaPropuestaServicio
         Dim wNroServicio, wCodTipoAcomodacion As Integer
         Dim wRangoTarifa As Integer = 0
 
+
         wCodTipoAcomodacion = dgServicio.Items(dgServicio.SelectedIndex).Cells(16).Text
 
         Textdia.Text = dgServicio.Items(dgServicio.SelectedIndex).Cells(2).Text.Trim
@@ -299,6 +300,8 @@ Partial Class VtaPropuestaServicio
         cd.CommandText = "VTA_ServicioNroServicio_S"
         cd.CommandType = CommandType.StoredProcedure
         cd.Parameters.Add("@NroServicio", SqlDbType.Int).Value = wNroServicio
+        cd.Parameters.Add("@Estado", SqlDbType.VarChar).Value = "N"
+
         Try
             cn.Open()
             dr = cd.ExecuteReader
@@ -572,6 +575,7 @@ Partial Class VtaPropuestaServicio
             cd.CommandText = "VTA_ServicioNroServicio_S"
             cd.CommandType = CommandType.StoredProcedure
             cd.Parameters.Add("@NroServicio", SqlDbType.Int).Value = ddlServicio.SelectedValue
+            cd.Parameters.Add("@Estado", SqlDbType.VarChar).Value = ""
             Try
                 cn.Open()
                 dr = cd.ExecuteReader

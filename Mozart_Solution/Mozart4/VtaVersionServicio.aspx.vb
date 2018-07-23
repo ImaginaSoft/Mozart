@@ -37,7 +37,7 @@ Partial Class VtaVersionServicio
             CargaServicio(0)
             CargaTipoAcomodacion(0)
             CargaData()
-            PaxHab()
+            PaxHab("")
         End If
     End Sub
 
@@ -245,7 +245,7 @@ Partial Class VtaVersionServicio
         CargaTipoServicio(0)
         CargaServicio(0)
         CargaTipoAcomodacion(0)
-        PaxHab()
+        PaxHab("")
     End Sub
 
     Private Sub dgServicio_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles dgServicio.SelectedIndexChanged
@@ -278,7 +278,7 @@ Partial Class VtaVersionServicio
             txtMontoFijo.Visible = True
         End If
 
-        lblMsg.Text = objversiondet.Editar(wNroServicio)
+        lblMsg.Text = objVersionDet.Editar(wNroServicio, "")
         If lblMsg.Text.Trim = "OK" Then
             wCodCiudad = objversiondet.CodCiudad
             wCodProveedor = objversiondet.CodProveedor
@@ -371,7 +371,7 @@ Partial Class VtaVersionServicio
             CargaTipoAcomodacion(0)
         End If
 
-        PaxHab()
+        PaxHab("")
     End Sub
 
     Private Sub CargaProveedorS(ByVal pCodProveedor As Integer)
@@ -478,20 +478,22 @@ Partial Class VtaVersionServicio
         CargaTipoServicio(0)
         CargaServicio(0)
         CargaTipoAcomodacion(0)
-        PaxHab()
+        PaxHab("")
     End Sub
 
     Private Sub ddltiposervicio_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ddltiposervicio.SelectedIndexChanged
         CargaServicio(0)
         CargaTipoAcomodacion(0)
-        PaxHab()
+        PaxHab("")
     End Sub
 
-    Private Sub PaxHab()
+    Private Sub PaxHab(ByVal pEstado As String)
         'Flag Valoriza
         lblMontoFijo.Visible = False
         txtMontoFijo.Visible = False
         txtFlagValoriza.Text = ""
+
+        pEstado = "N"
 
         If ddlServicio.Items.Count > 0 Then
             Dim cd As New SqlCommand
@@ -500,6 +502,8 @@ Partial Class VtaVersionServicio
             cd.CommandText = "VTA_ServicioNroServicio_S"
             cd.CommandType = CommandType.StoredProcedure
             cd.Parameters.Add("@NroServicio", SqlDbType.Int).Value = ddlServicio.SelectedValue
+            cd.Parameters.Add("@Estado", SqlDbType.VarChar).Value = pEstado
+
             Try
                 cn.Open()
                 dr = cd.ExecuteReader
@@ -626,7 +630,7 @@ Partial Class VtaVersionServicio
 
     Private Sub ddlServicio_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ddlServicio.SelectedIndexChanged
         CargaTipoAcomodacion(0)
-        PaxHab()
+        PaxHab("")
     End Sub
 
     Private Sub lbtPrecio_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lbtPrecio.Click
