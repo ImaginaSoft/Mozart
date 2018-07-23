@@ -483,9 +483,6 @@ Public Class clsServicio
                 sCodCiudad = dr.GetValue(dr.GetOrdinal("CodCiudad"))
                 sDesProveedor = dr.GetValue(dr.GetOrdinal("DesProveedor"))
 
-
-                'sDesObservacion = CStr(dr.GetValue(dr.GetOrdinal("DesObservacion")))
-
                 If IsDBNull(dr.GetValue(dr.GetOrdinal("DesObservacion"))) Then
 
                     sDesObservacion = ""
@@ -493,10 +490,6 @@ Public Class clsServicio
                 Else
                     sDesObservacion = dr.GetValue(dr.GetOrdinal("DesObservacion"))
                 End If
-
-
-
-
 
                 sFlagValoriza = dr.GetValue(dr.GetOrdinal("FlagValoriza"))
                 dMontoFijo = dr.GetValue(dr.GetOrdinal("MontoFijo"))
@@ -509,9 +502,34 @@ Public Class clsServicio
                 sFlagDesayuno = dr.GetValue(dr.GetOrdinal("FlagDesayuno"))
                 sFlagAlmuerzo = dr.GetValue(dr.GetOrdinal("FlagAlmuerzo"))
                 sFlagCena = dr.GetValue(dr.GetOrdinal("FlagCena"))
-                sFlagBoxLunch = dr.GetValue(dr.GetOrdinal("FlagBoxLunch"))
-                sFlagBoxBreakfast = dr.GetValue(dr.GetOrdinal("FlagBoxBreakfast"))
-                sFlagPicnic = dr.GetValue(dr.GetOrdinal("FlagPicnic"))
+
+
+                If IsDBNull(dr.GetValue(dr.GetOrdinal("FlagBoxLunch"))) Then
+
+                    sDesObservacion = "N"
+
+                Else
+                    sDesObservacion = dr.GetValue(dr.GetOrdinal("FlagBoxLunch"))
+                End If
+
+
+                If IsDBNull(dr.GetValue(dr.GetOrdinal("FlagBoxBreakfast"))) Then
+
+                    sDesObservacion = "N"
+
+                Else
+                    sDesObservacion = dr.GetValue(dr.GetOrdinal("FlagBoxBreakfast"))
+                End If
+
+
+                If IsDBNull(dr.GetValue(dr.GetOrdinal("FlagPicnic"))) Then
+
+                    sDesObservacion = "N"
+
+                Else
+                    sDesObservacion = dr.GetValue(dr.GetOrdinal("FlagPicnic"))
+                End If
+
                 sCaraEspeServicio = dr.GetValue(dr.GetOrdinal("CaraEspeServicio"))
                 sCaraEspeServicio2 = dr.GetValue(dr.GetOrdinal("CaraEspeServicio2"))
                 sCaraEspeServicio3 = dr.GetValue(dr.GetOrdinal("CaraEspeServicio3"))
