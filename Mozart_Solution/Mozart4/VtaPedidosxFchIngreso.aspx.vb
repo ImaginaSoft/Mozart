@@ -109,10 +109,10 @@ Partial Class VtaPedidosxFchIngreso
         CargaPedidos()
     End Sub
     Private Sub dgPedidos_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles dgPedidos.SelectedIndexChanged
-        Session("CodCliente") = dgPedidos.Items(dgPedidos.SelectedIndex).Cells(14).Text
+        Session("CodCliente") = dgPedidos.Items(dgPedidos.SelectedIndex).Cells(15).Text
         Response.Redirect("VtaPedidoFicha.aspx" & _
-                          "?NroPedido=" & dgPedidos.Items(dgPedidos.SelectedIndex).Cells(13).Text & _
-                         "&CodCliente=" & dgPedidos.Items(dgPedidos.SelectedIndex).Cells(14).Text)
+                          "?NroPedido=" & dgPedidos.Items(dgPedidos.SelectedIndex).Cells(14).Text & _
+                         "&CodCliente=" & dgPedidos.Items(dgPedidos.SelectedIndex).Cells(15).Text)
     End Sub
 
     Private Sub dgPedidos_ItemDataBound(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.DataGridItemEventArgs) Handles dgPedidos.ItemDataBound

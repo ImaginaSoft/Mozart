@@ -349,10 +349,20 @@ Public Class clsServicio
     '    Return (ds)
     'End Function
 
-    Function CargaxDesServicio(ByVal pDesServicio As String) As DataSet
+    Function CargaxDesServicio(ByVal pDesServicio As String, ByVal pEstado As String) As DataSet
+
+        Dim arParms() As SqlParameter = New SqlParameter(1) {}
+        arParms(0) = New SqlParameter("@DesServicio", SqlDbType.VarChar)
+        arParms(0).Value = pDesServicio
+        arParms(1) = New SqlParameter("@Estado", SqlDbType.VarChar)
+        arParms(1).Value = pEstado
         Dim ds As New DataSet
-        ds = SqlHelper.ExecuteDataset(cn, CommandType.StoredProcedure, "VTA_ServicioDesServicio_S", New SqlParameter("@DesServicio", pDesServicio))
+        ds = SqlHelper.ExecuteDataset(cn, CommandType.StoredProcedure, "VTA_ServicioDesServicio_S", arParms)
         Return (ds)
+
+        'Dim ds As New DataSet
+        'ds = SqlHelper.ExecuteDataset(cn, CommandType.StoredProcedure, "VTA_ServicioDesServicio_S", New SqlParameter("@DesServicio", pDesServicio))
+        'Return (ds)
     End Function
 
     Function CargaxDesServicio(ByVal pDesServicio As String, ByVal pCodProveedor As Integer) As DataSet
@@ -506,28 +516,28 @@ Public Class clsServicio
 
                 If IsDBNull(dr.GetValue(dr.GetOrdinal("FlagBoxLunch"))) Then
 
-                    sDesObservacion = "N"
+                    sFlagBoxLunch = "N"
 
                 Else
-                    sDesObservacion = dr.GetValue(dr.GetOrdinal("FlagBoxLunch"))
+                    sFlagBoxLunch = dr.GetValue(dr.GetOrdinal("FlagBoxLunch"))
                 End If
 
 
                 If IsDBNull(dr.GetValue(dr.GetOrdinal("FlagBoxBreakfast"))) Then
 
-                    sDesObservacion = "N"
+                    sFlagBoxBreakfast = "N"
 
                 Else
-                    sDesObservacion = dr.GetValue(dr.GetOrdinal("FlagBoxBreakfast"))
+                    sFlagBoxBreakfast = dr.GetValue(dr.GetOrdinal("FlagBoxBreakfast"))
                 End If
 
 
                 If IsDBNull(dr.GetValue(dr.GetOrdinal("FlagPicnic"))) Then
 
-                    sDesObservacion = "N"
+                    sFlagPicnic = "N"
 
                 Else
-                    sDesObservacion = dr.GetValue(dr.GetOrdinal("FlagPicnic"))
+                    sFlagPicnic = dr.GetValue(dr.GetOrdinal("FlagPicnic"))
                 End If
 
                 sCaraEspeServicio = dr.GetValue(dr.GetOrdinal("CaraEspeServicio"))

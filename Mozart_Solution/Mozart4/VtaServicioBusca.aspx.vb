@@ -140,7 +140,8 @@ Partial Class VtaServicioBusca
             AsignaCodigo()
             ds = objServicio.CargaNroServicio(txtNroServicio.Text, wEstado2)
         ElseIf lblBoton.Text = "B" And txtNroServicio.Text.Trim.Length >= 3 And ddlProveedor2.SelectedItem.Value = "Todos" Then
-            ds = objServicio.CargaxDesServicio(txtNroServicio.Text)
+            AsignaCodigo()
+            ds = objServicio.CargaxDesServicio(txtNroServicio.Text, wEstado2)
         ElseIf lblBoton.Text = "B" And txtNroServicio.Text.Trim.Length >= 3 And ddlProveedor2.SelectedItem.Value <> "Todos" Then
             ds = objServicio.CargaxDesServicio(txtNroServicio.Text, ddlProveedor2.SelectedItem.Value)
         End If

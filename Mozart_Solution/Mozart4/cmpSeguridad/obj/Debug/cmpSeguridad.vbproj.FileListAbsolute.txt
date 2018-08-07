@@ -120,3 +120,15 @@ B:\IMAGINA SOFTWARE\MOZART_20018\Mozart\Mozart_Solution\Mozart4\cmpSeguridad\obj
 B:\IMAGINA SOFTWARE\MOZART_20018\Mozart\Mozart_Solution\Mozart4\cmpSeguridad\obj\Debug\cmpSeguridad.dll
 B:\IMAGINA SOFTWARE\MOZART_20018\Mozart\Mozart_Solution\Mozart4\cmpSeguridad\obj\Debug\cmpSeguridad.xml
 B:\IMAGINA SOFTWARE\MOZART_20018\Mozart\Mozart_Solution\Mozart4\cmpSeguridad\obj\Debug\cmpSeguridad.pdb
+C:\Desarrollo\PENTA\Mozart\Mozart_Solution\Mozart4\cmpSeguridad\bin\Debug\cmpSeguridad.dll
+C:\Desarrollo\PENTA\Mozart\Mozart_Solution\Mozart4\cmpSeguridad\bin\Debug\cmpSeguridad.pdb
+C:\Desarrollo\PENTA\Mozart\Mozart_Solution\Mozart4\cmpSeguridad\bin\Debug\cmpSeguridad.xml
+C:\Desarrollo\PENTA\Mozart\Mozart_Solution\Mozart4\cmpSeguridad\bin\Debug\cmpRutinas.dll
+C:\Desarrollo\PENTA\Mozart\Mozart_Solution\Mozart4\cmpSeguridad\bin\Debug\cmpRutinas.pdb
+C:\Desarrollo\PENTA\Mozart\Mozart_Solution\Mozart4\cmpSeguridad\bin\Debug\cmpRutinas.xml
+C:\Desarrollo\PENTA\Mozart\Mozart_Solution\Mozart4\cmpSeguridad\obj\Debug\ResolveAssemblyReference.cache
+C:\Desarrollo\PENTA\Mozart\Mozart_Solution\Mozart4\cmpSeguridad\obj\Debug\cmpSeguridad.Resources.resources
+C:\Desarrollo\PENTA\Mozart\Mozart_Solution\Mozart4\cmpSeguridad\obj\Debug\cmpSeguridad.vbproj.GenerateResource.Cache
+C:\Desarrollo\PENTA\Mozart\Mozart_Solution\Mozart4\cmpSeguridad\obj\Debug\cmpSeguridad.dll
+C:\Desarrollo\PENTA\Mozart\Mozart_Solution\Mozart4\cmpSeguridad\obj\Debug\cmpSeguridad.xml
+C:\Desarrollo\PENTA\Mozart\Mozart_Solution\Mozart4\cmpSeguridad\obj\Debug\cmpSeguridad.pdb
