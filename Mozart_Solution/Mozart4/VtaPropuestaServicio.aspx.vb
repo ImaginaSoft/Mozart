@@ -575,7 +575,7 @@ Partial Class VtaPropuestaServicio
             cd.CommandText = "VTA_ServicioNroServicio_S"
             cd.CommandType = CommandType.StoredProcedure
             cd.Parameters.Add("@NroServicio", SqlDbType.Int).Value = ddlServicio.SelectedValue
-            cd.Parameters.Add("@Estado", SqlDbType.VarChar).Value = ""
+            cd.Parameters.Add("@Estado", SqlDbType.VarChar).Value = "N"
             Try
                 cn.Open()
                 dr = cd.ExecuteReader
