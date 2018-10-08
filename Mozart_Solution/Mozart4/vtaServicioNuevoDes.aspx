@@ -32,11 +32,16 @@
         {
             width: 100%;
         }
+        .style5
+        {
+            width: 618px;
+            height: 15px;
+        }
     </style>
 	</HEAD>
 	<body  MS_POSITIONING="GridLayout">
 
-		<form id="frmRTB" method="post" runat="server">
+		<form id="frmRTB" method="post" runat="server" enctype="multipart/form-data">
 		
 			<TABLE class="form" id="Table1" cellSpacing="0" cellPadding="0" border="0">
 				<TR>
@@ -128,17 +133,51 @@
 					</TD>
 				</TR>
 				<TR>
-					<TD align="left" class="style3">
+					<TD align="left" class="style5">
 					<asp:label id="lblpie" runat="server"></asp:label>
 					</TD>
 				</TR>
 				<TR>
 					<TD align="left" class="style3">
-					    &nbsp;&nbsp;</TD>
+					    &nbsp;</TD>
 				</TR>
 				<TR>
 					<TD align="left" class="style3">
-					    &nbsp;&nbsp;</TD>
+					    &nbsp; Imagen 1&nbsp;: &nbsp;<asp:FileUpload ID="btnImportar" runat="server" />
+                    </TD>
+				</TR>
+				<TR>
+					<TD align="left" class="style3">
+					    &nbsp;&nbsp;Imagen 2 :&nbsp;                         <asp:FileUpload ID="btnImportar2" runat="server" />
+                    </TD>
+				</TR>
+				<TR>
+					<TD align="left" class="style3">
+					    &nbsp;&nbsp;Imagen 3 :&nbsp; <asp:FileUpload ID="btnImportar3" runat="server" />
+                    </TD>
+				</TR>
+				<TR>
+					<TD align="left" class="style3">
+					    &&nbsp;&nbsp;<asp:GridView ID="dlgImg" runat="server" AutoGenerateColumns="False" 
+                            CellPadding="4" ForeColor="#333333" GridLines="None">
+                            <RowStyle BackColor="#EFF3FB" />
+                            <Columns>
+                                
+                                <asp:TemplateField HeaderText="Imagen2">
+                                    <ItemTemplate>
+                                        <img alt="" height="200px"  
+                                            width="200px" />
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                            </Columns>
+                            <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                            <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+                            <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+                            <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                            <EditRowStyle BackColor="#2461BF" />
+                            <AlternatingRowStyle BackColor="White" />
+                        </asp:GridView>
+                    </TD>
 				</TR>
 			</TABLE>
 		

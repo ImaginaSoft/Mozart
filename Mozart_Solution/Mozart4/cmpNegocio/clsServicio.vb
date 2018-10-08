@@ -36,6 +36,7 @@ Public Class clsServicio
     Private sHoraInicioServicio As String
     Private sFlagServicioAge As String
     Private sCodUsuario As String
+    Private m_Imagen As Byte()
 
     Private sNomProveedor As String
     Private sNomCiudad As String
@@ -47,6 +48,15 @@ Public Class clsServicio
         End Get
         Set(ByVal Value As Integer)
             iNroServicio = (Value)
+        End Set
+    End Property
+
+    Public Property Imagen() As Byte()
+        Get
+            Return m_Imagen
+        End Get
+        Set(ByVal value As Byte())
+            m_Imagen = Value
         End Set
     End Property
 
@@ -452,6 +462,8 @@ Public Class clsServicio
         cd.Parameters.Add("@HoraInicioServicio", SqlDbType.Char, 8).Value = sHoraInicioServicio
         cd.Parameters.Add("@FlagServicioAge", SqlDbType.Char, 1).Value = sFlagServicioAge
         cd.Parameters.Add("@CodUsuario", SqlDbType.Char, 15).Value = sCodUsuario
+        cd.Parameters.Add("@Imagen1", SqlDbType.Image, 500).Value = m_Imagen
+
         Try
             cn.Open()
             cd.ExecuteNonQuery()
@@ -621,4 +633,23 @@ Public Class clsServicio
         cn.Close()
         Return (sMsg)
     End Function
+
+    Function CargaImg(ByVal pNroServicio As String) As DataSet
+
+        Dim arParms() As SqlParameter = New SqlParameter(1) {}
+        arParms(0) = New SqlParameter("@NroServicio", SqlDbType.Int)
+        arParms(0).Value = pNroServicio
+        Dim ds As New DataSet
+        ds = SqlHelper.ExecuteDataset(cn, CommandType.StoredProcedure, "VTA_ListaIMG_S", arParms)
+
+
+
+        Return (ds)
+
+        'Dim ds As New DataSet
+        'ds = SqlHelper.ExecuteDataset(cn, CommandType.StoredProcedure, "VTA_ServicioDesServicio_S", New SqlParameter("@DesServicio", pDesServicio))
+        'Return (ds)
+    End Function
+
+
 End Class
