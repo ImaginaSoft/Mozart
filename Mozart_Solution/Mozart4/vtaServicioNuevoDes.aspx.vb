@@ -45,6 +45,7 @@ Partial Class vtaServicioNuevoDes
             cmdGrabar.Text = "Grabar " & lbtResEspanol.Text
             ViewState("sOpc") = "Res1"
             LeeServicio()
+            LeeImg()
         End If
         '        With cmdGrabar
         '.Attributes.Add("onClick", "getHTML()")
@@ -86,6 +87,7 @@ Partial Class vtaServicioNuevoDes
         ds = objServicio.CargaImg(ViewState("NroServicio"))
 
         dv = New DataView(ds.Tables(0))
+
 
         dv.Sort = ViewState("Imagen2")
         'dlgImg.DataKeyField = "dlgImg"

@@ -48,6 +48,33 @@
                                         </TD>
 							</TR>
 							<TR>
+								<TD style="WIDTH: 663px">Dirección HTL</TD>
+								<TD style="WIDTH: 350px">
+                                    <asp:textbox id="txtDireccion" runat="server" 
+                                        Width="582px" MaxLength="200" ></asp:textbox>
+                                        
+                                        </TD>
+							</TR>
+							<TR>
+								<TD style="WIDTH: 663px">Valoración HTL</TD>
+								<TD style="WIDTH: 350px">
+                                    <asp:checkbox id="chkEstrella1" runat="server" Text=" "></asp:checkbox>&nbsp;<asp:checkbox 
+                                        id="chkEstrella2" runat="server" Text=" "></asp:checkbox>&nbsp;<asp:checkbox 
+                                        id="chkEstrella3" runat="server" Text=" "></asp:checkbox>
+                                    <asp:checkbox id="chkEstrella4" runat="server" Text=" "></asp:checkbox>
+                                    <asp:checkbox id="chkEstrella5" runat="server" Text=" "></asp:checkbox>
+                                        
+                                        </TD>
+							</TR>
+							<TR>
+								<TD style="WIDTH: 663px">Teléfono</TD>
+								<TD style="WIDTH: 350px">
+                                    <asp:textbox id="txtTelefono" runat="server" 
+                                        Width="80px" ></asp:textbox>
+                                        
+                                        </TD>
+							</TR>
+							<TR>
 								<TD style="WIDTH: 663px">Obervaciones</TD>
 								<TD style="WIDTH: 350px"><asp:textbox id="TxtObservaciones" runat="server" 
                                         Width="582px" MaxLength="300" Height="56px"
@@ -158,6 +185,45 @@
 				<TR>
 					<TD>
 					</TD>
+				</TR>
+					<TR>
+					<TD align="left" class="style3">
+					    &nbsp; Imagen 1&nbsp;: &nbsp;<asp:FileUpload ID="btnImportar" runat="server" />
+                    </TD>
+				</TR>
+				<TR>
+					<TD align="left" class="style3">
+					    &nbsp;&nbsp;Imagen 2 :&nbsp;                         <asp:FileUpload ID="btnImportar2" runat="server" />
+                    </TD>
+				</TR>
+				<TR>
+					<TD align="left" class="style3">
+					    &nbsp;&nbsp;Imagen 3 :&nbsp; <asp:FileUpload ID="btnImportar3" runat="server" />
+                    </TD>
+				</TR>
+				<TR>
+					<TD align="left" class="style3">
+					    &&nbsp;&nbsp;<asp:GridView ID="dlgImg" runat="server" AutoGenerateColumns="False" 
+                            CellPadding="4" ForeColor="#333333" GridLines="None">
+                            <RowStyle BackColor="#EFF3FB" />
+                            <Columns>                               
+                            
+                                <asp:TemplateField HeaderText="Imagen2">
+                                    <ItemTemplate>
+                                        <img alt="" height="200px"  
+                                            width="200px" />
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                
+                            </Columns>
+                            <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                            <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+                            <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+                            <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                            <EditRowStyle BackColor="#2461BF" />
+                            <AlternatingRowStyle BackColor="White" />
+                        </asp:GridView>
+                    </TD>
 				</TR>
 			</TABLE>
 		</form>

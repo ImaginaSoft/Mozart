@@ -3,6 +3,11 @@ Imports cmpRutinas
 Imports cmpTabla
 Imports cmpSeguridad
 
+Imports System.IO
+Imports System.Collections.Generic
+Imports System.Linq
+Imports System.Web
+
 Partial Class VtaServicioNuevo
     Inherits System.Web.UI.Page
     Dim objServicio As New clsServicio
@@ -187,6 +192,42 @@ Partial Class VtaServicioNuevo
             txtHoraInicioReserva.Text = objServicio.HoraInicioServicio.Trim
 
 
+            If Trim(objServicio.Estrella1) = "S" Then
+                chkEstrella1.Checked = True
+            Else
+                chkEstrella1.Checked = False
+            End If
+
+            If Trim(objServicio.Estrella2) = "S" Then
+                chkEstrella2.Checked = True
+            Else
+                chkEstrella2.Checked = False
+            End If
+
+            If Trim(objServicio.Estrella3) = "S" Then
+                chkEstrella3.Checked = True
+            Else
+                chkEstrella3.Checked = False
+            End If
+
+
+            If Trim(objServicio.Estrella4) = "S" Then
+                chkEstrella4.Checked = True
+            Else
+                chkEstrella4.Checked = False
+            End If
+
+
+            If Trim(objServicio.Estrella5) = Trim("S") Then
+                chkEstrella5.Checked = True
+            Else
+                chkEstrella5.Checked = False
+            End If
+
+            txtDireccion.Text = objServicio.DireccionHTL.Trim
+            txtTelefono.Text = objServicio.Telefono.Trim
+
+
             Dim objProveedor As New clsProveedor
             ddlProveedor.DataSource = objProveedor.CargarProveedor(objServicio.CodProveedor)
             ddlProveedor.DataBind()
@@ -294,11 +335,57 @@ Partial Class VtaServicioNuevo
         End If
 
 
+        If btnImportar.HasFile Then
+            Using reader As New BinaryReader(btnImportar.PostedFile.InputStream)
+                Dim image As Byte() = reader.ReadBytes(btnImportar.PostedFile.ContentLength)
+                objServicio.Imagen = image
+                objServicio.FlagImg01 = 1
+            End Using
+
+        Else
+
+            objServicio.Imagen = Nothing
+            objServicio.FlagImg01 = Nothing
+
+        End If
+
+
+        If btnImportar2.HasFile Then
+            Using reader2 As New BinaryReader(btnImportar2.PostedFile.InputStream)
+                Dim image2 As Byte() = reader2.ReadBytes(btnImportar2.PostedFile.ContentLength)
+                objServicio.Imagen2 = image2
+                objServicio.FlagImg02 = ""
+            End Using
+
+        Else
+
+            objServicio.Imagen2 = Nothing
+            objServicio.FlagImg02 = ""
+
+        End If
+
+
+        If btnImportar3.HasFile Then
+            Using reader3 As New BinaryReader(btnImportar2.PostedFile.InputStream)
+                Dim image3 As Byte() = reader3.ReadBytes(btnImportar3.PostedFile.ContentLength)
+                objServicio.Imagen3 = image3
+                objServicio.FlagImg03 = 1
+            End Using
+
+        Else
+
+            objServicio.Imagen3 = Nothing
+            objServicio.FlagImg03 = ""
+
+        End If
+
 
         objServicio.FlagServicioAge = ""
         If CheckBoxFlagServicioAge.Checked Then
             objServicio.FlagServicioAge = "S"
         End If
+
+
         objServicio.CodProveedor = ddlProveedor.SelectedItem.Value
         objServicio.CodCiudad = ddlCiudad.SelectedItem.Value
         objServicio.CodTipoServicio = ddltiposervicio.SelectedItem.Value
@@ -314,6 +401,15 @@ Partial Class VtaServicioNuevo
         objServicio.HoraInicioServicio = txtHoraInicioReserva.Text
         objServicio.CodUsuario = Session("CodUsuario")
 
+        objServicio.Estrella1 = objRutina.SINO(chkEstrella1.Checked)
+        objServicio.Estrella2 = objRutina.SINO(chkEstrella2.Checked)
+        objServicio.Estrella3 = objRutina.SINO(chkEstrella3.Checked)
+        objServicio.Estrella4 = objRutina.SINO(chkEstrella4.Checked)
+        objServicio.Estrella5 = objRutina.SINO(chkEstrella5.Checked)
+
+        objServicio.DireccionHTL = txtDireccion.Text
+        objServicio.Telefono = txtTelefono.Text
+
         lblMsg.Text = objServicio.Grabar
         If Mid(lblMsg.Text.Trim, 1, 2) = "OK" Then
             Response.Redirect("VtaServicioBusca.aspx" & _
@@ -323,6 +419,8 @@ Partial Class VtaServicioNuevo
                 "&CodCiudad=" & ddlCiudad.SelectedItem.Value & _
                 "&CodTipoServicio=" & ddltiposervicio.SelectedItem.Value)
         End If
+
+
     End Sub
 
     Private Sub rbActivo_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rbActivo.CheckedChanged

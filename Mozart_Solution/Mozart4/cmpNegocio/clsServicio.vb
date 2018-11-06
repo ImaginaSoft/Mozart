@@ -37,10 +37,24 @@ Public Class clsServicio
     Private sFlagServicioAge As String
     Private sCodUsuario As String
     Private m_Imagen As Byte()
+    Private m_Imagen2 As Byte()
+    Private m_Imagen3 As Byte()
+
+    Private sFlagImg01 As String
+    Private sFlagImg02 As String
+    Private sFlagImg03 As String
 
     Private sNomProveedor As String
     Private sNomCiudad As String
     Private sTipoServicio As String
+
+    Private sDireccion As String
+    Private sEstrella1 As String
+    Private sEstrella2 As String
+    Private sEstrella3 As String
+    Private sEstrella4 As String
+    Private sEstrella5 As String
+    Private sTelefono As String
 
     Property NroServicio() As Integer
         Get
@@ -57,6 +71,51 @@ Public Class clsServicio
         End Get
         Set(ByVal value As Byte())
             m_Imagen = Value
+        End Set
+    End Property
+
+    Public Property Imagen2() As Byte()
+        Get
+            Return m_Imagen2
+        End Get
+        Set(ByVal value As Byte())
+            m_Imagen2 = value
+        End Set
+    End Property
+
+    Public Property Imagen3() As Byte()
+        Get
+            Return m_Imagen3
+        End Get
+        Set(ByVal value As Byte())
+            m_Imagen3 = value
+        End Set
+    End Property
+
+    Public Property FlagImg01() As String
+        Get
+            Return sFlagImg01
+        End Get
+        Set(ByVal value As String)
+            sFlagImg01 = CStr(value)
+        End Set
+    End Property
+
+    Public Property FlagImg02() As String
+        Get
+            Return sFlagImg02
+        End Get
+        Set(ByVal value As String)
+            sFlagImg02 = CStr(value)
+        End Set
+    End Property
+
+    Property FlagImg03() As String
+        Get
+            Return sFlagImg03
+        End Get
+        Set(ByVal Value As String)
+            sFlagImg03 = CStr(Value)
         End Set
     End Property
 
@@ -329,6 +388,69 @@ Public Class clsServicio
         End Set
     End Property
 
+    Public Property DireccionHTL() As String
+        Get
+            Return sDireccion
+        End Get
+        Set(ByVal value As String)
+            sDireccion = CStr(value)
+        End Set
+    End Property
+
+    Public Property Estrella1() As String
+        Get
+            Return sEstrella1
+        End Get
+        Set(ByVal value As String)
+            sEstrella1 = CStr(value)
+        End Set
+    End Property
+
+    Public Property Estrella2() As String
+        Get
+            Return sEstrella2
+        End Get
+        Set(ByVal value As String)
+            sEstrella2 = CStr(value)
+        End Set
+    End Property
+
+    Public Property Estrella3() As String
+        Get
+            Return sEstrella3
+        End Get
+        Set(ByVal value As String)
+            sEstrella3 = CStr(value)
+        End Set
+    End Property
+
+    Public Property Estrella4() As String
+        Get
+            Return sEstrella4
+        End Get
+        Set(ByVal value As String)
+            sEstrella4 = CStr(value)
+        End Set
+    End Property
+
+    Public Property Estrella5() As String
+        Get
+            Return sEstrella5
+        End Get
+        Set(ByVal value As String)
+            sEstrella5 = CStr(value)
+        End Set
+    End Property
+
+    Public Property Telefono() As String
+        Get
+            Return sTelefono
+        End Get
+        Set(ByVal value As String)
+            sTelefono = CStr(value)
+        End Set
+    End Property
+
 
     Function CargaTipoAcomodacion(ByVal pNroServicio As Integer) As DataSet
         Dim ds As New DataSet
@@ -462,7 +584,40 @@ Public Class clsServicio
         cd.Parameters.Add("@HoraInicioServicio", SqlDbType.Char, 8).Value = sHoraInicioServicio
         cd.Parameters.Add("@FlagServicioAge", SqlDbType.Char, 1).Value = sFlagServicioAge
         cd.Parameters.Add("@CodUsuario", SqlDbType.Char, 15).Value = sCodUsuario
-        cd.Parameters.Add("@Imagen1", SqlDbType.Image, 500).Value = m_Imagen
+
+        If m_Imagen Is Nothing Then
+            cd.Parameters.Add("@Imagen1", SqlDbType.Image, 500).Value = DBNull.Value
+            cd.Parameters.Add("@FlagImg01", SqlDbType.Char, 1).Value = ""
+        Else
+            cd.Parameters.Add("@Imagen1", SqlDbType.Image, 500).Value = m_Imagen
+            cd.Parameters.Add("@FlagImg01", SqlDbType.Char, 1).Value = sFlagImg01
+        End If
+
+        If m_Imagen2 Is Nothing Then
+            cd.Parameters.Add("@Imagen2", SqlDbType.Image, 500).Value = DBNull.Value
+            cd.Parameters.Add("@FlagImg02", SqlDbType.Char, 1).Value = ""
+        Else
+            cd.Parameters.Add("@Imagen2", SqlDbType.Image, 500).Value = m_Imagen2
+            cd.Parameters.Add("@FlagImg02", SqlDbType.Char, 1).Value = ""
+        End If
+
+        If m_Imagen3 Is Nothing Then
+            cd.Parameters.Add("@Imagen3", SqlDbType.Image, 500).Value = DBNull.Value
+            cd.Parameters.Add("@FlagImg03", SqlDbType.Char, 1).Value = sFlagImg03
+        Else
+            cd.Parameters.Add("@Imagen3", SqlDbType.Image, 500).Value = m_Imagen3
+            cd.Parameters.Add("@FlagImg03", SqlDbType.Char, 1).Value = sFlagImg03
+        End If
+
+        cd.Parameters.Add("@Estrella01", SqlDbType.Char, 8).Value = sEstrella1
+        cd.Parameters.Add("@Estrella02", SqlDbType.Char, 8).Value = sEstrella2
+        cd.Parameters.Add("@Estrella03", SqlDbType.Char, 8).Value = sEstrella3
+        cd.Parameters.Add("@Estrella04", SqlDbType.Char, 8).Value = sEstrella4
+        cd.Parameters.Add("@Estrella05", SqlDbType.Char, 8).Value = sEstrella5
+
+        cd.Parameters.Add("@DireccionHTL", SqlDbType.VarChar, 250).Value = sDireccion
+
+        cd.Parameters.Add("@Telefono", SqlDbType.VarChar, 250).Value = sTelefono
 
         Try
             cn.Open()
@@ -562,6 +717,55 @@ Public Class clsServicio
                 sNomCiudad = dr.GetValue(dr.GetOrdinal("NomCiudad"))
                 sTipoServicio = dr.GetValue(dr.GetOrdinal("TipoServicio"))
 
+
+                If IsDBNull(dr.GetValue(dr.GetOrdinal("Estrella01"))) Then
+
+                    sEstrella1 = "N"
+
+                Else
+                    sEstrella1 = dr.GetValue(dr.GetOrdinal("Estrella01"))
+                End If
+
+
+                If IsDBNull(dr.GetValue(dr.GetOrdinal("Estrella02"))) Then
+
+                    sEstrella2 = "N"
+
+                Else
+                    sEstrella2 = dr.GetValue(dr.GetOrdinal("Estrella02"))
+                End If
+
+
+                If IsDBNull(dr.GetValue(dr.GetOrdinal("Estrella03"))) Then
+
+                    sEstrella3 = "N"
+
+                Else
+                    sEstrella3 = dr.GetValue(dr.GetOrdinal("Estrella03"))
+                End If
+
+
+                If IsDBNull(dr.GetValue(dr.GetOrdinal("Estrella04"))) Then
+
+                    sEstrella4 = "N"
+
+                Else
+                    sEstrella4 = dr.GetValue(dr.GetOrdinal("Estrella04"))
+                End If
+
+                If IsDBNull(dr.GetValue(dr.GetOrdinal("Estrella05"))) Then
+
+                    sEstrella5 = "N"
+
+                Else
+                    sEstrella5 = dr.GetValue(dr.GetOrdinal("Estrella05"))
+                End If
+
+                sDireccion = dr.GetValue(dr.GetOrdinal("DireccionHTL"))
+
+                sTelefono = dr.GetValue(dr.GetOrdinal("Telefono"))
+
+
                 sMsg = "OK"
             End While
             dr.Close()
@@ -641,8 +845,6 @@ Public Class clsServicio
         arParms(0).Value = pNroServicio
         Dim ds As New DataSet
         ds = SqlHelper.ExecuteDataset(cn, CommandType.StoredProcedure, "VTA_ListaIMG_S", arParms)
-
-
 
         Return (ds)
 
