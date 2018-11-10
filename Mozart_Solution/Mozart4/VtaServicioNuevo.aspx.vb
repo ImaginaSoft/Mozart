@@ -192,41 +192,44 @@ Partial Class VtaServicioNuevo
             txtHoraInicioReserva.Text = objServicio.HoraInicioServicio.Trim
 
 
-            If Trim(objServicio.Estrella1) = "S" Then
-                chkEstrella1.Checked = True
-            Else
-                chkEstrella1.Checked = False
-            End If
+            'If Trim(objServicio.Estrella1) = "S" Then
+            '    chkEstrella1.Checked = True
+            'Else
+            '    chkEstrella1.Checked = False
+            'End If
 
-            If Trim(objServicio.Estrella2) = "S" Then
-                chkEstrella2.Checked = True
-            Else
-                chkEstrella2.Checked = False
-            End If
+            'If Trim(objServicio.Estrella2) = "S" Then
+            '    chkEstrella2.Checked = True
+            'Else
+            '    chkEstrella2.Checked = False
+            'End If
 
-            If Trim(objServicio.Estrella3) = "S" Then
-                chkEstrella3.Checked = True
-            Else
-                chkEstrella3.Checked = False
-            End If
-
-
-            If Trim(objServicio.Estrella4) = "S" Then
-                chkEstrella4.Checked = True
-            Else
-                chkEstrella4.Checked = False
-            End If
+            'If Trim(objServicio.Estrella3) = "S" Then
+            '    chkEstrella3.Checked = True
+            'Else
+            '    chkEstrella3.Checked = False
+            'End If
 
 
-            If Trim(objServicio.Estrella5) = Trim("S") Then
-                chkEstrella5.Checked = True
-            Else
-                chkEstrella5.Checked = False
-            End If
+            'If Trim(objServicio.Estrella4) = "S" Then
+            '    chkEstrella4.Checked = True
+            'Else
+            '    chkEstrella4.Checked = False
+            'End If
+
+
+            'If Trim(objServicio.Estrella5) = Trim("S") Then
+            '    chkEstrella5.Checked = True
+            'Else
+            '    chkEstrella5.Checked = False
+            'End If
 
             txtDireccion.Text = objServicio.DireccionHTL.Trim
             txtTelefono.Text = objServicio.Telefono.Trim
 
+            txtNombreHTL.Text = objServicio.NombreHTL.Trim
+
+            ddlValor.Text = objServicio.Valoracion.Trim
 
             Dim objProveedor As New clsProveedor
             ddlProveedor.DataSource = objProveedor.CargarProveedor(objServicio.CodProveedor)
@@ -401,14 +404,18 @@ Partial Class VtaServicioNuevo
         objServicio.HoraInicioServicio = txtHoraInicioReserva.Text
         objServicio.CodUsuario = Session("CodUsuario")
 
-        objServicio.Estrella1 = objRutina.SINO(chkEstrella1.Checked)
-        objServicio.Estrella2 = objRutina.SINO(chkEstrella2.Checked)
-        objServicio.Estrella3 = objRutina.SINO(chkEstrella3.Checked)
-        objServicio.Estrella4 = objRutina.SINO(chkEstrella4.Checked)
-        objServicio.Estrella5 = objRutina.SINO(chkEstrella5.Checked)
+        'objServicio.Estrella1 = objRutina.SINO(chkEstrella1.Checked)
+        'objServicio.Estrella2 = objRutina.SINO(chkEstrella2.Checked)
+        'objServicio.Estrella3 = objRutina.SINO(chkEstrella3.Checked)
+        'objServicio.Estrella4 = objRutina.SINO(chkEstrella4.Checked)
+        'objServicio.Estrella5 = objRutina.SINO(chkEstrella5.Checked)
 
         objServicio.DireccionHTL = txtDireccion.Text
         objServicio.Telefono = txtTelefono.Text
+
+
+        objServicio.Valoracion = ddlValor.Text
+        objServicio.NombreHTL = txtNombreHTL.Text
 
         lblMsg.Text = objServicio.Grabar
         If Mid(lblMsg.Text.Trim, 1, 2) = "OK" Then

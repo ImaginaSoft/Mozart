@@ -48,6 +48,14 @@
                                         </TD>
 							</TR>
 							<TR>
+								<TD style="WIDTH: 663px">Nombre HTL</TD>
+								<TD style="WIDTH: 350px">
+                                    <asp:textbox id="txtNombreHTL" runat="server" 
+                                        Width="582px" MaxLength="200" ></asp:textbox>
+                                        
+                                        </TD>
+							</TR>
+							<TR>
 								<TD style="WIDTH: 663px">Dirección HTL</TD>
 								<TD style="WIDTH: 350px">
                                     <asp:textbox id="txtDireccion" runat="server" 
@@ -57,12 +65,15 @@
 							</TR>
 							<TR>
 								<TD style="WIDTH: 663px">Valoración HTL</TD>
-								<TD style="WIDTH: 350px">
-                                    <asp:checkbox id="chkEstrella1" runat="server" Text=" "></asp:checkbox>&nbsp;<asp:checkbox 
-                                        id="chkEstrella2" runat="server" Text=" "></asp:checkbox>&nbsp;<asp:checkbox 
-                                        id="chkEstrella3" runat="server" Text=" "></asp:checkbox>
-                                    <asp:checkbox id="chkEstrella4" runat="server" Text=" "></asp:checkbox>
-                                    <asp:checkbox id="chkEstrella5" runat="server" Text=" "></asp:checkbox>
+								<TD style="WIDTH: 50px">
+                                    <asp:dropdownlist id="ddlValor" runat="server" DataValueField="CodCiudad" DataTextField="NomCiudad"
+										Width="50px">
+                                        <asp:ListItem>1</asp:ListItem>
+                                        <asp:ListItem>2</asp:ListItem>
+                                        <asp:ListItem Value="02">3</asp:ListItem>
+                                        <asp:ListItem Value="04">4</asp:ListItem>
+                                        <asp:ListItem Value="05">5</asp:ListItem>
+                                    </asp:dropdownlist>
                                         
                                         </TD>
 							</TR>

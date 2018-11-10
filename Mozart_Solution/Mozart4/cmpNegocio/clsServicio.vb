@@ -49,11 +49,8 @@ Public Class clsServicio
     Private sTipoServicio As String
 
     Private sDireccion As String
-    Private sEstrella1 As String
-    Private sEstrella2 As String
-    Private sEstrella3 As String
-    Private sEstrella4 As String
-    Private sEstrella5 As String
+    Private sValoracionHTL As String
+    Private sNombreHTL As String
     Private sTelefono As String
 
     Property NroServicio() As Integer
@@ -397,50 +394,24 @@ Public Class clsServicio
         End Set
     End Property
 
-    Public Property Estrella1() As String
+    Public Property Valoracion() As String
         Get
-            Return sEstrella1
+            Return sValoracionHTL
         End Get
         Set(ByVal value As String)
-            sEstrella1 = CStr(value)
+            sValoracionHTL = CStr(value)
         End Set
     End Property
 
-    Public Property Estrella2() As String
+    Public Property NombreHTL() As String
         Get
-            Return sEstrella2
+            Return sNombreHTL
         End Get
         Set(ByVal value As String)
-            sEstrella2 = CStr(value)
+            sNombreHTL = CStr(value)
         End Set
     End Property
-
-    Public Property Estrella3() As String
-        Get
-            Return sEstrella3
-        End Get
-        Set(ByVal value As String)
-            sEstrella3 = CStr(value)
-        End Set
-    End Property
-
-    Public Property Estrella4() As String
-        Get
-            Return sEstrella4
-        End Get
-        Set(ByVal value As String)
-            sEstrella4 = CStr(value)
-        End Set
-    End Property
-
-    Public Property Estrella5() As String
-        Get
-            Return sEstrella5
-        End Get
-        Set(ByVal value As String)
-            sEstrella5 = CStr(value)
-        End Set
-    End Property
+   
 
     Public Property Telefono() As String
         Get
@@ -609,15 +580,14 @@ Public Class clsServicio
             cd.Parameters.Add("@FlagImg03", SqlDbType.Char, 1).Value = sFlagImg03
         End If
 
-        cd.Parameters.Add("@Estrella01", SqlDbType.Char, 8).Value = sEstrella1
-        cd.Parameters.Add("@Estrella02", SqlDbType.Char, 8).Value = sEstrella2
-        cd.Parameters.Add("@Estrella03", SqlDbType.Char, 8).Value = sEstrella3
-        cd.Parameters.Add("@Estrella04", SqlDbType.Char, 8).Value = sEstrella4
-        cd.Parameters.Add("@Estrella05", SqlDbType.Char, 8).Value = sEstrella5
-
         cd.Parameters.Add("@DireccionHTL", SqlDbType.VarChar, 250).Value = sDireccion
 
         cd.Parameters.Add("@Telefono", SqlDbType.VarChar, 250).Value = sTelefono
+
+        cd.Parameters.Add("@ValoracionHTL", SqlDbType.Char, 8).Value = sValoracionHTL
+
+        cd.Parameters.Add("@NombreHTL", SqlDbType.Char, 8).Value = sNombreHTL
+
 
         Try
             cn.Open()
@@ -718,52 +688,73 @@ Public Class clsServicio
                 sTipoServicio = dr.GetValue(dr.GetOrdinal("TipoServicio"))
 
 
-                If IsDBNull(dr.GetValue(dr.GetOrdinal("Estrella01"))) Then
+                'If IsDBNull(dr.GetValue(dr.GetOrdinal("Estrella01"))) Then
 
-                    sEstrella1 = "N"
+                '    sEstrella1 = "N"
 
-                Else
-                    sEstrella1 = dr.GetValue(dr.GetOrdinal("Estrella01"))
-                End If
-
-
-                If IsDBNull(dr.GetValue(dr.GetOrdinal("Estrella02"))) Then
-
-                    sEstrella2 = "N"
-
-                Else
-                    sEstrella2 = dr.GetValue(dr.GetOrdinal("Estrella02"))
-                End If
+                'Else
+                '    sEstrella1 = dr.GetValue(dr.GetOrdinal("Estrella01"))
+                'End If
 
 
-                If IsDBNull(dr.GetValue(dr.GetOrdinal("Estrella03"))) Then
+                'If IsDBNull(dr.GetValue(dr.GetOrdinal("Estrella02"))) Then
 
-                    sEstrella3 = "N"
+                '    sEstrella2 = "N"
 
-                Else
-                    sEstrella3 = dr.GetValue(dr.GetOrdinal("Estrella03"))
-                End If
+                'Else
+                '    sEstrella2 = dr.GetValue(dr.GetOrdinal("Estrella02"))
+                'End If
 
 
-                If IsDBNull(dr.GetValue(dr.GetOrdinal("Estrella04"))) Then
+                'If IsDBNull(dr.GetValue(dr.GetOrdinal("Estrella03"))) Then
 
-                    sEstrella4 = "N"
+                '    sEstrella3 = "N"
 
-                Else
-                    sEstrella4 = dr.GetValue(dr.GetOrdinal("Estrella04"))
-                End If
+                'Else
+                '    sEstrella3 = dr.GetValue(dr.GetOrdinal("Estrella03"))
+                'End If
 
-                If IsDBNull(dr.GetValue(dr.GetOrdinal("Estrella05"))) Then
 
-                    sEstrella5 = "N"
+                'If IsDBNull(dr.GetValue(dr.GetOrdinal("Estrella04"))) Then
 
-                Else
-                    sEstrella5 = dr.GetValue(dr.GetOrdinal("Estrella05"))
-                End If
+                '    sEstrella4 = "N"
+
+                'Else
+                '    sEstrella4 = dr.GetValue(dr.GetOrdinal("Estrella04"))
+                'End If
+
+                'If IsDBNull(dr.GetValue(dr.GetOrdinal("Estrella05"))) Then
+
+                '    sEstrella5 = "N"
+
+                'Else
+                '    sEstrella5 = dr.GetValue(dr.GetOrdinal("Estrella05"))
+                'End If
 
                 sDireccion = dr.GetValue(dr.GetOrdinal("DireccionHTL"))
 
                 sTelefono = dr.GetValue(dr.GetOrdinal("Telefono"))
+
+                'sValoracionHTL = dr.GetValue(dr.GetOrdinal("valoracion"))
+
+                'sNombreHTL = dr.GetValue(dr.GetOrdinal("NombreHTL"))
+
+                If IsDBNull(dr.GetValue(dr.GetOrdinal("Valoracion"))) Then
+
+                    sValoracionHTL = ""
+
+                Else
+                    sValoracionHTL = dr.GetValue(dr.GetOrdinal("Valoracion"))
+                End If
+
+
+                If IsDBNull(dr.GetValue(dr.GetOrdinal("NombreHTL"))) Then
+
+                    sNombreHTL = ""
+
+                Else
+                    sNombreHTL = dr.GetValue(dr.GetOrdinal("NombreHTL"))
+                End If
 
 
                 sMsg = "OK"
