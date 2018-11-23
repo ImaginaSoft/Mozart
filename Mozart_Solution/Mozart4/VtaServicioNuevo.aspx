@@ -68,11 +68,12 @@
 								<TD style="WIDTH: 50px">
                                     <asp:dropdownlist id="ddlValor" runat="server" DataValueField="CodCiudad" DataTextField="NomCiudad"
 										Width="50px">
+                                        <asp:ListItem>0</asp:ListItem>
                                         <asp:ListItem>1</asp:ListItem>
                                         <asp:ListItem>2</asp:ListItem>
-                                        <asp:ListItem Value="02">3</asp:ListItem>
-                                        <asp:ListItem Value="04">4</asp:ListItem>
-                                        <asp:ListItem Value="05">5</asp:ListItem>
+                                        <asp:ListItem Value="3">3</asp:ListItem>
+                                        <asp:ListItem Value="4">4</asp:ListItem>
+                                        <asp:ListItem Value="5">5</asp:ListItem>
                                     </asp:dropdownlist>
                                         
                                         </TD>
@@ -214,8 +215,14 @@
 				</TR>
 				<TR>
 					<TD align="left" class="style3">
-					    &&nbsp;&nbsp;<asp:GridView ID="dlgImg" runat="server" AutoGenerateColumns="False" 
-                            CellPadding="4" ForeColor="#333333" GridLines="None">
+					    <asp:TextBox ID="txtImagen01" runat="server" TextMode="MultiLine"></asp:TextBox>
+                        <br />
+                        <asp:TextBox ID="txtImagen02" runat="server" TextMode="MultiLine"></asp:TextBox>
+                        <br />
+                        <asp:TextBox ID="txtImagen03" runat="server" TextMode="MultiLine"></asp:TextBox>
+                        <asp:GridView ID="dlgImg" runat="server" AutoGenerateColumns="False" 
+                            CellPadding="4" ForeColor="#333333" GridLines="None" 
+                            DataSourceID="SqlDataSource1">
                             <RowStyle BackColor="#EFF3FB" />
                             <Columns>                               
                             
@@ -234,6 +241,7 @@
                             <EditRowStyle BackColor="#2461BF" />
                             <AlternatingRowStyle BackColor="White" />
                         </asp:GridView>
+                        <asp:SqlDataSource ID="SqlDataSource1" runat="server"></asp:SqlDataSource>
                     </TD>
 				</TR>
 			</TABLE>

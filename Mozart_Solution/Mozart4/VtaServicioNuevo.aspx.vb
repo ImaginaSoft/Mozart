@@ -191,43 +191,22 @@ Partial Class VtaServicioNuevo
             txtCaraEspeServicio3.Text = objServicio.CaraEspeServicio3.Trim
             txtHoraInicioReserva.Text = objServicio.HoraInicioServicio.Trim
 
-
-            'If Trim(objServicio.Estrella1) = "S" Then
-            '    chkEstrella1.Checked = True
-            'Else
-            '    chkEstrella1.Checked = False
-            'End If
-
-            'If Trim(objServicio.Estrella2) = "S" Then
-            '    chkEstrella2.Checked = True
-            'Else
-            '    chkEstrella2.Checked = False
-            'End If
-
-            'If Trim(objServicio.Estrella3) = "S" Then
-            '    chkEstrella3.Checked = True
-            'Else
-            '    chkEstrella3.Checked = False
-            'End If
-
-
-            'If Trim(objServicio.Estrella4) = "S" Then
-            '    chkEstrella4.Checked = True
-            'Else
-            '    chkEstrella4.Checked = False
-            'End If
-
-
-            'If Trim(objServicio.Estrella5) = Trim("S") Then
-            '    chkEstrella5.Checked = True
-            'Else
-            '    chkEstrella5.Checked = False
-            'End If
-
             txtDireccion.Text = objServicio.DireccionHTL.Trim
             txtTelefono.Text = objServicio.Telefono.Trim
 
             txtNombreHTL.Text = objServicio.NombreHTL.Trim
+
+            'If objServicio.Imagen IsNot Nothing Then
+            '    txtImagen01.Text = objServicio.Imagen
+            'End If
+
+            'If objServicio.Imagen IsNot Nothing Then
+            '    txtImagen02.Text = objServicio.Imagen2.ToString
+            'End If
+
+            'If objServicio.Imagen IsNot Nothing Then
+            '    txtImagen03.Text = objServicio.Imagen3.ToString
+            'End If
 
             ddlValor.Text = objServicio.Valoracion.Trim
 
@@ -369,7 +348,7 @@ Partial Class VtaServicioNuevo
 
 
         If btnImportar3.HasFile Then
-            Using reader3 As New BinaryReader(btnImportar2.PostedFile.InputStream)
+            Using reader3 As New BinaryReader(btnImportar3.PostedFile.InputStream)
                 Dim image3 As Byte() = reader3.ReadBytes(btnImportar3.PostedFile.ContentLength)
                 objServicio.Imagen3 = image3
                 objServicio.FlagImg03 = 1

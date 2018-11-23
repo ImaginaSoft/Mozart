@@ -557,26 +557,26 @@ Public Class clsServicio
         cd.Parameters.Add("@CodUsuario", SqlDbType.Char, 15).Value = sCodUsuario
 
         If m_Imagen Is Nothing Then
-            cd.Parameters.Add("@Imagen1", SqlDbType.Image, 500).Value = DBNull.Value
+            cd.Parameters.Add("@Imagen1", SqlDbType.Image).Value = DBNull.Value
             cd.Parameters.Add("@FlagImg01", SqlDbType.Char, 1).Value = ""
         Else
-            cd.Parameters.Add("@Imagen1", SqlDbType.Image, 500).Value = m_Imagen
+            cd.Parameters.Add("@Imagen1", SqlDbType.Image).Value = m_Imagen
             cd.Parameters.Add("@FlagImg01", SqlDbType.Char, 1).Value = sFlagImg01
         End If
 
         If m_Imagen2 Is Nothing Then
-            cd.Parameters.Add("@Imagen2", SqlDbType.Image, 500).Value = DBNull.Value
+            cd.Parameters.Add("@Imagen2", SqlDbType.Image).Value = DBNull.Value
             cd.Parameters.Add("@FlagImg02", SqlDbType.Char, 1).Value = ""
         Else
-            cd.Parameters.Add("@Imagen2", SqlDbType.Image, 500).Value = m_Imagen2
+            cd.Parameters.Add("@Imagen2", SqlDbType.Image).Value = m_Imagen2
             cd.Parameters.Add("@FlagImg02", SqlDbType.Char, 1).Value = ""
         End If
 
         If m_Imagen3 Is Nothing Then
-            cd.Parameters.Add("@Imagen3", SqlDbType.Image, 500).Value = DBNull.Value
+            cd.Parameters.Add("@Imagen3", SqlDbType.Image).Value = DBNull.Value
             cd.Parameters.Add("@FlagImg03", SqlDbType.Char, 1).Value = sFlagImg03
         Else
-            cd.Parameters.Add("@Imagen3", SqlDbType.Image, 500).Value = m_Imagen3
+            cd.Parameters.Add("@Imagen3", SqlDbType.Image).Value = m_Imagen3
             cd.Parameters.Add("@FlagImg03", SqlDbType.Char, 1).Value = sFlagImg03
         End If
 
@@ -586,7 +586,7 @@ Public Class clsServicio
 
         cd.Parameters.Add("@ValoracionHTL", SqlDbType.Char, 8).Value = sValoracionHTL
 
-        cd.Parameters.Add("@NombreHTL", SqlDbType.Char, 8).Value = sNombreHTL
+        cd.Parameters.Add("@NombreHTL", SqlDbType.Char, 150).Value = sNombreHTL
 
 
         Try
@@ -688,56 +688,21 @@ Public Class clsServicio
                 sTipoServicio = dr.GetValue(dr.GetOrdinal("TipoServicio"))
 
 
-                'If IsDBNull(dr.GetValue(dr.GetOrdinal("Estrella01"))) Then
+                If IsDBNull(dr.GetValue(dr.GetOrdinal("DireccionHTL"))) Then
 
-                '    sEstrella1 = "N"
+                    sDireccion = ""
 
-                'Else
-                '    sEstrella1 = dr.GetValue(dr.GetOrdinal("Estrella01"))
-                'End If
+                Else
+                    sDireccion = dr.GetValue(dr.GetOrdinal("DireccionHTL"))
+                End If
 
+                If IsDBNull(dr.GetValue(dr.GetOrdinal("Telefono"))) Then
 
-                'If IsDBNull(dr.GetValue(dr.GetOrdinal("Estrella02"))) Then
+                    sTelefono = ""
 
-                '    sEstrella2 = "N"
-
-                'Else
-                '    sEstrella2 = dr.GetValue(dr.GetOrdinal("Estrella02"))
-                'End If
-
-
-                'If IsDBNull(dr.GetValue(dr.GetOrdinal("Estrella03"))) Then
-
-                '    sEstrella3 = "N"
-
-                'Else
-                '    sEstrella3 = dr.GetValue(dr.GetOrdinal("Estrella03"))
-                'End If
-
-
-                'If IsDBNull(dr.GetValue(dr.GetOrdinal("Estrella04"))) Then
-
-                '    sEstrella4 = "N"
-
-                'Else
-                '    sEstrella4 = dr.GetValue(dr.GetOrdinal("Estrella04"))
-                'End If
-
-                'If IsDBNull(dr.GetValue(dr.GetOrdinal("Estrella05"))) Then
-
-                '    sEstrella5 = "N"
-
-                'Else
-                '    sEstrella5 = dr.GetValue(dr.GetOrdinal("Estrella05"))
-                'End If
-
-                sDireccion = dr.GetValue(dr.GetOrdinal("DireccionHTL"))
-
-                sTelefono = dr.GetValue(dr.GetOrdinal("Telefono"))
-
-                'sValoracionHTL = dr.GetValue(dr.GetOrdinal("valoracion"))
-
-                'sNombreHTL = dr.GetValue(dr.GetOrdinal("NombreHTL"))
+                Else
+                    sTelefono = dr.GetValue(dr.GetOrdinal("Telefono"))
+                End If
 
                 If IsDBNull(dr.GetValue(dr.GetOrdinal("Valoracion"))) Then
 
@@ -754,6 +719,32 @@ Public Class clsServicio
 
                 Else
                     sNombreHTL = dr.GetValue(dr.GetOrdinal("NombreHTL"))
+                End If
+
+
+                If IsDBNull(dr.GetValue(dr.GetOrdinal("Imagen1"))) Then
+
+                    Imagen = Nothing
+
+                Else
+                    Imagen = dr.GetValue(dr.GetOrdinal("Imagen1"))
+                End If
+
+                If IsDBNull(dr.GetValue(dr.GetOrdinal("Imagen2"))) Then
+
+                    Imagen2 = Nothing
+
+                Else
+                    Imagen2 = dr.GetValue(dr.GetOrdinal("Imagen2"))
+                End If
+
+
+                If IsDBNull(dr.GetValue(dr.GetOrdinal("Imagen3"))) Then
+
+                    Imagen3 = Nothing
+
+                Else
+                    Imagen3 = dr.GetValue(dr.GetOrdinal("Imagen3"))
                 End If
 
 
