@@ -7,6 +7,7 @@ Imports System.IO
 Imports System.Collections.Generic
 Imports System.Linq
 Imports System.Web
+Imports System.Data
 
 Partial Class VtaServicioNuevo
     Inherits System.Web.UI.Page
@@ -28,16 +29,17 @@ Partial Class VtaServicioNuevo
 
             CargaTipoServicio()
             CargaCiudad()
-           
-            Viewstate("Opcion") = Request.Params("Opcion")
-            Viewstate("CodProveedor") = Request.Params("CodProveedor")
-            Viewstate("CodCiudad") = Request.Params("CodCiudad")
-            Viewstate("CodTipoServicio") = Request.Params("CodTipoServicio")
+            CargarGrid()
+
+            ViewState("Opcion") = Request.Params("Opcion")
+            ViewState("CodProveedor") = Request.Params("CodProveedor")
+            ViewState("CodCiudad") = Request.Params("CodCiudad")
+            ViewState("CodTipoServicio") = Request.Params("CodTipoServicio")
 
             rbActivo.Checked = True
-            If Viewstate("Opcion") = "Modificar" Then
-                Viewstate("NroServicio") = Request.Params("NroServicio")
-                lblTitulo.Text = "Modificar Servicio Nro. " & CStr(Viewstate("NroServicio"))
+            If ViewState("Opcion") = "Modificar" Then
+                ViewState("NroServicio") = Request.Params("NroServicio")
+                lblTitulo.Text = "Modificar Servicio Nro. " & CStr(ViewState("NroServicio"))
                 ModificaServicio()
                 ddlProveedor.Enabled = False
                 'ddlCiudad.Enabled = False
@@ -50,12 +52,24 @@ Partial Class VtaServicioNuevo
 
     End Sub
 
+
+    Private Sub CargarGrid()
+        Dim ds As New DataSet
+        ds = objServicio.CargaImg2("10445")
+        'Dim base64String As String = Convert.ToBase64String(ds.i, 0, servicio.Imagen.Length)
+    End Sub
+
+    'Private Sub CargarGrid()
+    '    dlgImg.DataSource = clsServicio.CargaImg("1425")
+    '    dlgImg.DataBind()
+    'End Sub
+
     Private Sub CargaProveedor()
         Dim objProveedor As New clsProveedor
         ddlProveedor.DataSource = objProveedor.CargarActivoDDL
         ddlProveedor.DataBind()
         Try
-            ddlProveedor.Items.FindByValue(Viewstate("CodProveedor")).Selected = True
+            ddlProveedor.Items.FindByValue(ViewState("CodProveedor")).Selected = True
         Catch ex2 As System.Exception
             'No existe ...continuar
         End Try
@@ -66,7 +80,7 @@ Partial Class VtaServicioNuevo
         ddlCiudad.DataSource = objCiudad.CargarActivo
         ddlCiudad.DataBind()
         Try
-            ddlCiudad.Items.FindByValue(Viewstate("CodCiudad")).Selected = True
+            ddlCiudad.Items.FindByValue(ViewState("CodCiudad")).Selected = True
         Catch ex2 As System.Exception
             'No existe ...continuar
         End Try
@@ -77,7 +91,7 @@ Partial Class VtaServicioNuevo
         ddltiposervicio.DataSource = objTipoServicio.CargarActivo
         ddltiposervicio.DataBind()
         Try
-            ddltiposervicio.Items.FindByValue(Viewstate("CodTipoServicio")).Selected = True
+            ddltiposervicio.Items.FindByValue(ViewState("CodTipoServicio")).Selected = True
         Catch ex2 As System.Exception
             'No existe ...continuar
         End Try
@@ -240,8 +254,8 @@ Partial Class VtaServicioNuevo
         End If
 
         Dim wNroServicio As Integer
-        If Viewstate("Opcion") = "Modificar" Then
-            objServicio.NroServicio = Viewstate("NroServicio")
+        If ViewState("Opcion") = "Modificar" Then
+            objServicio.NroServicio = ViewState("NroServicio")
         Else
             objServicio.NroServicio = 0
         End If
@@ -462,10 +476,10 @@ Partial Class VtaServicioNuevo
     Private Sub lbtDetalle_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         'Modifica detalle en español
         Response.Redirect("VtaServicioDet.aspx" & _
-                           "?NroServicio=" & Viewstate("NroServicio") & _
-                            "&CodProveedor=" & Viewstate("CodProveedor") & _
-                            "&CodCiudad=" & Viewstate("CodCiudad") & _
-                            "&CodTipoServicio=" & Viewstate("CodTipoServicio"))
+                           "?NroServicio=" & ViewState("NroServicio") & _
+                            "&CodProveedor=" & ViewState("CodProveedor") & _
+                            "&CodCiudad=" & ViewState("CodCiudad") & _
+                            "&CodTipoServicio=" & ViewState("CodTipoServicio"))
     End Sub
 
 
@@ -490,7 +504,7 @@ Partial Class VtaServicioNuevo
 
     Private Sub lbtCopia_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lbtCopia.Click
         Response.Redirect("VtaServicioCopia.aspx" & _
-                           "?NroServicio=" & Viewstate("NroServicio") & _
+                           "?NroServicio=" & ViewState("NroServicio") & _
                             "&TipoServicio=" & ddltiposervicio.SelectedItem.Text & _
                             "&DesProveedor=" & txtDesProveedor.Text & _
                             "&CodProveedor=" & ddlProveedor.SelectedItem.Value & _

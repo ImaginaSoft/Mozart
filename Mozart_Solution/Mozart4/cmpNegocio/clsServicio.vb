@@ -67,7 +67,7 @@ Public Class clsServicio
             Return m_Imagen
         End Get
         Set(ByVal value As Byte())
-            m_Imagen = Value
+            m_Imagen = value
         End Set
     End Property
 
@@ -820,7 +820,7 @@ Public Class clsServicio
         Return (sMsg)
     End Function
 
-    Function CargaImg(ByVal pNroServicio As String) As DataSet
+    Function CargaImg2(ByVal pNroServicio As String) As DataSet
 
         Dim arParms() As SqlParameter = New SqlParameter(1) {}
         arParms(0) = New SqlParameter("@NroServicio", SqlDbType.Int)
@@ -833,6 +833,50 @@ Public Class clsServicio
         'Dim ds As New DataSet
         'ds = SqlHelper.ExecuteDataset(cn, CommandType.StoredProcedure, "VTA_ServicioDesServicio_S", New SqlParameter("@DesServicio", pDesServicio))
         'Return (ds)
+    End Function
+
+
+    Private Shared Function ConvertirServicio(ByVal reader As IDataReader, ByVal cargarRelaciones As Boolean) As clsServicio
+
+        Dim servicio As New clsServicio()
+
+        servicio.NroServicio = Convert.ToInt32(reader("NroServicio"))
+
+        Dim base64String As String = Convert.ToBase64String(servicio.Imagen, 0, servicio.Imagen.Length)
+
+        If reader("Imagen1") IsNot DBNull.Value Then
+            servicio.Imagen = DirectCast(reader("Imagen1"), Byte())
+
+
+        End If
+
+        Return servicio
+    End Function
+
+    Public Shared Function CargaImg(ByVal pNroServicio As String) As List(Of clsServicio)
+
+        Dim servicio As New List(Of clsServicio)()
+
+        Using conn As New SqlConnection(System.Configuration.ConfigurationManager.AppSettings("cnMozart"))
+
+            conn.Open()
+
+            Dim query As String = "select NroServicio,Imagen1 from MSERVICIO where NroServicio = 10445"
+
+            Dim cmd As New SqlCommand(query, conn)
+
+            Dim reader As SqlDataReader = cmd.ExecuteReader()
+
+
+            While reader.Read()
+                servicio.Add(ConvertirServicio(reader, False))
+
+            End While
+        End Using
+
+        Return servicio
+
+
     End Function
 
 

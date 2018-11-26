@@ -45,7 +45,7 @@ Partial Class vtaServicioNuevoDes
             cmdGrabar.Text = "Grabar " & lbtResEspanol.Text
             ViewState("sOpc") = "Res1"
             LeeServicio()
-            LeeImg()
+            'LeeImg()
         End If
         '        With cmdGrabar
         '.Attributes.Add("onClick", "getHTML()")
@@ -82,19 +82,19 @@ Partial Class vtaServicioNuevoDes
     End Sub
 
 
-    Private Sub LeeImg()
-        Dim ds As New DataSet
-        ds = objServicio.CargaImg(ViewState("NroServicio"))
+    'Private Sub LeeImg()
+    '    Dim ds As New DataSet
+    '    ds = objServicio.CargaImg(ViewState("NroServicio"))
 
-        dv = New DataView(ds.Tables(0))
+    '    dv = New DataView(ds.Tables(0))
 
 
-        dv.Sort = ViewState("Imagen2")
-        'dlgImg.DataKeyField = "dlgImg"
-        dlgImg.DataSource = dv
-        dlgImg.DataBind()
+    '    dv.Sort = ViewState("Imagen2")
+    '    'dlgImg.DataKeyField = "dlgImg"
+    '    dlgImg.DataSource = dv
+    '    dlgImg.DataBind()
 
-    End Sub
+    'End Sub
 
     Private Sub cmdGrabar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdGrabar.Click
         lblmsg.Text = ""
@@ -207,7 +207,7 @@ Partial Class vtaServicioNuevoDes
 
         End If
 
-        LeeImg()
+        'LeeImg()
 
      
 

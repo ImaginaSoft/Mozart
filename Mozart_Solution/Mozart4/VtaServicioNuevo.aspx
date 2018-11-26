@@ -6,6 +6,18 @@
 <head runat="server">
     <title>Página sin título</title>
 		<LINK href="Styles.css" type="text/css" rel="stylesheet">
+	<style type="text/css">
+        .style1
+        {
+            width: 663px;
+            height: 32px;
+        }
+        .style2
+        {
+            width: 50px;
+            height: 32px;
+        }
+    </style>
 	</HEAD>
 	<body MS_POSITIONING="GridLayout">
 		<form id="Form1" method="post" runat="server">
@@ -64,8 +76,8 @@
                                         </TD>
 							</TR>
 							<TR>
-								<TD style="WIDTH: 663px">Valoración HTL</TD>
-								<TD style="WIDTH: 50px">
+								<TD class="style1">Valoración HTL</TD>
+								<TD class="style2">
                                     <asp:dropdownlist id="ddlValor" runat="server" DataValueField="CodCiudad" DataTextField="NomCiudad"
 										Width="50px">
                                         <asp:ListItem>0</asp:ListItem>
@@ -215,21 +227,16 @@
 				</TR>
 				<TR>
 					<TD align="left" class="style3">
-					    <asp:TextBox ID="txtImagen01" runat="server" TextMode="MultiLine"></asp:TextBox>
                         <br />
-                        <asp:TextBox ID="txtImagen02" runat="server" TextMode="MultiLine"></asp:TextBox>
-                        <br />
-                        <asp:TextBox ID="txtImagen03" runat="server" TextMode="MultiLine"></asp:TextBox>
+                        <asp:TextBox ID="txtImagen01" runat="server"></asp:TextBox>
                         <asp:GridView ID="dlgImg" runat="server" AutoGenerateColumns="False" 
-                            CellPadding="4" ForeColor="#333333" GridLines="None" 
-                            DataSourceID="SqlDataSource1">
+                            CellPadding="4" ForeColor="#333333" GridLines="None">
                             <RowStyle BackColor="#EFF3FB" />
                             <Columns>                               
                             
-                                <asp:TemplateField HeaderText="Imagen2">
+                                <asp:TemplateField HeaderText="Imagen1">
                                     <ItemTemplate>
-                                        <img alt="" height="200px"  
-                                            width="200px" />
+                                         <asp:Image ID="Imagen" runat="server" Width="100px" Height="100px" />
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 
@@ -241,7 +248,6 @@
                             <EditRowStyle BackColor="#2461BF" />
                             <AlternatingRowStyle BackColor="White" />
                         </asp:GridView>
-                        <asp:SqlDataSource ID="SqlDataSource1" runat="server"></asp:SqlDataSource>
                     </TD>
 				</TR>
 			</TABLE>
