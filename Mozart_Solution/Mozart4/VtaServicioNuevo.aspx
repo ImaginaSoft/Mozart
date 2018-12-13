@@ -200,7 +200,8 @@
 					</TD>
 				</TR>
 				<TR>
-					<TD style="HEIGHT: 25px"><asp:button id="cmbGrabar" runat="server" Width="77px" Text="Grabar" Visible="False"></asp:button></TD>
+					<TD style="HEIGHT: 25px"><asp:button id="cmbGrabar" runat="server" Width="77px" 
+                            Text="Grabar" Visible="False" Height="26px"></asp:button></TD>
 				</TR>
 				<TR>
 					<TD>&nbsp;
@@ -227,18 +228,17 @@
 				</TR>
 				<TR>
 					<TD align="left" class="style3">
+                        <asp:Image ID="fotox" runat="server" Height="155px" Width="265px" />
                         <br />
-                        <asp:TextBox ID="txtImagen01" runat="server"></asp:TextBox>
+                        <br />
+                        <br />
                         <asp:GridView ID="dlgImg" runat="server" AutoGenerateColumns="False" 
                             CellPadding="4" ForeColor="#333333" GridLines="None">
                             <RowStyle BackColor="#EFF3FB" />
                             <Columns>                               
                             
-                                <asp:TemplateField HeaderText="Imagen1">
-                                    <ItemTemplate>
-                                         <asp:Image ID="Imagen" runat="server" Width="100px" Height="100px" />
-                                    </ItemTemplate>
-                                </asp:TemplateField>
+                                <asp:ImageField>
+                                </asp:ImageField>
                                 
                             </Columns>
                             <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />

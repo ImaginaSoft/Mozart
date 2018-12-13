@@ -82,6 +82,11 @@ Partial Class vtaServicioNuevoDes
     End Sub
 
 
+    'Private Sub CargarGrid()
+    '    dlgImg.DataSource = objServicio.CargaImg("1425")
+    '    dlgImg.DataBind()
+    'End Sub
+
     'Private Sub LeeImg()
     '    Dim ds As New DataSet
     '    ds = objServicio.CargaImg(ViewState("NroServicio"))

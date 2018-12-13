@@ -2,8 +2,10 @@
 Imports cmpRutinas
 Imports cmpTabla
 Imports cmpSeguridad
-
+Imports System.Windows.Forms
 Imports System.IO
+Imports System
+Imports System.Drawing
 Imports System.Collections.Generic
 Imports System.Linq
 Imports System.Web
@@ -53,16 +55,48 @@ Partial Class VtaServicioNuevo
     End Sub
 
 
+    'Private Sub CargarGrid()
+    '    Dim ds As New DataSet
+    '    ds = objServicio.CargaImg2("10445")
+    '    'Dim base64String As String = Convert.ToBase64String(ds.i, 0, servicio.Imagen.Length)
+    'End Sub
+
+
+
+
+
     Private Sub CargarGrid()
-        Dim ds As New DataSet
-        ds = objServicio.CargaImg2("10445")
-        'Dim base64String As String = Convert.ToBase64String(ds.i, 0, servicio.Imagen.Length)
+        Dim ListaIMG As List(Of clsServicio) = clsServicio.CargaImg("21111")
+
+        Dim Items As clsServicio
+
+        Dim ColImage As New DataGridViewImageColumn
+
+        Dim tabla As New DataTable
+
+        tabla.Columns.Add(New DataColumn("Img"))
+
+        For Each Items In ListaIMG
+            ColImage = New DataGridViewImageColumn
+            ColImage.HeaderText = "Img"
+            ColImage.ImageLayout = DataGridViewImageCellLayout.Stretch
+            ColImage.Image = clsServicio.ConvertirImagen(Items.Imagen3)
+
+            fotox.ImageUrl = "data:image/jpeg;base64," & clsServicio.ConvertirImagen1(Items.Imagen3)
+
+            tabla.Rows.Add(ColImage)
+        Next
+
+
+        dlgImg.DataSource = tabla
+        dlgImg.DataBind()
     End Sub
 
-    'Private Sub CargarGrid()
-    '    dlgImg.DataSource = clsServicio.CargaImg("1425")
-    '    dlgImg.DataBind()
-    'End Sub
+
+
+    Protected Sub dlgImg_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles dlgImg.Load
+
+    End Sub
 
     Private Sub CargaProveedor()
         Dim objProveedor As New clsProveedor
@@ -528,5 +562,4 @@ Partial Class VtaServicioNuevo
         'txtMontoFijo.Text = " "
         'txtMontoFijo.Enabled = False
     End Sub
-
 End Class

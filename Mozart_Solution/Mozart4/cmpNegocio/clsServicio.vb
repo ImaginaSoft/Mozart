@@ -1,5 +1,7 @@
 Imports System
 Imports System.Data
+Imports System.IO
+Imports System.Drawing
 Imports System.Data.SqlClient
 Imports Microsoft.ApplicationBlocks.Data
 Imports cmpRutinas
@@ -836,32 +838,35 @@ Public Class clsServicio
     End Function
 
 
-    Private Shared Function ConvertirServicio(ByVal reader As IDataReader, ByVal cargarRelaciones As Boolean) As clsServicio
+    Public Shared Function ConvertirImagen(ByVal Imagen As Byte()) As Image
 
-        Dim servicio As New clsServicio()
+        Dim Picture As Image
 
-        servicio.NroServicio = Convert.ToInt32(reader("NroServicio"))
+        Dim ms As MemoryStream = New MemoryStream(Imagen)
+        Picture = Image.FromStream(ms)
 
-        Dim base64String As String = Convert.ToBase64String(servicio.Imagen, 0, servicio.Imagen.Length)
+        Return Picture
+    End Function
 
-        If reader("Imagen1") IsNot DBNull.Value Then
-            servicio.Imagen = DirectCast(reader("Imagen1"), Byte())
+    Public Shared Function ConvertirImagen1(ByVal Imagen As Byte()) As String
 
+        Dim Picture As Image
 
-        End If
+        Dim ms As String = Convert.ToBase64String(Imagen, 0, Imagen.Length)
 
-        Return servicio
+        Return ms
     End Function
 
     Public Shared Function CargaImg(ByVal pNroServicio As String) As List(Of clsServicio)
 
         Dim servicio As New List(Of clsServicio)()
+        Dim Fila As New clsServicio()
 
         Using conn As New SqlConnection(System.Configuration.ConfigurationManager.AppSettings("cnMozart"))
 
             conn.Open()
 
-            Dim query As String = "select NroServicio,Imagen1 from MSERVICIO where NroServicio = 10445"
+            Dim query As String = "select NroServicio,Imagen3 from MSERVICIO where NroServicio = 21111"
 
             Dim cmd As New SqlCommand(query, conn)
 
@@ -869,7 +874,12 @@ Public Class clsServicio
 
 
             While reader.Read()
-                servicio.Add(ConvertirServicio(reader, False))
+                Fila = New clsServicio()
+
+                Fila.NroServicio = Convert.ToInt32(reader("NroServicio"))
+                Fila.Imagen3 = CType(reader("Imagen3"), Byte())
+
+                servicio.Add(Fila)
 
             End While
         End Using

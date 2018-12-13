@@ -166,7 +166,7 @@
                                 <asp:TemplateField HeaderText="Imagen2">
                                     <ItemTemplate>
                                         <img alt="" height="200px"  
-                                            width="200px" />
+                                            width="200px"  />
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 
