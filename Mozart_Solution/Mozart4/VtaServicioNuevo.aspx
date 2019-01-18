@@ -232,22 +232,6 @@
                         <br />
                         <br />
                         <br />
-                        <asp:GridView ID="dlgImg" runat="server" AutoGenerateColumns="False" 
-                            CellPadding="4" ForeColor="#333333" GridLines="None">
-                            <RowStyle BackColor="#EFF3FB" />
-                            <Columns>                               
-                            
-                                <asp:ImageField>
-                                </asp:ImageField>
-                                
-                            </Columns>
-                            <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
-                            <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
-                            <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
-                            <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
-                            <EditRowStyle BackColor="#2461BF" />
-                            <AlternatingRowStyle BackColor="White" />
-                        </asp:GridView>
                     </TD>
 				</TR>
 			</TABLE>

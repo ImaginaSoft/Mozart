@@ -88,15 +88,15 @@ Partial Class VtaServicioNuevo
         Next
 
 
-        dlgImg.DataSource = tabla
-        dlgImg.DataBind()
+        'dlgImg.DataSource = tabla
+        'dlgImg.DataBind()
     End Sub
 
 
 
-    Protected Sub dlgImg_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles dlgImg.Load
+    'Protected Sub dlgImg_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles dlgImg.Load
 
-    End Sub
+    'End Sub
 
     Private Sub CargaProveedor()
         Dim objProveedor As New clsProveedor
