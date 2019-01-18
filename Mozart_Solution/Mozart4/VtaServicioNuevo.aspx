@@ -3,7 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
+<head id="Head1" runat="server">
     <title>Página sin título</title>
 		<LINK href="Styles.css" type="text/css" rel="stylesheet">
 	<style type="text/css">
@@ -74,6 +74,12 @@
                                         Width="582px" MaxLength="200" ></asp:textbox>
                                         
                                         </TD>
+							</TR>
+							<TR>
+								<TD style="WIDTH: 663px">Descripción HTL</TD>
+								<TD style="WIDTH: 350px"><asp:textbox id="txtDesHTL" runat="server" 
+                                        Width="582px" MaxLength="300" Height="56px"
+										TextMode="MultiLine"></asp:textbox></TD>
 							</TR>
 							<TR>
 								<TD class="style1">Valoración HTL</TD>
@@ -228,7 +234,27 @@
 				</TR>
 				<TR>
 					<TD align="left" class="style3">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <br />
+                        Imagen 01:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <br />
+                        <br />
                         <asp:Image ID="fotox" runat="server" Height="155px" Width="265px" />
+                        &nbsp;<br />
+                        <br />
+                        Imagen 02:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <br />
+                        <br />
+                        <asp:Image ID="fotox02" runat="server" Height="155px" Width="265px" />
+                        &nbsp;<br />
+&nbsp;<br />
+                        Imagen 03:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <br />
+                        <br />
+                        <asp:Image ID="fotox03" runat="server" Height="155px" Width="265px" />
+                        <br />
+                        <br />
+                        <br />
                         <br />
                         <br />
                         <br />

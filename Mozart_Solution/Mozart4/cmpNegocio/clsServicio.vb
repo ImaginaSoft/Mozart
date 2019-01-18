@@ -54,6 +54,7 @@ Public Class clsServicio
     Private sValoracionHTL As String
     Private sNombreHTL As String
     Private sTelefono As String
+    Private sDesHTL As String
 
     Property NroServicio() As Integer
         Get
@@ -413,7 +414,7 @@ Public Class clsServicio
             sNombreHTL = CStr(value)
         End Set
     End Property
-   
+
 
     Public Property Telefono() As String
         Get
@@ -421,6 +422,15 @@ Public Class clsServicio
         End Get
         Set(ByVal value As String)
             sTelefono = CStr(value)
+        End Set
+    End Property
+
+    Property DesHTL() As String
+        Get
+            Return sDesHTL
+        End Get
+        Set(ByVal Value As String)
+            sDesHTL = CStr(Value)
         End Set
     End Property
 
@@ -590,6 +600,8 @@ Public Class clsServicio
 
         cd.Parameters.Add("@NombreHTL", SqlDbType.Char, 150).Value = sNombreHTL
 
+        cd.Parameters.Add("@DesHTL", SqlDbType.VarChar, 250).Value = sDesHTL
+
 
         Try
             cn.Open()
@@ -611,8 +623,6 @@ Public Class clsServicio
 
     Function Editar(ByVal pNroServicio As Integer, ByVal pEstado As String) As String
         sMsg = "No existe Servicio " & CStr(pNroServicio)
-
-
 
         Dim cn As System.Data.SqlClient.SqlConnection = New System.Data.SqlClient.SqlConnection(System.Configuration.ConfigurationManager.AppSettings("cnMozart"))
         Dim cd As New SqlCommand()
@@ -750,6 +760,15 @@ Public Class clsServicio
                 End If
 
 
+                If IsDBNull(dr.GetValue(dr.GetOrdinal("DesHTL"))) Then
+
+                    sDesHTL = ""
+
+                Else
+                    sDesHTL = dr.GetValue(dr.GetOrdinal("DesHTL"))
+                End If
+
+
                 sMsg = "OK"
             End While
             dr.Close()
@@ -848,14 +867,21 @@ Public Class clsServicio
         Return Picture
     End Function
 
-    Public Shared Function ConvertirImagen1(ByVal Imagen As Byte()) As String
+    Public Shared Function ConvertirImagen3(ByVal Imagen3 As Byte()) As String
 
-        Dim Picture As Image
-
-        Dim ms As String = Convert.ToBase64String(Imagen, 0, Imagen.Length)
+        Dim ms As String = Convert.ToBase64String(Imagen3, 0, Imagen3.Length)
 
         Return ms
     End Function
+
+    Public Shared Function ConvertirImagen2(ByVal Imagen2 As Byte()) As String
+
+        Dim ms As String = Convert.ToBase64String(Imagen2, 0, Imagen2.Length)
+
+        Return ms
+    End Function
+
+
 
     Public Shared Function CargaImg(ByVal pNroServicio As String) As List(Of clsServicio)
 
@@ -866,7 +892,7 @@ Public Class clsServicio
 
             conn.Open()
 
-            Dim query As String = "select NroServicio,Imagen3 from MSERVICIO where NroServicio = 21111"
+            Dim query As String = "select Imagen1,Imagen2,Imagen3 from MSERVICIO where NroServicio = 21111"
 
             Dim cmd As New SqlCommand(query, conn)
 
@@ -876,7 +902,9 @@ Public Class clsServicio
             While reader.Read()
                 Fila = New clsServicio()
 
-                Fila.NroServicio = Convert.ToInt32(reader("NroServicio"))
+                'Fila.NroServicio = Convert.ToInt32(reader("NroServicio"))
+                Fila.Imagen = CType(reader("Imagen1"), Byte())
+                Fila.Imagen2 = CType(reader("Imagen2"), Byte())
                 Fila.Imagen3 = CType(reader("Imagen3"), Byte())
 
                 servicio.Add(Fila)

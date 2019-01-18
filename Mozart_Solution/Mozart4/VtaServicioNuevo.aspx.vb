@@ -80,9 +80,13 @@ Partial Class VtaServicioNuevo
             ColImage = New DataGridViewImageColumn
             ColImage.HeaderText = "Img"
             ColImage.ImageLayout = DataGridViewImageCellLayout.Stretch
+            ColImage.Image = clsServicio.ConvertirImagen(Items.Imagen)
+            ColImage.Image = clsServicio.ConvertirImagen(Items.Imagen2)
             ColImage.Image = clsServicio.ConvertirImagen(Items.Imagen3)
 
-            fotox.ImageUrl = "data:image/jpeg;base64," & clsServicio.ConvertirImagen1(Items.Imagen3)
+            fotox.ImageUrl = "data:image/jpeg;base64," & clsServicio.ConvertirImagen3(Items.Imagen)
+            fotox02.ImageUrl = "data:image/jpeg;base64," & clsServicio.ConvertirImagen3(Items.Imagen2)
+            fotox03.ImageUrl = "data:image/jpeg;base64," & clsServicio.ConvertirImagen3(Items.Imagen3)
 
             tabla.Rows.Add(ColImage)
         Next
@@ -141,6 +145,10 @@ Partial Class VtaServicioNuevo
             If objServicio.DesProveedor IsNot Nothing Then
                 txtDesProveedor.Text = objServicio.DesProveedor.Trim
 
+            End If
+
+            If objServicio.DesObservacion IsNot Nothing Then
+                TxtObservaciones.Text = objServicio.DesObservacion.Trim
             End If
 
             If objServicio.DesObservacion IsNot Nothing Then
@@ -244,17 +252,9 @@ Partial Class VtaServicioNuevo
 
             txtNombreHTL.Text = objServicio.NombreHTL.Trim
 
-            'If objServicio.Imagen IsNot Nothing Then
-            '    txtImagen01.Text = objServicio.Imagen
-            'End If
-
-            'If objServicio.Imagen IsNot Nothing Then
-            '    txtImagen02.Text = objServicio.Imagen2.ToString
-            'End If
-
-            'If objServicio.Imagen IsNot Nothing Then
-            '    txtImagen03.Text = objServicio.Imagen3.ToString
-            'End If
+            If objServicio.DesHTL IsNot Nothing Then
+                txtDesHTL.Text = objServicio.DesHTL.Trim
+            End If
 
             ddlValor.Text = objServicio.Valoracion.Trim
 
@@ -443,6 +443,7 @@ Partial Class VtaServicioNuevo
 
         objServicio.Valoracion = ddlValor.Text
         objServicio.NombreHTL = txtNombreHTL.Text
+        objServicio.DesHTL = txtDesHTL.Text
 
         lblMsg.Text = objServicio.Grabar
         If Mid(lblMsg.Text.Trim, 1, 2) = "OK" Then
