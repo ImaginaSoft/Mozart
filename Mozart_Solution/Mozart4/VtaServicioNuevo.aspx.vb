@@ -31,6 +31,8 @@ Partial Class VtaServicioNuevo
 
             CargaTipoServicio()
             CargaCiudad()
+
+
             CargarGrid()
 
             ViewState("Opcion") = Request.Params("Opcion")
@@ -55,18 +57,10 @@ Partial Class VtaServicioNuevo
     End Sub
 
 
-    'Private Sub CargarGrid()
-    '    Dim ds As New DataSet
-    '    ds = objServicio.CargaImg2("10445")
-    '    'Dim base64String As String = Convert.ToBase64String(ds.i, 0, servicio.Imagen.Length)
-    'End Sub
-
-
-
-
 
     Private Sub CargarGrid()
-        Dim ListaIMG As List(Of clsServicio) = clsServicio.CargaImg("21111")
+
+        Dim ListaIMG As List(Of clsServicio) = clsServicio.CargaImg(Request.Params("NroServicio"))
 
         Dim Items As clsServicio
 
@@ -384,7 +378,7 @@ Partial Class VtaServicioNuevo
             Using reader2 As New BinaryReader(btnImportar2.PostedFile.InputStream)
                 Dim image2 As Byte() = reader2.ReadBytes(btnImportar2.PostedFile.ContentLength)
                 objServicio.Imagen2 = image2
-                objServicio.FlagImg02 = ""
+                objServicio.FlagImg02 = 1
             End Using
 
         Else

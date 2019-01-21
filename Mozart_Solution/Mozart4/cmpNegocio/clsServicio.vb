@@ -581,7 +581,7 @@ Public Class clsServicio
             cd.Parameters.Add("@FlagImg02", SqlDbType.Char, 1).Value = ""
         Else
             cd.Parameters.Add("@Imagen2", SqlDbType.Image).Value = m_Imagen2
-            cd.Parameters.Add("@FlagImg02", SqlDbType.Char, 1).Value = ""
+            cd.Parameters.Add("@FlagImg02", SqlDbType.Char, 1).Value = sFlagImg02
         End If
 
         If m_Imagen3 Is Nothing Then
@@ -892,7 +892,8 @@ Public Class clsServicio
 
             conn.Open()
 
-            Dim query As String = "select Imagen1,Imagen2,Imagen3 from MSERVICIO where NroServicio = 21111"
+           
+            Dim query As String = "select Imagen1,Imagen2,Imagen3 from MSERVICIO where NroServicio = '" & pNroServicio & "'"
 
             Dim cmd As New SqlCommand(query, conn)
 
@@ -902,7 +903,7 @@ Public Class clsServicio
             While reader.Read()
                 Fila = New clsServicio()
 
-                'Fila.NroServicio = Convert.ToInt32(reader("NroServicio"))
+
                 Fila.Imagen = CType(reader("Imagen1"), Byte())
                 Fila.Imagen2 = CType(reader("Imagen2"), Byte())
                 Fila.Imagen3 = CType(reader("Imagen3"), Byte())
