@@ -115,3 +115,12 @@ B:\IMAGINA SOFTWARE\MOZART_20018\Mozartv02\Mozart\Mozart_Solution\Mozart4\cmpRut
 B:\IMAGINA SOFTWARE\MOZART_20018\Mozartv02\Mozart\Mozart_Solution\Mozart4\cmpRutinas\obj\Debug\cmpRutinas.dll
 B:\IMAGINA SOFTWARE\MOZART_20018\Mozartv02\Mozart\Mozart_Solution\Mozart4\cmpRutinas\obj\Debug\cmpRutinas.xml
 B:\IMAGINA SOFTWARE\MOZART_20018\Mozartv02\Mozart\Mozart_Solution\Mozart4\cmpRutinas\obj\Debug\cmpRutinas.pdb
+C:\PROYECTOS\PENTA\Mozart\Mozart_Solution\Mozart4\cmpRutinas\bin\Debug\cmpRutinas.dll
+C:\PROYECTOS\PENTA\Mozart\Mozart_Solution\Mozart4\cmpRutinas\bin\Debug\cmpRutinas.pdb
+C:\PROYECTOS\PENTA\Mozart\Mozart_Solution\Mozart4\cmpRutinas\bin\Debug\cmpRutinas.xml
+C:\PROYECTOS\PENTA\Mozart\Mozart_Solution\Mozart4\cmpRutinas\obj\Debug\ResolveAssemblyReference.cache
+C:\PROYECTOS\PENTA\Mozart\Mozart_Solution\Mozart4\cmpRutinas\obj\Debug\cmpRutinas.Resources.resources
+C:\PROYECTOS\PENTA\Mozart\Mozart_Solution\Mozart4\cmpRutinas\obj\Debug\cmpRutinas.vbproj.GenerateResource.Cache
+C:\PROYECTOS\PENTA\Mozart\Mozart_Solution\Mozart4\cmpRutinas\obj\Debug\cmpRutinas.dll
+C:\PROYECTOS\PENTA\Mozart\Mozart_Solution\Mozart4\cmpRutinas\obj\Debug\cmpRutinas.xml
+C:\PROYECTOS\PENTA\Mozart\Mozart_Solution\Mozart4\cmpRutinas\obj\Debug\cmpRutinas.pdb

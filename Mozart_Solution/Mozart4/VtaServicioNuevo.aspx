@@ -76,11 +76,25 @@
                                         </TD>
 							</TR>
 							<TR>
-								<TD style="WIDTH: 663px">Descripción HTL</TD>
+								<TD style="WIDTH: 663px">Descripción HTL Español</TD>
 								<TD style="WIDTH: 350px"><asp:textbox id="txtDesHTL" runat="server" 
                                         Width="582px" MaxLength="300" Height="56px"
 										TextMode="MultiLine"></asp:textbox></TD>
 							</TR>
+						
+							<TR>
+								<TD style="WIDTH: 663px">Descripción HTL Ingles</TD>
+								<TD style="WIDTH: 350px"><asp:textbox id="txtDesHTLI" runat="server" 
+                                        Width="582px" MaxLength="300" Height="56px"
+										TextMode="MultiLine"></asp:textbox></TD>
+							</TR>
+							<TR>
+								<TD style="WIDTH: 663px">Descripción HTL Portugués</TD>
+								<TD style="WIDTH: 350px"><asp:textbox id="txtDesHTLP" runat="server" 
+                                        Width="582px" MaxLength="300" Height="56px"
+										TextMode="MultiLine"></asp:textbox></TD>
+							</TR>
+							
 							<TR>
 								<TD class="style1">Valoración HTL</TD>
 								<TD class="style2">

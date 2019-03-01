@@ -156,3 +156,15 @@ B:\IMAGINA SOFTWARE\MOZART_20018\Mozartv02\Mozart\Mozart_Solution\Mozart4\cmpTab
 B:\IMAGINA SOFTWARE\MOZART_20018\Mozartv02\Mozart\Mozart_Solution\Mozart4\cmpTabla\obj\Debug\cmpTabla.dll
 B:\IMAGINA SOFTWARE\MOZART_20018\Mozartv02\Mozart\Mozart_Solution\Mozart4\cmpTabla\obj\Debug\cmpTabla.xml
 B:\IMAGINA SOFTWARE\MOZART_20018\Mozartv02\Mozart\Mozart_Solution\Mozart4\cmpTabla\obj\Debug\cmpTabla.pdb
+C:\PROYECTOS\PENTA\Mozart\Mozart_Solution\Mozart4\cmpTabla\bin\Debug\cmpTabla.dll
+C:\PROYECTOS\PENTA\Mozart\Mozart_Solution\Mozart4\cmpTabla\bin\Debug\cmpTabla.pdb
+C:\PROYECTOS\PENTA\Mozart\Mozart_Solution\Mozart4\cmpTabla\bin\Debug\cmpTabla.xml
+C:\PROYECTOS\PENTA\Mozart\Mozart_Solution\Mozart4\cmpTabla\bin\Debug\cmpRutinas.dll
+C:\PROYECTOS\PENTA\Mozart\Mozart_Solution\Mozart4\cmpTabla\bin\Debug\cmpRutinas.pdb
+C:\PROYECTOS\PENTA\Mozart\Mozart_Solution\Mozart4\cmpTabla\bin\Debug\cmpRutinas.xml
+C:\PROYECTOS\PENTA\Mozart\Mozart_Solution\Mozart4\cmpTabla\obj\Debug\ResolveAssemblyReference.cache
+C:\PROYECTOS\PENTA\Mozart\Mozart_Solution\Mozart4\cmpTabla\obj\Debug\cmpTabla.Resources.resources
+C:\PROYECTOS\PENTA\Mozart\Mozart_Solution\Mozart4\cmpTabla\obj\Debug\cmpTabla.vbproj.GenerateResource.Cache
+C:\PROYECTOS\PENTA\Mozart\Mozart_Solution\Mozart4\cmpTabla\obj\Debug\cmpTabla.dll
+C:\PROYECTOS\PENTA\Mozart\Mozart_Solution\Mozart4\cmpTabla\obj\Debug\cmpTabla.xml
+C:\PROYECTOS\PENTA\Mozart\Mozart_Solution\Mozart4\cmpTabla\obj\Debug\cmpTabla.pdb

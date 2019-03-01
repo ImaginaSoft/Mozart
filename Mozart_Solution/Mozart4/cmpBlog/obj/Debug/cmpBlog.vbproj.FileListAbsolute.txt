@@ -117,3 +117,12 @@ B:\IMAGINA SOFTWARE\MOZART_20018\Mozartv02\Mozart\Mozart_Solution\Mozart4\cmpBlo
 B:\IMAGINA SOFTWARE\MOZART_20018\Mozartv02\Mozart\Mozart_Solution\Mozart4\cmpBlog\obj\Debug\cmpBlog.dll
 B:\IMAGINA SOFTWARE\MOZART_20018\Mozartv02\Mozart\Mozart_Solution\Mozart4\cmpBlog\obj\Debug\cmpBlog.xml
 B:\IMAGINA SOFTWARE\MOZART_20018\Mozartv02\Mozart\Mozart_Solution\Mozart4\cmpBlog\obj\Debug\cmpBlog.pdb
+C:\PROYECTOS\PENTA\Mozart\Mozart_Solution\Mozart4\cmpBlog\bin\Debug\cmpBlog.dll
+C:\PROYECTOS\PENTA\Mozart\Mozart_Solution\Mozart4\cmpBlog\bin\Debug\cmpBlog.pdb
+C:\PROYECTOS\PENTA\Mozart\Mozart_Solution\Mozart4\cmpBlog\bin\Debug\cmpBlog.xml
+C:\PROYECTOS\PENTA\Mozart\Mozart_Solution\Mozart4\cmpBlog\obj\Debug\ResolveAssemblyReference.cache
+C:\PROYECTOS\PENTA\Mozart\Mozart_Solution\Mozart4\cmpBlog\obj\Debug\cmpBlog.Resources.resources
+C:\PROYECTOS\PENTA\Mozart\Mozart_Solution\Mozart4\cmpBlog\obj\Debug\cmpBlog.vbproj.GenerateResource.Cache
+C:\PROYECTOS\PENTA\Mozart\Mozart_Solution\Mozart4\cmpBlog\obj\Debug\cmpBlog.dll
+C:\PROYECTOS\PENTA\Mozart\Mozart_Solution\Mozart4\cmpBlog\obj\Debug\cmpBlog.xml
+C:\PROYECTOS\PENTA\Mozart\Mozart_Solution\Mozart4\cmpBlog\obj\Debug\cmpBlog.pdb

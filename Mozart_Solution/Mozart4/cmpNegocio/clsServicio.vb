@@ -55,6 +55,8 @@ Public Class clsServicio
     Private sNombreHTL As String
     Private sTelefono As String
     Private sDesHTL As String
+    Private sDesHTLI As String
+    Private sDesHTLP As String
 
     Property NroServicio() As Integer
         Get
@@ -434,6 +436,24 @@ Public Class clsServicio
         End Set
     End Property
 
+    Property DesHTLI() As String
+        Get
+            Return sDesHTLI
+        End Get
+        Set(ByVal Value As String)
+            sDesHTLI = CStr(Value)
+        End Set
+    End Property
+
+    Property DesHTLP() As String
+        Get
+            Return sDesHTLP
+        End Get
+        Set(ByVal Value As String)
+            sDesHTLP = CStr(Value)
+        End Set
+    End Property
+
 
     Function CargaTipoAcomodacion(ByVal pNroServicio As Integer) As DataSet
         Dim ds As New DataSet
@@ -600,7 +620,11 @@ Public Class clsServicio
 
         cd.Parameters.Add("@NombreHTL", SqlDbType.Char, 150).Value = sNombreHTL
 
-        cd.Parameters.Add("@DesHTL", SqlDbType.VarChar, 250).Value = sDesHTL
+        cd.Parameters.Add("@DesHTL", SqlDbType.VarChar).Value = sDesHTL
+
+        cd.Parameters.Add("@DesHTLI", SqlDbType.VarChar).Value = sDesHTLI
+
+        cd.Parameters.Add("@DesHTLP", SqlDbType.VarChar).Value = sDesHTLP
 
 
         Try
@@ -768,6 +792,23 @@ Public Class clsServicio
                     sDesHTL = dr.GetValue(dr.GetOrdinal("DesHTL"))
                 End If
 
+                If IsDBNull(dr.GetValue(dr.GetOrdinal("DesHTLI"))) Then
+
+                    sDesHTLI = ""
+
+                Else
+                    sDesHTLI = dr.GetValue(dr.GetOrdinal("DesHTLI"))
+                End If
+
+                If IsDBNull(dr.GetValue(dr.GetOrdinal("DesHTLP"))) Then
+
+                    sDesHTLP = ""
+
+                Else
+                    sDesHTLP = dr.GetValue(dr.GetOrdinal("DesHTLP"))
+                End If
+
+
 
                 sMsg = "OK"
             End While
@@ -899,14 +940,37 @@ Public Class clsServicio
 
             Dim reader As SqlDataReader = cmd.ExecuteReader()
 
-
+            
             While reader.Read()
                 Fila = New clsServicio()
 
+                If reader("Imagen1") Is DBNull.Value Then
 
-                Fila.Imagen = CType(reader("Imagen1"), Byte())
-                Fila.Imagen2 = CType(reader("Imagen2"), Byte())
-                Fila.Imagen3 = CType(reader("Imagen3"), Byte())
+                Else
+
+                    Fila.Imagen = CType(reader("Imagen1"), Byte())
+
+
+                End If
+
+                If reader("Imagen2") Is DBNull.Value Then
+
+                Else
+
+                    Fila.Imagen2 = CType(reader("Imagen2"), Byte())
+
+
+                End If
+
+                If reader("Imagen3") Is DBNull.Value Then
+
+                Else
+
+                    Fila.Imagen3 = CType(reader("Imagen3"), Byte())
+
+
+                End If
+
 
                 servicio.Add(Fila)
 

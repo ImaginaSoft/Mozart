@@ -168,3 +168,15 @@ B:\IMAGINA SOFTWARE\MOZART_20018\Mozartv03\Mozart\Mozart_Solution\Mozart4\cmpNeg
 B:\IMAGINA SOFTWARE\MOZART_20018\Mozartv03\Mozart\Mozart_Solution\Mozart4\cmpNegocio\obj\Debug\cmpNegocio.dll
 B:\IMAGINA SOFTWARE\MOZART_20018\Mozartv03\Mozart\Mozart_Solution\Mozart4\cmpNegocio\obj\Debug\cmpNegocio.xml
 B:\IMAGINA SOFTWARE\MOZART_20018\Mozartv03\Mozart\Mozart_Solution\Mozart4\cmpNegocio\obj\Debug\cmpNegocio.pdb
+C:\PROYECTOS\PENTA\Mozart\Mozart_Solution\Mozart4\cmpNegocio\bin\Debug\cmpNegocio.dll
+C:\PROYECTOS\PENTA\Mozart\Mozart_Solution\Mozart4\cmpNegocio\bin\Debug\cmpNegocio.pdb
+C:\PROYECTOS\PENTA\Mozart\Mozart_Solution\Mozart4\cmpNegocio\bin\Debug\cmpNegocio.xml
+C:\PROYECTOS\PENTA\Mozart\Mozart_Solution\Mozart4\cmpNegocio\bin\Debug\cmpRutinas.dll
+C:\PROYECTOS\PENTA\Mozart\Mozart_Solution\Mozart4\cmpNegocio\bin\Debug\cmpRutinas.pdb
+C:\PROYECTOS\PENTA\Mozart\Mozart_Solution\Mozart4\cmpNegocio\bin\Debug\cmpRutinas.xml
+C:\PROYECTOS\PENTA\Mozart\Mozart_Solution\Mozart4\cmpNegocio\obj\Debug\ResolveAssemblyReference.cache
+C:\PROYECTOS\PENTA\Mozart\Mozart_Solution\Mozart4\cmpNegocio\obj\Debug\cmpNegocio.Resources.resources
+C:\PROYECTOS\PENTA\Mozart\Mozart_Solution\Mozart4\cmpNegocio\obj\Debug\cmpNegocio.vbproj.GenerateResource.Cache
+C:\PROYECTOS\PENTA\Mozart\Mozart_Solution\Mozart4\cmpNegocio\obj\Debug\cmpNegocio.dll
+C:\PROYECTOS\PENTA\Mozart\Mozart_Solution\Mozart4\cmpNegocio\obj\Debug\cmpNegocio.xml
+C:\PROYECTOS\PENTA\Mozart\Mozart_Solution\Mozart4\cmpNegocio\obj\Debug\cmpNegocio.pdb

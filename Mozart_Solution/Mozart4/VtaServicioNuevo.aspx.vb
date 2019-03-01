@@ -74,13 +74,35 @@ Partial Class VtaServicioNuevo
             ColImage = New DataGridViewImageColumn
             ColImage.HeaderText = "Img"
             ColImage.ImageLayout = DataGridViewImageCellLayout.Stretch
-            ColImage.Image = clsServicio.ConvertirImagen(Items.Imagen)
-            ColImage.Image = clsServicio.ConvertirImagen(Items.Imagen2)
-            ColImage.Image = clsServicio.ConvertirImagen(Items.Imagen3)
 
-            fotox.ImageUrl = "data:image/jpeg;base64," & clsServicio.ConvertirImagen3(Items.Imagen)
-            fotox02.ImageUrl = "data:image/jpeg;base64," & clsServicio.ConvertirImagen3(Items.Imagen2)
-            fotox03.ImageUrl = "data:image/jpeg;base64," & clsServicio.ConvertirImagen3(Items.Imagen3)
+            If Items.Imagen Is DBNull.Value Or Items.Imagen Is Nothing Then
+
+            Else
+                ColImage.Image = clsServicio.ConvertirImagen(Items.Imagen)
+                fotox.ImageUrl = "data:image/jpeg;base64," & clsServicio.ConvertirImagen3(Items.Imagen)
+            End If
+
+            If Items.Imagen Is DBNull.Value Or Items.Imagen Is Nothing Then
+
+            Else
+                ColImage.Image = clsServicio.ConvertirImagen(Items.Imagen2)
+                fotox02.ImageUrl = "data:image/jpeg;base64," & clsServicio.ConvertirImagen3(Items.Imagen2)
+            End If
+
+            If Items.Imagen Is DBNull.Value Or Items.Imagen Is Nothing Then
+
+            Else
+                ColImage.Image = clsServicio.ConvertirImagen(Items.Imagen3)
+                fotox03.ImageUrl = "data:image/jpeg;base64," & clsServicio.ConvertirImagen3(Items.Imagen3)
+            End If
+
+            'ColImage.Image = clsServicio.ConvertirImagen(Items.Imagen)
+            'ColImage.Image = clsServicio.ConvertirImagen(Items.Imagen2)
+            'ColImage.Image = clsServicio.ConvertirImagen(Items.Imagen3)
+
+            'fotox.ImageUrl = "data:image/jpeg;base64," & clsServicio.ConvertirImagen3(Items.Imagen)
+            'fotox02.ImageUrl = "data:image/jpeg;base64," & clsServicio.ConvertirImagen3(Items.Imagen2)
+            'fotox03.ImageUrl = "data:image/jpeg;base64," & clsServicio.ConvertirImagen3(Items.Imagen3)
 
             tabla.Rows.Add(ColImage)
         Next
@@ -248,6 +270,14 @@ Partial Class VtaServicioNuevo
 
             If objServicio.DesHTL IsNot Nothing Then
                 txtDesHTL.Text = objServicio.DesHTL.Trim
+            End If
+
+            If objServicio.DesHTLI IsNot Nothing Then
+                txtDesHTLI.Text = objServicio.DesHTLI.Trim
+            End If
+
+            If objServicio.DesHTLP IsNot Nothing Then
+                txtDesHTLP.Text = objServicio.DesHTLP.Trim
             End If
 
             ddlValor.Text = objServicio.Valoracion.Trim
@@ -425,12 +455,6 @@ Partial Class VtaServicioNuevo
         objServicio.HoraInicioServicio = txtHoraInicioReserva.Text
         objServicio.CodUsuario = Session("CodUsuario")
 
-        'objServicio.Estrella1 = objRutina.SINO(chkEstrella1.Checked)
-        'objServicio.Estrella2 = objRutina.SINO(chkEstrella2.Checked)
-        'objServicio.Estrella3 = objRutina.SINO(chkEstrella3.Checked)
-        'objServicio.Estrella4 = objRutina.SINO(chkEstrella4.Checked)
-        'objServicio.Estrella5 = objRutina.SINO(chkEstrella5.Checked)
-
         objServicio.DireccionHTL = txtDireccion.Text
         objServicio.Telefono = txtTelefono.Text
 
@@ -438,6 +462,8 @@ Partial Class VtaServicioNuevo
         objServicio.Valoracion = ddlValor.Text
         objServicio.NombreHTL = txtNombreHTL.Text
         objServicio.DesHTL = txtDesHTL.Text
+        objServicio.DesHTLI = txtDesHTLI.Text
+        objServicio.DesHTLP = txtDesHTLP.Text
 
         lblMsg.Text = objServicio.Grabar
         If Mid(lblMsg.Text.Trim, 1, 2) = "OK" Then
@@ -463,22 +489,11 @@ Partial Class VtaServicioNuevo
     End Sub
 
     Private Sub rbtPasajero_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rbtPasajero.CheckedChanged
-        'rbtMonto.Checked = False
-        'rbtPasajero.Checked = True
-        'rbtTipoHabPasajero.Checked = False
-        'rbtAjuste.Checked = False
-        'txtMontoFijo.Text = " "
-        'txtMontoFijo.Enabled = False
-        'txtPorcen.Text = " "
-        'txtPorcen.Enabled = False
+
     End Sub
 
     Private Sub rbtMonto_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rbtMonto.CheckedChanged
-        'rbtMonto.Checked = True
-        'txtMontoFijo.Enabled = True
-        'rbtPasajero.Checked = False
-        'rbtTipoHabPasajero.Checked = False
-        'rbtAjuste.Checked = False
+ 
     End Sub
 
     Private Sub rbtSI_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rbtSI.CheckedChanged
@@ -492,14 +507,7 @@ Partial Class VtaServicioNuevo
     End Sub
 
     Private Sub rbtAjuste_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rbtAjuste.CheckedChanged
-        'rbtMonto.Checked = False
-        'rbtPasajero.Checked = False
-        'rbtTipoHabPasajero.Checked = False
-        'rbtAjuste.Checked = True
-        'txtMontoFijo.Text = " "
-        'txtMontoFijo.Enabled = False
-        'txtPorcen.Text = " "
-        'txtPorcen.Enabled = False
+    
     End Sub
 
     Private Sub lbtDetalle_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
