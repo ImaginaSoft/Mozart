@@ -65,7 +65,7 @@ Partial Class VtaPropuestaServicio
             lblMsg.Text = CStr(dgServicio.Items.Count) + " Servicio(s)"
         End If
 
-        If Viewstate("StsPropuesta") = "V" Then
+        If ViewState("StsPropuesta") = "V" Then
             cmdGrabar.Visible = False
             dgServicio.Columns(0).Visible = False
             dgServicio.Columns(13).Visible = False
@@ -74,7 +74,7 @@ Partial Class VtaPropuestaServicio
             Return
         End If
 
-        If Viewstate("FlagPublica") = "S" Then
+        If ViewState("FlagPublica") = "S" Then
             cmdGrabar.Visible = False
             dgServicio.Columns(0).Visible = False
             dgServicio.Columns(13).Visible = False

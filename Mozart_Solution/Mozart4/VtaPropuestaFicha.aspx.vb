@@ -209,19 +209,41 @@ Partial Class VtaPropuestaFicha
         Dim URL_latajourneys As String = System.Configuration.ConfigurationManager.AppSettings("URL_latajourneys")
 
         If ucPropuesta1.CodZonaVta = "PER" Then
-            Response.Redirect(URL_perutourism & "/ilogin.aspx?O=M&ID=" & ucPropuesta1.IDCliente)
+
+            'Response.Redirect(URL_perutourism & "/ilogin.aspx?O=M&ID=" & ucPropuesta1.IDCliente)
+
+            Dim URL As String = URL_perutourism & "/" & ucPropuesta1.IDCliente
+            Response.Write("<script type='text/javascript'>detailedresults=window.open('" & URL & "');</script>")
+
+
             'Response.Redirect("http://penta/peru4me/ilogin.aspx?ID=" & ucPropuesta1.IDCliente)
         ElseIf ucPropuesta1.CodZonaVta = "ECU" Then
-            Response.Redirect(URL_galapagostourism & "/ilogin.aspx?O=M&ID=" & ucPropuesta1.IDCliente)
+            'Response.Redirect(URL_galapagostourism & "/ilogin.aspx?O=M&ID=" & ucPropuesta1.IDCliente)
+
+            Dim URL As String = URL_galapagostourism & "/" & ucPropuesta1.IDCliente
+            Response.Write("<script type='text/javascript'>detailedresults=window.open('" & URL & "');</script>")
+
             'Response.Redirect("http://penta/ecua4me/ilogin.aspx?ID=" & ucPropuesta1.IDCliente)
         ElseIf ucPropuesta1.CodZonaVta = "CHL" Then
-            Response.Redirect(URL_chiletourism & "/ilogin.aspx?O=M&ID=" & ucPropuesta1.IDCliente)
+            'Response.Redirect(URL_chiletourism & "/ilogin.aspx?O=M&ID=" & ucPropuesta1.IDCliente)
+
+            Dim URL As String = URL_galapagostourism & "/" & ucPropuesta1.IDCliente
+            Response.Write("<script type='text/javascript'>detailedresults=window.open('" & URL & "');</script>")
+
             'Response.Redirect("http://penta/chile4me/ilogin.aspx?ID=" & ucPropuesta1.IDCliente)
         ElseIf ucPropuesta1.CodZonaVta = "GAY" Then
-            Response.Redirect(URL_gayperutourism & "/ilogin.aspx?O=M&ID=" & ucPropuesta1.IDCliente)
+            'Response.Redirect(URL_gayperutourism & "/ilogin.aspx?O=M&ID=" & ucPropuesta1.IDCliente)
+
+            Dim URL As String = URL_gayperutourism & "/" & ucPropuesta1.IDCliente
+            Response.Write("<script type='text/javascript'>detailedresults=window.open('" & URL & "');</script>")
+
             'Response.Redirect("http://penta/chile4me/ilogin.aspx?ID=" & ucPropuesta1.IDCliente)
         ElseIf ucPropuesta1.CodZonaVta = "LAJ" Then
-            Response.Redirect(URL_latajourneys & "/ilogin.aspx?O=M&ID=" & ucPropuesta1.IDCliente)
+
+            Dim URL As String = URL_latajourneys & "/" & ucPropuesta1.IDCliente
+            Response.Write("<script type='text/javascript'>detailedresults=window.open('" & URL & "');</script>")
+
+            'Response.Redirect(URL_latajourneys & "/ilogin.aspx?O=M&ID=" & ucPropuesta1.IDCliente)
         End If
     End Sub
 
