@@ -110,8 +110,8 @@ Partial Class ucPropuesta
                 'PRODUCCION Actual
                 If dr.GetValue(dr.GetOrdinal("CodZonaVta")) = "PER" Then
 
-                    lblPaginaPersonalizada.Text = URL_perutourism & "/" & lblIDCliente.Text
-                    'lblPaginaPersonalizada.Text = URL_perutourism & "/ilogin.aspx?ID=" & lblIDCliente.Text
+                    'lblPaginaPersonalizada.Text = URL_perutourism & "/" & lblIDCliente.Text
+                    lblPaginaPersonalizada.Text = URL_perutourism & "/ilogin.aspx?ID=" & lblIDCliente.Text
 
                     'If dr.GetValue(dr.GetOrdinal("FlagIdioma")) = "I" Then
                     '    lblPaginaPersonalizada.Text = URL_perutourism & "/ilogin.aspx?ID=" & lblIDCliente.Text

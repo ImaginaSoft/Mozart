@@ -64,7 +64,6 @@ C:\Users\jlopez\Desktop\Mozart_Solution\Mozart4\cmpRutinas\obj\Debug\cmpRutinas.
 C:\Users\bgloria\Documents\Dev\Pentagrama\Mozart\Mozart_Solution\Mozart4\cmpRutinas\bin\Debug\cmpRutinas.dll
 C:\Users\bgloria\Documents\Dev\Pentagrama\Mozart\Mozart_Solution\Mozart4\cmpRutinas\bin\Debug\cmpRutinas.pdb
 C:\Users\bgloria\Documents\Dev\Pentagrama\Mozart\Mozart_Solution\Mozart4\cmpRutinas\bin\Debug\cmpRutinas.xml
-C:\Users\bgloria\Documents\Dev\Pentagrama\Mozart\Mozart_Solution\Mozart4\cmpRutinas\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\bgloria\Documents\Dev\Pentagrama\Mozart\Mozart_Solution\Mozart4\cmpRutinas\obj\Debug\cmpRutinas.Resources.resources
 C:\Users\bgloria\Documents\Dev\Pentagrama\Mozart\Mozart_Solution\Mozart4\cmpRutinas\obj\Debug\cmpRutinas.vbproj.GenerateResource.Cache
 C:\Users\bgloria\Documents\Dev\Pentagrama\Mozart\Mozart_Solution\Mozart4\cmpRutinas\obj\Debug\cmpRutinas.dll
@@ -124,3 +123,5 @@ C:\PROYECTOS\PENTA\Mozart\Mozart_Solution\Mozart4\cmpRutinas\obj\Debug\cmpRutina
 C:\PROYECTOS\PENTA\Mozart\Mozart_Solution\Mozart4\cmpRutinas\obj\Debug\cmpRutinas.dll
 C:\PROYECTOS\PENTA\Mozart\Mozart_Solution\Mozart4\cmpRutinas\obj\Debug\cmpRutinas.xml
 C:\PROYECTOS\PENTA\Mozart\Mozart_Solution\Mozart4\cmpRutinas\obj\Debug\cmpRutinas.pdb
+C:\Users\bgloria\Documents\Dev\Pentagrama\Mozart\Mozart_Solution\Mozart4\cmpRutinas\obj\Debug\cmpRutinas.vbprojAssemblyReference.cache
+C:\Users\bgloria\Documents\Dev\Pentagrama\Mozart\Mozart_Solution\Mozart4\cmpRutinas\obj\Debug\cmpRutinas.vbproj.CoreCompileInputs.cache

@@ -90,7 +90,6 @@ C:\Users\bgloria\Documents\Dev\Pentagrama\Mozart\Mozart_Solution\Mozart4\cmpTabl
 C:\Users\bgloria\Documents\Dev\Pentagrama\Mozart\Mozart_Solution\Mozart4\cmpTabla\bin\Debug\cmpRutinas.dll
 C:\Users\bgloria\Documents\Dev\Pentagrama\Mozart\Mozart_Solution\Mozart4\cmpTabla\bin\Debug\cmpRutinas.pdb
 C:\Users\bgloria\Documents\Dev\Pentagrama\Mozart\Mozart_Solution\Mozart4\cmpTabla\bin\Debug\cmpRutinas.xml
-C:\Users\bgloria\Documents\Dev\Pentagrama\Mozart\Mozart_Solution\Mozart4\cmpTabla\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\bgloria\Documents\Dev\Pentagrama\Mozart\Mozart_Solution\Mozart4\cmpTabla\obj\Debug\cmpTabla.Resources.resources
 C:\Users\bgloria\Documents\Dev\Pentagrama\Mozart\Mozart_Solution\Mozart4\cmpTabla\obj\Debug\cmpTabla.vbproj.GenerateResource.Cache
 C:\Users\bgloria\Documents\Dev\Pentagrama\Mozart\Mozart_Solution\Mozart4\cmpTabla\obj\Debug\cmpTabla.dll
@@ -168,3 +167,6 @@ C:\PROYECTOS\PENTA\Mozart\Mozart_Solution\Mozart4\cmpTabla\obj\Debug\cmpTabla.vb
 C:\PROYECTOS\PENTA\Mozart\Mozart_Solution\Mozart4\cmpTabla\obj\Debug\cmpTabla.dll
 C:\PROYECTOS\PENTA\Mozart\Mozart_Solution\Mozart4\cmpTabla\obj\Debug\cmpTabla.xml
 C:\PROYECTOS\PENTA\Mozart\Mozart_Solution\Mozart4\cmpTabla\obj\Debug\cmpTabla.pdb
+C:\Users\bgloria\Documents\Dev\Pentagrama\Mozart\Mozart_Solution\Mozart4\cmpTabla\obj\Debug\cmpTabla.vbprojAssemblyReference.cache
+C:\Users\bgloria\Documents\Dev\Pentagrama\Mozart\Mozart_Solution\Mozart4\cmpTabla\obj\Debug\cmpTabla.vbproj.CoreCompileInputs.cache
+C:\Users\bgloria\Documents\Dev\Pentagrama\Mozart\Mozart_Solution\Mozart4\cmpTabla\obj\Debug\cmpTabla.vbproj.CopyComplete
