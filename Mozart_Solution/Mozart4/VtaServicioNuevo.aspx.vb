@@ -75,23 +75,17 @@ Partial Class VtaServicioNuevo
             ColImage.HeaderText = "Img"
             ColImage.ImageLayout = DataGridViewImageCellLayout.Stretch
 
-            If Items.Imagen Is DBNull.Value Or Items.Imagen Is Nothing Then
-
-            Else
+            If Not Items.Imagen Is Nothing And Not Items.Imagen Is DBNull.Value Then
                 ColImage.Image = clsServicio.ConvertirImagen(Items.Imagen)
                 fotox.ImageUrl = "data:image/jpeg;base64," & clsServicio.ConvertirImagen3(Items.Imagen)
             End If
 
-            If Items.Imagen Is DBNull.Value Or Items.Imagen Is Nothing Then
-
-            Else
+            If Not Items.Imagen2 Is Nothing And Not Items.Imagen2 Is DBNull.Value Then
                 ColImage.Image = clsServicio.ConvertirImagen(Items.Imagen2)
                 fotox02.ImageUrl = "data:image/jpeg;base64," & clsServicio.ConvertirImagen3(Items.Imagen2)
             End If
 
-            If Items.Imagen Is DBNull.Value Or Items.Imagen Is Nothing Then
-
-            Else
+            If Not Items.Imagen3 Is Nothing And Not Items.Imagen3 Is DBNull.Value Then
                 ColImage.Image = clsServicio.ConvertirImagen(Items.Imagen3)
                 fotox03.ImageUrl = "data:image/jpeg;base64," & clsServicio.ConvertirImagen3(Items.Imagen3)
             End If
