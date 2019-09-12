@@ -20,7 +20,7 @@
 					</TD>
 				</TR>
 				<TR>
-					<TD style="HEIGHT: 1px">
+					<TD>
                         <uc1:ucPropuesta ID="ucPropuesta1" runat="server" />
                     </TD>
 				</TR>
@@ -31,7 +31,9 @@
 							<TR>
 								<TD style="WIDTH: 111px; HEIGHT: 17px"><asp:linkbutton id="lbtServicio" runat="server">• Servicios</asp:linkbutton></TD>
 								<TD style="WIDTH: 151px; HEIGHT: 17px"><asp:linkbutton id="lbtPublica" runat="server">• Publica Propuesta</asp:linkbutton></TD>
-								<TD style="HEIGHT: 17px"><asp:linkbutton id="lbtPaginaPublicada" runat="server" Width="153px">• Ver pagina publicada</asp:linkbutton></TD>
+								<TD style="HEIGHT: 17px"><asp:linkbutton id="lbtPaginaPublicada" runat="server" Width="153px">• Ver página publicada(old)</asp:linkbutton></TD>
+<%--                                <TD style="HEIGHT: 17px"><asp:linkbutton id="lbtPaginaPublicadaNew" runat="server" Width="153px">• Ver nueva página publicada</asp:linkbutton></TD>--%>
+
 								<TD style="HEIGHT: 17px"><asp:linkbutton id="lbtHistProveedor" runat="server" Width="124px">• Historial Proveedor</asp:linkbutton></TD>
 								<TD style="HEIGHT: 17px"><asp:linkbutton id="lbtPlantilla" runat="server" Width="112px" Visible="False">• Generar Plantilla</asp:linkbutton></TD>
 							</TR>
@@ -59,7 +61,7 @@
 							<TR>
 								<TD style="WIDTH: 111px; HEIGHT: 16px"><asp:linkbutton id="lbtDias" runat="server" Width="104px">• Modificar Dias</asp:linkbutton></TD>
 								<TD style="WIDTH: 151px; HEIGHT: 16px"></TD>
-								<TD style="HEIGHT: 16px"></TD>
+<%--                                <TD style="HEIGHT: 17px"><asp:linkbutton id="lbtPaginaPublicadaNew" runat="server" Width="153px">• Ver nueva página publicada</asp:linkbutton></TD>--%>
 								<TD style="HEIGHT: 16px">
 									<asp:linkbutton id="lbtEspecificacion" runat="server" Width="112px">• Especificaciones</asp:linkbutton></TD>
 								<TD style="HEIGHT: 16px"><asp:linkbutton id="lbtReserva" runat="server" Width="120px">• Reserva Servicios</asp:linkbutton></TD>

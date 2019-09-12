@@ -74,7 +74,7 @@
 							</TR>
 							<TR>
 								<TD class="style2"><asp:linkbutton id="lbtPrecio" runat="server" Width="88px">• Precios</asp:linkbutton></TD>
-								<TD style="WIDTH: 154px; HEIGHT: 17px"><asp:linkbutton id="lbtPaginaPublicada" runat="server" Width="148px">• Ver Pagina Publicada</asp:linkbutton></TD>
+								<TD style="WIDTH: 154px; HEIGHT: 17px"><asp:linkbutton id="lbtPaginaPublicada" runat="server" Width="148px">• Ver Pagina Publicada(old)</asp:linkbutton></TD>
 								<TD style="HEIGHT: 17px"><asp:linkbutton id="lbtNotaCargo" runat="server">• Mayor pago del Cliente</asp:linkbutton></TD>
 								<TD style="HEIGHT: 17px"><asp:linkbutton id="lbtHistorial" runat="server">• Historial Pedido</asp:linkbutton></TD>
 								<TD style="HEIGHT: 17px"><asp:linkbutton id="lbtExcluirReserva" runat="server" Width="152px">• Cambiar Status Reserva</asp:linkbutton></TD>
@@ -107,7 +107,7 @@
 							<TR>
 								<TD class="style6"><asp:linkbutton id="lbtLink" runat="server" Width="117px" 
                                         Height="17px">• Sts Reserva Hotel</asp:linkbutton></TD>
-								<TD style="WIDTH: 154px; HEIGHT: 2px">&nbsp;</TD>
+<%--								<TD style="WIDTH: 154px; HEIGHT: 17px"><asp:linkbutton id="lbtPaginaPublicadaNew" runat="server" Width="148px">• Ver Pagina Publicada(New)</asp:linkbutton></TD>--%>
 								<TD style="HEIGHT: 2px">&nbsp;</TD>
 								<TD style="HEIGHT: 2px">&nbsp;</TD>
 								<TD style="HEIGHT: 2px">

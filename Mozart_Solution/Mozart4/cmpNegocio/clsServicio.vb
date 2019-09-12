@@ -468,7 +468,7 @@ Public Class clsServicio
         arParms(1) = New SqlParameter("@Estado", SqlDbType.VarChar)
         arParms(1).Value = pEstado
         Dim ds As New DataSet
-        ds = SqlHelper.ExecuteDataset(cn, CommandType.StoredProcedure, "VTA_ServicioNroServicio_S", arParms)
+        ds = SqlHelper.ExecuteDataset(cn, CommandType.StoredProcedure, "peru4me_new.VTA_ServicioNroServicio_S_NEW", arParms)
         Return (ds)
     End Function
 
@@ -549,7 +549,7 @@ Public Class clsServicio
         Dim cn As New SqlConnection(System.Configuration.ConfigurationManager.AppSettings("cnMozart"))
         Dim cd As New SqlCommand
         cd.Connection = cn
-        cd.CommandText = "VTA_Servicio_I"
+        cd.CommandText = "peru4me_new.VTA_Servicio_I_new"
         cd.CommandType = CommandType.StoredProcedure
 
         Dim pa As New SqlParameter
@@ -653,7 +653,7 @@ Public Class clsServicio
         Dim dr As SqlDataReader
         pEstado = "N"
         cd.Connection = cn
-        cd.CommandText = "VTA_ServicioNroServicio_S"
+        cd.CommandText = "peru4me_new.VTA_ServicioNroServicio_S_NEW"
         cd.CommandType = CommandType.StoredProcedure
         cd.Parameters.Add("@NroServicio", SqlDbType.Int).Value = pNroServicio
         cd.Parameters.Add("@Estado", SqlDbType.Char).Value = pEstado
@@ -888,7 +888,7 @@ Public Class clsServicio
         arParms(0) = New SqlParameter("@NroServicio", SqlDbType.Int)
         arParms(0).Value = pNroServicio
         Dim ds As New DataSet
-        ds = SqlHelper.ExecuteDataset(cn, CommandType.StoredProcedure, "VTA_ListaIMG_S", arParms)
+        ds = SqlHelper.ExecuteDataset(cn, CommandType.StoredProcedure, "peru4me_new.VTA_ListaIMG_S", arParms)
 
         Return (ds)
 

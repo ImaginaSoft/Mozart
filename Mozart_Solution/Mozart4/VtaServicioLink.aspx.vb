@@ -37,7 +37,7 @@ Partial Class VtaServicioLink
         Dim cd As New SqlCommand
         Dim dr As SqlDataReader
         cd.Connection = cn
-        cd.CommandText = "VTA_ServicioNroServicio_S"
+        cd.CommandText = "peru4me_new.VTA_ServicioNroServicio_S_NEW"
         cd.CommandType = CommandType.StoredProcedure
         cd.Parameters.Add("@NroServicio", SqlDbType.Int).Value = CInt(ViewState("NroServicio"))
         cd.Parameters.Add("@Estado", SqlDbType.VarChar).Value = pEstado
