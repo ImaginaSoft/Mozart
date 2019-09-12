@@ -30,7 +30,7 @@ Partial Class cppProveedorNuevo
 
                 da.SelectCommand = New SqlCommand
                 da.SelectCommand.Connection = cn
-                da.SelectCommand.CommandText = "TAB_Pais_S"
+                da.SelectCommand.CommandText = "peru4me_new.TAB_Pais_S"
                 da.SelectCommand.CommandType = CommandType.StoredProcedure
                 da.Fill(ds, "TABPAIS")
                 ddlpais.DataSource = ds.Tables("TABPAIS")
@@ -103,7 +103,7 @@ Partial Class cppProveedorNuevo
         Dim da As New SqlDataAdapter
         da.SelectCommand = New SqlCommand
         da.SelectCommand.Connection = cn
-        da.SelectCommand.CommandText = "TAB_Pais_S"
+        da.SelectCommand.CommandText = "peru4me_new.TAB_Pais_S"
         da.SelectCommand.CommandType = CommandType.StoredProcedure
         da.Fill(ds, "TABPAIS")
         ddlpais.DataSource = ds.Tables("TABPAIS")

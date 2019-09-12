@@ -24,7 +24,7 @@ Partial Class VtaPedidoPasajero
     End Sub
     Private Sub CargaPais(ByVal pCodPais As String)
         Dim ds As New DataSet
-        ds = SqlHelper.ExecuteDataset(cn, CommandType.StoredProcedure, "TAB_Pais_S")
+        ds = SqlHelper.ExecuteDataset(cn, CommandType.StoredProcedure, "peru4me_new.TAB_Pais_S")
         ddlpais.DataSource = ds
         ddlpais.DataBind()
         If pCodPais.Trim.Length > 0 Then
@@ -49,7 +49,7 @@ Partial Class VtaPedidoPasajero
     End Sub
     Private Sub CargaDatos()
         Dim ds As New DataSet
-        ds = SqlHelper.ExecuteDataset(cn, CommandType.StoredProcedure, "VTA_PasajeroNroPedido_S", New SqlParameter("@NroPedido", Viewstate("NroPedido")))
+        ds = SqlHelper.ExecuteDataset(cn, CommandType.StoredProcedure, "peru4me_new.VTA_PasajeroNroPedido_S", New SqlParameter("@NroPedido", ViewState("NroPedido")))
         dgPasajero.DataKeyField = "NroPasajero"
         dv = New DataView(ds.Tables(0))
         dv.Sort = viewstate("Campo")

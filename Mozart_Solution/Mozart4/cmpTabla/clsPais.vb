@@ -76,7 +76,7 @@ Public Class clsPais
 
     Function CargarActivo() As DataSet
         Dim ds As New DataSet
-        ds = SqlHelper.ExecuteDataset(cn, CommandType.StoredProcedure, "TAB_Pais_S")
+        ds = SqlHelper.ExecuteDataset(cn, CommandType.StoredProcedure, "peru4me_new.TAB_Pais_S")
         Return (ds)
     End Function
 

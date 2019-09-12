@@ -66,7 +66,7 @@
 							<TR>
 								<TD style="WIDTH: 106px">&nbsp;</TD>
 								<TD>&nbsp;&nbsp;
-									<asp:button id="cmdGrabar" runat="server" Width="80px" Text="Grabar "></asp:button><asp:label id="txtPedido" runat="server" Width="278px"></asp:label></TD>
+									<asp:button id="cmdGrabar" runat="server" Width="80px" Text="Grabar " Height="25px"></asp:button><asp:label id="txtPedido" runat="server" Width="278px"></asp:label></TD>
 							</TR>
 						</TABLE>
 					</TD>
