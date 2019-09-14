@@ -900,10 +900,13 @@ Public Class clsServicio
 
     Public Shared Function ConvertirImagen(ByVal Imagen As Byte()) As Image
 
+
         Dim Picture As Image
 
         Dim ms As MemoryStream = New MemoryStream(Imagen)
         Picture = Image.FromStream(ms)
+
+
 
         Return Picture
     End Function

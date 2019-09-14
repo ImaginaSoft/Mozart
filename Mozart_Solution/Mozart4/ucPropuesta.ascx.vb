@@ -117,6 +117,7 @@ Partial Class ucPropuesta
                 If dr.GetValue(dr.GetOrdinal("CodZonaVta")) = "PER" Then
 
                     lblPaginaPersonalizada.Text = URL_perutourism_new & "/" & lblIDCliente.Text
+                    lblPaginaPersonalizada_old.Text = URL_perutourism & "/ilogin.aspx?ID=" & lblIDCliente.Text
                     'lblPaginaPersonalizada.Text = URL_perutourism & "/ilogin.aspx?ID=" & lblIDCliente.Text
 
                     'If dr.GetValue(dr.GetOrdinal("FlagIdioma")) = "I" Then
@@ -127,7 +128,7 @@ Partial Class ucPropuesta
                 ElseIf dr.GetValue(dr.GetOrdinal("CodZonaVta")) = "ECU" Then
 
                     lblPaginaPersonalizada.Text = URL_perutourism_new & "/" & lblIDCliente.Text
-
+                    lblPaginaPersonalizada_old.Text = URL_galapagostourism & "/ilogin.aspx?ID=" & lblIDCliente.Text
                     'lblPaginaPersonalizada.Text = URL_galapagostourism & "/ilogin.aspx?ID=" & lblIDCliente.Text
 
                     'If dr.GetValue(dr.GetOrdinal("FlagIdioma")) = "I" Then
@@ -138,7 +139,7 @@ Partial Class ucPropuesta
                 ElseIf dr.GetValue(dr.GetOrdinal("CodZonaVta")) = "CHL" Then
 
                     lblPaginaPersonalizada.Text = URL_perutourism_new & "/" & lblIDCliente.Text
-
+                    lblPaginaPersonalizada_old.Text = URL_chiletourism & "/ilogin.aspx?ID=" & lblIDCliente.Text
 
                     'lblPaginaPersonalizada.Text = URL_chiletourism & "/ilogin.aspx?ID=" & lblIDCliente.Text
 
@@ -150,7 +151,7 @@ Partial Class ucPropuesta
                 ElseIf dr.GetValue(dr.GetOrdinal("CodZonaVta")) = "GAY" Then
 
                     lblPaginaPersonalizada.Text = URL_perutourism_new & "/" & lblIDCliente.Text
-
+                    lblPaginaPersonalizada_old.Text = URL_gayperutourism & "/ilogin.aspx?ID=" & lblIDCliente.Text
                     'lblPaginaPersonalizada.Text = URL_gayperutourism & "/ilogin.aspx?ID=" & lblIDCliente.Text
                     'If dr.GetValue(dr.GetOrdinal("FlagIdioma")) = "I" Then
                     '    lblPaginaPersonalizada.Text = URL_gayperutourism & "/ilogin.aspx?ID=" & lblIDCliente.Text
@@ -160,7 +161,7 @@ Partial Class ucPropuesta
                 ElseIf dr.GetValue(dr.GetOrdinal("CodZonaVta")) = "LAJ" Then
 
                     lblPaginaPersonalizada.Text = URL_perutourism_new & "/" & lblIDCliente.Text
-
+                    lblPaginaPersonalizada_old.Text = URL_latajourneys & "/ilogin.aspx?ID=" & lblIDCliente.Text
 
                     'lblPaginaPersonalizada.Text = URL_latajourneys & "/ilogin.aspx?ID=" & lblIDCliente.Text
 

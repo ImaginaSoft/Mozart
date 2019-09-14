@@ -49,6 +49,8 @@
 		<TD style="WIDTH: 420px; HEIGHT: 17px">
 			<asp:TextBox ID="lblPaginaPersonalizada" runat="server" Width="696px" 
                 BackColor="#CCFFFF"></asp:TextBox>
+            <asp:TextBox ID="lblPaginaPersonalizada_old" runat="server" Width="696px" 
+                BackColor="#CCFFFF"></asp:TextBox>
         </TD>
 	</TR>
 </TABLE>
