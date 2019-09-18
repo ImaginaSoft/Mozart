@@ -6,7 +6,8 @@ Imports System.Web.UI
 Imports System.Web.UI.WebControls
 Imports System.Web.Security
 
-Imports System.Web.Mail
+'Imports System.Web.Mail
+Imports System.Net.Mail
 Imports System.Data.SqlClient
 
 Partial Class VtaVersionReservaSolicitud
@@ -22,11 +23,11 @@ Partial Class VtaVersionReservaSolicitud
 
         If Not IsPostBack Then
             lblTitulo.Text = "Solicitud al Proveedor " & Request.Params("NomProveedor")
-            Viewstate("NroPedido") = Request.Params("NroPedido")
-            Viewstate("NroPropuesta") = Request.Params("NroPropuesta")
-            Viewstate("NroVersion") = Request.Params("NroVersion")
-            Viewstate("CodProveedor") = Request.Params("CodProveedor")
-            Viewstate("CodContacto") = Request.Params("CodContacto")
+            ViewState("NroPedido") = Request.Params("NroPedido")
+            ViewState("NroPropuesta") = Request.Params("NroPropuesta")
+            ViewState("NroVersion") = Request.Params("NroVersion")
+            ViewState("CodProveedor") = Request.Params("CodProveedor")
+            ViewState("CodContacto") = Request.Params("CodContacto")
 
             CargaSolicita()
             LeeVersion()
@@ -45,15 +46,15 @@ Partial Class VtaVersionReservaSolicitud
         da.SelectCommand.Connection = cn
         da.SelectCommand.CommandText = "OPE_Contacto_S"
         da.SelectCommand.CommandType = CommandType.StoredProcedure
-        da.SelectCommand.Parameters.Add("@CodProveedor", SqlDbType.Int).Value = Viewstate("CodProveedor")
-        da.SelectCommand.Parameters.Add("@CodContacto", SqlDbType.Char, 15).Value = Viewstate("CodContacto")
+        da.SelectCommand.Parameters.Add("@CodProveedor", SqlDbType.Int).Value = ViewState("CodProveedor")
+        da.SelectCommand.Parameters.Add("@CodContacto", SqlDbType.Char, 15).Value = ViewState("CodContacto")
         Dim ds As New DataSet
         da.Fill(ds, "Contacto")
         ddlContacto.DataSource = ds.Tables("Contacto")
         ddlContacto.DataBind()
         If ddlContacto.Items.Count > 0 Then
-            If Len(Trim(Viewstate("CodContacto"))) > 0 Then
-                ddlContacto.Items.FindByValue(Viewstate("CodContacto")).Selected = True
+            If Len(Trim(ViewState("CodContacto"))) > 0 Then
+                ddlContacto.Items.FindByValue(ViewState("CodContacto")).Selected = True
             End If
             AsignaEmailContacto()
         End If
@@ -80,7 +81,7 @@ Partial Class VtaVersionReservaSolicitud
         cd.Connection = cn
         cd.CommandText = "OPE_LeeContacto_S"
         cd.CommandType = CommandType.StoredProcedure
-        cd.Parameters.Add("@CodProveedor", SqlDbType.Int).Value = Viewstate("CodProveedor")
+        cd.Parameters.Add("@CodProveedor", SqlDbType.Int).Value = ViewState("CodProveedor")
         cd.Parameters.Add("@CodContacto", SqlDbType.Char, 15).Value = ddlContacto.SelectedItem.Value
         Try
             cn.Open()
@@ -132,12 +133,12 @@ Partial Class VtaVersionReservaSolicitud
         da.SelectCommand = New SqlCommand
         da.SelectCommand.Connection = cn
         da.SelectCommand.CommandType = CommandType.StoredProcedure
-        da.SelectCommand.Parameters.Add("@NroPedido", SqlDbType.Int).Value = Viewstate("NroPedido")
-        da.SelectCommand.Parameters.Add("@NroPropuesta", SqlDbType.TinyInt).Value = Viewstate("NroPropuesta")
+        da.SelectCommand.Parameters.Add("@NroPedido", SqlDbType.Int).Value = ViewState("NroPedido")
+        da.SelectCommand.Parameters.Add("@NroPropuesta", SqlDbType.TinyInt).Value = ViewState("NroPropuesta")
         da.SelectCommand.Parameters.Add("@NroVersion", SqlDbType.TinyInt).Value = ViewState("NroVersion")
         da.SelectCommand.Parameters.Add("@FlagHotel", SqlDbType.Char).Value = "N"
         da.SelectCommand.CommandText = "VTA_VersionReserva_S"
-        da.SelectCommand.Parameters.Add("@CodProveedor", SqlDbType.Int).Value = Viewstate("CodProveedor")
+        da.SelectCommand.Parameters.Add("@CodProveedor", SqlDbType.Int).Value = ViewState("CodProveedor")
 
         If ddlSolicita.Items.Count = 0 Then
             da.SelectCommand.Parameters.Add("@NomSolicita", SqlDbType.VarChar, 50).Value = ""
@@ -199,10 +200,10 @@ Partial Class VtaVersionReservaSolicitud
         pa.Direction = ParameterDirection.Output
         pa.Value = ""
 
-        cd.Parameters.Add("@NroPedido", SqlDbType.Int).Value = Viewstate("NroPedido")
-        cd.Parameters.Add("@NroPropuesta", SqlDbType.Int).Value = Viewstate("NroPropuesta")
-        cd.Parameters.Add("@NroVersion", SqlDbType.Int).Value = Viewstate("NroVersion")
-        cd.Parameters.Add("@CodProveedor", SqlDbType.Int).Value = Viewstate("CodProveedor")
+        cd.Parameters.Add("@NroPedido", SqlDbType.Int).Value = ViewState("NroPedido")
+        cd.Parameters.Add("@NroPropuesta", SqlDbType.Int).Value = ViewState("NroPropuesta")
+        cd.Parameters.Add("@NroVersion", SqlDbType.Int).Value = ViewState("NroVersion")
+        cd.Parameters.Add("@CodProveedor", SqlDbType.Int).Value = ViewState("CodProveedor")
         cd.Parameters.Add("@DesLog", SqlDbType.Text).Value = txtRTB.Text
         cd.Parameters.Add("@CodContacto", SqlDbType.Char, 15).Value = ddlContacto.SelectedItem.Value
         cd.Parameters.Add("@CodSolicita", SqlDbType.Char, 1).Value = ddlSolicita.SelectedItem.Value
@@ -219,28 +220,50 @@ Partial Class VtaVersionReservaSolicitud
         cn.Close()
         If Trim(lblmsg.Text) = "OK" Then
             'Proceso para enviar e-mail
+            Dim client As New SmtpClient
+            With client
+                .Port = System.Configuration.ConfigurationManager.AppSettings("port")
+                .Host = System.Configuration.ConfigurationManager.AppSettings("ServidorEmail")
+                .Credentials = New System.Net.NetworkCredential(System.Configuration.ConfigurationManager.AppSettings("sendusername"), System.Configuration.ConfigurationManager.AppSettings("sendpassword"))
+                .EnableSsl = True
+            End With
+
+
+
             Dim email As New MailMessage
             With email
-                .From = txtDe.Text
-                .To = txtPara.Text
-                .Cc = txtCC.Text
+
+
+
+                .From = New MailAddress(txtDe.Text, txtDe.Text)
+                .To.Add(txtPara.Text)
+                .CC.Add(txtCC.Text)
                 .Subject = txtAsunto.Text
                 .Body = txtRTB.Text
-                .BodyFormat = MailFormat.Html
-                .Fields.Add("http://schemas.microsoft.com/cdo/configuration/smtpserver", System.Configuration.ConfigurationManager.AppSettings("ServidorEmail")) 'smtp Server Address
-                .Fields.Add("http://schemas.microsoft.com/cdo/configuration/smtpserverport", 25)
-                .Fields.Add("http://schemas.microsoft.com/cdo/configuration/sendusing", 2) '2 to send using SMTP over the network
-                .Fields.Add("http://schemas.microsoft.com/cdo/configuration/smtpauthenticate", 1) '1 = basic authentication
-                .Fields.Add("http://schemas.microsoft.com/cdo/configuration/sendusername", System.Configuration.ConfigurationManager.AppSettings("sendusername"))
-                .Fields.Add("http://schemas.microsoft.com/cdo/configuration/sendpassword", System.Configuration.ConfigurationManager.AppSettings("sendpassword"))
+                .Priority = MailPriority.High
+                .IsBodyHtml = True
+                '.From = txtDe.Text
+                '.To = txtPara.Text
+                '.Cc = txtCC.Text
+                '.Subject = txtAsunto.Text
+                '.Body = txtRTB.Text
+                '.BodyFormat = MailFormat.Html
+                '.Fields.Add("http://schemas.microsoft.com/cdo/configuration/smtpserver", System.Configuration.ConfigurationManager.AppSettings("ServidorEmail")) 'smtp Server Address
+                '.Fields.Add("http://schemas.microsoft.com/cdo/configuration/smtpserverport", 587)
+                '.Fields.Add("http://schemas.microsoft.com/cdo/configuration/sendusing", 2) '2 to send using SMTP over the network
+                '.Fields.Add("http://schemas.microsoft.com/cdo/configuration/smtpauthenticate", 1) '1 = basic authentication
+                '.Fields.Add("http://schemas.microsoft.com/cdo/configuration/sendusername", System.Configuration.ConfigurationManager.AppSettings("sendusername"))
+                '.Fields.Add("http://schemas.microsoft.com/cdo/configuration/sendpassword", System.Configuration.ConfigurationManager.AppSettings("sendpassword"))
                 ' .Priority = MailPriority.High
             End With
-            SmtpMail.Send(email)
+            'SmtpMail.Send(email)
+            client.Send(email)
+            email.Dispose()
 
             Response.Redirect("VtaVersionReserva.aspx" & _
-                       "?NroPedido=" & Viewstate("NroPedido") & _
-                       "&NroPropuesta=" & Viewstate("NroPropuesta") & _
-                       "&NroVersion=" & Viewstate("NroVersion"))
+                       "?NroPedido=" & ViewState("NroPedido") & _
+                       "&NroPropuesta=" & ViewState("NroPropuesta") & _
+                       "&NroVersion=" & ViewState("NroVersion"))
         End If
     End Sub
 
