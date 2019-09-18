@@ -3,7 +3,8 @@ Imports System.Data
 Imports System.Data.SqlClient
 Imports System.IO
 Imports System.IO.Stream
-Imports System.Web.Mail
+'Imports System.Web.Mail
+Imports System.Net.Mail
 Imports cmpRutinas
 Imports cmpNegocio
 
@@ -18,9 +19,9 @@ Partial Class VtaPropuestaEmail
         End If
 
         If Not Page.IsPostBack Then
-            Viewstate("NroPedido") = Request.Params("NroPedido")
-            Viewstate("NroPropuesta") = Request.Params("NroPropuesta")
-            Viewstate("CodCliente") = Request.Params("CodCliente")
+            ViewState("NroPedido") = Request.Params("NroPedido")
+            ViewState("NroPropuesta") = Request.Params("NroPropuesta")
+            ViewState("CodCliente") = Request.Params("CodCliente")
             lblTitulo.Text = "Nuevo Mensaje al Cliente"
             Session("IdReg") = Now
             LeePedido()
@@ -38,7 +39,7 @@ Partial Class VtaPropuestaEmail
         cd.Connection = cn
         cd.CommandText = "VTA_PedidoNroPedido_S"
         cd.CommandType = CommandType.StoredProcedure
-        cd.Parameters.Add("@NroPedido", SqlDbType.Int).Value = Viewstate("NroPedido")
+        cd.Parameters.Add("@NroPedido", SqlDbType.Int).Value = ViewState("NroPedido")
         Try
             cn.Open()
             dr = cd.ExecuteReader
@@ -100,7 +101,7 @@ Partial Class VtaPropuestaEmail
 
         Dim DirFileDestino As String
         DirFileDestino = bdfile & "TEMPO\" & _
-            Trim(Viewstate("NroPedido")) & "." & Trim(Viewstate("NroPropuesta")) & "-" & _
+            Trim(ViewState("NroPedido")) & "." & Trim(ViewState("NroPropuesta")) & "-" & _
             Path.GetFileName(UploadImage.PostedFile.FileName)
 
         'Dim NomFile As String
@@ -198,32 +199,57 @@ Partial Class VtaPropuestaEmail
         End If
 
         'Proceso para enviar e-mail
+        Dim client As New SmtpClient
+        With client
+            .Port = System.Configuration.ConfigurationManager.AppSettings("port")
+            .Host = System.Configuration.ConfigurationManager.AppSettings("ServidorEmail")
+            .Credentials = New System.Net.NetworkCredential(System.Configuration.ConfigurationManager.AppSettings("sendusername"), System.Configuration.ConfigurationManager.AppSettings("sendpassword"))
+            .EnableSsl = True
+        End With
+
         Dim email As New MailMessage
         With email
-            .From = txtDesde.Text
-            .To = txtPara.Text
-            .Cc = txtCC.Text
+            '.Sender = New MailAddress(txtDesde.Text)
+
+            .From = New MailAddress(txtDesde.Text, txtDesde.Text)
+            .To.Add(txtPara.Text)
+            .CC.Add(txtCC.Text)
             .Subject = txtAsunto.Text
             .Body = FreeTextBox1.Text
-            .BodyFormat = MailFormat.Html
+            .IsBodyHtml = True
             .Priority = MailPriority.High
+            '.Attachments.Add(New )
+            '.To = txtPara.Text
+            '.Cc = txtCC.Text
+            '.Subject = txtAsunto.Text
+            '.Body = FreeTextBox1.Text
+            '.BodyFormat = MailFormat.Html
+            '.Priority = MailPriority.High
+
             For Each item In dgFile.Items
                 wFileTempo = dgFile.DataKeys(item.ItemIndex).ToString
                 wFileFinal = wDirDestino & wFileTempo.Substring(21, 200).Trim
 
                 File.Move(wFileTempo, wFileFinal)
-                .Attachments.Add(New MailAttachment(Trim(wFileFinal)))
+                .Attachments.Add(New Attachment(Trim(wFileFinal)))
 
                 wfiles = wfiles & " " & wFileFinal
             Next
-            .Fields.Add("http://schemas.microsoft.com/cdo/configuration/smtpserver", System.Configuration.ConfigurationManager.AppSettings("ServidorEmail")) 'smtp Server Address
-            .Fields.Add("http://schemas.microsoft.com/cdo/configuration/smtpserverport", 25)
-            .Fields.Add("http://schemas.microsoft.com/cdo/configuration/sendusing", 2) '2 to send using SMTP over the network
-            .Fields.Add("http://schemas.microsoft.com/cdo/configuration/smtpauthenticate", 1) '1 = basic authentication
-            .Fields.Add("http://schemas.microsoft.com/cdo/configuration/sendusername", System.Configuration.ConfigurationManager.AppSettings("sendusername"))
-            .Fields.Add("http://schemas.microsoft.com/cdo/configuration/sendpassword", System.Configuration.ConfigurationManager.AppSettings("sendpassword"))
+            '.Fields.Add("http://schemas.microsoft.com/cdo/configuration/smtpserver", System.Configuration.ConfigurationManager.AppSettings("ServidorEmail")) 'smtp Server Address
+            '.Fields.Add("http://schemas.microsoft.com/cdo/configuration/smtpserverport", 587)
+            '.Fields.Add("http://schemas.microsoft.com/cdo/configuration/sendusing", 2) '2 to send using SMTP over the network
+
+            '.Fields.Add("http://schemas.microsoft.com/cdo/configuration/smtpauthenticate", 1) '1 = basic authentication
+            '.Fields.Add("http://schemas.microsoft.com/cdo/configuration/sendusername", System.Configuration.ConfigurationManager.AppSettings("sendusername"))
+            '.Fields.Add("http://schemas.microsoft.com/cdo/configuration/sendpassword", System.Configuration.ConfigurationManager.AppSettings("sendpassword"))
         End With
-        SmtpMail.Send(email)
+
+        'Dim client As New SmtpClient
+        'client.EnableSsl = True
+        'client.Host = "smtp.gmail.com"
+        'client.EnableSsl = True
+        client.Send(email)
+        email.Dispose()
 
         'Agencia (peru4all)
         If lblTipoCliente.Text.Trim = "A" Then
