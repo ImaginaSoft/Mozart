@@ -9,7 +9,9 @@ Imports System.Web.SessionState
 Imports System.Web.UI
 Imports System.Web.UI.WebControls
 Imports System.Web.UI.HtmlControls
-Imports System.Web.Mail
+'Imports System.Web.Mail
+Imports System.Net.Mail
+
 
 Partial Class VtaRecordatorioPedido
     Inherits System.Web.UI.Page
@@ -125,24 +127,50 @@ Partial Class VtaRecordatorioPedido
                     dr = cd.ExecuteReader
                     Do While dr.Read()
 
+                        'With email
+                        '    .From = dr.GetValue(dr.GetOrdinal("De"))
+                        '    .To = dr.GetValue(dr.GetOrdinal("Para"))
+                        '    .Cc = dr.GetValue(dr.GetOrdinal("De"))
+                        '    .Subject = dr.GetValue(dr.GetOrdinal("Asunto"))
+                        '    .Body = dr.GetValue(dr.GetOrdinal("Mensaje"))
+                        '    .BodyFormat = MailFormat.Html
+                        '    .Fields.Add("http://schemas.microsoft.com/cdo/configuration/smtpserver", System.Configuration.ConfigurationManager.AppSettings("ServidorEmail")) 'smtp Server Address
+                        '    .Fields.Add("http://schemas.microsoft.com/cdo/configuration/smtpserverport", 25)
+                        '    .Fields.Add("http://schemas.microsoft.com/cdo/configuration/sendusing", 2) '2 to send using SMTP over the network
+                        '    .Fields.Add("http://schemas.microsoft.com/cdo/configuration/smtpauthenticate", 1) '1 = basic authentication
+                        '    .Fields.Add("http://schemas.microsoft.com/cdo/configuration/sendusername", System.Configuration.ConfigurationManager.AppSettings("sendusername"))
+                        '    .Fields.Add("http://schemas.microsoft.com/cdo/configuration/sendpassword", System.Configuration.ConfigurationManager.AppSettings("sendpassword"))
+                        '    ' .Priority = MailPriority.High
+                        'End With
+
+
+                        'Proceso para enviar e-mail
+                        Dim client As New SmtpClient
+                        With client
+                            .Port = System.Configuration.ConfigurationManager.AppSettings("port")
+                            .Host = System.Configuration.ConfigurationManager.AppSettings("ServidorEmail")
+                            .Credentials = New System.Net.NetworkCredential(System.Configuration.ConfigurationManager.AppSettings("sendusername"), System.Configuration.ConfigurationManager.AppSettings("sendpassword"))
+                            .EnableSsl = True
+                        End With
+
+                        'Dim email As New MailMessage
                         With email
-                            .From = dr.GetValue(dr.GetOrdinal("De"))
-                            .To = dr.GetValue(dr.GetOrdinal("Para"))
-                            .Cc = dr.GetValue(dr.GetOrdinal("De"))
+
+                            .From = New MailAddress(dr.GetValue(dr.GetOrdinal("De")), dr.GetValue(dr.GetOrdinal("De")))
+                            .To.Add(dr.GetValue(dr.GetOrdinal("Para")))
+                            .CC.Add(dr.GetValue(dr.GetOrdinal("De")))
                             .Subject = dr.GetValue(dr.GetOrdinal("Asunto"))
                             .Body = dr.GetValue(dr.GetOrdinal("Mensaje"))
-                            .BodyFormat = MailFormat.Html
-                            .Fields.Add("http://schemas.microsoft.com/cdo/configuration/smtpserver", System.Configuration.ConfigurationManager.AppSettings("ServidorEmail")) 'smtp Server Address
-                            .Fields.Add("http://schemas.microsoft.com/cdo/configuration/smtpserverport", 25)
-                            .Fields.Add("http://schemas.microsoft.com/cdo/configuration/sendusing", 2) '2 to send using SMTP over the network
-                            .Fields.Add("http://schemas.microsoft.com/cdo/configuration/smtpauthenticate", 1) '1 = basic authentication
-                            .Fields.Add("http://schemas.microsoft.com/cdo/configuration/sendusername", System.Configuration.ConfigurationManager.AppSettings("sendusername"))
-                            .Fields.Add("http://schemas.microsoft.com/cdo/configuration/sendpassword", System.Configuration.ConfigurationManager.AppSettings("sendpassword"))
-                            ' .Priority = MailPriority.High
+                            .IsBodyHtml = True
+                            .Priority = MailPriority.High
+
                         End With
+
                         Try
-                            SmtpMail.Send(email)
+                            'SmtpMail.Send(email)
+                            client.Send(email)
                             wStsEnvio = True
+                            email.Dispose()
 
                         Catch ehttp As System.Web.HttpException
                             wStsEnvio = False
