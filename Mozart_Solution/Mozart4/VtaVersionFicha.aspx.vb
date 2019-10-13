@@ -921,19 +921,53 @@ Partial Class VtaVersionFicha
 
                 cd.Parameters("@MsgTrans").Direction = ParameterDirection.Output
 
-                Try
-                    cn.Open()
-                    cd.ExecuteNonQuery()
-                    sResultado = cd.Parameters("@MsgTrans").Value
-                Catch ex1 As SqlException
-                    sResultado = "Error:" & ex1.Message
-                Catch ex2 As Exception
-                    sResultado = "Error:" & ex2.Message
-                Finally
-                    cn.Close()
-                End Try
+				Try
+					cn.Open()
+					cd.ExecuteNonQuery()
+					sResultado = cd.Parameters("@MsgTrans").Value
+				Catch ex1 As SqlException
+					sResultado = "Error:" & ex1.Message
+				Catch ex2 As Exception
+					sResultado = "Error:" & ex2.Message
+				Finally
+					cn.Close()
+				End Try
 
-                If sResultado.Trim().Equals("OK") Then
+				'-----------------------------------------------------
+				'Flag Ajuste
+				'-----------------------------------------------------
+				sResultado = ""
+				cd = New SqlCommand()
+				cd.Connection = cn
+				cd.CommandText = "REG_Migracion_I"
+				cd.CommandType = CommandType.StoredProcedure
+
+
+				cd.Parameters.Add("@NroPedido", SqlDbType.Int).Value = ViewState("NroPedido")
+				cd.Parameters.Add("@NroPropuesta_new", SqlDbType.Int).Value = iPropuestaNueva
+				cd.Parameters.Add("@NroVersion_new", SqlDbType.Int).Value = iVersionNueva
+				cd.Parameters.Add("@NroVersion_base", SqlDbType.Int).Value = ViewState("NroVersion")
+
+
+				cd.Parameters.Add("@MsgTrans", SqlDbType.VarChar, 500).Value = ""
+
+				cd.Parameters("@MsgTrans").Direction = ParameterDirection.Output
+
+				Try
+					cn.Open()
+					cd.ExecuteNonQuery()
+					sResultado = cd.Parameters("@MsgTrans").Value
+				Catch ex1 As SqlException
+					sResultado = "Error:" & ex1.Message
+				Catch ex2 As Exception
+					sResultado = "Error:" & ex2.Message
+				Finally
+					cn.Close()
+				End Try
+				'-----------------------------------------------------
+
+
+				If sResultado.Trim().Equals("OK") Then
                     transScope.Complete()
                     procesado = True
                 Else

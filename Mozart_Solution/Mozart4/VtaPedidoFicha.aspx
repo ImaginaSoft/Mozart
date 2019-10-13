@@ -96,6 +96,8 @@
 									 <ItemStyle CssClass="Hide" />
                                      <HeaderStyle CssClass="Hide" />
 								</asp:BoundColumn>
+								<asp:BoundColumn DataField="Version_new" HeaderText="Migrado"></asp:BoundColumn>
+								<asp:BoundColumn DataField="NroVersionBase" HeaderText="Nro Base"></asp:BoundColumn>
 							</Columns>
 							<PagerStyle Mode="NumericPages"></PagerStyle>
 						</asp:datagrid></TD>
