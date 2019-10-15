@@ -34,8 +34,8 @@ Partial Class VtaClienteVersion
     End Sub
     Private Sub CargaVersion()
         Dim ds As New DataSet
-        ds = SqlHelper.ExecuteDataset(cn, CommandType.StoredProcedure, "VTA_VersionCodCliente_S", New SqlParameter("@CodCliente", Viewstate("CodCliente")))
-        dgVersion.DataSource = ds.Tables(0)
+		ds = SqlHelper.ExecuteDataset(cn, CommandType.StoredProcedure, "VTA_VersionCodCliente_S", New SqlParameter("@CodCliente", ViewState("CodCliente")))
+		dgVersion.DataSource = ds.Tables(0)
         dgVersion.DataBind()
 
         lblMsg.Text = CStr(dgVersion.Items.Count) + " Version(es)"
