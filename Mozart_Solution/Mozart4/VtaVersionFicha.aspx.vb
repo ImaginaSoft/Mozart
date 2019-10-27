@@ -1005,7 +1005,7 @@ Partial Class VtaVersionFicha
         Using transScope As New TransactionScope()
             Try
                 '-----------------------------------------------------
-                'Validaciones
+                'Validaciones(si est afacturado y si pertenece a un periodo anterior, si de vuelve ok en los 4 botyones no debe dehar procesar)
                 '-----------------------------------------------------
                 Dim cd As New SqlCommand
                 cd.Connection = cn
@@ -1075,46 +1075,46 @@ Partial Class VtaVersionFicha
                 '-----------------------------------------------------
                 'Crear pedido en base al pedido actual
                 '-----------------------------------------------------
-                sResultado = ""
-                cd = New SqlCommand()
-                cd.Connection = cn
-                cd.CommandText = "VTA_PropuestaPropuesta_I"
-                cd.CommandType = CommandType.StoredProcedure
+                'sResultado = ""
+                'cd = New SqlCommand()
+                'cd.Connection = cn
+                'cd.CommandText = "VTA_PropuestaPropuesta_I"
+                'cd.CommandType = CommandType.StoredProcedure
 
-                cd.Parameters.Add("@NroPedido", SqlDbType.Int).Value = ViewState("NroPedido")
-                cd.Parameters.Add("@CodCliente", SqlDbType.Int).Value = ViewState("CodCliente")
-                cd.Parameters.Add("@NroPedidoOrigen", SqlDbType.Int).Value = ViewState("NroPedido")
-                cd.Parameters.Add("@NroPropuestaOrigen", SqlDbType.Int).Value = ViewState("NroPropuesta")
-                cd.Parameters.Add("@NroDiaInicio", SqlDbType.Int).Value = 1
-                cd.Parameters.Add("@CodUsuario", SqlDbType.Char, 15).Value = Session("CodUsuario")
-                cd.Parameters.Add("@MsgTrans", SqlDbType.VarChar, 150).Value = ""
-                cd.Parameters.Add("@NroPropuestaOut", SqlDbType.Int).Value = 0
+                'cd.Parameters.Add("@NroPedido", SqlDbType.Int).Value = ViewState("NroPedido")
+                'cd.Parameters.Add("@CodCliente", SqlDbType.Int).Value = ViewState("CodCliente")
+                'cd.Parameters.Add("@NroPedidoOrigen", SqlDbType.Int).Value = ViewState("NroPedido")
+                'cd.Parameters.Add("@NroPropuestaOrigen", SqlDbType.Int).Value = ViewState("NroPropuesta")
+                'cd.Parameters.Add("@NroDiaInicio", SqlDbType.Int).Value = 1
+                'cd.Parameters.Add("@CodUsuario", SqlDbType.Char, 15).Value = Session("CodUsuario")
+                'cd.Parameters.Add("@MsgTrans", SqlDbType.VarChar, 150).Value = ""
+                'cd.Parameters.Add("@NroPropuestaOut", SqlDbType.Int).Value = 0
 
-                cd.Parameters("@MsgTrans").Direction = ParameterDirection.Output
-                cd.Parameters("@NroPropuestaOut").Direction = ParameterDirection.Output
+                'cd.Parameters("@MsgTrans").Direction = ParameterDirection.Output
+                'cd.Parameters("@NroPropuestaOut").Direction = ParameterDirection.Output
 
-                Try
-                    cn.Open()
-                    cd.ExecuteNonQuery()
-                    sResultado = cd.Parameters("@MsgTrans").Value
+                'Try
+                '    cn.Open()
+                '    cd.ExecuteNonQuery()
+                '    sResultado = cd.Parameters("@MsgTrans").Value
 
-                    If sResultado.Trim().Equals("OK") Then
-                        iPropuestaNueva = cd.Parameters("@NroPropuestaOut").Value
-                    End If
-                Catch ex1 As SqlException
-                    sResultado = "Error:" & ex1.Message
-                Catch ex2 As Exception
-                    sResultado = "Error:" & ex2.Message
-                Finally
-                    cn.Close()
-                End Try
+                '    If sResultado.Trim().Equals("OK") Then
+                '        iPropuestaNueva = cd.Parameters("@NroPropuestaOut").Value
+                '    End If
+                'Catch ex1 As SqlException
+                '    sResultado = "Error:" & ex1.Message
+                'Catch ex2 As Exception
+                '    sResultado = "Error:" & ex2.Message
+                'Finally
+                '    cn.Close()
+                'End Try
 
-                If Not sResultado.Trim().Equals("OK") Then
-                    Throw New Exception(sResultado)
-                End If
+                'If Not sResultado.Trim().Equals("OK") Then
+                '    Throw New Exception(sResultado)
+                'End If
 
                 '-----------------------------------------------------
-                'Publicar pedido
+                'Publicar pedido(consultar el nuero de pedido, numero cliente y elk numero version digitado apr aque te traiga la propuesta )
                 '-----------------------------------------------------
                 sResultado = ""
                 Dim objPropuesta As New clsPropuesta
@@ -1408,36 +1408,36 @@ Partial Class VtaVersionFicha
                 '-----------------------------------------------------
                 'Ajustar totales
                 '-----------------------------------------------------
-                sResultado = ""
-                cd = New SqlCommand()
-                cd.Connection = cn
-                cd.CommandText = "SYS_AjustarFacturacion_U"
-                cd.CommandType = CommandType.StoredProcedure
+                'sResultado = ""
+                'cd = New SqlCommand()
+                'cd.Connection = cn
+                'cd.CommandText = "SYS_AjustarFacturacion_U"
+                'cd.CommandType = CommandType.StoredProcedure
 
-                cd.Parameters.Add("@CodCliente", SqlDbType.Int).Value = ViewState("CodCliente")
-                cd.Parameters.Add("@NroPedido", SqlDbType.Int).Value = ViewState("NroPedido")
-                cd.Parameters.Add("@NroPropuesta", SqlDbType.Int).Value = ViewState("NroPropuesta")
-                cd.Parameters.Add("@NroVersion", SqlDbType.Int).Value = version_gg
-                cd.Parameters.Add("@NroPropuestaNueva", SqlDbType.Int).Value = iPropuestaNueva
-                cd.Parameters.Add("@NroVersionNueva", SqlDbType.Int).Value = iVersionNueva
-                cd.Parameters.Add("@MsgTrans", SqlDbType.VarChar, 500).Value = ""
+                'cd.Parameters.Add("@CodCliente", SqlDbType.Int).Value = ViewState("CodCliente")
+                'cd.Parameters.Add("@NroPedido", SqlDbType.Int).Value = ViewState("NroPedido")
+                'cd.Parameters.Add("@NroPropuesta", SqlDbType.Int).Value = ViewState("NroPropuesta")
+                'cd.Parameters.Add("@NroVersion", SqlDbType.Int).Value = version_gg
+                'cd.Parameters.Add("@NroPropuestaNueva", SqlDbType.Int).Value = iPropuestaNueva
+                'cd.Parameters.Add("@NroVersionNueva", SqlDbType.Int).Value = iVersionNueva
+                'cd.Parameters.Add("@MsgTrans", SqlDbType.VarChar, 500).Value = ""
 
-                cd.Parameters("@MsgTrans").Direction = ParameterDirection.Output
+                'cd.Parameters("@MsgTrans").Direction = ParameterDirection.Output
 
-                Try
-                    cn.Open()
-                    cd.ExecuteNonQuery()
-                    sResultado = cd.Parameters("@MsgTrans").Value
-                Catch ex1 As SqlException
-                    sResultado = "Error:" & ex1.Message
-                Catch ex2 As Exception
-                    sResultado = "Error:" & ex2.Message
-                Finally
-                    cn.Close()
-                End Try
+                'Try
+                '    cn.Open()
+                '    cd.ExecuteNonQuery()
+                '    sResultado = cd.Parameters("@MsgTrans").Value
+                'Catch ex1 As SqlException
+                '    sResultado = "Error:" & ex1.Message
+                'Catch ex2 As Exception
+                '    sResultado = "Error:" & ex2.Message
+                'Finally
+                '    cn.Close()
+                'End Try
 
                 '-----------------------------------------------------
-                'Flag Ajuste
+                'Flag Ajuste(agrewar a la tabla propuesta base, fecha del sistema,nombre de usuario,m de migrar y r de reemplazo con el nuevo formulario)
                 '-----------------------------------------------------
                 sResultado = ""
                 cd = New SqlCommand()
