@@ -1004,10 +1004,13 @@ Partial Class VtaVersionFicha
 
         Using transScope As New TransactionScope()
             Try
+
+                Dim cd As New SqlCommand
+
                 '-----------------------------------------------------
                 'Validaciones(si est afacturado y si pertenece a un periodo anterior, si de vuelve ok en los 4 botyones no debe dehar procesar)
                 '-----------------------------------------------------
-                Dim cd As New SqlCommand
+
                 cd.Connection = cn
                 cd.CommandType = CommandType.StoredProcedure
                 cd.CommandText = "SYS_ValidarFacturacion_S"
@@ -1116,11 +1119,42 @@ Partial Class VtaVersionFicha
                 '-----------------------------------------------------
                 'Publicar pedido(consultar el nuero de pedido, numero cliente y elk numero version digitado apr aque te traiga la propuesta )
                 '-----------------------------------------------------
+
+                Dim propuestaGG As Integer
+                cd.Connection = cn
+                cd.CommandType = CommandType.StoredProcedure
+                cd.CommandText = "SYS_ObtenerPropuestaxVersionN_S"
+
+                cd.Parameters.Add("@NroPedido", SqlDbType.Int).Value = ViewState("NroPedido")
+                cd.Parameters.Add("@NroVersion", SqlDbType.Int).Value = version_gg
+                cd.Parameters.Add("@CodCliente", SqlDbType.Int).Value = ViewState("CodCliente")
+                cd.Parameters.Add("@MsgTrans", SqlDbType.VarChar, 500).Value = ""
+                cd.Parameters.Add("@NroPropuesta", SqlDbType.Int).Value = 0
+
+                cd.Parameters("@NroPropuesta").Direction = ParameterDirection.Output
+                cd.Parameters("@MsgTrans").Direction = ParameterDirection.Output
+
+                Try
+                    cn.Open()
+                    cd.ExecuteNonQuery()
+                    sResultado = cd.Parameters("@MsgTrans").Value
+                    propuestaGG = cd.Parameters("@NroPropuesta").Value
+                Catch ex1 As SqlException
+                    sResultado = "Error: " & ex1.Message
+                Catch ex2 As Exception
+                    sResultado = "Error: " & ex2.Message
+                Finally
+                    cn.Close()
+                End Try
+
+
+
+
                 sResultado = ""
                 Dim objPropuesta As New clsPropuesta
 
                 objPropuesta.NroPedido = ViewState("NroPedido")
-                objPropuesta.NroPropuesta = iPropuestaNueva
+                objPropuesta.NroPropuesta = propuestaGG
 
                 sResultado = objPropuesta.Editar
 
@@ -1130,7 +1164,7 @@ Partial Class VtaVersionFicha
                     objPropuesta.FlagPublica = "S"
                     objPropuesta.FlagAtencion = "F"
                     objPropuesta.NroPedido = ViewState("NroPedido")
-                    objPropuesta.NroPropuesta = iPropuestaNueva
+                    objPropuesta.NroPropuesta = propuestaGG
                     objPropuesta.CodUsuario = Session("CodUsuario")
 
                     sResultado = objPropuesta.Publica
@@ -1153,7 +1187,7 @@ Partial Class VtaVersionFicha
 
                 cd.Parameters.Add("@CodCliente", SqlDbType.Int).Value = ViewState("CodCliente")
                 cd.Parameters.Add("@NroPedido", SqlDbType.Int).Value = ViewState("NroPedido")
-                cd.Parameters.Add("@NroPropuesta", SqlDbType.Int).Value = iPropuestaNueva
+                cd.Parameters.Add("@NroPropuesta", SqlDbType.Int).Value = propuestaGG
                 cd.Parameters.Add("@CodUsuario", SqlDbType.Char, 15).Value = Session("CodUsuario")
                 cd.Parameters.Add("@MsgTrans", SqlDbType.VarChar, 500).Value = ""
                 cd.Parameters.Add("@NroVersionOut", SqlDbType.Int).Value = 0
