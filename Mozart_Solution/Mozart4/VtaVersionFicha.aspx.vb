@@ -948,6 +948,11 @@ Partial Class VtaVersionFicha
                 cd.Parameters.Add("@NroVersion_new", SqlDbType.Int).Value = iVersionNueva
                 cd.Parameters.Add("@NroVersion_base", SqlDbType.Int).Value = ViewState("NroVersion")
 
+                cd.Parameters.Add("@Propuesta_base", SqlDbType.Int).Value = ViewState("NroPropuesta")
+                cd.Parameters.Add("@usuario", SqlDbType.Int).Value = Session("CodUsuario")
+                cd.Parameters.Add("@procedencia", SqlDbType.Int).Value = "M"
+
+
 
                 cd.Parameters.Add("@MsgTrans", SqlDbType.VarChar, 500).Value = ""
 
@@ -987,10 +992,14 @@ Partial Class VtaVersionFicha
         End If
     End Sub
     Protected Sub lbtMigrarPedidoGG_Click(sender As Object, e As EventArgs) Handles lbtMigrarPedidoGG.Click
-        Dim version_gg = versionGG.Value
 
-        If version_gg = String.Empty Then
+        Dim version_gg As Integer = 0
+
+        'Dim flagGG As Boolean
+        If versionGG.Value = String.Empty Then
             Exit Sub
+        Else
+            version_gg = Convert.ToInt32(versionGG.Value)
         End If
 
         Dim procesado As Boolean = False
@@ -1484,6 +1493,15 @@ Partial Class VtaVersionFicha
                 cd.Parameters.Add("@NroPropuesta_new", SqlDbType.Int).Value = iPropuestaNueva
                 cd.Parameters.Add("@NroVersion_new", SqlDbType.Int).Value = iVersionNueva
                 cd.Parameters.Add("@NroVersion_base", SqlDbType.Int).Value = version_gg
+
+                cd.Parameters.Add("@Propuesta_base", SqlDbType.Int).Value = ViewState("NroPropuesta")
+                cd.Parameters.Add("@usuario", SqlDbType.Int).Value = Session("CodUsuario")
+
+                If version_gg <> 0 Then
+                    cd.Parameters.Add("@procedencia", SqlDbType.Int).Value = "R"
+                Else
+                    cd.Parameters.Add("@procedencia", SqlDbType.Int).Value = "M"
+                End If
 
 
                 cd.Parameters.Add("@MsgTrans", SqlDbType.VarChar, 500).Value = ""
