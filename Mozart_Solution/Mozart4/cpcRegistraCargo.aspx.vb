@@ -9,6 +9,7 @@ Imports System.Web.SessionState
 Imports System.Web.UI
 Imports System.Web.UI.WebControls
 Imports System.Web.UI.HtmlControls
+Imports System.Transactions
 
 Partial Class cpcRegistraCargo
     Inherits System.Web.UI.Page
@@ -154,6 +155,51 @@ Partial Class cpcRegistraCargo
     End Sub
 
     Private Sub cmdGrabar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdGrabar.Click
+        'Dim sMensajeError As String = ""
+        'Dim sResultado As String = ""
+        'Using transScope As New TransactionScope
+        '    Try
+        '        Dim cd As New SqlCommand
+
+        '        '-----------------------------------------------------
+        '        'Validaciones(si est afacturado y si pertenece a un periodo anterior, si de vuelve ok en los 4 botyones no debe dehar procesar)
+        '        '-----------------------------------------------------
+
+        '        cd.Connection = cn
+        '        cd.CommandType = CommandType.StoredProcedure
+        '        cd.CommandText = "SYS_ValidarFacturacion_S"
+
+        '        cd.Parameters.Add("@NroPedido", SqlDbType.Int).Value = ViewState("NroPedido")
+        '        cd.Parameters.Add("@NroPropuesta", SqlDbType.Int).Value = ViewState("NroPropuesta")
+        '        cd.Parameters.Add("@NroVersion", SqlDbType.Int).Value = ViewState("NroVersion")
+        '        cd.Parameters.Add("@CodCliente", SqlDbType.Int).Value = ViewState("CodCliente")
+        '        cd.Parameters.Add("@MsgTrans", SqlDbType.VarChar, 500).Value = ""
+
+        '        cd.Parameters("@MsgTrans").Direction = ParameterDirection.Output
+
+        '        Try
+        '            cn.Open()
+        '            cd.ExecuteNonQuery()
+        '            sResultado = cd.Parameters("@MsgTrans").Value
+        '        Catch ex1 As SqlException
+        '            sResultado = "Error: " & ex1.Message
+        '        Catch ex2 As Exception
+        '            sResultado = "Error: " & ex2.Message
+        '        Finally
+        '            cn.Close()
+        '        End Try
+
+        '        If Not sResultado.Trim().Equals("OK") Then
+        '            Throw New Exception(sResultado)
+        '        End If
+
+
+        '    Catch ex As Exception
+
+        '    End Try
+        'End Using
+
+
         If Len(Trim(txtpIGV.Text)) = 0 Then
             txtpIGV.Text = "0"
         End If
