@@ -9,6 +9,7 @@ Imports System.Web.SessionState
 Imports System.Web.UI
 Imports System.Web.UI.WebControls
 Imports System.Web.UI.HtmlControls
+Imports System.Transactions
 
 Partial Class cpcRegistraCargo
     Inherits System.Web.UI.Page
@@ -154,83 +155,158 @@ Partial Class cpcRegistraCargo
     End Sub
 
     Private Sub cmdGrabar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdGrabar.Click
-        If Len(Trim(txtpIGV.Text)) = 0 Then
-            txtpIGV.Text = "0"
-        End If
 
-        Dim wCodMoneda As String
-        Dim wNroDoc As String
+        Dim procesado As Boolean = False
+        Dim sMensajeError As String = ""
+        Dim sResultado As String = ""
+        Using transScope As New TransactionScope
+            Try
+                Dim cd As New SqlCommand
 
-        Dim wNroDocumento As Integer
-        If Viewstate("NroDocumento") > 0 Then
-            wNroDocumento = Viewstate("NroDocumento")
-        Else
-            wNroDocumento = 0
-        End If
+                '-----------------------------------------------------
+                'Validaciones(si est afacturado y si pertenece a un periodo anterior, si de vuelve ok en los 4 botyones no debe dehar procesar)
+                '-----------------------------------------------------
 
-        Dim wNroPedido, wNroPro, wNroVer As Integer
-        If Viewstate("NroVersion") > 0 Then
-            wNroPedido = Viewstate("NroPedido")
-            wNroPro = Viewstate("NroPropuesta")
-            wNroVer = Viewstate("NroVersion")
-        Else
-            wNroPedido = 0
-            wNroPro = 0
-            wNroVer = 0
-        End If
-        If rbdolar.Checked Then
-            wCodMoneda = "D"
-        Else
-            wCodMoneda = "S"
-        End If
+                cd.Connection = cn
+                cd.CommandType = CommandType.StoredProcedure
+                cd.CommandText = "SYS_ValidarFacturacion_S"
 
-        Dim cd As New SqlCommand()
+                cd.Parameters.Add("@NroPedido", SqlDbType.Int).Value = ViewState("NroPedido")
+                cd.Parameters.Add("@NroPropuesta", SqlDbType.Int).Value = ViewState("NroPropuesta")
+                cd.Parameters.Add("@NroVersion", SqlDbType.Int).Value = ViewState("NroVersion")
+                cd.Parameters.Add("@CodCliente", SqlDbType.Int).Value = ViewState("CodCliente")
+                cd.Parameters.Add("@MsgTrans", SqlDbType.VarChar, 500).Value = ""
 
-        cd.Connection = cn
-        cd.CommandText = "CPC_RegistraCargos_I"
-        cd.CommandType = CommandType.StoredProcedure
+                cd.Parameters("@MsgTrans").Direction = ParameterDirection.Output
 
-        Dim pa As New SqlParameter()
-        pa = cd.Parameters.Add("@MsgTrans", SqlDbType.VarChar, 150)
-        pa.Direction = ParameterDirection.Output
-        pa.Value = ""
-        pa = cd.Parameters.Add("@NroDoc", SqlDbType.Int)
-        pa.Direction = ParameterDirection.Output
-        pa.Value = 0
-        cd.Parameters.Add("@CodCliente", SqlDbType.Int).Value = Viewstate("CodCliente")
-        cd.Parameters.Add("@TipoDocumento", SqlDbType.Char, 2).Value = ddlTipoDocumento.SelectedItem.Value
-        cd.Parameters.Add("@NroDocumento", SqlDbType.Int).Value = wNroDocumento
-        cd.Parameters.Add("@FchEmision", SqlDbType.Char, 8).Value = txtFchEmision.Text.Substring(6, 4) + txtFchEmision.Text.Substring(3, 2) + txtFchEmision.Text.Substring(0, 2)
-        cd.Parameters.Add("@Referencia", SqlDbType.VarChar, 50).Value = txtReferencia.Text
-        cd.Parameters.Add("@GlosaDocumento", SqlDbType.VarChar, 50).Value = " "
-        cd.Parameters.Add("@CodMoneda", SqlDbType.Char, 1).Value = wCodMoneda
-        cd.Parameters.Add("@Importe", SqlDbType.Money).Value = txtImporte.Text
-        cd.Parameters.Add("@Otros", SqlDbType.Money).Value = 0
-        cd.Parameters.Add("@PIGV", SqlDbType.SmallMoney).Value = CDbl(txtpIGV.Text)
-        cd.Parameters.Add("@IGV", SqlDbType.Money).Value = CDbl(txtIGV.Text)
-        cd.Parameters.Add("@Total", SqlDbType.Money).Value = txtTotal.Text
-        cd.Parameters.Add("@Saldo", SqlDbType.Money).Value = txtTotal.Text
-        cd.Parameters.Add("@NroPedido", SqlDbType.Int).Value = wNroPedido
-        cd.Parameters.Add("@NroPropuesta", SqlDbType.TinyInt).Value = wNroPro
-        cd.Parameters.Add("@NroVersion", SqlDbType.TinyInt).Value = wNroVer
-        cd.Parameters.Add("@CodUsuario", SqlDbType.Char, 15).Value = Session("CodUsuario")
-        Try
-            cn.Open()
-            cd.ExecuteNonQuery()
-            lblmsg.Text = cd.Parameters("@MsgTrans").Value
-        Catch ex1 As System.Data.SqlClient.SqlException
-            lblmsg.Text = "Error:" & ex1.Message
-        Catch ex2 As System.Exception
-            lblmsg.Text = "Error:" & ex2.Message
-        End Try
-        cn.Close()
+                Try
+                    cn.Open()
+                    cd.ExecuteNonQuery()
+                    sResultado = cd.Parameters("@MsgTrans").Value
+                Catch ex1 As SqlException
+                    sResultado = "Error: " & ex1.Message
+                Catch ex2 As Exception
+                    sResultado = "Error: " & ex2.Message
+                Finally
+                    cn.Close()
+                End Try
 
-        If Trim(lblmsg.Text) = "OK" Then
-            wNroDoc = cd.Parameters("@NroDoc").Value
+                If Not sResultado.Trim().Equals("OK") Then
+                    Throw New Exception(sResultado)
+                End If
+
+
+
+                If Len(Trim(txtpIGV.Text)) = 0 Then
+                    txtpIGV.Text = "0"
+                End If
+
+                Dim wCodMoneda As String
+                Dim wNroDoc As String
+
+                Dim wNroDocumento As Integer
+                If ViewState("NroDocumento") > 0 Then
+                    wNroDocumento = ViewState("NroDocumento")
+                Else
+                    wNroDocumento = 0
+                End If
+
+                Dim wNroPedido, wNroPro, wNroVer As Integer
+                If ViewState("NroVersion") > 0 Then
+                    wNroPedido = ViewState("NroPedido")
+                    wNroPro = ViewState("NroPropuesta")
+                    wNroVer = ViewState("NroVersion")
+                Else
+                    wNroPedido = 0
+                    wNroPro = 0
+                    wNroVer = 0
+                End If
+                If rbdolar.Checked Then
+                    wCodMoneda = "D"
+                Else
+                    wCodMoneda = "S"
+                End If
+
+                'Dim cd As New SqlCommand()
+
+                cd.Connection = cn
+                cd.CommandText = "CPC_RegistraCargos_I"
+                cd.CommandType = CommandType.StoredProcedure
+
+                Dim pa As New SqlParameter()
+                pa = cd.Parameters.Add("@MsgTrans", SqlDbType.VarChar, 150)
+                pa.Direction = ParameterDirection.Output
+                pa.Value = ""
+                pa = cd.Parameters.Add("@NroDoc", SqlDbType.Int)
+                pa.Direction = ParameterDirection.Output
+                pa.Value = 0
+                cd.Parameters.Add("@CodCliente", SqlDbType.Int).Value = ViewState("CodCliente")
+                cd.Parameters.Add("@TipoDocumento", SqlDbType.Char, 2).Value = ddlTipoDocumento.SelectedItem.Value
+                cd.Parameters.Add("@NroDocumento", SqlDbType.Int).Value = wNroDocumento
+                cd.Parameters.Add("@FchEmision", SqlDbType.Char, 8).Value = txtFchEmision.Text.Substring(6, 4) + txtFchEmision.Text.Substring(3, 2) + txtFchEmision.Text.Substring(0, 2)
+                cd.Parameters.Add("@Referencia", SqlDbType.VarChar, 50).Value = txtReferencia.Text
+                cd.Parameters.Add("@GlosaDocumento", SqlDbType.VarChar, 50).Value = " "
+                cd.Parameters.Add("@CodMoneda", SqlDbType.Char, 1).Value = wCodMoneda
+                cd.Parameters.Add("@Importe", SqlDbType.Money).Value = txtImporte.Text
+                cd.Parameters.Add("@Otros", SqlDbType.Money).Value = 0
+                cd.Parameters.Add("@PIGV", SqlDbType.SmallMoney).Value = CDbl(txtpIGV.Text)
+                cd.Parameters.Add("@IGV", SqlDbType.Money).Value = CDbl(txtIGV.Text)
+                cd.Parameters.Add("@Total", SqlDbType.Money).Value = txtTotal.Text
+                cd.Parameters.Add("@Saldo", SqlDbType.Money).Value = txtTotal.Text
+                cd.Parameters.Add("@NroPedido", SqlDbType.Int).Value = wNroPedido
+                cd.Parameters.Add("@NroPropuesta", SqlDbType.TinyInt).Value = wNroPro
+                cd.Parameters.Add("@NroVersion", SqlDbType.TinyInt).Value = wNroVer
+                cd.Parameters.Add("@CodUsuario", SqlDbType.Char, 15).Value = Session("CodUsuario")
+                Try
+                    cn.Open()
+                    cd.ExecuteNonQuery()
+                    lblmsg.Text = cd.Parameters("@MsgTrans").Value
+                Catch ex1 As System.Data.SqlClient.SqlException
+                    lblmsg.Text = "Error:" & ex1.Message
+                Catch ex2 As System.Exception
+                    lblmsg.Text = "Error:" & ex2.Message
+                End Try
+                cn.Close()
+
+                If Trim(lblmsg.Text) = "OK" Then
+
+                    transScope.Complete()
+                    procesado = True
+                    'wNroDoc = cd.Parameters("@NroDoc").Value
+
+                    'lblmsg.Text = "Se grabo correctamente Documento " & ddlTipoDocumento.SelectedItem.Value & " " & wNroDoc
+                Else
+                    Throw New Exception(lblmsg.Text)
+                End If
+
+
+
+            Catch ex As Exception
+                transScope.Dispose()
+                procesado = False
+                sMensajeError = ex.Message
+
+            End Try
+        End Using
+
+
+        If (procesado) Then
             Response.Redirect("cpcDocumento.aspx" & _
-                            "?CodCliente=" & Viewstate("CodCliente"))
-            '            lblmsg.Text = "Se grabo correctamente Documento " & ddlTipoDocumento.SelectedItem.Value & " " & wNroDoc
+                                            "?CodCliente=" & ViewState("CodCliente"))
+        Else
+            Response.Write(String.Format("<script type='text/javascript'>alert('{0}');</script>", sMensajeError))
         End If
+
+
+
+
+
+
+
+
+
+
+
     End Sub
 
     Private Sub txtImporte_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtImporte.TextChanged
