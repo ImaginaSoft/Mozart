@@ -949,12 +949,12 @@ Partial Class VtaVersionFicha
                 cd.Parameters.Add("@NroVersion_base", SqlDbType.Int).Value = ViewState("NroVersion")
 
                 cd.Parameters.Add("@Propuesta_base", SqlDbType.Int).Value = ViewState("NroPropuesta")
-                cd.Parameters.Add("@usuario", SqlDbType.Int).Value = Session("CodUsuario")
-                cd.Parameters.Add("@procedencia", SqlDbType.Int).Value = "M"
+				cd.Parameters.Add("@usuario", SqlDbType.VarChar, 100).Value = Session("CodUsuario")
+				cd.Parameters.Add("@procedencia", SqlDbType.VarChar, 1).Value = "M"
 
 
 
-                cd.Parameters.Add("@MsgTrans", SqlDbType.VarChar, 500).Value = ""
+				cd.Parameters.Add("@MsgTrans", SqlDbType.VarChar, 500).Value = ""
 
                 cd.Parameters("@MsgTrans").Direction = ParameterDirection.Output
 
@@ -1495,13 +1495,13 @@ Partial Class VtaVersionFicha
                 cd.Parameters.Add("@NroVersion_base", SqlDbType.Int).Value = version_gg
 
                 cd.Parameters.Add("@Propuesta_base", SqlDbType.Int).Value = ViewState("NroPropuesta")
-                cd.Parameters.Add("@usuario", SqlDbType.Int).Value = Session("CodUsuario")
+				cd.Parameters.Add("@usuario", SqlDbType.VarChar, 10).Value = Session("CodUsuario")
 
-                If version_gg <> 0 Then
-                    cd.Parameters.Add("@procedencia", SqlDbType.Int).Value = "R"
-                Else
-                    cd.Parameters.Add("@procedencia", SqlDbType.Int).Value = "M"
-                End If
+				If version_gg <> 0 Then
+					cd.Parameters.Add("@procedencia", SqlDbType.VarChar, 1).Value = "R"
+				Else
+					cd.Parameters.Add("@procedencia", SqlDbType.VarChar, 1).Value = "M"
+				End If
 
 
                 cd.Parameters.Add("@MsgTrans", SqlDbType.VarChar, 500).Value = ""
