@@ -9,6 +9,7 @@ Imports System.Web.SessionState
 Imports System.Web.UI
 Imports System.Web.UI.WebControls
 Imports System.Web.UI.HtmlControls
+Imports System.Transactions
 
 Partial Class cppRegistraDebito
     Inherits System.Web.UI.Page
@@ -16,27 +17,28 @@ Partial Class cppRegistraDebito
     Dim objRutina As New cmpRutinas.clsRutinas
 
     Private Sub Page_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+
         If Session("CodUsuario") = "" Then
             Response.Redirect("segSesion.aspx")
         End If
 
         If Not Page.IsPostBack Then
-            Viewstate("CodProveedor") = Request.Params("CodProveedor")
-            Viewstate("NroDocumento") = Request.Params("NroDocumento")
+            ViewState("CodProveedor") = Request.Params("CodProveedor")
+            ViewState("NroDocumento") = Request.Params("NroDocumento")
 
-            Viewstate("NroPedido") = Request.Params("NroPedido")
-            Viewstate("NroPropuesta") = Request.Params("NroPropuesta")
-            Viewstate("NroVersion") = Request.Params("NroVersion")
+            ViewState("NroPedido") = Request.Params("NroPedido")
+            ViewState("NroPropuesta") = Request.Params("NroPropuesta")
+            ViewState("NroVersion") = Request.Params("NroVersion")
 
 
-            If Viewstate("NroDocumento") > 0 Then
-                Viewstate("TipoDocumento") = Request.Params("TipoDocumento")
+            If ViewState("NroDocumento") > 0 Then
+                ViewState("TipoDocumento") = Request.Params("TipoDocumento")
                 lblNroDocumento.Visible = True
                 txtNroDocumento.Visible = True
-                txtNroDocumento.Text = Viewstate("NroDocumento")
+                txtNroDocumento.Text = ViewState("NroDocumento")
                 EditaNroDocumento()
             Else
-                Viewstate("TipoDocumento") = "ND"
+                ViewState("TipoDocumento") = "ND"
                 lblNroDocumento.Visible = False
                 txtNroDocumento.Visible = False
                 txtFchEmision.Text = objRutina.fechaddmmyyyy(0)
@@ -44,9 +46,9 @@ Partial Class cppRegistraDebito
                 CargaTipoDocumento(False)
             End If
 
-            If Viewstate("NroVersion") > 0 Then
-                Viewstate("TipoDocumento") = "ND"
-                txtPedido.Text = "Ajuste Pedido # " & CStr(Viewstate("NroPedido")) & " Version " & CStr(Viewstate("NroVersion"))
+            If ViewState("NroVersion") > 0 Then
+                ViewState("TipoDocumento") = "ND"
+                txtPedido.Text = "Ajuste Pedido # " & CStr(ViewState("NroPedido")) & " Version " & CStr(ViewState("NroVersion"))
                 CargaTipoDocumento(False)
             End If
         End If
@@ -185,99 +187,236 @@ Partial Class cppRegistraDebito
     End Sub
 
     Private Sub cmdGrabar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdGrabar.Click
-        If Not IsNumeric(txtImporte.Text) Then
-            lblmsg.Text = "Importe es dato númerico"
-            Return
-        End If
-        If Not IsNumeric(txtOtros.Text) And Len(Trim(txtOtros.Text)) <> 0 Then
-            lblmsg.Text = "Importe es dato númerico"
-            Return
-        End If
 
-        Dim wMoneda, wMoneda1 As String
-        Dim wNroDoc As String
 
-        Dim wNroDocumento As Integer
-        If Viewstate("NroDocumento") > 0 Then
-            wNroDocumento = Viewstate("NroDocumento")
+
+        Dim procesado As Boolean = False
+        Dim sMensajeError As String = ""
+        Dim sResultado As String = ""
+
+        Using transScope As New TransactionScope
+
+
+            Try
+                Dim cd As New SqlCommand
+
+                '-----------------------------------------------------
+                'Validaciones (si esta facturado y si pertenece a un periodo anterior, si de vuelve ok en los 4 botones no debe dejar procesar)
+                '-----------------------------------------------------
+                cd.Connection = cn
+                cd.CommandType = CommandType.StoredProcedure
+                cd.CommandText = "SYS_ValidarFacturacion_S"
+
+                cd.Parameters.Add("@NroPedido", SqlDbType.Int).Value = ViewState("NroPedido")
+                cd.Parameters.Add("@NroPropuesta", SqlDbType.Int).Value = ViewState("NroPropuesta")
+                cd.Parameters.Add("@NroVersion", SqlDbType.Int).Value = ViewState("NroVersion")
+                cd.Parameters.Add("@CodCliente", SqlDbType.Int).Value = ViewState("CodCliente")
+                cd.Parameters.Add("@MsgTrans", SqlDbType.VarChar, 500).Value = ""
+
+                cd.Parameters("@MsgTrans").Direction = ParameterDirection.Output
+
+                Try
+                    cn.Open()
+                    cd.ExecuteNonQuery()
+                    sResultado = cd.Parameters("@MsgTrans").Value
+                Catch ex1 As SqlException
+                    sResultado = "Error: " & ex1.Message
+                Catch ex2 As Exception
+                    sResultado = "Error: " & ex2.Message
+                Finally
+                    cn.Close()
+                End Try
+
+                If sResultado.Trim().Equals("OK") Then
+                    Throw New Exception("Error: El pedido pertecene a un periodo anterior y no puede aplicarse eta operación, primero tiene que migrar el pedido al periodo actual.")
+                End If
+
+                '-----------------------------------------------------
+                'Procesar ajuste
+                '-----------------------------------------------------
+
+                If Not IsNumeric(txtImporte.Text) Then
+                    lblmsg.Text = "Importe es dato númerico"
+                    Return
+                End If
+                If Not IsNumeric(txtOtros.Text) And Len(Trim(txtOtros.Text)) <> 0 Then
+                    lblmsg.Text = "Importe es dato númerico"
+                    Return
+                End If
+
+                Dim wMoneda, wMoneda1 As String
+                Dim wNroDoc As String
+
+                Dim wNroDocumento As Integer
+                If ViewState("NroDocumento") > 0 Then
+                    wNroDocumento = ViewState("NroDocumento")
+                Else
+                    wNroDocumento = 0
+                End If
+
+                Dim wNroPedido, wNroPro, wNroVer As Integer
+                If ViewState("NroVersion") > 0 Then
+                    wNroPedido = ViewState("NroPedido")
+                    wNroPro = ViewState("NroPropuesta")
+                    wNroVer = ViewState("NroVersion")
+                Else
+                    wNroPedido = 0
+                    wNroPro = 0
+                    wNroVer = 0
+                End If
+                If Len(Trim(txtOtros.Text)) = 0 Then
+                    txtOtros.Text = "0"
+                End If
+
+                If rbdolar.Checked Then
+                    wMoneda = "D"
+                Else
+                    wMoneda = "S"
+                End If
+
+                cd = New SqlCommand
+                cd.Connection = cn
+                cd.CommandText = "CPP_RegistraDebito_I"
+                cd.CommandType = CommandType.StoredProcedure
+
+                Dim pa As New SqlParameter
+                pa = cd.Parameters.Add("@MsgTrans", SqlDbType.VarChar, 150)
+                pa.Direction = ParameterDirection.Output
+                pa.Value = ""
+                pa = cd.Parameters.Add("@NroDoc", SqlDbType.Int)
+                pa.Direction = ParameterDirection.Output
+                pa.Value = 0
+
+                cd.Parameters.Add("@CodProveedor", SqlDbType.Int).Value = ViewState("CodProveedor")
+                cd.Parameters.Add("@TipoDocumento", SqlDbType.Char, 2).Value = ddlTipoDocumento.SelectedItem.Value
+                cd.Parameters.Add("@NroDocumento", SqlDbType.Int).Value = wNroDocumento
+                cd.Parameters.Add("@FchEmision", SqlDbType.Char, 8).Value = txtFchEmision.Text.Substring(6, 4) + txtFchEmision.Text.Substring(3, 2) + txtFchEmision.Text.Substring(0, 2)
+                cd.Parameters.Add("@Referencia", SqlDbType.VarChar, 50).Value = txtReferencia.Text
+                cd.Parameters.Add("@GlosaDocumento", SqlDbType.VarChar, 50).Value = " "
+                cd.Parameters.Add("@CodMoneda", SqlDbType.Char, 1).Value = wMoneda
+                cd.Parameters.Add("@Importe", SqlDbType.Money).Value = txtImporte.Text
+                cd.Parameters.Add("@Otros", SqlDbType.Money).Value = CDbl(txtOtros.Text)
+                cd.Parameters.Add("@PIGV", SqlDbType.SmallMoney).Value = CDbl(txtpIGV.Text)
+                cd.Parameters.Add("@IGV", SqlDbType.Money).Value = CDbl(txtIGV.Text)
+                cd.Parameters.Add("@Total", SqlDbType.Money).Value = txtTotal.Text
+                cd.Parameters.Add("@NroPedido", SqlDbType.Int).Value = wNroPedido
+                cd.Parameters.Add("@NroPropuesta", SqlDbType.TinyInt).Value = wNroPro
+                cd.Parameters.Add("@NroVersion", SqlDbType.TinyInt).Value = wNroVer
+                cd.Parameters.Add("@Saldo", SqlDbType.Money).Value = txtTotal.Text
+                cd.Parameters.Add("@RegistraNC", SqlDbType.Char, 1).Value = "S" 'Registra automaticamente NC para Liq.
+                cd.Parameters.Add("@CodUsuario", SqlDbType.Char, 15).Value = Session("CodUsuario")
+                Try
+                    cn.Open()
+                    cd.ExecuteNonQuery()
+                    lblmsg.Text = cd.Parameters("@MsgTrans").Value
+                Catch ex1 As System.Data.SqlClient.SqlException
+                    lblmsg.Text = "Error:" & ex1.Message
+                Catch ex2 As System.Exception
+                    lblmsg.Text = "Error:" & ex2.Message
+                End Try
+
+                cn.Close()
+
+
+                If Trim(lblmsg.Text) = "OK" Then
+                    transScope.Complete()
+                    procesado = True
+
+                    wNroDoc = cd.Parameters("@NroDoc").Value
+                    txtReferencia.Text = ""
+                    txtImporte.Text = ""
+                    LimpiaVentana()
+                    lblmsg.Text = "Se grabo correctamente Documento " & ddlTipoDocumento.SelectedItem.Value & " " & wNroDoc
+                    txtFchEmision.Text = objRutina.fechaddmmyyyy(0)
+                Else
+                    Throw New Exception(lblmsg.Text)
+                End If
+
+
+                'If Trim(lblmsg.Text) = "OK" Then
+                '    wNroDoc = cd.Parameters("@NroDoc").Value
+                '    txtReferencia.Text = ""
+                '    txtImporte.Text = ""
+                '    LimpiaVentana()
+                '    lblmsg.Text = "Se grabo correctamente Documento " & ddlTipoDocumento.SelectedItem.Value & " " & wNroDoc
+                '    txtFchEmision.Text = objRutina.fechaddmmyyyy(0)
+
+                '    'Response.Redirect("cppDocumento.aspx" &
+                '    '    "?CodProveedor=" & ViewState("CodProveedor"))
+
+                'End If
+
+            Catch ex As Exception
+                transScope.Dispose()
+                procesado = False
+                sMensajeError = ex.Message
+            End Try
+
+
+        End Using
+
+        If (procesado) Then
+            Response.Redirect("cppDocumento.aspx" &
+                      "?CodProveedor=" & ViewState("CodProveedor"))
         Else
-            wNroDocumento = 0
+            Response.Write(String.Format("<script type='text/javascript'>alert('{0}');</script>", sMensajeError))
         End If
 
-        Dim wNroPedido, wNroPro, wNroVer As Integer
-        If Viewstate("NroVersion") > 0 Then
-            wNroPedido = Viewstate("NroPedido")
-            wNroPro = Viewstate("NroPropuesta")
-            wNroVer = Viewstate("NroVersion")
-        Else
-            wNroPedido = 0
-            wNroPro = 0
-            wNroVer = 0
-        End If
-        If Len(Trim(txtOtros.Text)) = 0 Then
-            txtOtros.Text = "0"
-        End If
 
-        If rbdolar.Checked Then
-            wMoneda = "D"
-        Else
-            wMoneda = "S"
-        End If
+        'Dim cd As New SqlCommand
+        'cd.Connection = cn
+        'cd.CommandText = "CPP_RegistraDebito_I"
+        'cd.CommandType = CommandType.StoredProcedure
 
-        Dim cd As New SqlCommand
-        cd.Connection = cn
-        cd.CommandText = "CPP_RegistraDebito_I"
-        cd.CommandType = CommandType.StoredProcedure
+        'Dim pa As New SqlParameter
+        'pa = cd.Parameters.Add("@MsgTrans", SqlDbType.VarChar, 150)
+        'pa.Direction = ParameterDirection.Output
+        'pa.Value = ""
+        'pa = cd.Parameters.Add("@NroDoc", SqlDbType.Int)
+        'pa.Direction = ParameterDirection.Output
+        'pa.Value = 0
 
-        Dim pa As New SqlParameter
-        pa = cd.Parameters.Add("@MsgTrans", SqlDbType.VarChar, 150)
-        pa.Direction = ParameterDirection.Output
-        pa.Value = ""
-        pa = cd.Parameters.Add("@NroDoc", SqlDbType.Int)
-        pa.Direction = ParameterDirection.Output
-        pa.Value = 0
+        'cd.Parameters.Add("@CodProveedor", SqlDbType.Int).Value = ViewState("CodProveedor")
+        'cd.Parameters.Add("@TipoDocumento", SqlDbType.Char, 2).Value = ddlTipoDocumento.SelectedItem.Value
+        'cd.Parameters.Add("@NroDocumento", SqlDbType.Int).Value = wNroDocumento
+        'cd.Parameters.Add("@FchEmision", SqlDbType.Char, 8).Value = txtFchEmision.Text.Substring(6, 4) + txtFchEmision.Text.Substring(3, 2) + txtFchEmision.Text.Substring(0, 2)
+        'cd.Parameters.Add("@Referencia", SqlDbType.VarChar, 50).Value = txtReferencia.Text
+        'cd.Parameters.Add("@GlosaDocumento", SqlDbType.VarChar, 50).Value = " "
+        'cd.Parameters.Add("@CodMoneda", SqlDbType.Char, 1).Value = wMoneda
+        'cd.Parameters.Add("@Importe", SqlDbType.Money).Value = txtImporte.Text
+        'cd.Parameters.Add("@Otros", SqlDbType.Money).Value = CDbl(txtOtros.Text)
+        'cd.Parameters.Add("@PIGV", SqlDbType.SmallMoney).Value = CDbl(txtpIGV.Text)
+        'cd.Parameters.Add("@IGV", SqlDbType.Money).Value = CDbl(txtIGV.Text)
+        'cd.Parameters.Add("@Total", SqlDbType.Money).Value = txtTotal.Text
+        'cd.Parameters.Add("@NroPedido", SqlDbType.Int).Value = wNroPedido
+        'cd.Parameters.Add("@NroPropuesta", SqlDbType.TinyInt).Value = wNroPro
+        'cd.Parameters.Add("@NroVersion", SqlDbType.TinyInt).Value = wNroVer
+        'cd.Parameters.Add("@Saldo", SqlDbType.Money).Value = txtTotal.Text
+        'cd.Parameters.Add("@RegistraNC", SqlDbType.Char, 1).Value = "S" 'Registra automaticamente NC para Liq.
+        'cd.Parameters.Add("@CodUsuario", SqlDbType.Char, 15).Value = Session("CodUsuario")
+        'Try
+        '    cn.Open()
+        '    cd.ExecuteNonQuery()
+        '    lblmsg.Text = cd.Parameters("@MsgTrans").Value
+        'Catch ex1 As System.Data.SqlClient.SqlException
+        '    lblmsg.Text = "Error:" & ex1.Message
+        'Catch ex2 As System.Exception
+        '    lblmsg.Text = "Error:" & ex2.Message
+        'End Try
 
-        cd.Parameters.Add("@CodProveedor", SqlDbType.Int).Value = Viewstate("CodProveedor")
-        cd.Parameters.Add("@TipoDocumento", SqlDbType.Char, 2).Value = ddlTipoDocumento.SelectedItem.Value
-        cd.Parameters.Add("@NroDocumento", SqlDbType.Int).Value = wNroDocumento
-        cd.Parameters.Add("@FchEmision", SqlDbType.Char, 8).Value = txtFchEmision.Text.Substring(6, 4) + txtFchEmision.Text.Substring(3, 2) + txtFchEmision.Text.Substring(0, 2)
-        cd.Parameters.Add("@Referencia", SqlDbType.VarChar, 50).Value = txtReferencia.Text
-        cd.Parameters.Add("@GlosaDocumento", SqlDbType.VarChar, 50).Value = " "
-        cd.Parameters.Add("@CodMoneda", SqlDbType.Char, 1).Value = wMoneda
-        cd.Parameters.Add("@Importe", SqlDbType.Money).Value = txtImporte.Text
-        cd.Parameters.Add("@Otros", SqlDbType.Money).Value = CDbl(txtOtros.Text)
-        cd.Parameters.Add("@PIGV", SqlDbType.SmallMoney).Value = CDbl(txtpIGV.Text)
-        cd.Parameters.Add("@IGV", SqlDbType.Money).Value = CDbl(txtIGV.Text)
-        cd.Parameters.Add("@Total", SqlDbType.Money).Value = txtTotal.Text
-        cd.Parameters.Add("@NroPedido", SqlDbType.Int).Value = wNroPedido
-        cd.Parameters.Add("@NroPropuesta", SqlDbType.TinyInt).Value = wNroPro
-        cd.Parameters.Add("@NroVersion", SqlDbType.TinyInt).Value = wNroVer
-        cd.Parameters.Add("@Saldo", SqlDbType.Money).Value = txtTotal.Text
-        cd.Parameters.Add("@RegistraNC", SqlDbType.Char, 1).Value = "S" 'Registra automaticamente NC para Liq.
-        cd.Parameters.Add("@CodUsuario", SqlDbType.Char, 15).Value = Session("CodUsuario")
-        Try
-            cn.Open()
-            cd.ExecuteNonQuery()
-            lblmsg.Text = cd.Parameters("@MsgTrans").Value
-        Catch ex1 As System.Data.SqlClient.SqlException
-            lblmsg.Text = "Error:" & ex1.Message
-        Catch ex2 As System.Exception
-            lblmsg.Text = "Error:" & ex2.Message
-        End Try
+        'cn.Close()
+        'If Trim(lblmsg.Text) = "OK" Then
+        '    wNroDoc = cd.Parameters("@NroDoc").Value
+        '    txtReferencia.Text = ""
+        '    txtImporte.Text = ""
+        '    LimpiaVentana()
+        '    lblmsg.Text = "Se grabo correctamente Documento " & ddlTipoDocumento.SelectedItem.Value & " " & wNroDoc
+        '    txtFchEmision.Text = objRutina.fechaddmmyyyy(0)
 
-        cn.Close()
-        If Trim(lblmsg.Text) = "OK" Then
-            wNroDoc = cd.Parameters("@NroDoc").Value
-            txtReferencia.Text = ""
-            txtImporte.Text = ""
-            LimpiaVentana()
-            lblmsg.Text = "Se grabo correctamente Documento " & ddlTipoDocumento.SelectedItem.Value & " " & wNroDoc
-            txtFchEmision.Text = ObjRutina.fechaddmmyyyy(0)
+        '    Response.Redirect("cppDocumento.aspx" &
+        '        "?CodProveedor=" & ViewState("CodProveedor"))
 
-            Response.Redirect("cppDocumento.aspx" & _
-                "?CodProveedor=" & Viewstate("CodProveedor"))
-
-        End If
+        'End If
     End Sub
 
     Private Sub txtImporte_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtImporte.TextChanged
