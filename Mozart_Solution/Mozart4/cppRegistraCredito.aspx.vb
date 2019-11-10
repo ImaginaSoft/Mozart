@@ -24,8 +24,9 @@ Partial Class cppRegistraCredito
         End If
 
         If Not Page.IsPostBack Then
-            Viewstate("CodProveedor") = Request.Params("CodProveedor")
-            Viewstate("NroDocumento") = Request.Params("NroDocumento")
+            ViewState("CodProveedor") = Request.Params("CodProveedor")
+            ViewState("CodCliente") = Request.Params("CodCliente")
+            ViewState("NroDocumento") = Request.Params("NroDocumento")
             Viewstate("NroPedido") = Request.Params("NroPedido")
             Viewstate("NroPropuesta") = Request.Params("NroPropuesta")
             Viewstate("NroVersion") = Request.Params("NroVersion")
@@ -367,8 +368,7 @@ Partial Class cppRegistraCredito
 
 
         If (procesado) Then
-            Response.Redirect("cppDocumento.aspx" &
-                            "?CodProveedor=" & ViewState("CodProveedor"))
+            Response.Redirect("cppDocumento.aspx" & "?CodProveedor=" & ViewState("CodProveedor"))
 
         Else
             Response.Write(String.Format("<script type='text/javascript'>alert('{0}');</script>", sMensajeError))
