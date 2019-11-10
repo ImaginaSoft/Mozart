@@ -22,6 +22,7 @@ Partial Class VtaVersionFicha
             LeeNroVersion()
             lblTitulo.Text = "Ficha de la Versión N° " & ViewState("NroVersion")
             CargaData()
+            OcultarBotonMigrarGG()
         End If
     End Sub
 
@@ -1427,5 +1428,44 @@ Partial Class VtaVersionFicha
         Else
             Response.Write(String.Format("<script type='text/javascript'>alert('{0}');</script>", sMensajeError))
         End If
+    End Sub
+
+    Private Sub OcultarBotonMigrarGG()
+        Dim sResultado As String = ""
+
+        Dim cd As New SqlCommand
+        cd.Connection = cn
+        cd.CommandType = CommandType.StoredProcedure
+        cd.CommandText = "SYS_OcultarBotonMigrar"
+
+        cd.Parameters.Add("@CodUsuario", SqlDbType.Char).Value = Session("CodUsuario")
+
+        cd.Parameters.Add("@MsgTrans", SqlDbType.VarChar, 15).Value = ""
+
+        cd.Parameters("@MsgTrans").Direction = ParameterDirection.Output
+
+        Try
+            cn.Open()
+            cd.ExecuteNonQuery()
+            sResultado = cd.Parameters("@MsgTrans").Value
+
+            If (sResultado.Trim = "ADMI") Then
+                lbtMigrarPedidoGG.Visible = True
+            Else
+                lbtMigrarPedidoGG.Visible = False
+
+            End If
+
+
+        Catch ex1 As SqlException
+            sResultado = "Error: " & ex1.Message
+        Catch ex2 As Exception
+            sResultado = "Error: " & ex2.Message
+        Finally
+            cn.Close()
+        End Try
+
+
+
     End Sub
 End Class
