@@ -164,9 +164,8 @@ Partial Class cpcRegistraCargo
                 Dim cd As New SqlCommand
 
                 '-----------------------------------------------------
-                'Validaciones(si est afacturado y si pertenece a un periodo anterior, si de vuelve ok en los 4 botyones no debe dehar procesar)
+                'Validaciones (si esta facturado y si pertenece a un periodo anterior, si de vuelve ok en los 4 botones no debe dejar procesar)
                 '-----------------------------------------------------
-
                 cd.Connection = cn
                 cd.CommandType = CommandType.StoredProcedure
                 cd.CommandText = "SYS_ValidarFacturacion_S"
@@ -191,12 +190,13 @@ Partial Class cpcRegistraCargo
                     cn.Close()
                 End Try
 
-                If Not sResultado.Trim().Equals("OK") Then
-                    Throw New Exception(sResultado)
+                If sResultado.Trim().Equals("OK") Then
+                    Throw New Exception("Error: El pedido pertecene a un periodo anterior y no puede aplicarse eta operación, primero tiene que migrar el pedido al periodo actual.")
                 End If
 
-
-
+                '-----------------------------------------------------
+                'Procesar ajuste
+                '-----------------------------------------------------
                 If Len(Trim(txtpIGV.Text)) = 0 Then
                     txtpIGV.Text = "0"
                 End If
@@ -227,8 +227,7 @@ Partial Class cpcRegistraCargo
                     wCodMoneda = "S"
                 End If
 
-                'Dim cd As New SqlCommand()
-
+                cd = New SqlCommand
                 cd.Connection = cn
                 cd.CommandText = "CPC_RegistraCargos_I"
                 cd.CommandType = CommandType.StoredProcedure
@@ -269,44 +268,23 @@ Partial Class cpcRegistraCargo
                 cn.Close()
 
                 If Trim(lblmsg.Text) = "OK" Then
-
                     transScope.Complete()
                     procesado = True
-                    'wNroDoc = cd.Parameters("@NroDoc").Value
-
-                    'lblmsg.Text = "Se grabo correctamente Documento " & ddlTipoDocumento.SelectedItem.Value & " " & wNroDoc
                 Else
                     Throw New Exception(lblmsg.Text)
                 End If
-
-
-
             Catch ex As Exception
                 transScope.Dispose()
                 procesado = False
                 sMensajeError = ex.Message
-
             End Try
         End Using
 
-
         If (procesado) Then
-            Response.Redirect("cpcDocumento.aspx" & _
-                                            "?CodCliente=" & ViewState("CodCliente"))
+            Response.Redirect("cpcDocumento.aspx?CodCliente=" & ViewState("CodCliente"))
         Else
             Response.Write(String.Format("<script type='text/javascript'>alert('{0}');</script>", sMensajeError))
         End If
-
-
-
-
-
-
-
-
-
-
-
     End Sub
 
     Private Sub txtImporte_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtImporte.TextChanged
