@@ -1,5 +1,4 @@
-﻿'Imports System.Web.Mail
-Imports System.Net.Mail
+﻿Imports System.Web.Mail
 Imports cmpNegocio
 Imports cmpTabla
 Imports cmpBlog
@@ -97,49 +96,49 @@ Partial Class blogRevisaComentario
                         'Proceso para enviar e-mail
                         lblmsg.Text = objComentario.DatosParaEmail
                         If lblmsg.Text.Trim = "OK" Then
-                            'Dim email As New MailMessage
-                            'With email
-                            '    .From = objComentario.EmailOrigen
-                            '    .To = objComentario.EmailCliente
-                            '    .Cc = ""
-                            '    .Subject = objComentario.Asunto
-                            '    .Body = objComentario.Detalle
-                            '    .BodyFormat = MailFormat.Html
-                            '    .Fields.Add("http://schemas.microsoft.com/cdo/configuration/smtpserver", System.Configuration.ConfigurationSettings.AppSettings("ServidorEmail")) 'smtp Server Address
-                            '    .Fields.Add("http://schemas.microsoft.com/cdo/configuration/smtpserverport", 25)
-                            '    .Fields.Add("http://schemas.microsoft.com/cdo/configuration/sendusing", 2) '2 to send using SMTP over the network
-                            '    .Fields.Add("http://schemas.microsoft.com/cdo/configuration/smtpauthenticate", 1) '1 = basic authentication
-                            '    .Fields.Add("http://schemas.microsoft.com/cdo/configuration/sendusername", System.Configuration.ConfigurationSettings.AppSettings("sendusername"))
-                            '    .Fields.Add("http://schemas.microsoft.com/cdo/configuration/sendpassword", System.Configuration.ConfigurationSettings.AppSettings("sendpassword"))
-                            '    ' .Priority = MailPriority.High
-                            'End With
-                            'SmtpMail.Send(email)
+                            Dim email As New MailMessage
+                            With email
+                                .From = objComentario.EmailOrigen
+                                .To = objComentario.EmailCliente
+                                .CC = ""
+                                .Subject = objComentario.Asunto
+                                .Body = objComentario.Detalle
+                                .BodyFormat = MailFormat.Html
+                                .Fields.Add("http://schemas.microsoft.com/cdo/configuration/smtpserver", System.Configuration.ConfigurationSettings.AppSettings("ServidorEmail")) 'smtp Server Address
+                                .Fields.Add("http://schemas.microsoft.com/cdo/configuration/smtpserverport", System.Configuration.ConfigurationSettings.AppSettings("port"))
+                                .Fields.Add("http://schemas.microsoft.com/cdo/configuration/sendusing", 2) '2 to send using SMTP over the network
+                                .Fields.Add("http://schemas.microsoft.com/cdo/configuration/smtpauthenticate", 1) '1 = basic authentication
+                                .Fields.Add("http://schemas.microsoft.com/cdo/configuration/sendusername", System.Configuration.ConfigurationSettings.AppSettings("sendusername"))
+                                .Fields.Add("http://schemas.microsoft.com/cdo/configuration/sendpassword", System.Configuration.ConfigurationSettings.AppSettings("sendpassword"))
+                                ' .Priority = MailPriority.High
+                            End With
+                            SmtpMail.Send(email)
 
 
                             'Proceso para enviar e-mail(new)
-                            Dim client As New SmtpClient
-                            With client
-                                .Port = System.Configuration.ConfigurationManager.AppSettings("port")
-                                .Host = System.Configuration.ConfigurationManager.AppSettings("ServidorEmail")
-                                .Credentials = New System.Net.NetworkCredential(System.Configuration.ConfigurationManager.AppSettings("sendusername"), System.Configuration.ConfigurationManager.AppSettings("sendpassword"))
-                                .EnableSsl = True
-                            End With
+                            'Dim client As New SmtpClient
+                            'With client
+                            '    .Port = System.Configuration.ConfigurationManager.AppSettings("port")
+                            '    .Host = System.Configuration.ConfigurationManager.AppSettings("ServidorEmail")
+                            '    .Credentials = New System.Net.NetworkCredential(System.Configuration.ConfigurationManager.AppSettings("sendusername"), System.Configuration.ConfigurationManager.AppSettings("sendpassword"))
+                            '    .EnableSsl = True
+                            'End With
 
-                            Dim email As New MailMessage
-                            With email
+                            'Dim email As New MailMessage
+                            'With email
 
-                                .From = New MailAddress(objComentario.EmailOrigen, objComentario.EmailOrigen)
-                                .To.Add(objComentario.EmailCliente)
-                                .CC.Add("")
-                                .Subject = objComentario.Asunto
-                                .Body = objComentario.Detalle
-                                .IsBodyHtml = True
-                                .Priority = MailPriority.High
+                            '    .From = New MailAddress(objComentario.EmailOrigen, objComentario.EmailOrigen)
+                            '    .To.Add(objComentario.EmailCliente)
+                            '    .CC.Add("")
+                            '    .Subject = objComentario.Asunto
+                            '    .Body = objComentario.Detalle
+                            '    .IsBodyHtml = True
+                            '    .Priority = MailPriority.High
 
-                            End With
+                            'End With
 
-                            client.Send(email)
-                            email.Dispose()
+                            'client.Send(email)
+                            'email.Dispose()
 
                         End If
 
