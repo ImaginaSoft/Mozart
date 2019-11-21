@@ -170,3 +170,17 @@ C:\PROYECTOS\PENTA\Mozart\Mozart_Solution\Mozart4\cmpSeguridad\obj\Debug\cmpSegu
 C:\Users\bgloria\Documents\Dev\Pentagrama\Mozart\Mozart_Solution\Mozart4\cmpSeguridad\obj\Debug\cmpSeguridad.vbprojAssemblyReference.cache
 C:\Users\bgloria\Documents\Dev\Pentagrama\Mozart\Mozart_Solution\Mozart4\cmpSeguridad\obj\Debug\cmpSeguridad.vbproj.CoreCompileInputs.cache
 C:\Users\bgloria\Documents\Dev\Pentagrama\Mozart\Mozart_Solution\Mozart4\cmpSeguridad\obj\Debug\cmpSeguridad.vbproj.CopyComplete
+C:\Users\jlopez\Documents\GG\Mozart\Mozart_Solution\Mozart4\cmpSeguridad\bin\Debug\cmpSeguridad.dll
+C:\Users\jlopez\Documents\GG\Mozart\Mozart_Solution\Mozart4\cmpSeguridad\bin\Debug\cmpSeguridad.pdb
+C:\Users\jlopez\Documents\GG\Mozart\Mozart_Solution\Mozart4\cmpSeguridad\bin\Debug\cmpSeguridad.xml
+C:\Users\jlopez\Documents\GG\Mozart\Mozart_Solution\Mozart4\cmpSeguridad\bin\Debug\cmpRutinas.dll
+C:\Users\jlopez\Documents\GG\Mozart\Mozart_Solution\Mozart4\cmpSeguridad\bin\Debug\cmpRutinas.pdb
+C:\Users\jlopez\Documents\GG\Mozart\Mozart_Solution\Mozart4\cmpSeguridad\bin\Debug\cmpRutinas.xml
+C:\Users\jlopez\Documents\GG\Mozart\Mozart_Solution\Mozart4\cmpSeguridad\obj\Debug\cmpSeguridad.vbprojAssemblyReference.cache
+C:\Users\jlopez\Documents\GG\Mozart\Mozart_Solution\Mozart4\cmpSeguridad\obj\Debug\cmpSeguridad.Resources.resources
+C:\Users\jlopez\Documents\GG\Mozart\Mozart_Solution\Mozart4\cmpSeguridad\obj\Debug\cmpSeguridad.vbproj.GenerateResource.cache
+C:\Users\jlopez\Documents\GG\Mozart\Mozart_Solution\Mozart4\cmpSeguridad\obj\Debug\cmpSeguridad.vbproj.CoreCompileInputs.cache
+C:\Users\jlopez\Documents\GG\Mozart\Mozart_Solution\Mozart4\cmpSeguridad\obj\Debug\cmpSeguridad.vbproj.CopyComplete
+C:\Users\jlopez\Documents\GG\Mozart\Mozart_Solution\Mozart4\cmpSeguridad\obj\Debug\cmpSeguridad.dll
+C:\Users\jlopez\Documents\GG\Mozart\Mozart_Solution\Mozart4\cmpSeguridad\obj\Debug\cmpSeguridad.xml
+C:\Users\jlopez\Documents\GG\Mozart\Mozart_Solution\Mozart4\cmpSeguridad\obj\Debug\cmpSeguridad.pdb
