@@ -228,6 +228,7 @@ Partial Class VtaVersionEmail
             '.IsBodyHtml = True
             '.Priority = MailPriority.High
             '.Attachments.Add(New )
+            .From = txtDesde.Text
             .To = txtPara.Text
             .CC = txtCC.Text
             .Subject = txtAsunto.Text
