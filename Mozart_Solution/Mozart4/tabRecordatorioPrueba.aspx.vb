@@ -5,8 +5,8 @@ Imports System.Web.UI.HtmlControls
 Imports System.Web.UI
 Imports System.Web.UI.WebControls
 Imports System.Web.Security
-Imports System.Net.Mail
-'Imports System.Web.Mail
+'Imports System.Net.Mail
+Imports System.Web.Mail
 Imports System.Data.SqlClient
 
 Partial Class tabRecordatorioPrueba
@@ -66,50 +66,50 @@ Partial Class tabRecordatorioPrueba
 
     Private Sub cmdSend_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdSend.Click
         'Proceso para enviar e-mail
-        'Dim email As New MailMessage
+        Dim email As New MailMessage
 
-        'With email
-        '    .From = txtDe.Text
-        '    .To = txtPara.Text
-        '    .Cc = txtCC.Text
-        '    .Subject = txtAsunto.Text
-        '    .Body = lblMensaje.Text
-        '    .BodyFormat = MailFormat.Html
-        '    .Fields.Add("http://schemas.microsoft.com/cdo/configuration/smtpserver", System.Configuration.ConfigurationManager.AppSettings("ServidorEmail")) 'smtp Server Address
-        '    .Fields.Add("http://schemas.microsoft.com/cdo/configuration/smtpserverport", 25)
-        '    .Fields.Add("http://schemas.microsoft.com/cdo/configuration/sendusing", 2) '2 to send using SMTP over the network
-        '    .Fields.Add("http://schemas.microsoft.com/cdo/configuration/smtpauthenticate", 1) '1 = basic authentication
-        '    .Fields.Add("http://schemas.microsoft.com/cdo/configuration/sendusername", System.Configuration.ConfigurationManager.AppSettings("sendusername"))
-        '    .Fields.Add("http://schemas.microsoft.com/cdo/configuration/sendpassword", System.Configuration.ConfigurationManager.AppSettings("sendpassword"))
-        '    ' .Priority = MailPriority.High
-        'End With
-        'SmtpMail.Send(email)
+        With email
+            .From = txtDe.Text
+            .To = txtPara.Text
+            .CC = txtCC.Text
+            .Subject = txtAsunto.Text
+            .Body = lblMensaje.Text
+            .BodyFormat = MailFormat.Html
+            .Fields.Add("http://schemas.microsoft.com/cdo/configuration/smtpserver", System.Configuration.ConfigurationManager.AppSettings("ServidorEmail")) 'smtp Server Address
+            .Fields.Add("http://schemas.microsoft.com/cdo/configuration/smtpserverport", System.Configuration.ConfigurationManager.AppSettings("port"))
+            .Fields.Add("http://schemas.microsoft.com/cdo/configuration/sendusing", 2) '2 to send using SMTP over the network
+            .Fields.Add("http://schemas.microsoft.com/cdo/configuration/smtpauthenticate", 1) '1 = basic authentication
+            .Fields.Add("http://schemas.microsoft.com/cdo/configuration/sendusername", System.Configuration.ConfigurationManager.AppSettings("sendusername"))
+            .Fields.Add("http://schemas.microsoft.com/cdo/configuration/sendpassword", System.Configuration.ConfigurationManager.AppSettings("sendpassword"))
+            ' .Priority = MailPriority.High
+        End With
+        SmtpMail.Send(email)
 
 
         'Proceso para enviar e-mail(new)
-        Dim client As New SmtpClient
-        With client
-            .Port = System.Configuration.ConfigurationManager.AppSettings("port")
-            .Host = System.Configuration.ConfigurationManager.AppSettings("ServidorEmail")
-            .Credentials = New System.Net.NetworkCredential(System.Configuration.ConfigurationManager.AppSettings("sendusername"), System.Configuration.ConfigurationManager.AppSettings("sendpassword"))
-            .EnableSsl = True
-        End With
+        'Dim client As New SmtpClient
+        'With client
+        '    .Port = System.Configuration.ConfigurationManager.AppSettings("port")
+        '    .Host = System.Configuration.ConfigurationManager.AppSettings("ServidorEmail")
+        '    .Credentials = New System.Net.NetworkCredential(System.Configuration.ConfigurationManager.AppSettings("sendusername"), System.Configuration.ConfigurationManager.AppSettings("sendpassword"))
+        '    .EnableSsl = True
+        'End With
 
-        Dim email As New MailMessage
-        With email
+        'Dim email As New MailMessage
+        'With email
 
-            .From = New MailAddress(txtDe.Text, txtDe.Text)
-            .To.Add(txtPara.Text)
-            .Cc.Add(txtCC.Text)
-            .Subject = txtAsunto.Text
-            .Body = lblMensaje.Text
-            .IsBodyHtml = True
-            .Priority = MailPriority.High
+        '    .From = New MailAddress(txtDe.Text, txtDe.Text)
+        '    .To.Add(txtPara.Text)
+        '    .Cc.Add(txtCC.Text)
+        '    .Subject = txtAsunto.Text
+        '    .Body = lblMensaje.Text
+        '    .IsBodyHtml = True
+        '    .Priority = MailPriority.High
 
-        End With
+        'End With
 
-        client.Send(email)
-        email.Dispose()
+        'client.Send(email)
+        'email.Dispose()
 
 
         Response.Redirect("tabRecordatorio.aspx")

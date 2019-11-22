@@ -148,9 +148,9 @@
 								<TD>
 									<asp:linkbutton id="lbtCreaCopia" runat="server" Width="140px" Visible="False">• Crea copia de Versión</asp:linkbutton></TD>
 							</TR>
-							<TR>
-								<TD colspan="5"><asp:linkbutton id="lbtMigrarPedido" runat="server">• Migrar pedido al mes actual</asp:linkbutton></TD>
-							</TR>
+							<%--<TR>
+								<TD colspan="5"><asp:linkbutton id="lbtMigrarPedido" runat="server" >• Migrar pedido al mes actual</asp:linkbutton></TD>
+							</TR>--%>
 						</TABLE>
 					</TD>
 				</TR>

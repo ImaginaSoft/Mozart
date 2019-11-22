@@ -3,8 +3,8 @@ Imports System.Data
 Imports System.Data.SqlClient
 Imports System.IO
 Imports System.IO.Stream
-'Imports System.Web.Mail
-Imports System.Net.Mail
+Imports System.Web.Mail
+'Imports System.Net.Mail
 
 Partial Class VtaPedidoEmail
     Inherits System.Web.UI.Page
@@ -396,26 +396,32 @@ Partial Class VtaPedidoEmail
         'Proceso para enviar e-mail
 
 
-        Dim client As New SmtpClient
-        With client
-            .Port = System.Configuration.ConfigurationManager.AppSettings("port")
-            .Host = System.Configuration.ConfigurationManager.AppSettings("ServidorEmail")
-            .Credentials = New System.Net.NetworkCredential(System.Configuration.ConfigurationManager.AppSettings("sendusername"), System.Configuration.ConfigurationManager.AppSettings("sendpassword"))
-            .EnableSsl = True
-        End With
+        'Dim client As New SmtpClient
+        'With client
+        '    .Port = System.Configuration.ConfigurationManager.AppSettings("port")
+        '    .Host = System.Configuration.ConfigurationManager.AppSettings("ServidorEmail")
+        '    .Credentials = New System.Net.NetworkCredential(System.Configuration.ConfigurationManager.AppSettings("sendusername"), System.Configuration.ConfigurationManager.AppSettings("sendpassword"))
+        '    .EnableSsl = True
+        'End With
 
 
         Dim email As New MailMessage
         With email
-
-
-            .From = New MailAddress(txtDesde.Text, txtDesde.Text)
-            .To.Add(txtPara.Text)
-            .CC.Add(txtCC.Text)
+            '.Attachments.Add(New)
+            .From = txtDesde.Text
+            .To = txtPara.Text
+            .Cc = txtCC.Text
             .Subject = txtAsunto.Text
             .Body = FreeTextBox1.Text
-            .IsBodyHtml = True
+            .BodyFormat = MailFormat.Html
             .Priority = MailPriority.High
+            '.From = New MailAddress(txtDesde.Text, txtDesde.Text)
+            '.To.Add(txtPara.Text)
+            '.CC.Add(txtCC.Text)
+            '.Subject = txtAsunto.Text
+            '.Body = FreeTextBox1.Text
+            '.IsBodyHtml = True
+            '.Priority = MailPriority.High
             '.Attachments.Add(New )
             '.To = txtPara.Text
             '.Cc = txtCC.Text
@@ -429,36 +435,30 @@ Partial Class VtaPedidoEmail
                 wFileFinal = wDirDestino & wFileTempo.Substring(21, 200).Trim
 
                 File.Move(wFileTempo, wFileFinal)
-                .Attachments.Add(New Attachment(Trim(wFileFinal)))
+                .Attachments.Add(New MailAttachment(Trim(wFileFinal)))
 
                 wfiles = wfiles & " " & wFileFinal
             Next
-            '.From = txtDesde.Text
-            '.To = txtPara.Text
-            '.Cc = txtCC.Text
-            '.Subject = txtAsunto.Text
-            '.Body = FreeTextBox1.Text
-            '.BodyFormat = MailFormat.Html
-            '.Priority = MailPriority.High
-            'For Each item In dgFile.Items
-            '    wFileTempo = dgFile.DataKeys(item.ItemIndex).ToString
-            '    wFileFinal = wDirDestino & wFileTempo.Substring(21, 200).Trim
 
-            '    File.Move(wFileTempo, wFileFinal)
-            '    .Attachments.Add(New MailAttachment(Trim(wFileFinal)))
+            For Each item In dgFile.Items
+                wFileTempo = dgFile.DataKeys(item.ItemIndex).ToString
+                wFileFinal = wDirDestino & wFileTempo.Substring(21, 200).Trim
 
-            '    wfiles = wfiles & " " & wFileFinal
-            'Next
-            '.Fields.Add("http://schemas.microsoft.com/cdo/configuration/smtpserver", System.Configuration.ConfigurationManager.AppSettings("ServidorEmail")) 'smtp Server Address
-            '.Fields.Add("http://schemas.microsoft.com/cdo/configuration/smtpserverport", 25)
-            '.Fields.Add("http://schemas.microsoft.com/cdo/configuration/sendusing", 2) '2 to send using SMTP over the network
-            '.Fields.Add("http://schemas.microsoft.com/cdo/configuration/smtpauthenticate", 1) '1 = basic authentication
-            '.Fields.Add("http://schemas.microsoft.com/cdo/configuration/sendusername", System.Configuration.ConfigurationManager.AppSettings("sendusername"))
-            '.Fields.Add("http://schemas.microsoft.com/cdo/configuration/sendpassword", System.Configuration.ConfigurationManager.AppSettings("sendpassword"))
+                File.Move(wFileTempo, wFileFinal)
+                .Attachments.Add(New MailAttachment(Trim(wFileFinal)))
+
+                wfiles = wfiles & " " & wFileFinal
+            Next
+            .Fields.Add("http://schemas.microsoft.com/cdo/configuration/smtpserver", System.Configuration.ConfigurationManager.AppSettings("ServidorEmail")) 'smtp Server Address
+            .Fields.Add("http://schemas.microsoft.com/cdo/configuration/smtpserverport", System.Configuration.ConfigurationManager.AppSettings("port"))
+            .Fields.Add("http://schemas.microsoft.com/cdo/configuration/sendusing", 2) '2 to send using SMTP over the network
+            .Fields.Add("http://schemas.microsoft.com/cdo/configuration/smtpauthenticate", 1) '1 = basic authentication
+            .Fields.Add("http://schemas.microsoft.com/cdo/configuration/sendusername", System.Configuration.ConfigurationManager.AppSettings("sendusername"))
+            .Fields.Add("http://schemas.microsoft.com/cdo/configuration/sendpassword", System.Configuration.ConfigurationManager.AppSettings("sendpassword"))
         End With
-        'SmtpMail.Send(email)
-        client.Send(email)
-        email.Dispose()
+        SmtpMail.Send(email)
+        'client.Send(email)
+        'email.Dispose()
 
         lblMsg.Text = GrabaHistorial(sDesRecordatorio & FreeTextBox1.Text & wfiles, _
           Viewstate("CodCliente"), Viewstate("NroPedido"), _
