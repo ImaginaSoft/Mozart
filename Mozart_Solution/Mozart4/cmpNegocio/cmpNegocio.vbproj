@@ -159,10 +159,10 @@
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
-    <WebReferenceUrl Include="http://localhost:8750/wsMails.asmx">
+    <WebReferenceUrl Include="http://www.pentagrama.com/ws-sendgridemail/wsmails.asmx">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\wsMailsSendGrid\</RelPath>
-      <UpdateFromURL>http://localhost:8750/wsMails.asmx</UpdateFromURL>
+      <UpdateFromURL>http://www.pentagrama.com/ws-sendgridemail/wsmails.asmx</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>

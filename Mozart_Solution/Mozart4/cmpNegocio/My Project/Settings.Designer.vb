@@ -57,7 +57,7 @@ Namespace My
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.WebServiceUrl),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("http://localhost:8750/wsMails.asmx")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("http://www.pentagrama.com/ws-sendgridemail/wsmails.asmx")>  _
         Public ReadOnly Property cmpNegocio_wsMailsSendGrid_wsMails() As String
             Get
                 Return CType(Me("cmpNegocio_wsMailsSendGrid_wsMails"),String)
