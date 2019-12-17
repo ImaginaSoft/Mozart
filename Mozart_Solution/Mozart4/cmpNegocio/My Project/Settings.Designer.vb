@@ -53,6 +53,16 @@ Namespace My
                 Return defaultInstance
             End Get
         End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.WebServiceUrl),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("http://localhost:8750/wsMails.asmx")>  _
+        Public ReadOnly Property cmpNegocio_wsMailsSendGrid_wsMails() As String
+            Get
+                Return CType(Me("cmpNegocio_wsMailsSendGrid_wsMails"),String)
+            End Get
+        End Property
     End Class
 End Namespace
 
