@@ -1,0 +1,130 @@
+C:\DESA\Mozart\Mozart4\cmpBlog\bin\Debug\cmpBlog.dll
+C:\DESA\Mozart\Mozart4\cmpBlog\bin\Debug\cmpBlog.pdb
+C:\DESA\Mozart\Mozart4\cmpBlog\bin\Debug\cmpBlog.xml
+C:\DESA\Mozart\Mozart4\cmpBlog\bin\Debug\Microsoft.ApplicationBlocks.Data.dll
+C:\DESA\Mozart\Mozart4\cmpBlog\bin\Debug\Microsoft.ApplicationBlocks.Data.pdb
+C:\DESA\Mozart\Mozart4\cmpBlog\obj\Debug\ResolveAssemblyReference.cache
+C:\DESA\Mozart\Mozart4\cmpBlog\obj\Debug\cmpBlog.Resources.resources
+C:\DESA\Mozart\Mozart4\cmpBlog\obj\Debug\cmpBlog.vbproj.GenerateResource.Cache
+C:\DESA\Mozart\Mozart4\cmpBlog\obj\Debug\cmpBlog.dll
+C:\DESA\Mozart\Mozart4\cmpBlog\obj\Debug\cmpBlog.xml
+C:\DESA\Mozart\Mozart4\cmpBlog\obj\Debug\cmpBlog.pdb
+C:\DESA\Pentagrama\Mozart\Mozart4\Mozart4\cmpBlog\bin\Debug\cmpBlog.dll
+C:\DESA\Pentagrama\Mozart\Mozart4\Mozart4\cmpBlog\bin\Debug\cmpBlog.pdb
+C:\DESA\Pentagrama\Mozart\Mozart4\Mozart4\cmpBlog\bin\Debug\cmpBlog.xml
+C:\DESA\Pentagrama\Mozart\Mozart4\Mozart4\cmpBlog\obj\Debug\ResolveAssemblyReference.cache
+C:\DESA\Pentagrama\Mozart\Mozart4\Mozart4\cmpBlog\obj\Debug\cmpBlog.Resources.resources
+C:\DESA\Pentagrama\Mozart\Mozart4\Mozart4\cmpBlog\obj\Debug\cmpBlog.vbproj.GenerateResource.Cache
+C:\DESA\Pentagrama\Mozart\Mozart4\Mozart4\cmpBlog\obj\Debug\cmpBlog.dll
+C:\DESA\Pentagrama\Mozart\Mozart4\Mozart4\cmpBlog\obj\Debug\cmpBlog.xml
+C:\DESA\Pentagrama\Mozart\Mozart4\Mozart4\cmpBlog\obj\Debug\cmpBlog.pdb
+D:\DESA\Pentagrama\Mozart\Mozart4\Mozart4\cmpBlog\bin\Debug\cmpBlog.dll
+D:\DESA\Pentagrama\Mozart\Mozart4\Mozart4\cmpBlog\bin\Debug\cmpBlog.pdb
+D:\DESA\Pentagrama\Mozart\Mozart4\Mozart4\cmpBlog\bin\Debug\cmpBlog.xml
+D:\DESA\Pentagrama\Mozart\Mozart4\Mozart4\cmpBlog\obj\Debug\ResolveAssemblyReference.cache
+D:\DESA\Pentagrama\Mozart\Mozart4\Mozart4\cmpBlog\obj\Debug\cmpBlog.Resources.resources
+D:\DESA\Pentagrama\Mozart\Mozart4\Mozart4\cmpBlog\obj\Debug\cmpBlog.vbproj.GenerateResource.Cache
+D:\DESA\Pentagrama\Mozart\Mozart4\Mozart4\cmpBlog\obj\Debug\cmpBlog.dll
+D:\DESA\Pentagrama\Mozart\Mozart4\Mozart4\cmpBlog\obj\Debug\cmpBlog.xml
+D:\DESA\Pentagrama\Mozart\Mozart4\Mozart4\cmpBlog\obj\Debug\cmpBlog.pdb
+C:\Users\bgloria\Documents\Pentagrama\Mozart4\cmpBlog\bin\Debug\cmpBlog.dll
+C:\Users\bgloria\Documents\Pentagrama\Mozart4\cmpBlog\bin\Debug\cmpBlog.pdb
+C:\Users\bgloria\Documents\Pentagrama\Mozart4\cmpBlog\bin\Debug\cmpBlog.xml
+C:\Users\bgloria\Documents\Pentagrama\Mozart4\cmpBlog\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\bgloria\Documents\Pentagrama\Mozart4\cmpBlog\obj\Debug\cmpBlog.Resources.resources
+C:\Users\bgloria\Documents\Pentagrama\Mozart4\cmpBlog\obj\Debug\cmpBlog.vbproj.GenerateResource.Cache
+C:\Users\bgloria\Documents\Pentagrama\Mozart4\cmpBlog\obj\Debug\cmpBlog.dll
+C:\Users\bgloria\Documents\Pentagrama\Mozart4\cmpBlog\obj\Debug\cmpBlog.xml
+C:\Users\bgloria\Documents\Pentagrama\Mozart4\cmpBlog\obj\Debug\cmpBlog.pdb
+C:\Users\bgloria\Documents\Mozart_Solution\Mozart4\cmpBlog\bin\Debug\cmpBlog.dll
+C:\Users\bgloria\Documents\Mozart_Solution\Mozart4\cmpBlog\bin\Debug\cmpBlog.pdb
+C:\Users\bgloria\Documents\Mozart_Solution\Mozart4\cmpBlog\bin\Debug\cmpBlog.xml
+C:\Users\bgloria\Documents\Mozart_Solution\Mozart4\cmpBlog\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\bgloria\Documents\Mozart_Solution\Mozart4\cmpBlog\obj\Debug\cmpBlog.Resources.resources
+C:\Users\bgloria\Documents\Mozart_Solution\Mozart4\cmpBlog\obj\Debug\cmpBlog.vbproj.GenerateResource.Cache
+C:\Users\bgloria\Documents\Mozart_Solution\Mozart4\cmpBlog\obj\Debug\cmpBlog.dll
+C:\Users\bgloria\Documents\Mozart_Solution\Mozart4\cmpBlog\obj\Debug\cmpBlog.xml
+C:\Users\bgloria\Documents\Mozart_Solution\Mozart4\cmpBlog\obj\Debug\cmpBlog.pdb
+B:\IMAGINA SOFTWARE\Mozart\Mozart_Solution\Mozart4\cmpBlog\bin\Debug\cmpBlog.dll
+B:\IMAGINA SOFTWARE\Mozart\Mozart_Solution\Mozart4\cmpBlog\bin\Debug\cmpBlog.pdb
+B:\IMAGINA SOFTWARE\Mozart\Mozart_Solution\Mozart4\cmpBlog\bin\Debug\cmpBlog.xml
+B:\IMAGINA SOFTWARE\Mozart\Mozart_Solution\Mozart4\cmpBlog\obj\Debug\ResolveAssemblyReference.cache
+B:\IMAGINA SOFTWARE\Mozart\Mozart_Solution\Mozart4\cmpBlog\obj\Debug\cmpBlog.Resources.resources
+B:\IMAGINA SOFTWARE\Mozart\Mozart_Solution\Mozart4\cmpBlog\obj\Debug\cmpBlog.vbproj.GenerateResource.Cache
+B:\IMAGINA SOFTWARE\Mozart\Mozart_Solution\Mozart4\cmpBlog\obj\Debug\cmpBlog.dll
+B:\IMAGINA SOFTWARE\Mozart\Mozart_Solution\Mozart4\cmpBlog\obj\Debug\cmpBlog.xml
+B:\IMAGINA SOFTWARE\Mozart\Mozart_Solution\Mozart4\cmpBlog\obj\Debug\cmpBlog.pdb
+C:\Users\jlopez\Desktop\Mozart_Solution\Mozart4\cmpBlog\bin\Debug\cmpBlog.dll
+C:\Users\jlopez\Desktop\Mozart_Solution\Mozart4\cmpBlog\bin\Debug\cmpBlog.pdb
+C:\Users\jlopez\Desktop\Mozart_Solution\Mozart4\cmpBlog\bin\Debug\cmpBlog.xml
+C:\Users\jlopez\Desktop\Mozart_Solution\Mozart4\cmpBlog\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\jlopez\Desktop\Mozart_Solution\Mozart4\cmpBlog\obj\Debug\cmpBlog.Resources.resources
+C:\Users\jlopez\Desktop\Mozart_Solution\Mozart4\cmpBlog\obj\Debug\cmpBlog.vbproj.GenerateResource.Cache
+C:\Users\jlopez\Desktop\Mozart_Solution\Mozart4\cmpBlog\obj\Debug\cmpBlog.dll
+C:\Users\jlopez\Desktop\Mozart_Solution\Mozart4\cmpBlog\obj\Debug\cmpBlog.xml
+C:\Users\jlopez\Desktop\Mozart_Solution\Mozart4\cmpBlog\obj\Debug\cmpBlog.pdb
+C:\Users\bgloria\Documents\Dev\Pentagrama\Mozart\Mozart_Solution\Mozart4\cmpBlog\bin\Debug\cmpBlog.dll
+C:\Users\bgloria\Documents\Dev\Pentagrama\Mozart\Mozart_Solution\Mozart4\cmpBlog\bin\Debug\cmpBlog.pdb
+C:\Users\bgloria\Documents\Dev\Pentagrama\Mozart\Mozart_Solution\Mozart4\cmpBlog\bin\Debug\cmpBlog.xml
+C:\Users\bgloria\Documents\Dev\Pentagrama\Mozart\Mozart_Solution\Mozart4\cmpBlog\obj\Debug\cmpBlog.Resources.resources
+C:\Users\bgloria\Documents\Dev\Pentagrama\Mozart\Mozart_Solution\Mozart4\cmpBlog\obj\Debug\cmpBlog.vbproj.GenerateResource.Cache
+C:\Users\bgloria\Documents\Dev\Pentagrama\Mozart\Mozart_Solution\Mozart4\cmpBlog\obj\Debug\cmpBlog.dll
+C:\Users\bgloria\Documents\Dev\Pentagrama\Mozart\Mozart_Solution\Mozart4\cmpBlog\obj\Debug\cmpBlog.xml
+C:\Users\bgloria\Documents\Dev\Pentagrama\Mozart\Mozart_Solution\Mozart4\cmpBlog\obj\Debug\cmpBlog.pdb
+B:\IMAGINA SOFTWARE\Mozart\Mozart v2\Mozart_Solution\Mozart4\cmpBlog\bin\Debug\cmpBlog.dll
+B:\IMAGINA SOFTWARE\Mozart\Mozart v2\Mozart_Solution\Mozart4\cmpBlog\bin\Debug\cmpBlog.pdb
+B:\IMAGINA SOFTWARE\Mozart\Mozart v2\Mozart_Solution\Mozart4\cmpBlog\bin\Debug\cmpBlog.xml
+B:\IMAGINA SOFTWARE\Mozart\Mozart v2\Mozart_Solution\Mozart4\cmpBlog\obj\Debug\ResolveAssemblyReference.cache
+B:\IMAGINA SOFTWARE\Mozart\Mozart v2\Mozart_Solution\Mozart4\cmpBlog\obj\Debug\cmpBlog.Resources.resources
+B:\IMAGINA SOFTWARE\Mozart\Mozart v2\Mozart_Solution\Mozart4\cmpBlog\obj\Debug\cmpBlog.vbproj.GenerateResource.Cache
+B:\IMAGINA SOFTWARE\Mozart\Mozart v2\Mozart_Solution\Mozart4\cmpBlog\obj\Debug\cmpBlog.dll
+B:\IMAGINA SOFTWARE\Mozart\Mozart v2\Mozart_Solution\Mozart4\cmpBlog\obj\Debug\cmpBlog.xml
+B:\IMAGINA SOFTWARE\Mozart\Mozart v2\Mozart_Solution\Mozart4\cmpBlog\obj\Debug\cmpBlog.pdb
+B:\IMAGINA SOFTWARE\MOZART_20018\Mozart\Mozart_Solution\Mozart4\cmpBlog\bin\Debug\cmpBlog.dll
+B:\IMAGINA SOFTWARE\MOZART_20018\Mozart\Mozart_Solution\Mozart4\cmpBlog\bin\Debug\cmpBlog.pdb
+B:\IMAGINA SOFTWARE\MOZART_20018\Mozart\Mozart_Solution\Mozart4\cmpBlog\bin\Debug\cmpBlog.xml
+B:\IMAGINA SOFTWARE\MOZART_20018\Mozart\Mozart_Solution\Mozart4\cmpBlog\obj\Debug\ResolveAssemblyReference.cache
+B:\IMAGINA SOFTWARE\MOZART_20018\Mozart\Mozart_Solution\Mozart4\cmpBlog\obj\Debug\cmpBlog.Resources.resources
+B:\IMAGINA SOFTWARE\MOZART_20018\Mozart\Mozart_Solution\Mozart4\cmpBlog\obj\Debug\cmpBlog.vbproj.GenerateResource.Cache
+B:\IMAGINA SOFTWARE\MOZART_20018\Mozart\Mozart_Solution\Mozart4\cmpBlog\obj\Debug\cmpBlog.dll
+B:\IMAGINA SOFTWARE\MOZART_20018\Mozart\Mozart_Solution\Mozart4\cmpBlog\obj\Debug\cmpBlog.xml
+B:\IMAGINA SOFTWARE\MOZART_20018\Mozart\Mozart_Solution\Mozart4\cmpBlog\obj\Debug\cmpBlog.pdb
+C:\Desarrollo\PENTA\Mozart\Mozart_Solution\Mozart4\cmpBlog\bin\Debug\cmpBlog.dll
+C:\Desarrollo\PENTA\Mozart\Mozart_Solution\Mozart4\cmpBlog\bin\Debug\cmpBlog.pdb
+C:\Desarrollo\PENTA\Mozart\Mozart_Solution\Mozart4\cmpBlog\bin\Debug\cmpBlog.xml
+C:\Desarrollo\PENTA\Mozart\Mozart_Solution\Mozart4\cmpBlog\obj\Debug\ResolveAssemblyReference.cache
+C:\Desarrollo\PENTA\Mozart\Mozart_Solution\Mozart4\cmpBlog\obj\Debug\cmpBlog.Resources.resources
+C:\Desarrollo\PENTA\Mozart\Mozart_Solution\Mozart4\cmpBlog\obj\Debug\cmpBlog.vbproj.GenerateResource.Cache
+C:\Desarrollo\PENTA\Mozart\Mozart_Solution\Mozart4\cmpBlog\obj\Debug\cmpBlog.dll
+C:\Desarrollo\PENTA\Mozart\Mozart_Solution\Mozart4\cmpBlog\obj\Debug\cmpBlog.xml
+C:\Desarrollo\PENTA\Mozart\Mozart_Solution\Mozart4\cmpBlog\obj\Debug\cmpBlog.pdb
+C:\Desarrollo\PENTA\Mozart02\Mozart\Mozart_Solution\Mozart4\cmpBlog\bin\Debug\cmpBlog.dll
+C:\Desarrollo\PENTA\Mozart02\Mozart\Mozart_Solution\Mozart4\cmpBlog\bin\Debug\cmpBlog.pdb
+C:\Desarrollo\PENTA\Mozart02\Mozart\Mozart_Solution\Mozart4\cmpBlog\bin\Debug\cmpBlog.xml
+C:\Desarrollo\PENTA\Mozart02\Mozart\Mozart_Solution\Mozart4\cmpBlog\obj\Debug\ResolveAssemblyReference.cache
+C:\Desarrollo\PENTA\Mozart02\Mozart\Mozart_Solution\Mozart4\cmpBlog\obj\Debug\cmpBlog.Resources.resources
+C:\Desarrollo\PENTA\Mozart02\Mozart\Mozart_Solution\Mozart4\cmpBlog\obj\Debug\cmpBlog.vbproj.GenerateResource.Cache
+C:\Desarrollo\PENTA\Mozart02\Mozart\Mozart_Solution\Mozart4\cmpBlog\obj\Debug\cmpBlog.dll
+C:\Desarrollo\PENTA\Mozart02\Mozart\Mozart_Solution\Mozart4\cmpBlog\obj\Debug\cmpBlog.xml
+C:\Desarrollo\PENTA\Mozart02\Mozart\Mozart_Solution\Mozart4\cmpBlog\obj\Debug\cmpBlog.pdb
+B:\IMAGINA SOFTWARE\MOZART_20018\Mozartv02\Mozart\Mozart_Solution\Mozart4\cmpBlog\bin\Debug\cmpBlog.dll
+B:\IMAGINA SOFTWARE\MOZART_20018\Mozartv02\Mozart\Mozart_Solution\Mozart4\cmpBlog\bin\Debug\cmpBlog.pdb
+B:\IMAGINA SOFTWARE\MOZART_20018\Mozartv02\Mozart\Mozart_Solution\Mozart4\cmpBlog\bin\Debug\cmpBlog.xml
+B:\IMAGINA SOFTWARE\MOZART_20018\Mozartv02\Mozart\Mozart_Solution\Mozart4\cmpBlog\obj\Debug\ResolveAssemblyReference.cache
+B:\IMAGINA SOFTWARE\MOZART_20018\Mozartv02\Mozart\Mozart_Solution\Mozart4\cmpBlog\obj\Debug\cmpBlog.Resources.resources
+B:\IMAGINA SOFTWARE\MOZART_20018\Mozartv02\Mozart\Mozart_Solution\Mozart4\cmpBlog\obj\Debug\cmpBlog.vbproj.GenerateResource.Cache
+B:\IMAGINA SOFTWARE\MOZART_20018\Mozartv02\Mozart\Mozart_Solution\Mozart4\cmpBlog\obj\Debug\cmpBlog.dll
+B:\IMAGINA SOFTWARE\MOZART_20018\Mozartv02\Mozart\Mozart_Solution\Mozart4\cmpBlog\obj\Debug\cmpBlog.xml
+B:\IMAGINA SOFTWARE\MOZART_20018\Mozartv02\Mozart\Mozart_Solution\Mozart4\cmpBlog\obj\Debug\cmpBlog.pdb
+C:\PROYECTOS\PENTA\Mozart\Mozart_Solution\Mozart4\cmpBlog\bin\Debug\cmpBlog.dll
+C:\PROYECTOS\PENTA\Mozart\Mozart_Solution\Mozart4\cmpBlog\bin\Debug\cmpBlog.pdb
+C:\PROYECTOS\PENTA\Mozart\Mozart_Solution\Mozart4\cmpBlog\bin\Debug\cmpBlog.xml
+C:\PROYECTOS\PENTA\Mozart\Mozart_Solution\Mozart4\cmpBlog\obj\Debug\ResolveAssemblyReference.cache
+C:\PROYECTOS\PENTA\Mozart\Mozart_Solution\Mozart4\cmpBlog\obj\Debug\cmpBlog.Resources.resources
+C:\PROYECTOS\PENTA\Mozart\Mozart_Solution\Mozart4\cmpBlog\obj\Debug\cmpBlog.vbproj.GenerateResource.Cache
+C:\PROYECTOS\PENTA\Mozart\Mozart_Solution\Mozart4\cmpBlog\obj\Debug\cmpBlog.dll
+C:\PROYECTOS\PENTA\Mozart\Mozart_Solution\Mozart4\cmpBlog\obj\Debug\cmpBlog.xml
+C:\PROYECTOS\PENTA\Mozart\Mozart_Solution\Mozart4\cmpBlog\obj\Debug\cmpBlog.pdb
+C:\Users\bgloria\Documents\Dev\Pentagrama\Mozart\Mozart_Solution\Mozart4\cmpBlog\obj\Debug\cmpBlog.vbprojAssemblyReference.cache
+C:\Users\bgloria\Documents\Dev\Pentagrama\Mozart\Mozart_Solution\Mozart4\cmpBlog\obj\Debug\cmpBlog.vbproj.CoreCompileInputs.cache
+C:\Users\bgloria\Documents\Dev\Pentagrama\Mozart\Mozart_Solution\Mozart4\cmpBlog\obj\Debug\cmpBlog.vbproj.CopyComplete

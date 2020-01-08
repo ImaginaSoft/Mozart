@@ -199,6 +199,52 @@ Partial Class VtaPropuestaEmail
         End If
 
         'Proceso para enviar e-mail
+        For Each item In dgFile.Items
+            wFileTempo = dgFile.DataKeys(item.ItemIndex).ToString
+            wFileFinal = wDirDestino & wFileTempo.Substring(21, 200).Trim
+
+            File.Move(wFileTempo, wFileFinal)
+            '.Attachments.Add(New MailAttachment(Trim(wFileFinal)))
+
+            wfiles = wfiles & " " & wFileFinal
+        Next
+
+        Dim objEmail As New cmpNegocio.clsEmailSendGrid
+        Dim rpta As String = objEmail.EnviarCorreo("Pentagrama", txtDesde.Text, txtPara.Text, txtAsunto.Text, FreeTextBox1.Text, wFileFinal)
+
+        'Dim email As New MailMessage
+        'With email
+
+        '    .From = txtDesde.Text
+        '    .To = txtPara.Text
+        '    .CC = txtCC.Text
+        '    .Subject = txtAsunto.Text
+        '    .Body = FreeTextBox1.Text
+        '    .BodyFormat = MailFormat.Html
+        '    .Priority = MailPriority.High
+
+        '    For Each item In dgFile.Items
+        '        wFileTempo = dgFile.DataKeys(item.ItemIndex).ToString
+        '        wFileFinal = wDirDestino & wFileTempo.Substring(21, 200).Trim
+
+        '        File.Move(wFileTempo, wFileFinal)
+        '        .Attachments.Add(New MailAttachment(Trim(wFileFinal)))
+
+        '        wfiles = wfiles & " " & wFileFinal
+        '    Next
+        '    .Fields.Add("http://schemas.microsoft.com/cdo/configuration/smtpserver", System.Configuration.ConfigurationManager.AppSettings("ServidorEmail")) 'smtp Server Address
+        '    .Fields.Add("http://schemas.microsoft.com/cdo/configuration/smtpserverport", System.Configuration.ConfigurationManager.AppSettings("port"))
+        '    .Fields.Add("http://schemas.microsoft.com/cdo/configuration/sendusing", 2) '2 to send using SMTP over the network
+
+        '    .Fields.Add("http://schemas.microsoft.com/cdo/configuration/smtpauthenticate", 1) '1 = basic authentication
+        '    .Fields.Add("http://schemas.microsoft.com/cdo/configuration/sendusername", System.Configuration.ConfigurationManager.AppSettings("sendusername"))
+        '    .Fields.Add("http://schemas.microsoft.com/cdo/configuration/sendpassword", System.Configuration.ConfigurationManager.AppSettings("sendpassword"))
+        'End With
+        'SmtpMail.Send(email)
+
+
+
+
         'Dim client As New SmtpClient
         'With client
         '    .Port = System.Configuration.ConfigurationManager.AppSettings("port")
@@ -206,45 +252,6 @@ Partial Class VtaPropuestaEmail
         '    .Credentials = New System.Net.NetworkCredential(System.Configuration.ConfigurationManager.AppSettings("sendusername"), System.Configuration.ConfigurationManager.AppSettings("sendpassword"))
         '    .EnableSsl = True
         'End With
-
-        Dim email As New MailMessage
-        With email
-            '.Sender = New MailAddress(txtDesde.Text)
-
-            '.From = New MailAddress(txtDesde.Text, txtDesde.Text)
-            '.To.Add(txtPara.Text)
-            '.CC.Add(txtCC.Text)
-            '.Subject = txtAsunto.Text
-            '.Body = FreeTextBox1.Text
-            '.IsBodyHtml = True
-            '.Priority = MailPriority.High
-            '.Attachments.Add(New )
-            .From = txtDesde.Text
-            .To = txtPara.Text
-            .CC = txtCC.Text
-            .Subject = txtAsunto.Text
-            .Body = FreeTextBox1.Text
-            .BodyFormat = MailFormat.Html
-            .Priority = MailPriority.High
-
-            For Each item In dgFile.Items
-                wFileTempo = dgFile.DataKeys(item.ItemIndex).ToString
-                wFileFinal = wDirDestino & wFileTempo.Substring(21, 200).Trim
-
-                File.Move(wFileTempo, wFileFinal)
-                .Attachments.Add(New MailAttachment(Trim(wFileFinal)))
-
-                wfiles = wfiles & " " & wFileFinal
-            Next
-            .Fields.Add("http://schemas.microsoft.com/cdo/configuration/smtpserver", System.Configuration.ConfigurationManager.AppSettings("ServidorEmail")) 'smtp Server Address
-            .Fields.Add("http://schemas.microsoft.com/cdo/configuration/smtpserverport", System.Configuration.ConfigurationManager.AppSettings("port"))
-            .Fields.Add("http://schemas.microsoft.com/cdo/configuration/sendusing", 2) '2 to send using SMTP over the network
-
-            .Fields.Add("http://schemas.microsoft.com/cdo/configuration/smtpauthenticate", 1) '1 = basic authentication
-            .Fields.Add("http://schemas.microsoft.com/cdo/configuration/sendusername", System.Configuration.ConfigurationManager.AppSettings("sendusername"))
-            .Fields.Add("http://schemas.microsoft.com/cdo/configuration/sendpassword", System.Configuration.ConfigurationManager.AppSettings("sendpassword"))
-        End With
-        SmtpMail.Send(email)
         'Dim client As New SmtpClient
         'client.EnableSsl = True
         'client.Host = "smtp.gmail.com"
