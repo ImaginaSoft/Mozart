@@ -1,0 +1,4 @@
+C:\Users\bgloria\Documents\Dev\Pentagrama\Mozart\Mozart_Solution\Mozart4\cmpNegocio\obj\Release\cmpNegocio.vbprojAssemblyReference.cache
+C:\Users\bgloria\Documents\Dev\Pentagrama\Mozart\Mozart_Solution\Mozart4\cmpNegocio\obj\Release\cmpNegocio.Resources.resources
+C:\Users\bgloria\Documents\Dev\Pentagrama\Mozart\Mozart_Solution\Mozart4\cmpNegocio\obj\Release\cmpNegocio.vbproj.GenerateResource.cache
+C:\Users\bgloria\Documents\Dev\Pentagrama\Mozart\Mozart_Solution\Mozart4\cmpNegocio\obj\Release\cmpNegocio.vbproj.CoreCompileInputs.cache
