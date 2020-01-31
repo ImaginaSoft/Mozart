@@ -543,10 +543,12 @@ Partial Class VtaVersionFicha
                 cd = New SqlCommand
                 cd.Connection = cn
                 cd.CommandType = CommandType.StoredProcedure
-                cd.CommandText = "CPC_AnulaFactPedidoVersion2_U"
+                cd.CommandText = "CPC_AnulaFactPedidoVersion2_U_2"
 
                 cd.Parameters.Add("@IdReg", SqlDbType.Char, 25).Value = sIdReg
                 cd.Parameters.Add("@NroPedido", SqlDbType.Int).Value = ViewState("NroPedido")
+                cd.Parameters.Add("@NroPropuestaBase", SqlDbType.Int).Value = ViewState("NroPropuesta")
+                cd.Parameters.Add("@NroVersionBase", SqlDbType.Int).Value = ViewState("NroVersion")
                 cd.Parameters.Add("@Referencia", SqlDbType.VarChar, 50).Value = "Gastos de anulación de viaje"
                 cd.Parameters.Add("@TotalCliente", SqlDbType.Money).Value = 0
                 cd.Parameters.Add("@CodUsuario", SqlDbType.Char, 15).Value = Session("CodUsuario")
