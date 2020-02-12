@@ -44,20 +44,10 @@ Partial Class VtaVersionAjuste
     End Sub
     Private Sub dgProveedor_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles dgProveedor.SelectedIndexChanged
         Session("CodProveedor") = CInt(dgProveedor.Items(dgProveedor.SelectedIndex).Cells(1).Text())
-        If Viewstate("Opcion") = "Cargo" Then
-            Response.Redirect("cppRegistraCredito.aspx" & _
-                         "?NroPedido=" & Viewstate("NroPedido") & _
-                         "&NroPropuesta=" & Viewstate("NroPropuesta") & _
-                         "&NroVersion=" & Viewstate("NroVersion") & _
-                         "&NroDocumento=" & 0 & _
-                         "&CodProveedor=" & dgProveedor.Items(dgProveedor.SelectedIndex).Cells(1).Text)
+        If ViewState("Opcion") = "Cargo" Then
+            Response.Redirect("cppRegistraCredito.aspx" & "?NroPedido=" & ViewState("NroPedido") & "&NroPropuesta=" & ViewState("NroPropuesta") & "&NroVersion=" & ViewState("NroVersion") & "&NroDocumento=" & 0 & "&CodProveedor=" & dgProveedor.Items(dgProveedor.SelectedIndex).Cells(1).Text & "&CodCliente=" & ViewState("CodCliente"))
         Else
-            Response.Redirect("cppRegistraDebito.aspx" & _
-                    "?NroPedido=" & Viewstate("NroPedido") & _
-                    "&NroPropuesta=" & Viewstate("NroPropuesta") & _
-                    "&NroVersion=" & Viewstate("NroVersion") & _
-                    "&NroDocumento=" & 0 & _
-                    "&CodProveedor=" & dgProveedor.Items(dgProveedor.SelectedIndex).Cells(1).Text)
+            Response.Redirect("cppRegistraDebito.aspx" & "?NroPedido=" & ViewState("NroPedido") & "&NroPropuesta=" & ViewState("NroPropuesta") & "&NroVersion=" & ViewState("NroVersion") & "&NroDocumento=" & 0 & "&CodProveedor=" & dgProveedor.Items(dgProveedor.SelectedIndex).Cells(1).Text & "&CodCliente=" & ViewState("CodCliente"))
         End If
     End Sub
 

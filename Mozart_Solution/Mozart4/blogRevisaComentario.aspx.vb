@@ -96,23 +96,26 @@ Partial Class blogRevisaComentario
                         'Proceso para enviar e-mail
                         lblmsg.Text = objComentario.DatosParaEmail
                         If lblmsg.Text.Trim = "OK" Then
-                            Dim email As New MailMessage
-                            With email
-                                .From = objComentario.EmailOrigen
-                                .To = objComentario.EmailCliente
-                                .CC = ""
-                                .Subject = objComentario.Asunto
-                                .Body = objComentario.Detalle
-                                .BodyFormat = MailFormat.Html
-                                .Fields.Add("http://schemas.microsoft.com/cdo/configuration/smtpserver", System.Configuration.ConfigurationSettings.AppSettings("ServidorEmail")) 'smtp Server Address
-                                .Fields.Add("http://schemas.microsoft.com/cdo/configuration/smtpserverport", System.Configuration.ConfigurationSettings.AppSettings("port"))
-                                .Fields.Add("http://schemas.microsoft.com/cdo/configuration/sendusing", 2) '2 to send using SMTP over the network
-                                .Fields.Add("http://schemas.microsoft.com/cdo/configuration/smtpauthenticate", 1) '1 = basic authentication
-                                .Fields.Add("http://schemas.microsoft.com/cdo/configuration/sendusername", System.Configuration.ConfigurationSettings.AppSettings("sendusername"))
-                                .Fields.Add("http://schemas.microsoft.com/cdo/configuration/sendpassword", System.Configuration.ConfigurationSettings.AppSettings("sendpassword"))
-                                ' .Priority = MailPriority.High
-                            End With
-                            SmtpMail.Send(email)
+                            'Dim email As New MailMessage
+                            'With email
+                            '    .From = objComentario.EmailOrigen
+                            '    .To = objComentario.EmailCliente
+                            '    .CC = ""
+                            '    .Subject = objComentario.Asunto
+                            '    .Body = objComentario.Detalle
+                            '    .BodyFormat = MailFormat.Html
+                            '    .Fields.Add("http://schemas.microsoft.com/cdo/configuration/smtpserver", System.Configuration.ConfigurationSettings.AppSettings("ServidorEmail")) 'smtp Server Address
+                            '    .Fields.Add("http://schemas.microsoft.com/cdo/configuration/smtpserverport", System.Configuration.ConfigurationSettings.AppSettings("port"))
+                            '    .Fields.Add("http://schemas.microsoft.com/cdo/configuration/sendusing", 2) '2 to send using SMTP over the network
+                            '    .Fields.Add("http://schemas.microsoft.com/cdo/configuration/smtpauthenticate", 1) '1 = basic authentication
+                            '    .Fields.Add("http://schemas.microsoft.com/cdo/configuration/sendusername", System.Configuration.ConfigurationSettings.AppSettings("sendusername"))
+                            '    .Fields.Add("http://schemas.microsoft.com/cdo/configuration/sendpassword", System.Configuration.ConfigurationSettings.AppSettings("sendpassword"))
+                            '    ' .Priority = MailPriority.High
+                            'End With
+                            'SmtpMail.Send(email)
+
+                            Dim objEmail As New cmpNegocio.clsEmailSendGrid
+                            Dim rpta As String = objEmail.EnviarCorreo("Pentagrama", objComentario.EmailOrigen, objComentario.EmailCliente, objComentario.Asunto, objComentario.Detalle, Nothing)
 
 
                             'Proceso para enviar e-mail(new)

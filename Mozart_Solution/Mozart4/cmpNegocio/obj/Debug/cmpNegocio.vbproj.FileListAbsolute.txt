@@ -84,17 +84,6 @@ C:\Users\jlopez\Desktop\Mozart_Solution\Mozart4\cmpNegocio\obj\Debug\cmpNegocio.
 C:\Users\jlopez\Desktop\Mozart_Solution\Mozart4\cmpNegocio\obj\Debug\cmpNegocio.dll
 C:\Users\jlopez\Desktop\Mozart_Solution\Mozart4\cmpNegocio\obj\Debug\cmpNegocio.xml
 C:\Users\jlopez\Desktop\Mozart_Solution\Mozart4\cmpNegocio\obj\Debug\cmpNegocio.pdb
-C:\Users\bgloria\Documents\Dev\Pentagrama\Mozart\Mozart_Solution\Mozart4\cmpNegocio\bin\Debug\cmpNegocio.dll
-C:\Users\bgloria\Documents\Dev\Pentagrama\Mozart\Mozart_Solution\Mozart4\cmpNegocio\bin\Debug\cmpNegocio.pdb
-C:\Users\bgloria\Documents\Dev\Pentagrama\Mozart\Mozart_Solution\Mozart4\cmpNegocio\bin\Debug\cmpNegocio.xml
-C:\Users\bgloria\Documents\Dev\Pentagrama\Mozart\Mozart_Solution\Mozart4\cmpNegocio\bin\Debug\cmpRutinas.dll
-C:\Users\bgloria\Documents\Dev\Pentagrama\Mozart\Mozart_Solution\Mozart4\cmpNegocio\bin\Debug\cmpRutinas.pdb
-C:\Users\bgloria\Documents\Dev\Pentagrama\Mozart\Mozart_Solution\Mozart4\cmpNegocio\bin\Debug\cmpRutinas.xml
-C:\Users\bgloria\Documents\Dev\Pentagrama\Mozart\Mozart_Solution\Mozart4\cmpNegocio\obj\Debug\cmpNegocio.Resources.resources
-C:\Users\bgloria\Documents\Dev\Pentagrama\Mozart\Mozart_Solution\Mozart4\cmpNegocio\obj\Debug\cmpNegocio.vbproj.GenerateResource.Cache
-C:\Users\bgloria\Documents\Dev\Pentagrama\Mozart\Mozart_Solution\Mozart4\cmpNegocio\obj\Debug\cmpNegocio.dll
-C:\Users\bgloria\Documents\Dev\Pentagrama\Mozart\Mozart_Solution\Mozart4\cmpNegocio\obj\Debug\cmpNegocio.xml
-C:\Users\bgloria\Documents\Dev\Pentagrama\Mozart\Mozart_Solution\Mozart4\cmpNegocio\obj\Debug\cmpNegocio.pdb
 B:\IMAGINA SOFTWARE\Mozart\Mozart v2\Mozart_Solution\Mozart4\cmpNegocio\bin\Debug\cmpNegocio.dll
 B:\IMAGINA SOFTWARE\Mozart\Mozart v2\Mozart_Solution\Mozart4\cmpNegocio\bin\Debug\cmpNegocio.pdb
 B:\IMAGINA SOFTWARE\Mozart\Mozart v2\Mozart_Solution\Mozart4\cmpNegocio\bin\Debug\cmpNegocio.xml
@@ -179,20 +168,17 @@ C:\PROYECTOS\PENTA\Mozart\Mozart_Solution\Mozart4\cmpNegocio\obj\Debug\cmpNegoci
 C:\PROYECTOS\PENTA\Mozart\Mozart_Solution\Mozart4\cmpNegocio\obj\Debug\cmpNegocio.dll
 C:\PROYECTOS\PENTA\Mozart\Mozart_Solution\Mozart4\cmpNegocio\obj\Debug\cmpNegocio.xml
 C:\PROYECTOS\PENTA\Mozart\Mozart_Solution\Mozart4\cmpNegocio\obj\Debug\cmpNegocio.pdb
+C:\Users\bgloria\Documents\Dev\Pentagrama\Mozart\Mozart_Solution\Mozart4\cmpNegocio\bin\Debug\cmpNegocio.dll.config
+C:\Users\bgloria\Documents\Dev\Pentagrama\Mozart\Mozart_Solution\Mozart4\cmpNegocio\bin\Debug\cmpNegocio.dll
+C:\Users\bgloria\Documents\Dev\Pentagrama\Mozart\Mozart_Solution\Mozart4\cmpNegocio\bin\Debug\cmpNegocio.pdb
+C:\Users\bgloria\Documents\Dev\Pentagrama\Mozart\Mozart_Solution\Mozart4\cmpNegocio\bin\Debug\cmpNegocio.xml
+C:\Users\bgloria\Documents\Dev\Pentagrama\Mozart\Mozart_Solution\Mozart4\cmpNegocio\bin\Debug\cmpRutinas.dll
+C:\Users\bgloria\Documents\Dev\Pentagrama\Mozart\Mozart_Solution\Mozart4\cmpNegocio\bin\Debug\cmpRutinas.pdb
+C:\Users\bgloria\Documents\Dev\Pentagrama\Mozart\Mozart_Solution\Mozart4\cmpNegocio\bin\Debug\cmpRutinas.xml
 C:\Users\bgloria\Documents\Dev\Pentagrama\Mozart\Mozart_Solution\Mozart4\cmpNegocio\obj\Debug\cmpNegocio.vbprojAssemblyReference.cache
-C:\Users\bgloria\Documents\Dev\Pentagrama\Mozart\Mozart_Solution\Mozart4\cmpNegocio\obj\Debug\cmpNegocio.vbproj.CoreCompileInputs.cache
+C:\Users\bgloria\Documents\Dev\Pentagrama\Mozart\Mozart_Solution\Mozart4\cmpNegocio\obj\Debug\cmpNegocio.Resources.resources
+C:\Users\bgloria\Documents\Dev\Pentagrama\Mozart\Mozart_Solution\Mozart4\cmpNegocio\obj\Debug\cmpNegocio.vbproj.GenerateResource.cache
 C:\Users\bgloria\Documents\Dev\Pentagrama\Mozart\Mozart_Solution\Mozart4\cmpNegocio\obj\Debug\cmpNegocio.vbproj.CopyComplete
-C:\Users\jlopez\Documents\GG\Mozart\Mozart_Solution\Mozart4\cmpNegocio\bin\Debug\cmpNegocio.dll
-C:\Users\jlopez\Documents\GG\Mozart\Mozart_Solution\Mozart4\cmpNegocio\bin\Debug\cmpNegocio.pdb
-C:\Users\jlopez\Documents\GG\Mozart\Mozart_Solution\Mozart4\cmpNegocio\bin\Debug\cmpNegocio.xml
-C:\Users\jlopez\Documents\GG\Mozart\Mozart_Solution\Mozart4\cmpNegocio\bin\Debug\cmpRutinas.dll
-C:\Users\jlopez\Documents\GG\Mozart\Mozart_Solution\Mozart4\cmpNegocio\bin\Debug\cmpRutinas.pdb
-C:\Users\jlopez\Documents\GG\Mozart\Mozart_Solution\Mozart4\cmpNegocio\bin\Debug\cmpRutinas.xml
-C:\Users\jlopez\Documents\GG\Mozart\Mozart_Solution\Mozart4\cmpNegocio\obj\Debug\cmpNegocio.vbprojAssemblyReference.cache
-C:\Users\jlopez\Documents\GG\Mozart\Mozart_Solution\Mozart4\cmpNegocio\obj\Debug\cmpNegocio.Resources.resources
-C:\Users\jlopez\Documents\GG\Mozart\Mozart_Solution\Mozart4\cmpNegocio\obj\Debug\cmpNegocio.vbproj.GenerateResource.cache
-C:\Users\jlopez\Documents\GG\Mozart\Mozart_Solution\Mozart4\cmpNegocio\obj\Debug\cmpNegocio.vbproj.CoreCompileInputs.cache
-C:\Users\jlopez\Documents\GG\Mozart\Mozart_Solution\Mozart4\cmpNegocio\obj\Debug\cmpNegocio.vbproj.CopyComplete
-C:\Users\jlopez\Documents\GG\Mozart\Mozart_Solution\Mozart4\cmpNegocio\obj\Debug\cmpNegocio.dll
-C:\Users\jlopez\Documents\GG\Mozart\Mozart_Solution\Mozart4\cmpNegocio\obj\Debug\cmpNegocio.xml
-C:\Users\jlopez\Documents\GG\Mozart\Mozart_Solution\Mozart4\cmpNegocio\obj\Debug\cmpNegocio.pdb
+C:\Users\bgloria\Documents\Dev\Pentagrama\Mozart\Mozart_Solution\Mozart4\cmpNegocio\obj\Debug\cmpNegocio.dll
+C:\Users\bgloria\Documents\Dev\Pentagrama\Mozart\Mozart_Solution\Mozart4\cmpNegocio\obj\Debug\cmpNegocio.xml
+C:\Users\bgloria\Documents\Dev\Pentagrama\Mozart\Mozart_Solution\Mozart4\cmpNegocio\obj\Debug\cmpNegocio.pdb

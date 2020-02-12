@@ -1,0 +1,131 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+cmpNegocio
+</name>
+</assembly>
+<members>
+<member name="T:cmpNegocio.My.Resources.Resources">
+<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member>
+<member name="P:cmpNegocio.My.Resources.Resources.ResourceManager">
+<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member>
+<member name="P:cmpNegocio.My.Resources.Resources.Culture">
+<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member>
+<member name="T:cmpNegocio.wsMailsSendGrid.wsMails">
+<remarks/>
+</member>
+<member name="M:cmpNegocio.wsMailsSendGrid.wsMails.#ctor">
+<remarks/>
+</member>
+<member name="E:cmpNegocio.wsMailsSendGrid.wsMails.EnviarCorreoCompleted">
+<remarks/>
+</member>
+<member name="M:cmpNegocio.wsMailsSendGrid.wsMails.EnviarCorreo(cmpNegocio.wsMailsSendGrid.Autenticacion,cmpNegocio.wsMailsSendGrid.Correo)">
+<remarks/>
+</member>
+<member name="M:cmpNegocio.wsMailsSendGrid.wsMails.EnviarCorreoAsync(cmpNegocio.wsMailsSendGrid.Autenticacion,cmpNegocio.wsMailsSendGrid.Correo)">
+<remarks/>
+</member>
+<member name="M:cmpNegocio.wsMailsSendGrid.wsMails.EnviarCorreoAsync(cmpNegocio.wsMailsSendGrid.Autenticacion,cmpNegocio.wsMailsSendGrid.Correo,System.Object)">
+<remarks/>
+</member>
+<member name="M:cmpNegocio.wsMailsSendGrid.wsMails.CancelAsync(System.Object)">
+<remarks/>
+</member>
+<member name="T:cmpNegocio.wsMailsSendGrid.Autenticacion">
+<remarks/>
+</member>
+<member name="P:cmpNegocio.wsMailsSendGrid.Autenticacion.InWebId">
+<remarks/>
+</member>
+<member name="P:cmpNegocio.wsMailsSendGrid.Autenticacion.StUsuario">
+<remarks/>
+</member>
+<member name="P:cmpNegocio.wsMailsSendGrid.Autenticacion.StClave">
+<remarks/>
+</member>
+<member name="T:cmpNegocio.wsMailsSendGrid.TipoWeb">
+<remarks/>
+</member>
+<member name="F:cmpNegocio.wsMailsSendGrid.TipoWeb.Mozart">
+<remarks/>
+</member>
+<member name="T:cmpNegocio.wsMailsSendGrid.Respuesta">
+<remarks/>
+</member>
+<member name="P:cmpNegocio.wsMailsSendGrid.Respuesta.Tipo">
+<remarks/>
+</member>
+<member name="P:cmpNegocio.wsMailsSendGrid.Respuesta.Valor">
+<remarks/>
+</member>
+<member name="P:cmpNegocio.wsMailsSendGrid.Respuesta.OtroValor">
+<remarks/>
+</member>
+<member name="T:cmpNegocio.wsMailsSendGrid.TipoRespuesta">
+<remarks/>
+</member>
+<member name="F:cmpNegocio.wsMailsSendGrid.TipoRespuesta.Exito">
+<remarks/>
+</member>
+<member name="F:cmpNegocio.wsMailsSendGrid.TipoRespuesta.Alerta">
+<remarks/>
+</member>
+<member name="F:cmpNegocio.wsMailsSendGrid.TipoRespuesta.Error">
+<remarks/>
+</member>
+<member name="T:cmpNegocio.wsMailsSendGrid.Adjunto">
+<remarks/>
+</member>
+<member name="P:cmpNegocio.wsMailsSendGrid.Adjunto.ArchivoBytes">
+<remarks/>
+</member>
+<member name="P:cmpNegocio.wsMailsSendGrid.Adjunto.NombreArchivo">
+<remarks/>
+</member>
+<member name="T:cmpNegocio.wsMailsSendGrid.Correo">
+<remarks/>
+</member>
+<member name="P:cmpNegocio.wsMailsSendGrid.Correo.NombreEmisor">
+<remarks/>
+</member>
+<member name="P:cmpNegocio.wsMailsSendGrid.Correo.CorreoEmisor">
+<remarks/>
+</member>
+<member name="P:cmpNegocio.wsMailsSendGrid.Correo.Destinatarios">
+<remarks/>
+</member>
+<member name="P:cmpNegocio.wsMailsSendGrid.Correo.Asunto">
+<remarks/>
+</member>
+<member name="P:cmpNegocio.wsMailsSendGrid.Correo.CuerpoTexto">
+<remarks/>
+</member>
+<member name="P:cmpNegocio.wsMailsSendGrid.Correo.CuerpoHtml">
+<remarks/>
+</member>
+<member name="P:cmpNegocio.wsMailsSendGrid.Correo.Adjuntos">
+<remarks/>
+</member>
+<member name="T:cmpNegocio.wsMailsSendGrid.EnviarCorreoCompletedEventHandler">
+<remarks/>
+</member>
+<member name="T:cmpNegocio.wsMailsSendGrid.EnviarCorreoCompletedEventArgs">
+<remarks/>
+</member>
+<member name="P:cmpNegocio.wsMailsSendGrid.EnviarCorreoCompletedEventArgs.Result">
+<remarks/>
+</member>
+</members>
+</doc>
