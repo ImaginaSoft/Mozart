@@ -38,6 +38,7 @@
 								<TD>
 									<asp:linkbutton id="lbtEliminar" runat="server">• Eliminar Plantilla</asp:linkbutton></TD>
 							</TR>
+							<TR> <TD> <asp:LinkButton id="lbtImg" runat="server">• Cargar imagenes </asp:LinkButton></TD></TR>
 						</TABLE>
 					</TD>
 				</TR>

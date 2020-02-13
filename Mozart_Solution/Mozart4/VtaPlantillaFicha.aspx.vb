@@ -74,4 +74,7 @@ Partial Class VtaPlantillaFicha
     End Sub
 
 
+    Private Sub lbtImg_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lbtImg.Click
+        Response.Redirect("VtaPlantillaImg.aspx" & "?NroPlantilla=" & ucPlantilla1.NroPlantilla & "&DesPlantilla=" & ucPlantilla1.DesPlantilla)
+    End Sub
 End Class
