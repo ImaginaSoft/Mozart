@@ -14,9 +14,30 @@ Public Class clsPlantilla
     Private iCodCateTour As Integer
     Private sFlagUsoAge As String
     Private sCodUsuario As String
+    Private iIdImgPlantilla As Integer
+    Private sURLImgPlantilla As String
 
     Dim cn As String = System.Configuration.ConfigurationManager.AppSettings("cnMozart")
     Dim sMsg As String
+
+
+    Property IdImgPlantilla() As Integer
+        Get
+            Return iIdImgPlantilla
+        End Get
+        Set(ByVal Value As Integer)
+            iIdImgPlantilla = (Value)
+        End Set
+    End Property
+
+    Property UrlImgPlantilla() As String
+        Get
+            Return sURLImgPlantilla
+        End Get
+        Set(ByVal Value As String)
+            sURLImgPlantilla = (Value)
+        End Set
+    End Property
 
     Property NroPlantilla() As Integer
         Get
