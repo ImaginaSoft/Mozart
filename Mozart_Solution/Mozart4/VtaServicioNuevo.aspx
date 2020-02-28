@@ -185,6 +185,12 @@
                                         Text="Marcar  para ingresar datos del boleto en la Versión"></asp:CheckBox></TD>
 							</TR>
 							<TR>
+								<TD style="WIDTH: 663px">Es Opcional</TD>
+								<TD style="WIDTH: 350px">
+									<asp:CheckBox id="cboFlagOpcional" runat="server" 
+                                        Text="Marcar  para indicar si sera visible en el APP"></asp:CheckBox></TD>
+							</TR>
+							<TR>
 								<TD style="WIDTH: 663px">Estado del servicio</TD>
 								<TD style="WIDTH: 350px"><asp:radiobutton id="rbActivo" runat="server" Checked="True" GroupName="Grupo3" Text="Activo"></asp:radiobutton>&nbsp;
 									<asp:radiobutton id="rbInactivo" runat="server" GroupName="Grupo3" Text="Inactivo"></asp:radiobutton></TD>

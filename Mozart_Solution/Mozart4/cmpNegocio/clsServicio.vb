@@ -36,8 +36,9 @@ Public Class clsServicio
     Private sCaraEspeServicio2 As String ' ingles
     Private sCaraEspeServicio3 As String ' portugués
     Private sHoraInicioServicio As String
-    Private sFlagServicioAge As String
-    Private sCodUsuario As String
+	Private sFlagServicioAge As String
+	Private sFlagAdicional As String
+	Private sCodUsuario As String
     Private m_Imagen As Byte()
     Private m_Imagen2 As Byte()
     Private m_Imagen3 As Byte()
@@ -347,16 +348,25 @@ Public Class clsServicio
         End Set
     End Property
 
-    Property FlagServicioAge() As String
-        Get
-            Return sFlagServicioAge
-        End Get
-        Set(ByVal Value As String)
-            sFlagServicioAge = CStr(Value)
-        End Set
-    End Property
+	Property FlagServicioAge() As String
+		Get
+			Return sFlagServicioAge
+		End Get
+		Set(ByVal Value As String)
+			sFlagServicioAge = CStr(Value)
+		End Set
+	End Property
 
-    Property CodUsuario() As String
+	Property FlagAdicional() As String
+		Get
+			Return sFlagAdicional
+		End Get
+		Set(ByVal Value As String)
+			sFlagAdicional = CStr(Value)
+		End Set
+	End Property
+
+	Property CodUsuario() As String
         Get
             Return sCodUsuario
         End Get
@@ -626,8 +636,9 @@ Public Class clsServicio
 
         cd.Parameters.Add("@DesHTLP", SqlDbType.VarChar).Value = sDesHTLP
 
+		cd.Parameters.Add("@FlagAdicional", SqlDbType.Char, 1).Value = sFlagAdicional
 
-        Try
+		Try
             cn.Open()
             cd.ExecuteNonQuery()
             If cd.Parameters("@MsgTrans").Value = "OK" Then

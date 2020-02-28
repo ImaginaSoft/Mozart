@@ -248,11 +248,15 @@ Partial Class VtaServicioNuevo
 
             End If
 
-            If objServicio.FlagServicioAge = "S" Then
-                CheckBoxFlagServicioAge.Checked = True
-            End If
+			If objServicio.FlagServicioAge = "S" Then
+				CheckBoxFlagServicioAge.Checked = True
+			End If
 
-            txtCaraEspeServicio.Text = objServicio.CaraEspeServicio.Trim
+			If objServicio.FlagAdicional = "S" Then
+				cboFlagOpcional.Checked = True
+			End If
+
+			txtCaraEspeServicio.Text = objServicio.CaraEspeServicio.Trim
             txtCaraEspeServicio2.Text = objServicio.CaraEspeServicio2.Trim
             txtCaraEspeServicio3.Text = objServicio.CaraEspeServicio3.Trim
             txtHoraInicioReserva.Text = objServicio.HoraInicioServicio.Trim
@@ -433,8 +437,12 @@ Partial Class VtaServicioNuevo
             objServicio.FlagServicioAge = "S"
         End If
 
+		objServicio.FlagAdicional = ""
+		If cboFlagOpcional.Checked Then
+			objServicio.FlagAdicional = "S"
+		End If
 
-        objServicio.CodProveedor = ddlProveedor.SelectedItem.Value
+		objServicio.CodProveedor = ddlProveedor.SelectedItem.Value
         objServicio.CodCiudad = ddlCiudad.SelectedItem.Value
         objServicio.CodTipoServicio = ddltiposervicio.SelectedItem.Value
         objServicio.DesProveedor = txtDesProveedor.Text
