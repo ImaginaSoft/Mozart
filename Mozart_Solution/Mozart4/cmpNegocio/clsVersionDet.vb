@@ -50,7 +50,9 @@ Public Class clsVersionDet
     Private sCodCiudad As String
     Private sCodSolicita As String
 
-    Dim cn As String = System.Configuration.ConfigurationManager.AppSettings("cnMozart")
+	Private sFchAdicional As String
+
+	Dim cn As String = System.Configuration.ConfigurationManager.AppSettings("cnMozart")
     Dim sMsg As String
 
     Property NroPedido() As Integer
@@ -398,66 +400,75 @@ Public Class clsVersionDet
         End Set
     End Property
 
-    Property DesIncidencia() As String
-        Get
-            Return sDesIncidencia
-        End Get
-        Set(ByVal Value As String)
-            sDesIncidencia = CStr(Value)
-        End Set
-    End Property
+	Property DesIncidencia() As String
+		Get
+			Return sDesIncidencia
+		End Get
+		Set(ByVal Value As String)
+			sDesIncidencia = CStr(Value)
+		End Set
+	End Property
 
-    Function Grabar() As String
-        Dim cn As New SqlConnection(System.Configuration.ConfigurationManager.AppSettings("cnMozart"))
-        Dim cd As New SqlCommand
-        cd.Connection = cn
-        cd.CommandText = "VTA_VersionServicio_I"
-        cd.CommandType = CommandType.StoredProcedure
+	Property FchAdicional() As String
+		Get
+			Return sFchAdicional
+		End Get
+		Set(ByVal Value As String)
+			sFchAdicional = CStr(Value)
+		End Set
+	End Property
 
-        Dim pa As New SqlParameter
-        pa = cd.Parameters.Add("@MsgTrans", SqlDbType.VarChar, 150)
-        pa.Direction = ParameterDirection.Output
-        pa.Value = ""
-        cd.Parameters.Add("@NroPedido", SqlDbType.Int).Value = iNroPedido
-        cd.Parameters.Add("@NroPropuesta", SqlDbType.Int).Value = iNroPropuesta
-        cd.Parameters.Add("@NroVersion", SqlDbType.Int).Value = iNroVersion
-        cd.Parameters.Add("@NroDia", SqlDbType.SmallInt).Value = iNroDia
-        cd.Parameters.Add("@NroOrden", SqlDbType.SmallInt).Value = iNroOrden
-        cd.Parameters.Add("@HoraServicio", SqlDbType.Char, 8).Value = sHoraServicio
-        cd.Parameters.Add("@NroServicio", SqlDbType.Int).Value = iNroServicio
-        cd.Parameters.Add("@CodTipoServicio", SqlDbType.TinyInt).Value = iCodTipoServicio
-        cd.Parameters.Add("@CodTipoAcomodacion", SqlDbType.SmallInt).Value = iCodTipoAcomodacion
-        cd.Parameters.Add("@NroDiaAnt", SqlDbType.SmallInt).Value = iNroDiaAnt
-        cd.Parameters.Add("@NroOrdenAnt", SqlDbType.SmallInt).Value = iNroOrdAnt
-        cd.Parameters.Add("@NroServicioAnt", SqlDbType.Int).Value = iNroSerAnt
-        cd.Parameters.Add("@CantAduSGL", SqlDbType.TinyInt).Value = iCantAduSGL
-        cd.Parameters.Add("@CantAduDBL", SqlDbType.TinyInt).Value = iCantAduDBL
-        cd.Parameters.Add("@CantAduTPL", SqlDbType.TinyInt).Value = iCantAduTPL
-        cd.Parameters.Add("@CantAduCDL", SqlDbType.TinyInt).Value = iCantAduCDL
-        cd.Parameters.Add("@CantNinSGL", SqlDbType.TinyInt).Value = iCantNinSGL
-        cd.Parameters.Add("@CantNinDBL", SqlDbType.TinyInt).Value = iCantNinDBL
-        cd.Parameters.Add("@CantNinTPL", SqlDbType.TinyInt).Value = iCantNinTPL
-        cd.Parameters.Add("@CantNinCDL", SqlDbType.TinyInt).Value = iCantNinCDL
-        cd.Parameters.Add("@MontoFijo", SqlDbType.Money).Value = dMontoFijo
-        cd.Parameters.Add("@RangoTarifa", SqlDbType.TinyInt).Value = iRangoTarifa
-        cd.Parameters.Add("@Opcion", SqlDbType.Char, 1).Value = sOpcion
-        cd.Parameters.Add("@CodUsuario", SqlDbType.Char, 15).Value = sCodUsuario
-        cd.Parameters.Add("@HoraSalida", SqlDbType.Char, 8).Value = sHoraSalida
-        cd.Parameters.Add("@HoraLlegada", SqlDbType.Char, 8).Value = sHoraLlegada
-        Try
-            cn.Open()
-            cd.ExecuteNonQuery()
-            sMsg = cd.Parameters("@MsgTrans").Value
-        Catch ex1 As System.Data.SqlClient.SqlException
-            sMsg = "Error:" & ex1.Message
-        Catch ex2 As System.Exception
-            sMsg = "Error:" & ex2.Message
-        End Try
-        cn.Close()
-        Return (sMsg)
-    End Function
+	Function Grabar() As String
+		Dim cn As New SqlConnection(System.Configuration.ConfigurationManager.AppSettings("cnMozart"))
+		Dim cd As New SqlCommand
+		cd.Connection = cn
+		cd.CommandText = "VTA_VersionServicio_I"
+		cd.CommandType = CommandType.StoredProcedure
 
-    Function Editar(ByVal pNroServicio As Integer, ByVal pEstado As String) As String
+		Dim pa As New SqlParameter
+		pa = cd.Parameters.Add("@MsgTrans", SqlDbType.VarChar, 150)
+		pa.Direction = ParameterDirection.Output
+		pa.Value = ""
+		cd.Parameters.Add("@NroPedido", SqlDbType.Int).Value = iNroPedido
+		cd.Parameters.Add("@NroPropuesta", SqlDbType.Int).Value = iNroPropuesta
+		cd.Parameters.Add("@NroVersion", SqlDbType.Int).Value = iNroVersion
+		cd.Parameters.Add("@NroDia", SqlDbType.SmallInt).Value = iNroDia
+		cd.Parameters.Add("@NroOrden", SqlDbType.SmallInt).Value = iNroOrden
+		cd.Parameters.Add("@HoraServicio", SqlDbType.Char, 8).Value = sHoraServicio
+		cd.Parameters.Add("@NroServicio", SqlDbType.Int).Value = iNroServicio
+		cd.Parameters.Add("@CodTipoServicio", SqlDbType.TinyInt).Value = iCodTipoServicio
+		cd.Parameters.Add("@CodTipoAcomodacion", SqlDbType.SmallInt).Value = iCodTipoAcomodacion
+		cd.Parameters.Add("@NroDiaAnt", SqlDbType.SmallInt).Value = iNroDiaAnt
+		cd.Parameters.Add("@NroOrdenAnt", SqlDbType.SmallInt).Value = iNroOrdAnt
+		cd.Parameters.Add("@NroServicioAnt", SqlDbType.Int).Value = iNroSerAnt
+		cd.Parameters.Add("@CantAduSGL", SqlDbType.TinyInt).Value = iCantAduSGL
+		cd.Parameters.Add("@CantAduDBL", SqlDbType.TinyInt).Value = iCantAduDBL
+		cd.Parameters.Add("@CantAduTPL", SqlDbType.TinyInt).Value = iCantAduTPL
+		cd.Parameters.Add("@CantAduCDL", SqlDbType.TinyInt).Value = iCantAduCDL
+		cd.Parameters.Add("@CantNinSGL", SqlDbType.TinyInt).Value = iCantNinSGL
+		cd.Parameters.Add("@CantNinDBL", SqlDbType.TinyInt).Value = iCantNinDBL
+		cd.Parameters.Add("@CantNinTPL", SqlDbType.TinyInt).Value = iCantNinTPL
+		cd.Parameters.Add("@CantNinCDL", SqlDbType.TinyInt).Value = iCantNinCDL
+		cd.Parameters.Add("@MontoFijo", SqlDbType.Money).Value = dMontoFijo
+		cd.Parameters.Add("@RangoTarifa", SqlDbType.TinyInt).Value = iRangoTarifa
+		cd.Parameters.Add("@Opcion", SqlDbType.Char, 1).Value = sOpcion
+		cd.Parameters.Add("@CodUsuario", SqlDbType.Char, 15).Value = sCodUsuario
+		cd.Parameters.Add("@HoraSalida", SqlDbType.Char, 8).Value = sHoraSalida
+		cd.Parameters.Add("@HoraLlegada", SqlDbType.Char, 8).Value = sHoraLlegada
+		Try
+			cn.Open()
+			cd.ExecuteNonQuery()
+			sMsg = cd.Parameters("@MsgTrans").Value
+		Catch ex1 As System.Data.SqlClient.SqlException
+			sMsg = "Error:" & ex1.Message
+		Catch ex2 As System.Exception
+			sMsg = "Error:" & ex2.Message
+		End Try
+		cn.Close()
+		Return (sMsg)
+	End Function
+
+	Function Editar(ByVal pNroServicio As Integer, ByVal pEstado As String) As String
         sMsg = "No existe registro " & sCodUsuario
 
         pEstado = "N"
@@ -498,8 +509,8 @@ Public Class clsVersionDet
         arParms(2) = New SqlParameter("@NroVersion", SqlDbType.Int)
         arParms(2).Value = pNroVersion
         Dim ds As New DataSet
-        ds = SqlHelper.ExecuteDataset(cn, CommandType.StoredProcedure, "VTA_VersionServicio_S", arParms)
-        Return (ds)
+		ds = SqlHelper.ExecuteDataset(cn, CommandType.StoredProcedure, "VTA_VersionServicio_S", arParms)
+		Return (ds)
     End Function
 
     Function CargaServicios(ByVal pNroPedido As Integer, ByVal pNroPropuesta As Integer, ByVal pNroVersion As Integer, ByVal pCodProveedor As Integer) As DataSet
@@ -934,6 +945,70 @@ Public Class clsVersionDet
         ds = SqlHelper.ExecuteDataset(cn, CommandType.StoredProcedure, "VTA_ClienteEnTourxCodVendedor_S", arParms)
         Return (ds)
     End Function
+
+	Function CargaServiciosAdicional(ByVal pNroPedido As Integer, ByVal pNroPropuesta As Integer, ByVal pNroVersion As Integer) As DataSet
+		Dim arParms() As SqlParameter = New SqlParameter(2) {}
+		arParms(0) = New SqlParameter("@NroPedido", SqlDbType.Int)
+		arParms(0).Value = pNroPedido
+		arParms(1) = New SqlParameter("@NroPropuesta", SqlDbType.Int)
+		arParms(1).Value = pNroPropuesta
+		arParms(2) = New SqlParameter("@NroVersion", SqlDbType.Int)
+		arParms(2).Value = pNroVersion
+		Dim ds As New DataSet
+		ds = SqlHelper.ExecuteDataset(cn, CommandType.StoredProcedure, "VTA_VersionServicioAd_S", arParms)
+		Return (ds)
+	End Function
+
+	Function GrabarAD() As String
+		Dim cn As New SqlConnection(System.Configuration.ConfigurationManager.AppSettings("cnMozart"))
+		Dim cd As New SqlCommand
+		cd.Connection = cn
+		cd.CommandText = "VTA_VersionServicioAD_I"
+		cd.CommandType = CommandType.StoredProcedure
+
+		Dim pa As New SqlParameter
+		pa = cd.Parameters.Add("@MsgTrans", SqlDbType.VarChar, 150)
+		pa.Direction = ParameterDirection.Output
+		pa.Value = ""
+		cd.Parameters.Add("@NroPedido", SqlDbType.Int).Value = iNroPedido
+		cd.Parameters.Add("@NroPropuesta", SqlDbType.Int).Value = iNroPropuesta
+		cd.Parameters.Add("@NroVersion", SqlDbType.Int).Value = iNroVersion
+		cd.Parameters.Add("@NroDia", SqlDbType.SmallInt).Value = iNroDia
+		cd.Parameters.Add("@NroOrden", SqlDbType.SmallInt).Value = iNroOrden
+		cd.Parameters.Add("@HoraServicio", SqlDbType.Char, 8).Value = sHoraServicio
+		cd.Parameters.Add("@NroServicio", SqlDbType.Int).Value = iNroServicio
+		cd.Parameters.Add("@CodTipoServicio", SqlDbType.TinyInt).Value = iCodTipoServicio
+		cd.Parameters.Add("@CodTipoAcomodacion", SqlDbType.SmallInt).Value = iCodTipoAcomodacion
+		cd.Parameters.Add("@NroDiaAnt", SqlDbType.SmallInt).Value = iNroDiaAnt
+		cd.Parameters.Add("@NroOrdenAnt", SqlDbType.SmallInt).Value = iNroOrdAnt
+		cd.Parameters.Add("@NroServicioAnt", SqlDbType.Int).Value = iNroSerAnt
+		cd.Parameters.Add("@CantAduSGL", SqlDbType.TinyInt).Value = iCantAduSGL
+		cd.Parameters.Add("@CantAduDBL", SqlDbType.TinyInt).Value = iCantAduDBL
+		cd.Parameters.Add("@CantAduTPL", SqlDbType.TinyInt).Value = iCantAduTPL
+		cd.Parameters.Add("@CantAduCDL", SqlDbType.TinyInt).Value = iCantAduCDL
+		cd.Parameters.Add("@CantNinSGL", SqlDbType.TinyInt).Value = iCantNinSGL
+		cd.Parameters.Add("@CantNinDBL", SqlDbType.TinyInt).Value = iCantNinDBL
+		cd.Parameters.Add("@CantNinTPL", SqlDbType.TinyInt).Value = iCantNinTPL
+		cd.Parameters.Add("@CantNinCDL", SqlDbType.TinyInt).Value = iCantNinCDL
+		cd.Parameters.Add("@MontoFijo", SqlDbType.Money).Value = dMontoFijo
+		cd.Parameters.Add("@RangoTarifa", SqlDbType.TinyInt).Value = iRangoTarifa
+		cd.Parameters.Add("@Opcion", SqlDbType.Char, 1).Value = sOpcion
+		cd.Parameters.Add("@CodUsuario", SqlDbType.Char, 15).Value = sCodUsuario
+		cd.Parameters.Add("@HoraSalida", SqlDbType.Char, 8).Value = sHoraSalida
+		cd.Parameters.Add("@HoraLlegada", SqlDbType.Char, 8).Value = sHoraLlegada
+		cd.Parameters.Add("@FchAdServ", SqlDbType.Char, 8).Value = sFchAdicional
+		Try
+			cn.Open()
+			cd.ExecuteNonQuery()
+			sMsg = cd.Parameters("@MsgTrans").Value
+		Catch ex1 As System.Data.SqlClient.SqlException
+			sMsg = "Error:" & ex1.Message
+		Catch ex2 As System.Exception
+			sMsg = "Error:" & ex2.Message
+		End Try
+		cn.Close()
+		Return (sMsg)
+	End Function
 
 
 End Class

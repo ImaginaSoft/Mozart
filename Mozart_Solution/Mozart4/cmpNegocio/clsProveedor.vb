@@ -69,8 +69,23 @@ Public Class clsProveedor
         arParms(2) = New SqlParameter("@CodTipoServicio", SqlDbType.Int)
         arParms(2).Value = pCodTipoServicio
         Dim ds As New DataSet
-        ds = SqlHelper.ExecuteDataset(cn, CommandType.StoredProcedure, "VTA_ServicioActivoxCodTipoServicio_S", arParms)
-        Return (ds)
+		ds = SqlHelper.ExecuteDataset(cn, CommandType.StoredProcedure, "VTA_ServicioActivoxCodTipoServicioAD_S", arParms)
+		Return (ds)
     End Function
+
+
+	Function CargaServicioAdicional(ByVal pCodProveedor As Integer, ByVal pCodCiudad As String, ByVal pCodTipoServicio As Integer) As DataSet
+		Dim arParms() As SqlParameter = New SqlParameter(2) {}
+		arParms(0) = New SqlParameter("@CodProveedor", SqlDbType.Int)
+		arParms(0).Value = pCodProveedor
+		arParms(1) = New SqlParameter("@CodCiudad", SqlDbType.Char, 10)
+		arParms(1).Value = pCodCiudad
+		arParms(2) = New SqlParameter("@CodTipoServicio", SqlDbType.Int)
+		arParms(2).Value = pCodTipoServicio
+		Dim ds As New DataSet
+		ds = SqlHelper.ExecuteDataset(cn, CommandType.StoredProcedure, "VTA_ServicioADxCodTipoServicio_S", arParms)
+		Return (ds)
+	End Function
+
 
 End Class

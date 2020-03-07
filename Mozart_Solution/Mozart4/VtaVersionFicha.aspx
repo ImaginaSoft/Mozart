@@ -59,6 +59,28 @@
         .style7 {
             width: 123px;
         }
+    	.auto-style7 {
+			width: 123px;
+			height: 44px;
+		}
+		.auto-style8 {
+			width: 154px;
+			height: 44px;
+		}
+		.auto-style9 {
+			height: 44px;
+		}
+		.auto-style10 {
+			width: 123px;
+			height: 42px;
+		}
+		.auto-style11 {
+			width: 154px;
+			height: 42px;
+		}
+		.auto-style12 {
+			height: 42px;
+		}
     </style>
 </head>
 <body ms_positioning="GridLayout">
@@ -153,28 +175,31 @@
                                 <asp:LinkButton ID="lbtVuelosInter" runat="server" Width="168px">• Vuelos Internacionales</asp:LinkButton></td>
                         </tr>
                         <tr>
-                            <td class="style7">
+                            <td class="auto-style7">
                                 <asp:LinkButton ID="lbtReservaBoleto" runat="server"
                                     Width="119px" Height="16px">• Sts Reserva Avión</asp:LinkButton></td>
-                            <td style="width: 154px">
+                            <td class="auto-style8">
                                 <asp:LinkButton ID="lbtAprueba" runat="server">• Aprueba Versión</asp:LinkButton></td>
-                            <td>
+                            <td class="auto-style9">
                                 <asp:LinkButton ID="lbtBoletos" runat="server"
                                     Width="103px">• Boletos Avión</asp:LinkButton></td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
+                            <td class="auto-style9"></td>
+                            <td class="auto-style9">
+								 <asp:LinkButton ID="bltServiciosA" runat="server"
+                                    Width="103px" >• Servicios Adicionales</asp:LinkButton>
+                            </td>
                         </tr>
                         <tr>
-                            <td class="style7">
+                            <td class="auto-style10">
                                 <asp:LinkButton ID="lbtReservaBoletoTren" runat="server" Width="120px"
                                     Height="16px">• Sts Reserva Tren</asp:LinkButton></td>
-                            <td style="width: 154px">
+                            <td class="auto-style11">
                                 <asp:LinkButton ID="lkbDesaprueba" runat="server">• Desaprueba Versión</asp:LinkButton></td>
-                            <td>
+                            <td class="auto-style12">
                                 <asp:LinkButton ID="lbtTrasladarBoletoAereo" runat="server" Width="153px"
                                     Height="16px">• Trasladar Boleto Aéreo</asp:LinkButton></td>
-                            <td>&nbsp;</td>
-                            <td>
+                            <td class="auto-style12"></td>
+                            <td class="auto-style12">
                                 <asp:LinkButton ID="lbtIncidencia" runat="server" Width="112px">• Incidencia</asp:LinkButton></td>
                         </tr>
                         <tr>

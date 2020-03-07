@@ -1470,4 +1470,12 @@ Partial Class VtaVersionFicha
 
 
 	End Sub
+	Protected Sub bltServiciosA_Click(sender As Object, e As EventArgs) Handles bltServiciosA.Click
+		Response.Redirect("VtaVersionServicioAdicional.aspx" & _
+		"?CodCliente=" & ViewState("CodCliente") & _
+		"&NroPedido=" & ViewState("NroPedido") & _
+		"&NroPropuesta=" & ViewState("NroPropuesta") & _
+		"&NroVersion=" & ucVersion1.NroVersion & _
+		"&StsVersion=" & ucVersion1.StsVersion)
+	End Sub
 End Class
