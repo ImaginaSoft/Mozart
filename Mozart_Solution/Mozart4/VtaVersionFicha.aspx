@@ -185,18 +185,18 @@
                             <td>
                                 <asp:LinkButton ID="lbtCreaCopia" runat="server" Width="140px" Visible="False">• Crea copia de Versión</asp:LinkButton></td>
                         </tr>
-                        <tr>
+                     <%--   <tr>
                             <td colspan="5">
                                 <asp:LinkButton ID="lbtMigrarPedido" runat="server">• Migrar pedido al mes actual</asp:LinkButton></td>
-                        </tr>
-                        <tr>
+                        </tr>--%>
+              <%--          <tr>
                             <td colspan="5">
                                 <asp:LinkButton ID="lbtMigrarPedidoGG" runat="server" OnClientClick="MigrarGG()">• Migrar GG</asp:LinkButton>
                                 <asp:HiddenField ID="versionGG" runat="server" />
                                 <asp:Label ID="mensajeGG"></asp:Label>
                             </td>
                             
-                        </tr>
+                        </tr>--%>
                     </table>
                 </td>
             </tr>
