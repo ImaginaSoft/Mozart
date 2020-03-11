@@ -22,6 +22,7 @@ Partial Class VtaVersionFicha
             LeeNroVersion()
             lblTitulo.Text = "Ficha de la Versión N° " & ViewState("NroVersion")
             CargaData()
+            OcultarBotonMigrarGG()
         End If
     End Sub
 
@@ -921,53 +922,54 @@ Partial Class VtaVersionFicha
 
                 cd.Parameters("@MsgTrans").Direction = ParameterDirection.Output
 
-				Try
-					cn.Open()
-					cd.ExecuteNonQuery()
-					sResultado = cd.Parameters("@MsgTrans").Value
-				Catch ex1 As SqlException
-					sResultado = "Error:" & ex1.Message
-				Catch ex2 As Exception
-					sResultado = "Error:" & ex2.Message
-				Finally
-					cn.Close()
-				End Try
+                Try
+                    cn.Open()
+                    cd.ExecuteNonQuery()
+                    sResultado = cd.Parameters("@MsgTrans").Value
+                Catch ex1 As SqlException
+                    sResultado = "Error:" & ex1.Message
+                Catch ex2 As Exception
+                    sResultado = "Error:" & ex2.Message
+                Finally
+                    cn.Close()
+                End Try
 
-				'-----------------------------------------------------
-				'Flag Ajuste
-				'-----------------------------------------------------
-				sResultado = ""
-				cd = New SqlCommand()
-				cd.Connection = cn
-				cd.CommandText = "REG_Migracion_I"
-				cd.CommandType = CommandType.StoredProcedure
-
-
-				cd.Parameters.Add("@NroPedido", SqlDbType.Int).Value = ViewState("NroPedido")
-				cd.Parameters.Add("@NroPropuesta_new", SqlDbType.Int).Value = iPropuestaNueva
-				cd.Parameters.Add("@NroVersion_new", SqlDbType.Int).Value = iVersionNueva
-				cd.Parameters.Add("@NroVersion_base", SqlDbType.Int).Value = ViewState("NroVersion")
+                '-----------------------------------------------------
+                'Flag Ajuste
+                '-----------------------------------------------------
+                sResultado = ""
+                cd = New SqlCommand()
+                cd.Connection = cn
+                cd.CommandText = "REG_Migracion_I"
+                cd.CommandType = CommandType.StoredProcedure
 
 
-				cd.Parameters.Add("@MsgTrans", SqlDbType.VarChar, 500).Value = ""
+                cd.Parameters.Add("@NroPedido", SqlDbType.Int).Value = ViewState("NroPedido")
+                cd.Parameters.Add("@NroPropuesta_new", SqlDbType.Int).Value = iPropuestaNueva
+                cd.Parameters.Add("@NroVersion_new", SqlDbType.Int).Value = iVersionNueva
+                cd.Parameters.Add("@NroVersion_base", SqlDbType.Int).Value = ViewState("NroVersion")
 
-				cd.Parameters("@MsgTrans").Direction = ParameterDirection.Output
+                cd.Parameters.Add("@Propuesta_base", SqlDbType.Int).Value = ViewState("NroPropuesta")
+				cd.Parameters.Add("@usuario", SqlDbType.VarChar, 100).Value = Session("CodUsuario")
+				cd.Parameters.Add("@procedencia", SqlDbType.VarChar, 1).Value = "M"
 
-				Try
-					cn.Open()
-					cd.ExecuteNonQuery()
-					sResultado = cd.Parameters("@MsgTrans").Value
-				Catch ex1 As SqlException
-					sResultado = "Error:" & ex1.Message
-				Catch ex2 As Exception
-					sResultado = "Error:" & ex2.Message
-				Finally
-					cn.Close()
-				End Try
-				'-----------------------------------------------------
+                cd.Parameters.Add("@MsgTrans", SqlDbType.VarChar, 500).Value = ""
 
+                cd.Parameters("@MsgTrans").Direction = ParameterDirection.Output
 
-				If sResultado.Trim().Equals("OK") Then
+                Try
+                    cn.Open()
+                    cd.ExecuteNonQuery()
+                    sResultado = cd.Parameters("@MsgTrans").Value
+                Catch ex1 As SqlException
+                    sResultado = "Error:" & ex1.Message
+                Catch ex2 As Exception
+                    sResultado = "Error:" & ex2.Message
+                Finally
+                    cn.Close()
+                End Try
+
+                If sResultado.Trim().Equals("OK") Then
                     transScope.Complete()
                     procesado = True
                 Else
@@ -985,5 +987,485 @@ Partial Class VtaVersionFicha
         Else
             Response.Write(String.Format("<script type='text/javascript'>alert('{0}');</script>", sMensajeError))
         End If
+    End Sub
+    Protected Sub lbtMigrarPedidoGG_Click(sender As Object, e As EventArgs) Handles lbtMigrarPedidoGG.Click
+
+        Dim version_gg As Integer = 0
+
+        'Dim flagGG As Boolean
+        If versionGG.Value = String.Empty Then
+            Exit Sub
+        Else
+            version_gg = Convert.ToInt32(versionGG.Value)
+        End If
+
+        Dim procesado As Boolean = False
+        Dim sMensajeError As String = ""
+        Dim sResultado As String = ""
+        Dim iPropuestaNueva As Integer = version_gg
+        Dim iVersionNueva As Integer = 0
+        Dim wPorcentaje1, wPorcentaje2 As Double
+        Dim wTotal, wTotal1, wTotal2, wTotal3 As Double
+        Dim dFchInicial, dFchEmision1, dFchEmision2, dFchEmision3 As String
+
+        Using transScope As New TransactionScope()
+            Try
+                '-----------------------------------------------------
+                'Validaciones
+                '-----------------------------------------------------
+                Dim cd As New SqlCommand
+                cd.Connection = cn
+                cd.CommandType = CommandType.StoredProcedure
+                cd.CommandText = "SYS_ValidarFacturacion_S"
+
+                cd.Parameters.Add("@NroPedido", SqlDbType.Int).Value = ViewState("NroPedido")
+                cd.Parameters.Add("@NroPropuesta", SqlDbType.Int).Value = ViewState("NroPropuesta")
+                cd.Parameters.Add("@NroVersion", SqlDbType.Int).Value = ViewState("NroVersion")
+                cd.Parameters.Add("@CodCliente", SqlDbType.Int).Value = ViewState("CodCliente")
+                cd.Parameters.Add("@MsgTrans", SqlDbType.VarChar, 500).Value = ""
+
+                cd.Parameters("@MsgTrans").Direction = ParameterDirection.Output
+
+                Try
+                    cn.Open()
+                    cd.ExecuteNonQuery()
+                    sResultado = cd.Parameters("@MsgTrans").Value
+                Catch ex1 As SqlException
+                    sResultado = "Error: " & ex1.Message
+                Catch ex2 As Exception
+                    sResultado = "Error: " & ex2.Message
+                Finally
+                    cn.Close()
+                End Try
+
+                If Not sResultado.Trim().Equals("OK") Then
+                    Throw New Exception(sResultado)
+                End If
+
+                '-----------------------------------------------------
+                'Anulación de pedido actual
+                '-----------------------------------------------------
+                Dim wFchSys As Date = ObjRutina.FchSys
+                Dim sIdReg As String = ToString.Format("{0:yyyyMMdd}", wFchSys) + " " + ToString.Format("{0:hh:mm:ss}", wFchSys) + Mid(Session("CodUsuario"), 1, 8)
+
+                cd = New SqlCommand
+                cd.Connection = cn
+                cd.CommandType = CommandType.StoredProcedure
+                cd.CommandText = "CPC_AnulaFactPedidoVersion2_U"
+
+                cd.Parameters.Add("@IdReg", SqlDbType.Char, 25).Value = sIdReg
+                cd.Parameters.Add("@NroPedido", SqlDbType.Int).Value = ViewState("NroPedido")
+                cd.Parameters.Add("@Referencia", SqlDbType.VarChar, 50).Value = "Gastos de anulación de viaje"
+                cd.Parameters.Add("@TotalCliente", SqlDbType.Money).Value = 0
+                cd.Parameters.Add("@CodUsuario", SqlDbType.Char, 15).Value = Session("CodUsuario")
+                cd.Parameters.Add("@MsgTrans", SqlDbType.VarChar, 500).Value = ""
+
+                cd.Parameters("@MsgTrans").Direction = ParameterDirection.Output
+
+                Try
+                    cn.Open()
+                    cd.ExecuteNonQuery()
+                    sResultado = cd.Parameters("@MsgTrans").Value
+                Catch ex1 As SqlException
+                    sResultado = "Error: " & ex1.Message
+                Catch ex2 As Exception
+                    sResultado = "Error: " & ex2.Message
+                Finally
+                    cn.Close()
+                End Try
+
+                If Not sResultado.Trim().Equals("OK") Then
+                    Throw New Exception(sResultado)
+                End If
+
+                '-----------------------------------------------------
+                'Publicar pedido
+                '-----------------------------------------------------
+                sResultado = ""
+                Dim objPropuesta As New clsPropuesta
+
+                objPropuesta.NroPedido = ViewState("NroPedido")
+                objPropuesta.NroPropuesta = iPropuestaNueva
+
+                sResultado = objPropuesta.Editar
+
+                If sResultado.Trim().Equals("OK") Then
+                    sResultado = ""
+
+                    objPropuesta.FlagPublica = "S"
+                    objPropuesta.FlagAtencion = "F"
+                    objPropuesta.NroPedido = ViewState("NroPedido")
+                    objPropuesta.NroPropuesta = iPropuestaNueva
+                    objPropuesta.CodUsuario = Session("CodUsuario")
+
+                    sResultado = objPropuesta.Publica
+
+                    If Not sResultado.Trim().Equals("OK") Then
+                        Throw New Exception(sResultado)
+                    End If
+                Else
+                    Throw New Exception(sResultado)
+                End If
+
+                '-----------------------------------------------------
+                'Generar nueva versión de pedido
+                '-----------------------------------------------------
+                sResultado = ""
+                cd = New SqlCommand()
+                cd.Connection = cn
+                cd.CommandText = "VTA_VersionPropuesta_I"
+                cd.CommandType = CommandType.StoredProcedure
+
+                cd.Parameters.Add("@CodCliente", SqlDbType.Int).Value = ViewState("CodCliente")
+                cd.Parameters.Add("@NroPedido", SqlDbType.Int).Value = ViewState("NroPedido")
+                cd.Parameters.Add("@NroPropuesta", SqlDbType.Int).Value = iPropuestaNueva
+                cd.Parameters.Add("@CodUsuario", SqlDbType.Char, 15).Value = Session("CodUsuario")
+                cd.Parameters.Add("@MsgTrans", SqlDbType.VarChar, 500).Value = ""
+                cd.Parameters.Add("@NroVersionOut", SqlDbType.Int).Value = 0
+
+                cd.Parameters("@MsgTrans").Direction = ParameterDirection.Output
+                cd.Parameters("@NroVersionOut").Direction = ParameterDirection.Output
+
+                Try
+                    cn.Open()
+                    cd.ExecuteNonQuery()
+                    sResultado = cd.Parameters("@MsgTrans").Value
+
+                    If sResultado.Trim().Equals("OK") Then
+                        iVersionNueva = cd.Parameters("@NroVersionOut").Value
+                    End If
+                Catch ex1 As SqlException
+                    sResultado = "Error:" & ex1.Message
+                Catch ex2 As Exception
+                    sResultado = "Error:" & ex2.Message
+                Finally
+                    cn.Close()
+                End Try
+
+                If Not sResultado.Trim().Equals("OK") Then
+                    Throw New Exception(sResultado)
+                End If
+
+                '-----------------------------------------------------
+                'Publicar pedido
+                '-----------------------------------------------------
+                sResultado = ""
+                objPropuesta = New clsPropuesta
+
+                objPropuesta.NroPedido = ViewState("NroPedido")
+                objPropuesta.NroPropuesta = iPropuestaNueva
+
+                sResultado = objPropuesta.Editar
+
+                If sResultado.Trim().Equals("OK") Then
+                    sResultado = ""
+
+                    objPropuesta.FlagPublica = "S"
+                    objPropuesta.FlagAtencion = "F"
+                    objPropuesta.NroPedido = ViewState("NroPedido")
+                    objPropuesta.NroPropuesta = iPropuestaNueva
+                    objPropuesta.CodUsuario = Session("CodUsuario")
+
+                    sResultado = objPropuesta.Publica
+
+                    If Not sResultado.Trim().Equals("OK") Then
+                        Throw New Exception(sResultado)
+                    End If
+                Else
+                    Throw New Exception(sResultado)
+                End If
+
+                '-----------------------------------------------------
+                'Aprobar pedido
+                '-----------------------------------------------------
+                Dim dr As SqlDataReader
+                Dim sObservacionVersion As String = ""
+                Dim bAprobar As Boolean = False
+
+                cd = New SqlCommand()
+                cd.Connection = cn
+                cd.CommandText = "VTA_VersionNroVersion_S"
+                cd.CommandType = CommandType.StoredProcedure
+
+                cd.Parameters.Add("@NroPedido", SqlDbType.Int).Value = ViewState("NroPedido")
+                cd.Parameters.Add("@NroPropuesta", SqlDbType.Int).Value = iPropuestaNueva
+                cd.Parameters.Add("@NroVersion", SqlDbType.Int).Value = iVersionNueva
+
+                Try
+                    cn.Open()
+                    dr = cd.ExecuteReader
+                    Do While dr.Read()
+                        sObservacionVersion = dr.GetValue(dr.GetOrdinal("ObsVersion"))
+                        bAprobar = True
+                    Loop
+                    dr.Close()
+                Finally
+                    cn.Close()
+                End Try
+
+                If (bAprobar) Then
+                    sResultado = ""
+                    cd = New SqlCommand()
+                    cd.Connection = cn
+                    cd.CommandText = "VTA_VersionAprueba_U"
+                    cd.CommandType = CommandType.StoredProcedure
+
+                    cd.Parameters.Add("@CodCliente", SqlDbType.Int).Value = ViewState("CodCliente")
+                    cd.Parameters.Add("@NroPedido", SqlDbType.Int).Value = ViewState("NroPedido")
+                    cd.Parameters.Add("@NroPropuesta", SqlDbType.Int).Value = iPropuestaNueva
+                    cd.Parameters.Add("@NroVersion", SqlDbType.Int).Value = iVersionNueva
+                    cd.Parameters.Add("@ObsVersion", SqlDbType.VarChar, 100).Value = sObservacionVersion
+                    cd.Parameters.Add("@CodUsuario", SqlDbType.Char, 15).Value = Session("CodUsuario")
+                    cd.Parameters.Add("@MsgTrans", SqlDbType.VarChar, 500).Value = ""
+
+                    cd.Parameters("@MsgTrans").Direction = ParameterDirection.Output
+
+                    Try
+                        cn.Open()
+                        cd.ExecuteNonQuery()
+                        sResultado = cd.Parameters("@MsgTrans").Value
+                    Catch ex1 As SqlException
+                        sResultado = "Error:" & ex1.Message
+                    Catch ex2 As Exception
+                        sResultado = "Error:" & ex2.Message
+                    Finally
+                        cn.Close()
+                    End Try
+
+                    If Not sResultado.Trim().Equals("OK") Then
+                        Throw New Exception(sResultado)
+                    End If
+                Else
+                    Throw New Exception("No se ha podido aprobar la nueva versión.")
+                End If
+
+                '-----------------------------------------------------
+                'Facturar pedido
+                '-----------------------------------------------------
+                dFchEmision1 = ""
+                dFchEmision2 = ""
+                dFchEmision3 = ""
+                wTotal = 0
+                wTotal1 = 0
+                wTotal2 = 0
+                wTotal3 = 0
+                dFchInicial = ObjRutina.fechaddmmyyyy(0)
+                Dim drCosto As SqlDataReader
+                Dim bFacturar As Boolean = False
+
+                cd = New SqlCommand()
+                cd.Connection = cn
+                cd.CommandText = "CPC_FacturarVersion_S"
+                cd.CommandType = CommandType.StoredProcedure
+
+                cd.Parameters.Add("@CodCliente", SqlDbType.Int).Value = ViewState("CodCliente")
+
+                Try
+                    cn.Open()
+                    drCosto = cd.ExecuteReader
+                    Do While drCosto.Read()
+                        Dim version As Integer = drCosto.GetValue(drCosto.GetOrdinal("NroVersion"))
+
+                        If (version = iVersionNueva) Then
+                            dFchEmision3 = drCosto.GetValue(drCosto.GetOrdinal("FchInicio"))
+                            wTotal = drCosto.GetValue(drCosto.GetOrdinal("PrecioTotal"))
+
+                            If wTotal > 0 Then
+                                wPorcentaje1 = 30
+                                wPorcentaje2 = 70
+
+                                wTotal1 = String.Format("{0:###,###,###.00}", Math.Round(wTotal * (wPorcentaje1 / 100), 2))
+                                wTotal2 = 0
+                                wTotal3 = String.Format("{0:###,###,###.00}", Math.Round(wTotal - wTotal1, 2))
+
+                                dFchEmision1 = ObjRutina.fechaddmmyyyy(0)
+                                dFchEmision2 = ""
+
+                                bFacturar = True
+                            End If
+                        End If
+                    Loop
+                    drCosto.Close()
+                Finally
+                    cn.Close()
+                End Try
+
+                If (bFacturar) Then
+                    sIdReg = ToString.Format("{0:yyyyMMdd}", wFchSys) + " " + ToString.Format("{0:hh:mm:ss}", wFchSys) + Mid(Session("CodUsuario"), 1, 8)
+
+                    sResultado = ""
+                    cd = New SqlCommand()
+                    cd.Connection = cn
+                    cd.CommandText = "CPC_FacturarVersion1_I"
+                    cd.CommandType = CommandType.StoredProcedure
+
+                    cd.Parameters.Add("@IdReg", SqlDbType.Char, 25).Value = sIdReg
+                    cd.Parameters.Add("@CodCliente", SqlDbType.Int).Value = ViewState("CodCliente")
+                    cd.Parameters.Add("@NroPedido", SqlDbType.Int).Value = ViewState("NroPedido")
+                    cd.Parameters.Add("@NroPropuesta", SqlDbType.TinyInt).Value = iPropuestaNueva
+                    cd.Parameters.Add("@NroVersion", SqlDbType.TinyInt).Value = iVersionNueva
+                    cd.Parameters.Add("@CodUsuario", SqlDbType.Char, 15).Value = Session("CodUsuario")
+                    cd.Parameters.Add("@MsgTrans", SqlDbType.VarChar, 500).Value = ""
+
+                    cd.Parameters("@MsgTrans").Direction = ParameterDirection.Output
+
+                    Try
+                        cn.Open()
+                        cd.ExecuteNonQuery()
+                        sResultado = cd.Parameters("@MsgTrans").Value
+                    Catch ex1 As SqlException
+                        sResultado = "Error:" & ex1.Message
+                    Catch ex2 As Exception
+                        sResultado = "Error:" & ex2.Message
+                    Finally
+                        cn.Close()
+                    End Try
+
+                    If sResultado.Trim().Equals("OK") Then
+                        sResultado = ""
+                        cd = New SqlCommand()
+                        cd.Connection = cn
+                        cd.CommandText = "CPC_FacturarVersion2_I"
+                        cd.CommandType = CommandType.StoredProcedure
+
+                        cd.Parameters.Add("@IdReg", SqlDbType.Char, 25).Value = sIdReg
+                        cd.Parameters.Add("@TipoDocumento", SqlDbType.Char, 2).Value = "DC"
+                        cd.Parameters.Add("@CodCliente", SqlDbType.Int).Value = ViewState("CodCliente")
+                        cd.Parameters.Add("@NroPedido", SqlDbType.Int).Value = ViewState("NroPedido")
+                        cd.Parameters.Add("@Total1", SqlDbType.Money).Value = wTotal1
+                        cd.Parameters.Add("@Total2", SqlDbType.Money).Value = wTotal2
+                        cd.Parameters.Add("@Total3", SqlDbType.Money).Value = wTotal3
+                        cd.Parameters.Add("@FchEmision1", SqlDbType.Char, 8).Value = ObjRutina.fechayyyymmdd(dFchEmision1)
+                        cd.Parameters.Add("@FchEmision2", SqlDbType.Char, 8).Value = ObjRutina.fechayyyymmdd(dFchEmision2)
+                        cd.Parameters.Add("@FchEmision3", SqlDbType.Char, 8).Value = ObjRutina.fechayyyymmdd(dFchEmision3)
+                        cd.Parameters.Add("@FchVersion", SqlDbType.Char, 8).Value = ObjRutina.fechayyyymmdd(dFchInicial)
+                        cd.Parameters.Add("@CodUsuario", SqlDbType.Char, 15).Value = Session("CodUsuario")
+                        cd.Parameters.Add("@MsgTrans", SqlDbType.VarChar, 500).Value = ""
+                        cd.Parameters.Add("@NroDoc", SqlDbType.Int).Value = 0
+                        cd.Parameters.Add("@TotalFact", SqlDbType.Money).Value = 0
+
+                        cd.Parameters("@MsgTrans").Direction = ParameterDirection.Output
+                        cd.Parameters("@NroDoc").Direction = ParameterDirection.Output
+                        cd.Parameters("@TotalFact").Direction = ParameterDirection.Output
+
+                        Try
+                            cn.Open()
+                            cd.ExecuteNonQuery()
+                            sResultado = cd.Parameters("@MsgTrans").Value
+                        Catch ex1 As SqlException
+                            sResultado = "Error:" & ex1.Message
+                        Catch ex2 As Exception
+                            sResultado = "Error:" & ex2.Message
+                        Finally
+                            cn.Close()
+                        End Try
+
+                        If Not sResultado.Trim().Equals("OK") Then
+                            Throw New Exception(sResultado)
+                        End If
+                    Else
+                        Throw New Exception(sResultado)
+                    End If
+                Else
+                    Throw New Exception("No se ha podido facturar la nueva versión.")
+                End If
+
+                '-----------------------------------------------------
+                'Flag Ajuste
+                '-----------------------------------------------------
+                sResultado = ""
+                cd = New SqlCommand()
+                cd.Connection = cn
+                cd.CommandText = "REG_Migracion_I"
+                cd.CommandType = CommandType.StoredProcedure
+
+
+                cd.Parameters.Add("@NroPedido", SqlDbType.Int).Value = ViewState("NroPedido")
+                cd.Parameters.Add("@NroPropuesta_new", SqlDbType.Int).Value = iPropuestaNueva
+                cd.Parameters.Add("@NroVersion_new", SqlDbType.Int).Value = iVersionNueva
+                cd.Parameters.Add("@NroVersion_base", SqlDbType.Int).Value = ViewState("NroVersion")
+
+                cd.Parameters.Add("@Propuesta_base", SqlDbType.Int).Value = ViewState("NroPropuesta")
+                cd.Parameters.Add("@usuario", SqlDbType.VarChar, 100).Value = Session("CodUsuario")
+
+                If version_gg <> 0 Then
+                    cd.Parameters.Add("@procedencia", SqlDbType.VarChar, 1).Value = "R"
+                Else
+                    cd.Parameters.Add("@procedencia", SqlDbType.VarChar, 1).Value = "M"
+                End If
+
+                cd.Parameters.Add("@MsgTrans", SqlDbType.VarChar, 500).Value = ""
+
+                cd.Parameters("@MsgTrans").Direction = ParameterDirection.Output
+
+                Try
+                    cn.Open()
+                    cd.ExecuteNonQuery()
+                    sResultado = cd.Parameters("@MsgTrans").Value
+                Catch ex1 As SqlException
+                    sResultado = "Error:" & ex1.Message
+                Catch ex2 As Exception
+                    sResultado = "Error:" & ex2.Message
+                Finally
+                    cn.Close()
+                End Try
+
+                If sResultado.Trim().Equals("OK") Then
+                    transScope.Complete()
+                    procesado = True
+                Else
+                    Throw New Exception(sResultado)
+                End If
+            Catch ex As Exception
+                transScope.Dispose()
+                procesado = False
+                sMensajeError = ex.Message
+            End Try
+        End Using
+
+        If (procesado) Then
+            Response.Redirect("VtaVersionFicha.aspx?NroPedido=" & ViewState("NroPedido") & "&NroPropuesta=" & iPropuestaNueva & "&NroVersion=" & iVersionNueva)
+        Else
+            Response.Write(String.Format("<script type='text/javascript'>alert('{0}');</script>", sMensajeError))
+        End If
+    End Sub
+
+    Private Sub OcultarBotonMigrarGG()
+        Dim sResultado As String = ""
+
+        Dim cd As New SqlCommand
+        cd.Connection = cn
+        cd.CommandType = CommandType.StoredProcedure
+        cd.CommandText = "SYS_OcultarBotonMigrar"
+
+        cd.Parameters.Add("@CodUsuario", SqlDbType.Char).Value = Session("CodUsuario")
+
+        cd.Parameters.Add("@MsgTrans", SqlDbType.VarChar, 15).Value = ""
+
+        cd.Parameters("@MsgTrans").Direction = ParameterDirection.Output
+
+        Try
+            cn.Open()
+            cd.ExecuteNonQuery()
+            sResultado = cd.Parameters("@MsgTrans").Value
+
+            If (sResultado.Trim = "ADMI") Then
+                lbtMigrarPedidoGG.Visible = True
+            Else
+                lbtMigrarPedidoGG.Visible = False
+
+            End If
+
+
+        Catch ex1 As SqlException
+            sResultado = "Error: " & ex1.Message
+        Catch ex2 As Exception
+            sResultado = "Error: " & ex2.Message
+        Finally
+            cn.Close()
+        End Try
+
+
+
     End Sub
 End Class

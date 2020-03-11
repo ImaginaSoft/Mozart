@@ -127,21 +127,26 @@ Partial Class VtaRecordatorioPedido
                     dr = cd.ExecuteReader
                     Do While dr.Read()
 
-                        With email
-                            .From = dr.GetValue(dr.GetOrdinal("De"))
-                            .To = dr.GetValue(dr.GetOrdinal("Para"))
-                            .CC = dr.GetValue(dr.GetOrdinal("De"))
-                            .Subject = dr.GetValue(dr.GetOrdinal("Asunto"))
-                            .Body = dr.GetValue(dr.GetOrdinal("Mensaje"))
-                            .BodyFormat = MailFormat.Html
-                            .Fields.Add("http://schemas.microsoft.com/cdo/configuration/smtpserver", System.Configuration.ConfigurationManager.AppSettings("ServidorEmail")) 'smtp Server Address
-                            .Fields.Add("http://schemas.microsoft.com/cdo/configuration/smtpserverport", System.Configuration.ConfigurationManager.AppSettings("port"))
-                            .Fields.Add("http://schemas.microsoft.com/cdo/configuration/sendusing", 2) '2 to send using SMTP over the network
-                            .Fields.Add("http://schemas.microsoft.com/cdo/configuration/smtpauthenticate", 1) '1 = basic authentication
-                            .Fields.Add("http://schemas.microsoft.com/cdo/configuration/sendusername", System.Configuration.ConfigurationManager.AppSettings("sendusername"))
-                            .Fields.Add("http://schemas.microsoft.com/cdo/configuration/sendpassword", System.Configuration.ConfigurationManager.AppSettings("sendpassword"))
-                            ' .Priority = MailPriority.High
-                        End With
+                        Dim objEmail As New cmpNegocio.clsEmailSendGrid
+                        Dim rpta As String = objEmail.EnviarCorreo("Pentagrama", dr.GetValue(dr.GetOrdinal("De")), dr.GetValue(dr.GetOrdinal("Para")), dr.GetValue(dr.GetOrdinal("Asunto")), dr.GetValue(dr.GetOrdinal("Mensaje")), Nothing)
+
+
+
+                        'With email
+                        '    .From = dr.GetValue(dr.GetOrdinal("De"))
+                        '    .To = dr.GetValue(dr.GetOrdinal("Para"))
+                        '    .CC = dr.GetValue(dr.GetOrdinal("De"))
+                        '    .Subject = dr.GetValue(dr.GetOrdinal("Asunto"))
+                        '    .Body = dr.GetValue(dr.GetOrdinal("Mensaje"))
+                        '    .BodyFormat = MailFormat.Html
+                        '    .Fields.Add("http://schemas.microsoft.com/cdo/configuration/smtpserver", System.Configuration.ConfigurationManager.AppSettings("ServidorEmail")) 'smtp Server Address
+                        '    .Fields.Add("http://schemas.microsoft.com/cdo/configuration/smtpserverport", System.Configuration.ConfigurationManager.AppSettings("port"))
+                        '    .Fields.Add("http://schemas.microsoft.com/cdo/configuration/sendusing", 2) '2 to send using SMTP over the network
+                        '    .Fields.Add("http://schemas.microsoft.com/cdo/configuration/smtpauthenticate", 1) '1 = basic authentication
+                        '    .Fields.Add("http://schemas.microsoft.com/cdo/configuration/sendusername", System.Configuration.ConfigurationManager.AppSettings("sendusername"))
+                        '    .Fields.Add("http://schemas.microsoft.com/cdo/configuration/sendpassword", System.Configuration.ConfigurationManager.AppSettings("sendpassword"))
+                        '    ' .Priority = MailPriority.High
+                        'End With
 
 
                         'Proceso para enviar e-mail
@@ -167,7 +172,7 @@ Partial Class VtaRecordatorioPedido
                         'End With
 
                         Try
-                            SmtpMail.Send(email)
+                            'SmtpMail.Send(email)
                             'client.Send(email)
                             wStsEnvio = True
                             'email.Dispose()
