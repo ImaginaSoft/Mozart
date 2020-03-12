@@ -156,134 +156,82 @@ Partial Class cpcRegistraCargo
 
     Private Sub cmdGrabar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdGrabar.Click
 
-        Dim procesado As Boolean = False
-        Dim sMensajeError As String = ""
-        Dim sResultado As String = ""
-        Using transScope As New TransactionScope
-            Try
-                Dim cd As New SqlCommand
+        If Len(Trim(txtpIGV.Text)) = 0 Then
+            txtpIGV.Text = "0"
+        End If
 
-                '-----------------------------------------------------
-                'Validaciones (si esta facturado y si pertenece a un periodo anterior, si de vuelve ok en los 4 botones no debe dejar procesar)
-                '-----------------------------------------------------
-                cd.Connection = cn
-                cd.CommandType = CommandType.StoredProcedure
-                cd.CommandText = "SYS_ValidarFacturacion_S"
+        Dim wCodMoneda As String
+        Dim wNroDoc As String
 
-                cd.Parameters.Add("@NroPedido", SqlDbType.Int).Value = ViewState("NroPedido")
-                cd.Parameters.Add("@NroPropuesta", SqlDbType.Int).Value = ViewState("NroPropuesta")
-                cd.Parameters.Add("@NroVersion", SqlDbType.Int).Value = ViewState("NroVersion")
-                cd.Parameters.Add("@CodCliente", SqlDbType.Int).Value = ViewState("CodCliente")
-                cd.Parameters.Add("@MsgTrans", SqlDbType.VarChar, 500).Value = ""
-
-                cd.Parameters("@MsgTrans").Direction = ParameterDirection.Output
-
-                Try
-                    cn.Open()
-                    cd.ExecuteNonQuery()
-                    sResultado = cd.Parameters("@MsgTrans").Value
-                Catch ex1 As SqlException
-                    sResultado = "Error: " & ex1.Message
-                Catch ex2 As Exception
-                    sResultado = "Error: " & ex2.Message
-                Finally
-                    cn.Close()
-                End Try
-
-                If sResultado.Trim().Equals("OK") Then
-                    Throw New Exception("Error: El pedido pertecene a un periodo anterior y no puede aplicarse eta operación, primero tiene que migrar el pedido al periodo actual.")
-                End If
-
-                '-----------------------------------------------------
-                'Procesar ajuste
-                '-----------------------------------------------------
-                If Len(Trim(txtpIGV.Text)) = 0 Then
-                    txtpIGV.Text = "0"
-                End If
-
-                Dim wCodMoneda As String
-                Dim wNroDoc As String
-
-                Dim wNroDocumento As Integer
-                If ViewState("NroDocumento") > 0 Then
-                    wNroDocumento = ViewState("NroDocumento")
-                Else
-                    wNroDocumento = 0
-                End If
-
-                Dim wNroPedido, wNroPro, wNroVer As Integer
-                If ViewState("NroVersion") > 0 Then
-                    wNroPedido = ViewState("NroPedido")
-                    wNroPro = ViewState("NroPropuesta")
-                    wNroVer = ViewState("NroVersion")
-                Else
-                    wNroPedido = 0
-                    wNroPro = 0
-                    wNroVer = 0
-                End If
-                If rbdolar.Checked Then
-                    wCodMoneda = "D"
-                Else
-                    wCodMoneda = "S"
-                End If
-
-                cd = New SqlCommand
-                cd.Connection = cn
-                cd.CommandText = "CPC_RegistraCargos_I"
-                cd.CommandType = CommandType.StoredProcedure
-
-                Dim pa As New SqlParameter()
-                pa = cd.Parameters.Add("@MsgTrans", SqlDbType.VarChar, 150)
-                pa.Direction = ParameterDirection.Output
-                pa.Value = ""
-                pa = cd.Parameters.Add("@NroDoc", SqlDbType.Int)
-                pa.Direction = ParameterDirection.Output
-                pa.Value = 0
-                cd.Parameters.Add("@CodCliente", SqlDbType.Int).Value = ViewState("CodCliente")
-                cd.Parameters.Add("@TipoDocumento", SqlDbType.Char, 2).Value = ddlTipoDocumento.SelectedItem.Value
-                cd.Parameters.Add("@NroDocumento", SqlDbType.Int).Value = wNroDocumento
-                cd.Parameters.Add("@FchEmision", SqlDbType.Char, 8).Value = txtFchEmision.Text.Substring(6, 4) + txtFchEmision.Text.Substring(3, 2) + txtFchEmision.Text.Substring(0, 2)
-                cd.Parameters.Add("@Referencia", SqlDbType.VarChar, 50).Value = txtReferencia.Text
-                cd.Parameters.Add("@GlosaDocumento", SqlDbType.VarChar, 50).Value = " "
-                cd.Parameters.Add("@CodMoneda", SqlDbType.Char, 1).Value = wCodMoneda
-                cd.Parameters.Add("@Importe", SqlDbType.Money).Value = txtImporte.Text
-                cd.Parameters.Add("@Otros", SqlDbType.Money).Value = 0
-                cd.Parameters.Add("@PIGV", SqlDbType.SmallMoney).Value = CDbl(txtpIGV.Text)
-                cd.Parameters.Add("@IGV", SqlDbType.Money).Value = CDbl(txtIGV.Text)
-                cd.Parameters.Add("@Total", SqlDbType.Money).Value = txtTotal.Text
-                cd.Parameters.Add("@Saldo", SqlDbType.Money).Value = txtTotal.Text
-                cd.Parameters.Add("@NroPedido", SqlDbType.Int).Value = wNroPedido
-                cd.Parameters.Add("@NroPropuesta", SqlDbType.TinyInt).Value = wNroPro
-                cd.Parameters.Add("@NroVersion", SqlDbType.TinyInt).Value = wNroVer
-                cd.Parameters.Add("@CodUsuario", SqlDbType.Char, 15).Value = Session("CodUsuario")
-                Try
-                    cn.Open()
-                    cd.ExecuteNonQuery()
-                    lblmsg.Text = cd.Parameters("@MsgTrans").Value
-                Catch ex1 As System.Data.SqlClient.SqlException
-                    lblmsg.Text = "Error:" & ex1.Message
-                Catch ex2 As System.Exception
-                    lblmsg.Text = "Error:" & ex2.Message
-                End Try
-                cn.Close()
-
-                If Trim(lblmsg.Text) = "OK" Then
-                    transScope.Complete()
-                    procesado = True
-                Else
-                    Throw New Exception(lblmsg.Text)
-                End If
-            Catch ex As Exception
-                transScope.Dispose()
-                procesado = False
-                sMensajeError = ex.Message
-            End Try
-        End Using
-
-        If (procesado) Then
-            Response.Redirect("cpcDocumento.aspx?CodCliente=" & ViewState("CodCliente"))
+        Dim wNroDocumento As Integer
+        If ViewState("NroDocumento") > 0 Then
+            wNroDocumento = ViewState("NroDocumento")
         Else
-            Response.Write(String.Format("<script type='text/javascript'>alert('{0}');</script>", sMensajeError))
+            wNroDocumento = 0
+        End If
+
+        Dim wNroPedido, wNroPro, wNroVer As Integer
+        If ViewState("NroVersion") > 0 Then
+            wNroPedido = ViewState("NroPedido")
+            wNroPro = ViewState("NroPropuesta")
+            wNroVer = ViewState("NroVersion")
+        Else
+            wNroPedido = 0
+            wNroPro = 0
+            wNroVer = 0
+        End If
+        If rbdolar.Checked Then
+            wCodMoneda = "D"
+        Else
+            wCodMoneda = "S"
+        End If
+
+        Dim cd As New SqlCommand()
+
+        cd.Connection = cn
+        cd.CommandText = "CPC_RegistraCargos_I"
+        cd.CommandType = CommandType.StoredProcedure
+
+        Dim pa As New SqlParameter()
+        pa = cd.Parameters.Add("@MsgTrans", SqlDbType.VarChar, 150)
+        pa.Direction = ParameterDirection.Output
+        pa.Value = ""
+        pa = cd.Parameters.Add("@NroDoc", SqlDbType.Int)
+        pa.Direction = ParameterDirection.Output
+        pa.Value = 0
+        cd.Parameters.Add("@CodCliente", SqlDbType.Int).Value = ViewState("CodCliente")
+        cd.Parameters.Add("@TipoDocumento", SqlDbType.Char, 2).Value = ddlTipoDocumento.SelectedItem.Value
+        cd.Parameters.Add("@NroDocumento", SqlDbType.Int).Value = wNroDocumento
+        cd.Parameters.Add("@FchEmision", SqlDbType.Char, 8).Value = txtFchEmision.Text.Substring(6, 4) + txtFchEmision.Text.Substring(3, 2) + txtFchEmision.Text.Substring(0, 2)
+        cd.Parameters.Add("@Referencia", SqlDbType.VarChar, 50).Value = txtReferencia.Text
+        cd.Parameters.Add("@GlosaDocumento", SqlDbType.VarChar, 50).Value = " "
+        cd.Parameters.Add("@CodMoneda", SqlDbType.Char, 1).Value = wCodMoneda
+        cd.Parameters.Add("@Importe", SqlDbType.Money).Value = txtImporte.Text
+        cd.Parameters.Add("@Otros", SqlDbType.Money).Value = 0
+        cd.Parameters.Add("@PIGV", SqlDbType.SmallMoney).Value = CDbl(txtpIGV.Text)
+        cd.Parameters.Add("@IGV", SqlDbType.Money).Value = CDbl(txtIGV.Text)
+        cd.Parameters.Add("@Total", SqlDbType.Money).Value = txtTotal.Text
+        cd.Parameters.Add("@Saldo", SqlDbType.Money).Value = txtTotal.Text
+        cd.Parameters.Add("@NroPedido", SqlDbType.Int).Value = wNroPedido
+        cd.Parameters.Add("@NroPropuesta", SqlDbType.TinyInt).Value = wNroPro
+        cd.Parameters.Add("@NroVersion", SqlDbType.TinyInt).Value = wNroVer
+        cd.Parameters.Add("@CodUsuario", SqlDbType.Char, 15).Value = Session("CodUsuario")
+        Try
+            cn.Open()
+            cd.ExecuteNonQuery()
+            lblmsg.Text = cd.Parameters("@MsgTrans").Value
+        Catch ex1 As System.Data.SqlClient.SqlException
+            lblmsg.Text = "Error:" & ex1.Message
+        Catch ex2 As System.Exception
+            lblmsg.Text = "Error:" & ex2.Message
+        End Try
+        cn.Close()
+
+        If Trim(lblmsg.Text) = "OK" Then
+            wNroDoc = cd.Parameters("@NroDoc").Value
+            Response.Redirect("cpcDocumento.aspx" &
+                            "?CodCliente=" & ViewState("CodCliente"))
+            '            lblmsg.Text = "Se grabo correctamente Documento " & ddlTipoDocumento.SelectedItem.Value & " " & wNroDoc
         End If
     End Sub
 
