@@ -232,48 +232,48 @@ Partial Class cppRegistraCredito
         Dim sMensajeError As String = ""
         Dim sResultado As String = ""
 
-        Using transScope As New TransactionScope
+        'Using transScope As New TransactionScope
 
-            Try
+        Try
 
                 Dim cd As New SqlCommand
 
-                '-----------------------------------------------------
-                'Validaciones (si esta facturado y si pertenece a un periodo anterior, si de vuelve ok en los 4 botones no debe dejar procesar)
-                '-----------------------------------------------------
-                cd.Connection = cn
-                cd.CommandType = CommandType.StoredProcedure
-                cd.CommandText = "SYS_ValidarFacturacion_S"
+            '-----------------------------------------------------
+            'Validaciones (si esta facturado y si pertenece a un periodo anterior, si de vuelve ok en los 4 botones no debe dejar procesar)
+            ''-----------------------------------------------------
+            'cd.Connection = cn
+            'cd.CommandType = CommandType.StoredProcedure
+            'cd.CommandText = "SYS_ValidarFacturacion_S"
 
-                cd.Parameters.Add("@NroPedido", SqlDbType.Int).Value = ViewState("NroPedido")
-                cd.Parameters.Add("@NroPropuesta", SqlDbType.Int).Value = ViewState("NroPropuesta")
-                cd.Parameters.Add("@NroVersion", SqlDbType.Int).Value = ViewState("NroVersion")
-                cd.Parameters.Add("@CodCliente", SqlDbType.Int).Value = ViewState("CodCliente")
-                cd.Parameters.Add("@MsgTrans", SqlDbType.VarChar, 500).Value = ""
+            'cd.Parameters.Add("@NroPedido", SqlDbType.Int).Value = ViewState("NroPedido")
+            'cd.Parameters.Add("@NroPropuesta", SqlDbType.Int).Value = ViewState("NroPropuesta")
+            'cd.Parameters.Add("@NroVersion", SqlDbType.Int).Value = ViewState("NroVersion")
+            'cd.Parameters.Add("@CodCliente", SqlDbType.Int).Value = ViewState("CodCliente")
+            'cd.Parameters.Add("@MsgTrans", SqlDbType.VarChar, 500).Value = ""
 
-                cd.Parameters("@MsgTrans").Direction = ParameterDirection.Output
+            'cd.Parameters("@MsgTrans").Direction = ParameterDirection.Output
 
-                Try
-                    cn.Open()
-                    cd.ExecuteNonQuery()
-                    sResultado = cd.Parameters("@MsgTrans").Value
-                Catch ex1 As SqlException
-                    sResultado = "Error: " & ex1.Message
-                Catch ex2 As Exception
-                    sResultado = "Error: " & ex2.Message
-                Finally
-                    cn.Close()
-                End Try
+            'Try
+            '    cn.Open()
+            '    cd.ExecuteNonQuery()
+            '    sResultado = cd.Parameters("@MsgTrans").Value
+            'Catch ex1 As SqlException
+            '    sResultado = "Error: " & ex1.Message
+            'Catch ex2 As Exception
+            '    sResultado = "Error: " & ex2.Message
+            'Finally
+            '    cn.Close()
+            'End Try
 
-                If sResultado.Trim().Equals("OK") Then
-                    Throw New Exception("Error: El pedido pertecene a un periodo anterior y no puede aplicarse eta operación, primero tiene que migrar el pedido al periodo actual.")
-                End If
+            'If sResultado.Trim().Equals("OK") Then
+            '    Throw New Exception("Error: El pedido pertecene a un periodo anterior y no puede aplicarse eta operación, primero tiene que migrar el pedido al periodo actual.")
+            'End If
 
-                '-----------------------------------------------------
-                'Procesar ajuste
-                '-----------------------------------------------------
+            '-----------------------------------------------------
+            'Procesar ajuste
+            '-----------------------------------------------------
 
-                Dim wMoneda As String
+            Dim wMoneda As String
                 Dim MsgTrans As String
                 Dim wNroDoc As String
 
@@ -342,8 +342,8 @@ Partial Class cppRegistraCredito
                 cn.Close()
 
                 If Trim(lblmsg.Text) = "OK" Then
-                    transScope.Complete()
-                    procesado = True
+                'transScope.Complete()
+                procesado = True
                 Else
                     Throw New Exception(lblmsg.Text)
                 End If
@@ -356,14 +356,14 @@ Partial Class cppRegistraCredito
 
 
             Catch ex As Exception
-                transScope.Dispose()
+                'transScope.Dispose()
                 procesado = False
                 sMensajeError = ex.Message
             End Try
 
 
 
-        End Using
+        'End Using
 
 
 
