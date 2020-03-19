@@ -5,6 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Página sin título</title>
+	<SCRIPT language="JavaScript" src="calendario.js" type="text/javascript"></SCRIPT>
 		<LINK href="Styles.css" type="text/css" rel="stylesheet">
 	</HEAD>
 	<body MS_POSITIONING="GridLayout">
@@ -58,9 +59,16 @@
 									<asp:label id="lblMontoFijo" runat="server" Width="67px" Visible="False">Monto Fijo</asp:label><asp:textbox id="txtMontoFijo" runat="server" Visible="False" Width="75px" MaxLength="10"></asp:textbox></TD>
 							</TR>
 							<TR>
-								<TD style="WIDTH: 140px; HEIGHT: 5px">&nbsp;Fecha boleto</TD>
+								<TD style="WIDTH: 140px; HEIGHT: 5px">&nbsp;Fecha Propuesta</TD>
 								<TD style="HEIGHT: 25px"><asp:textbox id="txtFchAD" runat="server" Width="75px" AutoPostBack="True" ></asp:textbox><INPUT class="fd" id="cmdFchInicial" style="WIDTH: 41px; HEIGHT: 24px" onclick="show_calendar('Form1.txtFchAD', null, null, 'DD-MM-YYYY', 'POPUP', 'Nav=Yes;SmartNav=Yes;AllowWeekends=Yes');"
 													tabIndex="2" type="button" value="..." name="cmdFchInicial" DESIGNTIMEDRAGDROP="22"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									
+							</TR>
+
+								<TR>
+								<TD style="WIDTH: 140px; HEIGHT: 5px">&nbsp;Recordatorio</TD>
+								<TD style="HEIGHT: 25px"><asp:textbox id="txtRecordatorio" runat="server" Width="75px" AutoPostBack="True" ></asp:textbox><INPUT class="fd" id="cmdRecordatorio" style="WIDTH: 41px; HEIGHT: 24px" onclick="show_calendar('Form1.txtRecordatorio', null, null, 'DD-MM-YYYY', 'POPUP', 'Nav=Yes;SmartNav=Yes;AllowWeekends=Yes');"
+													tabIndex="2" type="button" value="..." name="cmdRecordatorio" DESIGNTIMEDRAGDROP="22"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									
 							</TR>
 						
@@ -96,6 +104,7 @@
 						</TABLE>
 					</TD>
 				</TR>
+
 				<TR>
 					<TD style="HEIGHT: 14px">
 						<TABLE class="tabla" id="Table2" style="WIDTH: 576px; HEIGHT: 32px" borderColor="#cccccc"
@@ -120,10 +129,22 @@
 					<TD style="HEIGHT: 16px"><asp:button id="cmdGrabar" runat="server" Width="77px" Text="Grabar"></asp:button>&nbsp;<asp:label 
                             id="lblMsg" runat="server" Width="425px" CssClass="error"></asp:label></TD>
 				</TR>
-
-				<TR>
-					<TD>&nbsp;</TD>
+					<TR>
+					<TD ></asp:button>&nbsp;<asp:label 
+                            id="Label1" runat="server" Width="425px" CssClass="error"></asp:label></TD>
 				</TR>
+					<TR>
+					<TD>
+						<P class="Titulo">&nbsp;
+							<asp:label id="Label4" Text="SERVICIOS ADICIONALES" runat="server"></asp:label></P>
+					</TD>
+				</TR>
+			
+			
+			
+			
+			
+			
 				<TR>
 					<TD><asp:datagrid id="dgServicioAD" runat="server" Width="800px" BorderStyle="None" Height="20px" CssClass="Grid"
 							CellPadding="2" BorderWidth="2px" AutoGenerateColumns="False" BorderColor="CadetBlue">
@@ -145,6 +166,7 @@
 								</asp:BoundColumn>
 								<asp:BoundColumn DataField="NroServicio" HeaderText="Nro"></asp:BoundColumn>
 								<asp:BoundColumn DataField="NomCiudad" HeaderText="Ciudad"></asp:BoundColumn>
+								<asp:BoundColumn DataField="FchReserva" HeaderText="FchReserva" SortExpression="FchReserva"></asp:BoundColumn>
 								<asp:BoundColumn DataField="HoraServicio" HeaderText="Hora"></asp:BoundColumn>
 								<asp:TemplateColumn HeaderText="Servicio">
 									<ItemTemplate>
@@ -184,12 +206,25 @@
         									 <ItemStyle CssClass="Hide" />
                                              <HeaderStyle CssClass="Hide" />
 								</asp:BoundColumn>
+								<asp:BoundColumn DataField="FchRecordatorio" HeaderText="FchRecordatorio" SortExpression="FchRecordatorio" Visible="False"></asp:BoundColumn>
 							</Columns>
 							<PagerStyle Mode="NumericPages"></PagerStyle>
 						</asp:datagrid></TD>
 				</TR>
-				
+					<TR>
+					<TD>
+							<asp:label id="Label2" runat="server"></asp:label></TD>
+							<TR>
+					<TD>
+						<P class="Titulo">&nbsp;
+							<asp:label id="Label3" Text="SERVICIOS" runat="server"></asp:label></P>
+					</TD>
+				</TR>
+				</TR>
 				<TR>
+					<TD>&nbsp;</TD>
+					<TD>&nbsp;</TD>
+					<TD>&nbsp;</TD>
 					<TD>&nbsp;</TD>
 				</TR>
 				<TR>
@@ -213,10 +248,11 @@
 								</asp:BoundColumn>
 								<asp:BoundColumn DataField="NroServicio" HeaderText="Nro"></asp:BoundColumn>
 								<asp:BoundColumn DataField="NomCiudad" HeaderText="Ciudad"></asp:BoundColumn>
+								<asp:BoundColumn DataField="FchReserva" HeaderText="FchReserva" SortExpression="FchReserva"></asp:BoundColumn>
 								<asp:BoundColumn DataField="HoraServicio" HeaderText="Hora"></asp:BoundColumn>
 								<asp:TemplateColumn HeaderText="Servicio">
 									<ItemTemplate>
-										<asp:HyperLink id="Hyperlink1" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "DesProveedor")%>' NavigateUrl='<%# "vtaVersionDesItem.aspx?KeyReg=" + DataBinder.Eval(Container.DataItem, "KeyReg")%>'>
+										<asp:HyperLink id="Hyperlink1" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "DesProveedor")%>'>
 										</asp:HyperLink>
 									</ItemTemplate>
 								</asp:TemplateColumn>
@@ -227,7 +263,7 @@
 								<asp:BoundColumn DataField="PrecioTotal" HeaderText="Precio Total" DataFormatString="{0:###,###,###,###.00}">
 									<ItemStyle HorizontalAlign="Right"></ItemStyle>
 								</asp:BoundColumn>
-								<asp:ButtonColumn Text="Eliminar" CommandName="delete"></asp:ButtonColumn>
+								<asp:ButtonColumn Text="Eliminar" CommandName="delete" Visible="False"></asp:ButtonColumn>
 								<asp:BoundColumn DataField="NroServicio" HeaderText="NroServicio">
         									 <ItemStyle CssClass="Hide" />
                                              <HeaderStyle CssClass="Hide" />
@@ -252,7 +288,6 @@
         									 <ItemStyle CssClass="Hide" />
                                              <HeaderStyle CssClass="Hide" />
 								</asp:BoundColumn>
-								<asp:BoundColumn DataField="FchReserva" HeaderText="FchReserva" SortExpression="FchReserva"></asp:BoundColumn>
 							</Columns>
 							<PagerStyle Mode="NumericPages"></PagerStyle>
 						</asp:datagrid></TD>

@@ -27,11 +27,11 @@ Partial Class VtaVersionServicio
             Viewstate("FlagPublica") = Request.Params("FlagPublica")
             Viewstate("FlagEdita") = Request.Params("FlagEdita")
 
-            lblTitulo.Text = "Servicios Versión N° " & Viewstate("NroVersion")
+			lblTitulo.Text = "Servicios Versión N° " & ViewState("NroVersion")
 
-            Dim wCodProveedor As Integer = objRutina.LeeParametroNumero("DefaultCodProveedor")
+			Dim wCodProveedor As Integer = objRutina.LeeParametroNumero("DefaultCodProveedor")
 
-            CargaProveedorS(wCodProveedor)
+			CargaProveedorS(wCodProveedor)
             CargaCiudad("")
             CargaTipoServicio(0)
 			CargaServicio(0)
@@ -276,6 +276,8 @@ Partial Class VtaVersionServicio
 
 		objVersionDet.FchAdicional = txtFchAD.Text
 
+		objVersionDet.FchRecordatorio = txtRecordatorio.Text
+
 		lblMsg.Text = objVersionDet.GrabarAD
 		If lblMsg.Text.Trim = "OK" Then
             'Registro grabado pasa como anterior
@@ -283,8 +285,9 @@ Partial Class VtaVersionServicio
             txtOrdenAnt.Text = Textorden.Text
             txtNroServicioAnt.Text = ddlServicio.SelectedItem.Value
 
-            CargaData()
-        End If
+			CargaData()
+			CargaDataOpcional()
+		End If
     End Sub
 
     Private Sub ddlProveedor_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ddlProveedor.SelectedIndexChanged
@@ -302,22 +305,22 @@ Partial Class VtaVersionServicio
         Dim wNroServicio, wCodTipoAcomodacion As Integer
         Dim wRangoTarifa As Integer = 0
 
-        wCodTipoAcomodacion = dgServicio.Items(dgServicio.SelectedIndex).Cells(15).Text
+		wCodTipoAcomodacion = dgServicio.Items(dgServicio.SelectedIndex).Cells(16).Text
 
-        Textdia.Text = dgServicio.Items(dgServicio.SelectedIndex).Cells(2).Text.Trim
+		Textdia.Text = dgServicio.Items(dgServicio.SelectedIndex).Cells(2).Text.Trim
         Textorden.Text = dgServicio.Items(dgServicio.SelectedIndex).Cells(3).Text.Trim
-        txtHoraSalida.Text = dgServicio.Items(dgServicio.SelectedIndex).Cells(18).Text.Trim
-        txtHoraLlegada.Text = dgServicio.Items(dgServicio.SelectedIndex).Cells(19).Text.Trim
-        txtMontoFijo.Text = dgServicio.Items(dgServicio.SelectedIndex).Cells(12).Text.Trim
+		txtHoraSalida.Text = dgServicio.Items(dgServicio.SelectedIndex).Cells(19).Text.Trim
+		txtHoraLlegada.Text = dgServicio.Items(dgServicio.SelectedIndex).Cells(20).Text.Trim
+		txtMontoFijo.Text = dgServicio.Items(dgServicio.SelectedIndex).Cells(13).Text.Trim
 
-        txtDiaAnt.Text = Textdia.Text
+		txtDiaAnt.Text = Textdia.Text
         txtOrdenAnt.Text = Textorden.Text
         txtNroServicioAnt.Text = dgServicio.Items(dgServicio.SelectedIndex).Cells(4).Text
         wNroServicio = txtNroServicioAnt.Text
 
-        txtFlagValoriza.Text = dgServicio.Items(dgServicio.SelectedIndex).Cells(10).Text
+		txtFlagValoriza.Text = dgServicio.Items(dgServicio.SelectedIndex).Cells(11).Text
 
-        If txtFlagValoriza.Text.Trim = "C" Then
+		If txtFlagValoriza.Text.Trim = "C" Then
             lblMontoFijo.Visible = False
             txtMontoFijo.Visible = False
         Else
@@ -532,24 +535,24 @@ Partial Class VtaVersionServicio
 	End Sub
 
 	Private Sub CargaTipoAcomodacion(ByVal pCodTipoAcomodacion As Integer)
-        Dim ds As New DataSet
-        Dim wNroServicio As Integer = 0
-        If ddlServicio.Items.Count() > 0 Then
-            wNroServicio = ddlServicio.SelectedItem.Value
-        End If
-        ds = objServicio.CargaTipoAcomodacion(wNroServicio)
-        ddlTipoAcomodacion.DataSource = ds
-        ddlTipoAcomodacion.DataBind()
-        Try
-            If pCodTipoAcomodacion > 0 Then
-                ddlTipoAcomodacion.Items.FindByValue(pCodTipoAcomodacion).Selected = True
-            End If
-        Catch ex2 As System.Exception
-            'No existe ...continuar
-        End Try
-    End Sub
+		Dim ds As New DataSet
+		Dim wNroServicio As Integer = 0
+		If ddlServicio.Items.Count() > 0 Then
+			wNroServicio = ddlServicio.SelectedItem.Value
+		End If
+		ds = objServicio.CargaTipoAcomodacionAD(wNroServicio)
+		ddlTipoAcomodacion.DataSource = ds
+		ddlTipoAcomodacion.DataBind()
+		Try
+			If pCodTipoAcomodacion > 0 Then
+				ddlTipoAcomodacion.Items.FindByValue(pCodTipoAcomodacion).Selected = True
+			End If
+		Catch ex2 As System.Exception
+			'No existe ...continuar
+		End Try
+	End Sub
 
-    Private Sub ddlCiudad_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ddlCiudad.SelectedIndexChanged
+	Private Sub ddlCiudad_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ddlCiudad.SelectedIndexChanged
         CargaTipoServicio(0)
         CargaServicio(0)
         CargaTipoAcomodacion(0)
@@ -659,40 +662,41 @@ Partial Class VtaVersionServicio
         End If
     End Sub
 
-    Private Sub dgServicio_DeleteCommand(ByVal source As Object, ByVal e As System.Web.UI.WebControls.DataGridCommandEventArgs) Handles dgServicio.DeleteCommand
-        Dim cd As New SqlCommand
-        cd.Connection = cn
-        cd.CommandText = "VTA_VersionServicio_D"
-        cd.CommandType = CommandType.StoredProcedure
+	Private Sub dgServicioAD_DeleteCommand(ByVal source As Object, ByVal e As System.Web.UI.WebControls.DataGridCommandEventArgs) Handles dgServicioAD.DeleteCommand
+		Dim cd As New SqlCommand
+		cd.Connection = cn
+		cd.CommandText = "VTA_VersionServicio_D_AD"
+		cd.CommandType = CommandType.StoredProcedure
 
-        Dim pa As New SqlParameter
-        pa = cd.Parameters.Add("@MsgTrans", SqlDbType.VarChar, 150)
-        pa.Direction = ParameterDirection.Output
-        pa.Value = ""
+		Dim pa As New SqlParameter
+		pa = cd.Parameters.Add("@MsgTrans", SqlDbType.VarChar, 150)
+		pa.Direction = ParameterDirection.Output
+		pa.Value = ""
 
-        cd.Parameters.Add("@NroPedido", SqlDbType.Int).Value = Viewstate("NroPedido")
-        cd.Parameters.Add("@NroPropuesta", SqlDbType.TinyInt).Value = Viewstate("NroPropuesta")
-        cd.Parameters.Add("@NroVersion", SqlDbType.TinyInt).Value = Viewstate("NroVersion")
-        cd.Parameters.Add("@NroDia", SqlDbType.SmallInt).Value = Mid(dgServicio.DataKeys(e.Item.ItemIndex), 13, 2)
-        cd.Parameters.Add("@NroOrden", SqlDbType.SmallInt).Value = Mid(dgServicio.DataKeys(e.Item.ItemIndex), 15, 2)
-        cd.Parameters.Add("@NroServicio", SqlDbType.Int).Value = Mid(dgServicio.DataKeys(e.Item.ItemIndex), 17, 8)
-        cd.Parameters.Add("@CodUsuario", SqlDbType.Char, 15).Value = Session("CodUsuario")
-        Try
-            cn.Open()
-            cd.ExecuteNonQuery()
-            lblMsg.Text = cd.Parameters("@MsgTrans").Value
-        Catch ex1 As System.Data.SqlClient.SqlException
-            lblMsg.Text = "Error:" & ex1.Message
-        Catch ex2 As System.Exception
-            lblMsg.Text = "Error:" & ex2.Message
-        End Try
-        cn.Close()
-        If Trim(lblMsg.Text) = "OK" Then
-            CargaData()
-        End If
-    End Sub
+		cd.Parameters.Add("@NroPedido", SqlDbType.Int).Value = ViewState("NroPedido")
+		cd.Parameters.Add("@NroPropuesta", SqlDbType.TinyInt).Value = ViewState("NroPropuesta")
+		cd.Parameters.Add("@NroVersion", SqlDbType.TinyInt).Value = ViewState("NroVersion")
+		cd.Parameters.Add("@NroDia", SqlDbType.SmallInt).Value = Mid(dgServicioAD.DataKeys(e.Item.ItemIndex), 13, 2)
+		cd.Parameters.Add("@NroOrden", SqlDbType.SmallInt).Value = Mid(dgServicioAD.DataKeys(e.Item.ItemIndex), 15, 2)
+		cd.Parameters.Add("@NroServicio", SqlDbType.Int).Value = Mid(dgServicioAD.DataKeys(e.Item.ItemIndex), 17, 8)
+		cd.Parameters.Add("@CodUsuario", SqlDbType.Char, 15).Value = Session("CodUsuario")
+		Try
+			cn.Open()
+			cd.ExecuteNonQuery()
+			lblMsg.Text = cd.Parameters("@MsgTrans").Value
+		Catch ex1 As System.Data.SqlClient.SqlException
+			lblMsg.Text = "Error:" & ex1.Message
+		Catch ex2 As System.Exception
+			lblMsg.Text = "Error:" & ex2.Message
+		End Try
+		cn.Close()
+		If Trim(lblMsg.Text) = "OK" Then
+			CargaData()
+			CargaDataOpcional()
+		End If
+	End Sub
 
-    Private Sub dgServicio_ItemDataBound(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.DataGridItemEventArgs) Handles dgServicio.ItemDataBound
+	Private Sub dgServicio_ItemDataBound(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.DataGridItemEventArgs) Handles dgServicio.ItemDataBound
         If e.Item.ItemType = ListItemType.Item Or _
            e.Item.ItemType = ListItemType.AlternatingItem Then
             If e.Item.Cells(17).Text.Trim = "S" Then
@@ -730,20 +734,25 @@ Partial Class VtaVersionServicio
 		Dim wNroServicio, wCodTipoAcomodacion As Integer
 		Dim wRangoTarifa As Integer = 0
 
-		wCodTipoAcomodacion = dgServicioAD.Items(dgServicioAD.SelectedIndex).Cells(15).Text
+		wCodTipoAcomodacion = dgServicioAD.Items(dgServicioAD.SelectedIndex).Cells(16).Text
 
 		Textdia.Text = dgServicioAD.Items(dgServicioAD.SelectedIndex).Cells(2).Text.Trim
 		Textorden.Text = dgServicioAD.Items(dgServicioAD.SelectedIndex).Cells(3).Text.Trim
-		txtHoraSalida.Text = dgServicioAD.Items(dgServicioAD.SelectedIndex).Cells(18).Text.Trim
-		txtHoraLlegada.Text = dgServicioAD.Items(dgServicioAD.SelectedIndex).Cells(19).Text.Trim
-		txtMontoFijo.Text = dgServicioAD.Items(dgServicioAD.SelectedIndex).Cells(12).Text.Trim
+		txtHoraSalida.Text = dgServicioAD.Items(dgServicioAD.SelectedIndex).Cells(19).Text.Trim
+		txtHoraLlegada.Text = dgServicioAD.Items(dgServicioAD.SelectedIndex).Cells(20).Text.Trim
+
+		txtRecordatorio.Text = dgServicioAD.Items(dgServicioAD.SelectedIndex).Cells(21).Text.Trim
+
+		txtFchAD.Text = dgServicioAD.Items(dgServicioAD.SelectedIndex).Cells(6).Text.Trim
+
+		txtMontoFijo.Text = dgServicioAD.Items(dgServicioAD.SelectedIndex).Cells(13).Text.Trim
 
 		txtDiaAnt.Text = Textdia.Text
 		txtOrdenAnt.Text = Textorden.Text
 		txtNroServicioAnt.Text = dgServicioAD.Items(dgServicioAD.SelectedIndex).Cells(4).Text
 		wNroServicio = txtNroServicioAnt.Text
 
-		txtFlagValoriza.Text = dgServicioAD.Items(dgServicioAD.SelectedIndex).Cells(10).Text
+		txtFlagValoriza.Text = dgServicioAD.Items(dgServicioAD.SelectedIndex).Cells(11).Text
 
 		If txtFlagValoriza.Text.Trim = "C" Then
 			lblMontoFijo.Visible = False
@@ -764,7 +773,7 @@ Partial Class VtaVersionServicio
 		Dim cd2 As New SqlCommand
 		Dim dr2 As SqlDataReader
 		cd2.Connection = cn
-		cd2.CommandText = "VTA_VersionServicioPaxHab_S"
+		cd2.CommandText = "VTA_VersionServicioPaxHab_S_AD"
 		cd2.CommandType = CommandType.StoredProcedure
 		cd2.Parameters.Add("@NroPedido", SqlDbType.Int).Value = ViewState("NroPedido")
 		cd2.Parameters.Add("@NroPropuesta", SqlDbType.TinyInt).Value = ViewState("NroPropuesta")
@@ -847,5 +856,8 @@ Partial Class VtaVersionServicio
 		End If
 
 		PaxHab("")
+	End Sub
+	Protected Sub ddlTipoAcomodacion_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddlTipoAcomodacion.SelectedIndexChanged
+
 	End Sub
 End Class

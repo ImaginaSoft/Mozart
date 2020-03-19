@@ -648,4 +648,7 @@ Partial Class VtaVersionServicio
         "&NroVersion=" & Viewstate("NroVersion"))
     End Sub
 
+	Protected Sub ddlTipoAcomodacion_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddlTipoAcomodacion.SelectedIndexChanged
+
+	End Sub
 End Class

@@ -467,8 +467,8 @@ Public Class clsServicio
 
     Function CargaTipoAcomodacion(ByVal pNroServicio As Integer) As DataSet
         Dim ds As New DataSet
-        ds = SqlHelper.ExecuteDataset(cn, CommandType.StoredProcedure, "VTA_TipoAcomodacionxServicio_S", New SqlParameter("@NroServicio", pNroServicio))
-        Return (ds)
+		ds = SqlHelper.ExecuteDataset(cn, CommandType.StoredProcedure, "VTA_TipoAcomodacionxServicio_S", New SqlParameter("@NroServicio", pNroServicio))
+		Return (ds)
     End Function
 
     Function CargaNroServicio(ByVal pNroServicio As Integer, ByVal pEstado As String) As DataSet
@@ -734,8 +734,16 @@ Public Class clsServicio
                 sNomCiudad = dr.GetValue(dr.GetOrdinal("NomCiudad"))
                 sTipoServicio = dr.GetValue(dr.GetOrdinal("TipoServicio"))
 
+				If IsDBNull(dr.GetValue(dr.GetOrdinal("Opcional"))) Then
 
-                If IsDBNull(dr.GetValue(dr.GetOrdinal("DireccionHTL"))) Then
+					sFlagAdicional = ""
+
+				Else
+					sFlagAdicional = dr.GetValue(dr.GetOrdinal("Opcional"))
+				End If
+
+
+				If IsDBNull(dr.GetValue(dr.GetOrdinal("DireccionHTL"))) Then
 
                     sDireccion = ""
 
@@ -938,63 +946,69 @@ Public Class clsServicio
 
 
 
-    Public Shared Function CargaImg(ByVal pNroServicio As String) As List(Of clsServicio)
+	Public Shared Function CargaImg(ByVal pNroServicio As String) As List(Of clsServicio)
 
-        Dim servicio As New List(Of clsServicio)()
-        Dim Fila As New clsServicio()
+		Dim servicio As New List(Of clsServicio)()
+		Dim Fila As New clsServicio()
 
-        Using conn As New SqlConnection(System.Configuration.ConfigurationManager.AppSettings("cnMozart"))
+		Using conn As New SqlConnection(System.Configuration.ConfigurationManager.AppSettings("cnMozart"))
 
-            conn.Open()
-
-           
-            Dim query As String = "select Imagen1,Imagen2,Imagen3 from MSERVICIO where NroServicio = '" & pNroServicio & "'"
-
-            Dim cmd As New SqlCommand(query, conn)
-
-            Dim reader As SqlDataReader = cmd.ExecuteReader()
-
-            
-            While reader.Read()
-                Fila = New clsServicio()
-
-                If reader("Imagen1") Is DBNull.Value Then
-
-                Else
-
-                    Fila.Imagen = CType(reader("Imagen1"), Byte())
+			conn.Open()
 
 
-                End If
+			Dim query As String = "select Imagen1,Imagen2,Imagen3 from MSERVICIO where NroServicio = '" & pNroServicio & "'"
 
-                If reader("Imagen2") Is DBNull.Value Then
+			Dim cmd As New SqlCommand(query, conn)
 
-                Else
-
-                    Fila.Imagen2 = CType(reader("Imagen2"), Byte())
+			Dim reader As SqlDataReader = cmd.ExecuteReader()
 
 
-                End If
+			While reader.Read()
+				Fila = New clsServicio()
 
-                If reader("Imagen3") Is DBNull.Value Then
+				If reader("Imagen1") Is DBNull.Value Then
 
-                Else
+				Else
 
-                    Fila.Imagen3 = CType(reader("Imagen3"), Byte())
-
-
-                End If
+					Fila.Imagen = CType(reader("Imagen1"), Byte())
 
 
-                servicio.Add(Fila)
+				End If
 
-            End While
-        End Using
+				If reader("Imagen2") Is DBNull.Value Then
 
-        Return servicio
+				Else
+
+					Fila.Imagen2 = CType(reader("Imagen2"), Byte())
 
 
-    End Function
+				End If
+
+				If reader("Imagen3") Is DBNull.Value Then
+
+				Else
+
+					Fila.Imagen3 = CType(reader("Imagen3"), Byte())
+
+
+				End If
+
+
+				servicio.Add(Fila)
+
+			End While
+		End Using
+
+		Return servicio
+
+
+	End Function
+
+	Function CargaTipoAcomodacionAD(ByVal pNroServicio As Integer) As DataSet
+		Dim ds As New DataSet
+		ds = SqlHelper.ExecuteDataset(cn, CommandType.StoredProcedure, "VTA_TipoAcomodacionxServicio_S_AD", New SqlParameter("@NroServicio", pNroServicio))
+		Return (ds)
+	End Function
 
 
 End Class

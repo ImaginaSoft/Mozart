@@ -52,6 +52,8 @@ Public Class clsVersionDet
 
 	Private sFchAdicional As String
 
+	Private sFchRecordatorio As String
+
 	Dim cn As String = System.Configuration.ConfigurationManager.AppSettings("cnMozart")
     Dim sMsg As String
 
@@ -415,6 +417,15 @@ Public Class clsVersionDet
 		End Get
 		Set(ByVal Value As String)
 			sFchAdicional = CStr(Value)
+		End Set
+	End Property
+
+	Property FchRecordatorio() As String
+		Get
+			Return sFchRecordatorio
+		End Get
+		Set(ByVal Value As String)
+			sFchRecordatorio = CStr(Value)
 		End Set
 	End Property
 
@@ -997,6 +1008,7 @@ Public Class clsVersionDet
 		cd.Parameters.Add("@HoraSalida", SqlDbType.Char, 8).Value = sHoraSalida
 		cd.Parameters.Add("@HoraLlegada", SqlDbType.Char, 8).Value = sHoraLlegada
 		cd.Parameters.Add("@FchAdServ", SqlDbType.Char, 8).Value = sFchAdicional
+		cd.Parameters.Add("@FchRecord", SqlDbType.Char, 8).Value = sFchRecordatorio
 		Try
 			cn.Open()
 			cd.ExecuteNonQuery()
